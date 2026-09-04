@@ -168,6 +168,7 @@ export const LAYOUT_STRINGS: string[] = [
   "Navigation menu",
   "Close menu",
   "Mobile navigation",
+  "Menu",
 
   // ---- ThemeToggle ----
   "Switch to light mode",

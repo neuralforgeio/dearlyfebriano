@@ -1,18 +1,36 @@
+import {
+  Award,
+  Briefcase,
+  FolderGit2,
+  Home,
+  Mail,
+  MessagesSquare,
+  NotebookPen,
+  UserRound,
+  type LucideIcon,
+} from "lucide-react";
 import type { View } from "@/dearlyfebriano/types";
 
 /* ============================================================
  * GLOBAL CONSTANTS — navigation items, dropdown options, dll.
  * ============================================================ */
 
-export const NAV_ITEMS: { view: View; label: string }[] = [
-  { view: "home", label: "Home" },
-  { view: "about", label: "About" },
-  { view: "projects", label: "Projects" },
-  { view: "certificates", label: "Certificates" },
-  { view: "experience", label: "Experience" },
-  { view: "notes", label: "Notes" },
-  { view: "guestbook", label: "Guestbook" },
-  { view: "contact", label: "Contact" },
+/** Item navigasi — `icon` dipakai MobileMenu (drawer mobile). */
+export interface NavItem {
+  view: View;
+  label: string;
+  icon: LucideIcon;
+}
+
+export const NAV_ITEMS: NavItem[] = [
+  { view: "home", label: "Home", icon: Home },
+  { view: "about", label: "About", icon: UserRound },
+  { view: "projects", label: "Projects", icon: FolderGit2 },
+  { view: "certificates", label: "Certificates", icon: Award },
+  { view: "experience", label: "Experience", icon: Briefcase },
+  { view: "notes", label: "Notes", icon: NotebookPen },
+  { view: "guestbook", label: "Guestbook", icon: MessagesSquare },
+  { view: "contact", label: "Contact", icon: Mail },
 ];
 
 export const CONTACT_SUBJECTS = [

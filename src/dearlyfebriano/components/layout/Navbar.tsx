@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   motion,
   useMotionValueEvent,
@@ -14,6 +14,7 @@ import { socialLinks } from "@/dearlyfebriano/data/socialLinks";
 import { useUIStore } from "@/dearlyfebriano/store/ui-store";
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 import { SocialIcon } from "@/dearlyfebriano/components/ui/SocialIcon";
+import { LogoMark } from "@/dearlyfebriano/components/ui/LogoMark";
 import { LanguageToggle } from "@/dearlyfebriano/components/common/LanguageToggle";
 import { cn } from "@/lib/utils";
 import { MobileMenu } from "./MobileMenu";
@@ -24,8 +25,11 @@ import { ThemeToggle } from "./ThemeToggle";
  * Navbar — fixed top navigation (store-based SPA navigation).
  * - Transparent at the very top; blurred + condensed after
  *   scrolling past 24px.
- * - Hides on scroll down, reveals on scroll up, always visible
- *   near the top. Respects prefers-reduced-motion (stays put).
+ * - Hides on scroll down, reveals on scroll up — DESKTOP (lg+)
+ *   ONLY. Di mobile/tablet navbar SELALU terlihat (permintaan
+ *   user: navbar mobile tidak boleh "menghilang"). Always
+ *   visible near the top. Respects prefers-reduced-motion.
+ * - Logo: monogram DF (LogoMark) — pengganti teks nama.
  * - Layout IN-FLOW (3 zona: logo / links / actions) — link nav
  *   tidak pernah absolute sehingga mustahil menimpa zona aksi
  *   kanan (bug lama: Contact menimpa toggle). Pada lg→xl item
@@ -62,12 +66,24 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
 
+  /* Auto-hide hanya untuk desktop (lg+). Mobile/tablet (hamburger
+   * era) — navbar SELALU terlihat supaya menu selalu terjangkau
+   * jempol user (laporan user: "navbar mobile menghilang"). */
+  const [isDesktop, setIsDesktop] = useState(true);
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 1024px)");
+    const onChange = () => setIsDesktop(mql.matches);
+    onChange();
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
     setScrolled(latest > SCROLLED_THRESHOLD);
 
-    // Reduced motion: keep the bar fully functional but always visible.
-    if (prefersReducedMotion) {
+    // Reduced motion atau non-desktop: bar tetap terlihat.
+    if (prefersReducedMotion || !isDesktop) {
       setHidden(false);
       return;
     }
@@ -78,7 +94,7 @@ export function Navbar() {
       return;
     }
 
-    // Hide on scroll down, reveal on scroll up.
+    // Hide on scroll down, reveal on scroll up (desktop only).
     if (latest > previous + DIRECTION_DEAD_ZONE) {
       setHidden(true);
     } else if (previous > latest + DIRECTION_DEAD_ZONE) {
@@ -118,18 +134,15 @@ export function Navbar() {
             aria-label={t("Primary navigation")}
             className="mx-auto flex h-11 w-full max-w-6xl items-center justify-between gap-2 px-4 sm:px-6"
           >
-            {/* LEFT — logo (out of the shared flex row, never shrinks) */}
+            {/* LEFT — logo monogram DF (pengganti teks nama, sesuai
+             * permintaan user — hemat ruang & konsisten favicon) */}
             <button
               type="button"
               onClick={() => navigate("home")}
               aria-label={t("Go to home")}
-              className="flex h-11 shrink-0 items-center font-mono text-lg font-bold tracking-tight focus-visible:outline-2 focus-visible:outline-offset-4"
+              className="group flex h-11 shrink-0 items-center rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4"
             >
-              <span className="text-foreground">dearly</span>
-              <span className="text-gradient">febriano</span>
-              <span className="text-primary" aria-hidden="true">
-                .
-              </span>
+              <LogoMark className="transition-transform duration-200 group-hover:scale-105 group-active:scale-95" />
             </button>
 
             {/* CENTER — nav links IN-FLOW (bukan absolute!) — link
