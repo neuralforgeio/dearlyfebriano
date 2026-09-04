@@ -14,6 +14,8 @@ interface UIState {
   isPreloaderDone: boolean;
   isMobileMenuOpen: boolean;
   isCommandOpen: boolean;
+  /** Dialog cheatsheet keyboard shortcuts — buka via tombol "?". */
+  isShortcutsOpen: boolean;
   /** True setelah hash awal dibaca (mencegah render view salah saat deep-link). */
   isRouterReady: boolean;
 
@@ -24,6 +26,7 @@ interface UIState {
   setPreloaderDone: () => void;
   setMobileMenuOpen: (open: boolean) => void;
   setCommandOpen: (open: boolean) => void;
+  setShortcutsOpen: (open: boolean) => void;
   setRouterReady: () => void;
 }
 
@@ -48,6 +51,7 @@ export const useUIStore = create<UIState>((set) => ({
   isPreloaderDone: false,
   isMobileMenuOpen: false,
   isCommandOpen: false,
+  isShortcutsOpen: false,
   isRouterReady: false,
 
   navigate: (view, detailSlug) =>
@@ -56,6 +60,7 @@ export const useUIStore = create<UIState>((set) => ({
       ...resolveDetail(view, detailSlug, state),
       isMobileMenuOpen: false,
       isCommandOpen: false,
+      isShortcutsOpen: false,
     })),
 
   setView: (view, detailSlug) =>
@@ -69,6 +74,8 @@ export const useUIStore = create<UIState>((set) => ({
   setMobileMenuOpen: (open) => set({ isMobileMenuOpen: open }),
 
   setCommandOpen: (open) => set({ isCommandOpen: open }),
+
+  setShortcutsOpen: (open) => set({ isShortcutsOpen: open }),
 
   setRouterReady: () => set({ isRouterReady: true }),
 }));

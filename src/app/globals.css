@@ -226,6 +226,31 @@
   contain-intrinsic-size: auto 560px;
 }
 
+/* Keycap — chip tombol keyboard (dipakai ShortcutsDialog + hint kbd
+ * di Navbar/CommandPalette). Efek "tombol fisik": border halus,
+ * inset shadow bawah untuk kedalaman, background sedikit terang. */
+@utility kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.9rem;
+  height: 1.9rem;
+  padding-inline: 0.45rem;
+  border-radius: 0.45rem;
+  border: 1px solid color-mix(in oklab, var(--border) 85%, transparent);
+  background-color: color-mix(in oklab, var(--card) 78%, transparent);
+  box-shadow:
+    inset 0 -0.15rem 0 color-mix(in oklab, var(--foreground) 8%, transparent),
+    0 0.1rem 0.2rem color-mix(in oklab, var(--foreground) 6%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+  user-select: none;
+}
+
 /* ============================================================
  * CARD EFFECTS — shine sweep + animated gradient border
  * ============================================================ */

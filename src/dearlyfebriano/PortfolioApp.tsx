@@ -54,6 +54,7 @@ const NotFoundView = dynamic(() => import("@/dearlyfebriano/components/views/Not
 
 const CommandPalette = dynamic(() => import("@/dearlyfebriano/components/common/CommandPalette"));
 const KonamiConfetti = dynamic(() => import("@/dearlyfebriano/components/common/KonamiConfetti"));
+const ShortcutsDialog = dynamic(() => import("@/dearlyfebriano/components/common/ShortcutsDialog"));
 
 /* ============================================================
  * PortfolioApp — root SPA shell milik Dearly Febriano.
@@ -225,6 +226,7 @@ export default function PortfolioApp() {
       <ScrollProgress />
       <CustomCursor />
       <CommandPalette />
+      <ShortcutsDialog />
       <KonamiConfetti />
 
       {/* Preloader — sekali per session */}

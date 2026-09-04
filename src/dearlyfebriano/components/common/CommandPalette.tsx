@@ -31,6 +31,7 @@ import {
   NotebookPen,
   FileText,
   Contact,
+  Keyboard,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
@@ -45,8 +46,8 @@ import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 
 /* ============================================================
  * CommandPalette — navigasi cepat ala developer tools.
- * Buka: Ctrl+K / ⌘+K, tombol hint di Navbar, atau "?" saat
- * tidak sedang mengetik. Escape menutup.
+ * Buka: Ctrl+K / ⌘+K atau tombol hint di Navbar. Escape menutup.
+ * Action "Keyboard shortcuts" membuka ShortcutsDialog (?).
  * ============================================================ */
 
 const VIEW_ICONS: Record<string, LucideIcon> = {
@@ -241,6 +242,18 @@ export default function CommandPalette(): JSX.Element {
                       <Moon className="size-4 text-primary" aria-hidden />
                     )}
                     {resolvedTheme === "dark" ? t("Switch to light mode") : t("Switch to dark mode")}
+                  </CommandItem>
+                  <CommandItem
+                    value="action keyboard shortcuts cheatsheet help keys"
+                    onSelect={() => {
+                      setOpen(false);
+                      useUIStore.getState().setShortcutsOpen(true);
+                    }}
+                    className="gap-3 text-sm"
+                  >
+                    <Keyboard className="size-4 text-primary" aria-hidden />
+                    {t("Keyboard shortcuts")}
+                    <CommandShortcut className="font-mono text-[10px]">?</CommandShortcut>
                   </CommandItem>
                 </CommandGroup>
 

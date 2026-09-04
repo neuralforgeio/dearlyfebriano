@@ -49,6 +49,21 @@ export const COMMON_COMPONENT_STRINGS: string[] = [
   "PDF document preview",
   "Loading document…",
   "Download PDF",
+  // ---------- ShortcutsDialog ----------
+  "Keyboard shortcuts",
+  "Move faster, look cooler",
+  "Global",
+  "Project gallery",
+  "Easter egg",
+  "Open command palette",
+  "Toggle this shortcuts panel",
+  "Close any overlay",
+  "Open the gallery from a project page",
+  "Previous image",
+  "Next image",
+  "Konami code — confetti rain",
+  "Press",
+  "anytime to reopen this panel",
   // ---------- KonamiConfetti ----------
   "Konami code accepted — you found the easter egg!",
 ];

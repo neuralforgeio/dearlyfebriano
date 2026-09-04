@@ -44,6 +44,11 @@ export function Navbar() {
   const setCommandOpen = useUIStore((state) => state.setCommandOpen);
   const { t } = useLanguage();
 
+  /* Keycap label platform-aware (⌘ di Apple, Ctrl di lainnya). */
+  const isMac =
+    typeof navigator !== "undefined" &&
+    /mac|iphone|ipad/i.test(navigator.platform || navigator.userAgent);
+
   const prefersReducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
@@ -170,7 +175,10 @@ export function Navbar() {
               >
                 <Search className="size-3.5" aria-hidden />
                 <span>{t("Search")}</span>
-                <kbd className="rounded border border-border bg-secondary px-1.5 py-0.5 text-[9px]">Ctrl K</kbd>
+                {/* Keycap utility (.kbd) — konsisten dengan ShortcutsDialog */}
+                <kbd className="kbd !h-6 !min-w-6 !px-1.5 !text-[9px]">
+                  {isMac ? "⌘ K" : "Ctrl K"}
+                </kbd>
               </button>
               {githubLink && (
                 <a
