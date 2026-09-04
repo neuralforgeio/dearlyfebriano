@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type JSX } from "react";
 import { useReducedMotion } from "framer-motion";
-import { ArrowUp, Clock, Command, Heart } from "lucide-react";
+import { ArrowUp, Clock, Command, Heart, Keyboard } from "lucide-react";
 import { NAV_ITEMS } from "@/dearlyfebriano/lib/constants";
 import { profile } from "@/dearlyfebriano/data/profile";
 import { socialLinks } from "@/dearlyfebriano/data/socialLinks";
@@ -51,6 +51,7 @@ export function Footer() {
   const { t } = useLanguage();
   const navigate = useUIStore((state) => state.navigate);
   const setCommandOpen = useUIStore((state) => state.setCommandOpen);
+  const setShortcutsOpen = useUIStore((state) => state.setShortcutsOpen);
   const prefersReducedMotion = useReducedMotion();
   const currentYear = new Date().getFullYear();
 
@@ -156,6 +157,18 @@ export function Footer() {
               <Command className="size-3" aria-hidden />
               <kbd>Ctrl</kbd>
               <kbd>K</kbd>
+            </button>
+            {/* Touch/pointer entry point for the shortcuts cheatsheet —
+                "?" and Ctrl+K both need a physical keyboard, so mobile
+                users need a tappable target (worklog ronde 8, rekomendasi d). */}
+            <button
+              type="button"
+              onClick={() => setShortcutsOpen(true)}
+              aria-label={t("Keyboard shortcuts")}
+              title={t("Keyboard shortcuts")}
+              className="grid size-11 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+              <Keyboard className="size-4" aria-hidden />
             </button>
             <button
               type="button"

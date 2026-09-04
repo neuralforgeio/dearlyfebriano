@@ -29,8 +29,9 @@ import { COMMON_COMPONENT_STRINGS } from "./strings-common";
  * ============================================================ */
 
 /** Naikkan versi bila ada perubahan besar pada kumpulan string
- *  agar cache lama di client di-refresh. */
-export const DICT_VERSION = 5;
+ *  agar cache lama di client di-refresh. (v6: isi artikel non-kode
+ *  ikut diterjemahkan.) */
+export const DICT_VERSION = 6;
 
 /** Heuristik: string yang terlihat seperti bahasa natural
  *  (bukan nama teknologi, tanggal, angka, atau URL). */
@@ -61,9 +62,16 @@ function collect(value: unknown, out: Set<string>): void {
   }
 }
 
-/* Artikel: hanya meta (title/excerpt) — isi markdown panjang
- * sengaja tidak diterjemahkan supaya format kode tetap utuh. */
-const articleMeta = articles.map(({ sections, ...meta }) => meta);
+/* Artikel: meta + section non-kode (paragraph/heading/list/quote/
+ * callout) — isi artikel ikut diterjemahkan. Section "code"
+ * sengaja TIDAK ikut supaya potongan kode & label bahasanya
+ * tetap utuh (tidak pernah melewati /api/translate). */
+const articleData = articles.map(({ sections, ...meta }) => ({
+  ...meta,
+  sections: sections.flatMap((section) =>
+    section.type === "code" ? [] : [section]
+  ),
+}));
 
 const dataStrings = new Set<string>();
 for (const source of [
@@ -77,7 +85,7 @@ for (const source of [
   testimonials,
   certificates,
   certificateCategories,
-  articleMeta,
+  articleData,
 ]) {
   collect(source, dataStrings);
 }

@@ -101,7 +101,7 @@ function FeaturedCard({ article }: { article: Article }): JSX.Element {
               <Button
                 type="button"
                 tabIndex={-1}
-                className="mt-6 bg-gradient-accent text-white shadow-lg shadow-primary/25 hover:opacity-90"
+                className="mt-6 bg-gradient-accent text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.28),0_10px_28px_-10px_rgba(99,102,241,0.65)] transition-shadow hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.34),0_14px_32px_-10px_rgba(139,92,246,0.7)] hover:opacity-95"
                 aria-hidden
               >
                 {t("Read article")}
@@ -173,14 +173,14 @@ function ArticleCard({ article, index }: { article: Article; index: number }): J
               {visibleTags.map((tag) => (
                 <li
                   key={tag}
-                  className="inline-flex items-center gap-1 rounded-full border border-border/70 px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground"
+                  className="inline-flex items-center gap-1 rounded-full border border-border bg-card/60 px-2.5 py-0.5 font-mono text-[11px] text-foreground/75"
                 >
                   <Hash className="size-2.5 text-primary/70" aria-hidden />
                   {tag}
                 </li>
               ))}
               {hiddenTags > 0 && (
-                <li className="inline-flex items-center rounded-full border border-border/70 px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground">
+                <li className="inline-flex items-center rounded-full border border-border bg-card/60 px-2.5 py-0.5 font-mono text-[11px] text-foreground/75">
                   +{hiddenTags}
                 </li>
               )}

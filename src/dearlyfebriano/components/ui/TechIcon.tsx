@@ -122,7 +122,7 @@ export function TechBadge({ name, className, size = "sm" }: TechBadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-card/70 font-mono text-muted-foreground backdrop-blur transition-colors hover:border-primary/50 hover:text-foreground",
+        "inline-flex items-center gap-1.5 rounded-full border border-border bg-card/80 font-mono text-foreground/80 backdrop-blur transition-colors hover:border-primary/50 hover:text-foreground",
         size === "sm" ? "px-2.5 py-0.5 text-[11px]" : "px-3 py-1 text-xs",
         className
       )}

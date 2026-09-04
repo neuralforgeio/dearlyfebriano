@@ -185,14 +185,17 @@ function SectionBlock({
   section: ArticleSection;
   headingNumber: number;
 }): JSX.Element {
+  const { t } = useLanguage();
   switch (section.type) {
     case "paragraph":
       return (
         <p className="text-base leading-[1.85] text-foreground/90 sm:text-lg">
-          {section.text}
+          {t(section.text)}
         </p>
       );
     case "heading": {
+      /* Anchor id dibuat dari teks ENGLISH agar tetap stabil saat
+       * bahasa berganti (link #heading tidak patah). */
       const id = slugifyHeading(section.text);
       return (
         <h2
@@ -202,7 +205,7 @@ function SectionBlock({
           <span aria-hidden className="mr-3 font-mono text-sm text-primary/70">
             {String(headingNumber).padStart(2, "0")}
           </span>
-          {section.text}
+          {t(section.text)}
         </h2>
       );
     }
@@ -212,7 +215,7 @@ function SectionBlock({
           {section.items.map((item) => (
             <li key={item} className="flex gap-3 text-base leading-relaxed text-foreground/90">
               <span aria-hidden className="mt-2.5 size-1.5 shrink-0 rounded-full bg-gradient-accent" />
-              <span>{item}</span>
+              <span>{t(item)}</span>
             </li>
           ))}
         </ul>
@@ -221,10 +224,10 @@ function SectionBlock({
       return (
         <blockquote className="relative rounded-r-xl border-l-2 border-primary/70 bg-primary/5 py-4 pl-6 pr-4">
           <Quote aria-hidden className="absolute -left-3 -top-3 size-7 rounded-full bg-background p-1 text-primary" />
-          <p className="text-base italic leading-relaxed text-foreground/90">{section.text}</p>
+          <p className="text-base italic leading-relaxed text-foreground/90">{t(section.text)}</p>
           {section.author && (
             <footer className="mt-2 font-mono text-xs text-muted-foreground">
-              — {section.author}
+              — {t(section.author)}
             </footer>
           )}
         </blockquote>
@@ -236,7 +239,7 @@ function SectionBlock({
       return (
         <aside className={cn("flex gap-3 rounded-xl border p-4", classes)}>
           <Icon aria-hidden className={cn("mt-0.5 size-5 shrink-0", iconClasses)} />
-          <p className="text-sm leading-relaxed text-foreground/90">{section.text}</p>
+          <p className="text-sm leading-relaxed text-foreground/90">{t(section.text)}</p>
         </aside>
       );
     }
