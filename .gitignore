@@ -82,4 +82,5 @@ nohup.out
 
 src/lib/db.ts
 .turbo
-.env
+.env/qa/
+/agent-ctx/

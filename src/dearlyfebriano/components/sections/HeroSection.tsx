@@ -239,8 +239,8 @@ export default function HeroSection(): JSX.Element {
               aria-hidden
               className="absolute inset-4 rounded-full bg-[radial-gradient(circle,rgba(0,0,0,0.38)_0%,rgba(0,0,0,0.16)_55%,transparent_75%)] dark:bg-[radial-gradient(circle,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.22)_55%,transparent_75%)]"
             />
-            <OrbitingBorder className="size-full drop-shadow-[0_24px_48px_rgba(0,0,0,0.45)]">
-              <div className="relative size-full overflow-hidden rounded-full ring-4 ring-background">
+            <OrbitingBorder className="size-full">
+              <div className="relative size-full overflow-hidden rounded-full ring-4 ring-background shadow-[0_24px_48px_rgba(0,0,0,0.45)]">
                 <Image
                   src={profile.avatar}
                   alt="Portrait of Dearly Febriano Irwansyah"
@@ -267,7 +267,11 @@ export default function HeroSection(): JSX.Element {
                   delay: badge.delay,
                 }}
               >
-                <span className="glass inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-xs text-foreground/90 shadow-lg">
+                {/* PERF: badge BERGERAK memakai glass-flat (bukan glass) —
+                 * backdrop-filter blur pada elemen yang translate tiap
+                 * frame memaksa re-blur terus-menerus di GPU terintegrasi.
+                 * Pola yang sama dipakai pill marquee TechTicker. */}
+                <span className="glass-flat inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-xs text-foreground/90 shadow-lg">
                   <TechIcon name={badge.name} className="size-3.5 text-primary" />
                   {badge.name}
                 </span>

@@ -35,7 +35,7 @@ export const profile = {
 };
 
 export const stats = {
-  projects: 8,
+  projects: 4,
   certificates: 5,
   years: 3,
   clients: 5,
