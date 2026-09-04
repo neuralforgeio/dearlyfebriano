@@ -1,0 +1,48 @@
+{
+  "name": "Dearly Febriano — Full Stack Developer",
+  "short_name": "Febriano",
+  "description": "Portfolio of Dearly Febriano — Full Stack Developer crafting fast, accessible, and delightful web experiences.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "lang": "en",
+  "categories": ["portfolio", "developer", "personal"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Projects",
+      "url": "/#projects",
+      "description": "Browse all projects"
+    },
+    {
+      "name": "Tech Notes",
+      "url": "/#notes",
+      "description": "Read engineering notes"
+    },
+    {
+      "name": "Contact",
+      "url": "/#contact",
+      "description": "Get in touch"
+    }
+  ]
+}
