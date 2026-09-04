@@ -30,7 +30,7 @@ import { COMMON_COMPONENT_STRINGS } from "./strings-common";
 
 /** Naikkan versi bila ada perubahan besar pada kumpulan string
  *  agar cache lama di client di-refresh. */
-export const DICT_VERSION = 3;
+export const DICT_VERSION = 4;
 
 /** Heuristik: string yang terlihat seperti bahasa natural
  *  (bukan nama teknologi, tanggal, angka, atau URL). */

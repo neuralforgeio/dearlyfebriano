@@ -81,9 +81,17 @@ export default function OrbitingBorder({
           >
             <div className="absolute inset-0 rounded-full" style={arcStyle} />
             {glow && (
+              /* PERF: duplikat glow TANPA filter blur — arc yang berputar
+                 dengan blur-md dipaksa re-rasterisasi tiap frame di GPU.
+                 Ganti dengan stroke lebih lebar + opacity rendah: soft glow
+                 yang visualnya setara, biaya compositor-only. */
               <div
-                className="absolute inset-0 rounded-full opacity-60 blur-md"
-                style={arcStyle}
+                className="absolute inset-0 rounded-full opacity-40"
+                style={{
+                  ...arcStyle,
+                  WebkitMask: `radial-gradient(farthest-side, transparent calc(100% - ${width * 2 + 2}px), #000 calc(100% - ${width * 2 + 2}px))`,
+                  mask: `radial-gradient(farthest-side, transparent calc(100% - ${width * 2 + 2}px), #000 calc(100% - ${width * 2 + 2}px))`,
+                }}
               />
             )}
           </motion.div>

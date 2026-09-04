@@ -1,18 +1,23 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download, ExternalLink, FileText, Loader2, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState, type JSX } from "react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 
 /* ============================================================
- * Lightbox — fullscreen image gallery preview.
- * - Menerima DAFTAR gambar + index aktif (single image = array 1).
+ * Lightbox — fullscreen preview gallery.
+ * - Menerima DAFTAR item + index aktif (single item = array 1).
+ * - Item gambar → <Image> seperti biasa.
+ * - Item PDF (pdfUrl) → EMBEDDED VIEWER (iframe Google Drive):
+ *   SEMUA halaman PDF bisa di-scroll/zoom — bukan hanya halaman 1.
+ *   Iframe hanya di-render saat modal terbuka (lazy, nol biaya
+ *   saat tertutup).
  * - Navigasi: tombol prev/next, panah kiri/kanan keyboard,
  *   Escape / klik backdrop / tombol X untuk menutup.
- * - Counter "N / M" saat lebih dari satu gambar.
+ * - Counter "N / M" saat lebih dari satu item.
  * - Body scroll terkunci saat terbuka; focus dikelola masuk/keluar.
  * ============================================================ */
 
@@ -20,16 +25,52 @@ export interface LightboxImage {
   src: string;
   alt?: string;
   caption?: string;
+  /** URL embedded PDF viewer — bila ada, item dirender sebagai PDF. */
+  pdfUrl?: string;
+  /** URL download file asli (dipakai untuk item PDF). */
+  downloadUrl?: string;
+  /** URL buka file asli di Google Drive (item PDF). */
+  externalUrl?: string;
 }
 
 interface LightboxProps {
-  /** Daftar gambar; null/empty berarti lightbox tertutup. */
+  /** Daftar item; null/empty berarti lightbox tertutup. */
   images: LightboxImage[] | null;
-  /** Index gambar yang sedang aktif. */
+  /** Index item yang sedang aktif. */
   index: number;
   onClose: () => void;
   /** Dipanggil saat navigasi prev/next (jika disediakan). */
   onNavigate?: (index: number) => void;
+}
+
+/* ---------- Embedded PDF viewer (semua halaman) ---------- */
+
+function PdfEmbed({ item }: { item: LightboxImage }): JSX.Element {
+  const { t } = useLanguage();
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <div className="relative h-full w-full overflow-hidden rounded-xl border border-border/70 bg-card/80">
+      {!isLoaded && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-card/95"
+        >
+          <Loader2 aria-hidden className="size-8 animate-spin text-primary" />
+          <p className="font-mono text-xs text-muted-foreground">{t("Loading document…")}</p>
+        </div>
+      )}
+      <iframe
+        src={item.pdfUrl}
+        title={item.alt ? `${item.alt} — PDF preview` : "PDF preview"}
+        loading="lazy"
+        onLoad={() => setIsLoaded(true)}
+        className="h-full w-full"
+        allow="fullscreen"
+      />
+    </div>
+  );
 }
 
 export default function Lightbox({
@@ -120,6 +161,7 @@ export default function Lightbox({
 
   const hasPrev = safeIndex > 0;
   const hasNext = safeIndex < total - 1;
+  const isPdf = Boolean(current?.pdfUrl);
 
   return (
     <AnimatePresence>
@@ -128,9 +170,11 @@ export default function Lightbox({
           role="dialog"
           aria-modal="true"
           aria-label={
-            total > 1
-              ? `${current.alt ?? t("Image preview")} — ${t("image")} ${safeIndex + 1} ${t("of")} ${total}`
-              : (current.alt ?? t("Image preview"))
+            isPdf
+              ? (current.alt ?? t("PDF document preview"))
+              : total > 1
+                ? `${current.alt ?? t("Image preview")} — ${t("image")} ${safeIndex + 1} ${t("of")} ${total}`
+                : (current.alt ?? t("Image preview"))
           }
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -152,12 +196,17 @@ export default function Lightbox({
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: reducedMotion ? 0.15 : 0.3, ease: "easeOut" }}
             onClick={(event) => event.stopPropagation()}
-            className="relative flex max-h-[85vh] w-[85vw] max-w-[90vw] cursor-default flex-col items-center gap-3"
+            className={cn(
+              "relative flex cursor-default flex-col items-center gap-3",
+              isPdf
+                ? "h-[86vh] w-[92vw] max-w-5xl"
+                : "max-h-[85vh] w-[85vw] max-w-[90vw]"
+            )}
           >
             <div className="relative h-[70vh] w-full">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
-                  key={current.src}
+                  key={current.pdfUrl ?? current.src}
                   initial={
                     reducedMotion
                       ? { opacity: 0 }
@@ -172,21 +221,68 @@ export default function Lightbox({
                   transition={{ duration: reducedMotion ? 0.12 : 0.22, ease: "easeOut" }}
                   className="absolute inset-0"
                 >
-                  <Image
-                    src={current.src}
-                    alt={current.alt ?? ""}
-                    fill
-                    sizes="90vw"
-                    className="object-contain"
-                    draggable={false}
-                  />
+                  {isPdf ? (
+                    <PdfEmbed item={current} />
+                  ) : (
+                    <Image
+                      src={current.src}
+                      alt={current.alt ?? ""}
+                      fill
+                      sizes="90vw"
+                      className="object-contain"
+                      draggable={false}
+                    />
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>
-            {current.caption && (
-              <p className="max-w-2xl truncate px-2 text-center font-mono text-xs text-muted-foreground">
-                {current.caption}
-              </p>
+            {/* Caption — PDF: badge + hint + aksi; image: caption biasa */}
+            {isPdf ? (
+              <div className="flex w-full flex-wrap items-center justify-between gap-2 px-1">
+                <div className="flex min-w-0 items-center gap-2">
+                  <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-primary">
+                    <FileText aria-hidden className="size-3" />
+                    PDF
+                  </span>
+                  {current.caption && (
+                    <p className="truncate font-mono text-xs text-muted-foreground">
+                      {current.caption}
+                    </p>
+                  )}
+                </div>
+                <div className="flex shrink-0 items-center gap-3">
+                  {current.externalUrl && (
+                    <a
+                      href={current.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(event) => event.stopPropagation()}
+                      className="inline-flex items-center gap-1 text-xs text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    >
+                      {t("Open in Drive")}
+                      <ExternalLink aria-hidden className="size-3" />
+                    </a>
+                  )}
+                  {current.downloadUrl && (
+                    <a
+                      href={current.downloadUrl}
+                      download
+                      onClick={(event) => event.stopPropagation()}
+                      aria-label={t("Download PDF")}
+                      className="inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    >
+                      {t("Download PDF")}
+                      <Download aria-hidden className="size-3" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ) : (
+              current.caption && (
+                <p className="max-w-2xl truncate px-2 text-center font-mono text-xs text-muted-foreground">
+                  {current.caption}
+                </p>
+              )
             )}
           </motion.div>
 

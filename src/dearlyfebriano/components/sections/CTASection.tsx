@@ -30,10 +30,10 @@ export default function CTASection(): JSX.Element {
           className="relative overflow-hidden rounded-3xl bg-gradient-accent px-6 py-14 sm:px-12 sm:py-20"
         >
           {/* Texture + decorative orbs */}
-          <div
-            aria-hidden
-            className="noise-overlay pointer-events-none absolute inset-0 opacity-20 mix-blend-overlay"
-          />
+          {/* PERF: noise-overlay (feTurbulence + mix-blend-overlay) dihapus —
+              blend mode memaksa compositor meng-blend layer full-width ini
+              dengan backdrop pada setiap composite (scroll/animasi); mahal di
+              GPU terintegrasi, manfaat visual minimal. */}
           <div
             aria-hidden
             className="pointer-events-none absolute -right-16 -top-24 size-72 rounded-full bg-white/20 blur-3xl"

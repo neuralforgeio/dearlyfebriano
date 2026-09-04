@@ -118,6 +118,7 @@ export const VIEW_STRINGS: string[] = [
   "Re-sync certificates from Google Drive",
   "by",
   "open certificate preview",
+  "open PDF preview (all pages)",
   "certificate issued by",
   "saved",
   "Date not set",

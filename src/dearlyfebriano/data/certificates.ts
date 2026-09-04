@@ -18,6 +18,7 @@ export const DRIVE_FOLDER_LINK = DRIVE_FOLDER_URL;
 export const certificates: Certificate[] = [
   {
     id: "drive-1uSSFOyvLoRhioEVXaTi494uGHyPMmZqx",
+    fileType: "image",
     title: "Intermediate Machine Learning",
     issuer: "Kaggle",
     issueDate: "2026-09-03",
@@ -31,6 +32,7 @@ export const certificates: Certificate[] = [
   },
   {
     id: "drive-1e5HYPQLgXvE1Da4GVtbpqG9MzzN8LgXv",
+    fileType: "image",
     title: "Intro to Deep Learning",
     issuer: "Kaggle",
     issueDate: "2026-09-03",
@@ -44,6 +46,7 @@ export const certificates: Certificate[] = [
   },
   {
     id: "drive-1z73WAMV_XvIzjanAsclUE-FgQoYDRCC2",
+    fileType: "image",
     title: "Intro to Machine Learning",
     issuer: "Kaggle",
     issueDate: "2026-09-03",
@@ -57,6 +60,7 @@ export const certificates: Certificate[] = [
   },
   {
     id: "drive-1R-d-aEZTqT4_GymkOELK6WvJZgfIkT7Q",
+    fileType: "image",
     title: "Intro to Programming",
     issuer: "Kaggle",
     issueDate: "2026-09-03",
@@ -70,6 +74,7 @@ export const certificates: Certificate[] = [
   },
   {
     id: "drive-1Xljth-_QYFpicfCbBy__1wRUEnxODteY",
+    fileType: "pdf",
     title: "Belajar Dasar Pemrograman JavaScript",
     issuer: "Dicoding Indonesia",
     issueDate: "2024-09-28",

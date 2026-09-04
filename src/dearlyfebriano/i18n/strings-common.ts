@@ -46,6 +46,9 @@ export const COMMON_COMPONENT_STRINGS: string[] = [
   "Previous image",
   "Next image",
   "Close preview",
+  "PDF document preview",
+  "Loading document…",
+  "Download PDF",
   // ---------- KonamiConfetti ----------
   "Konami code accepted — you found the easter egg!",
 ];

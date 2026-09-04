@@ -82,6 +82,11 @@ export interface Certificate {
   driveFileId?: string;
   /** Asal data: folder Drive (realtime) atau data statis lokal. */
   source?: "drive" | "local";
+  /**
+   * Jenis file asli di Drive. "pdf" → preview membuka embedded viewer
+   * (SEMUA halaman bisa di-scroll), "image" → lightbox gambar biasa.
+   */
+  fileType?: "image" | "pdf";
 }
 
 export interface SkillItem {

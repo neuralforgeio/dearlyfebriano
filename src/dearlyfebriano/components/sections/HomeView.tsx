@@ -38,17 +38,34 @@ export default function HomeView(): JSX.Element {
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10 bg-grid opacity-30 [mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_88%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_88%,transparent_100%)]"
         />
-        <StatsCounter />
-        <AboutPreview />
+        {/* PERF: setiap section bawah-fold dibungkus cv-auto —
+            browser skip layout/paint saat section di luar viewport
+            (halaman home panjang; render & scroll jauh lebih ringan). */}
+        <div className="cv-auto">
+          <StatsCounter />
+        </div>
+        <div className="cv-auto">
+          <AboutPreview />
+        </div>
         <Divider />
-        <ProjectsPreview />
+        <div className="cv-auto">
+          <ProjectsPreview />
+        </div>
         <Divider />
-        <NotesPreview />
+        <div className="cv-auto">
+          <NotesPreview />
+        </div>
         <Divider />
-        <SkillsSection />
+        <div className="cv-auto">
+          <SkillsSection />
+        </div>
         <Divider />
-        <TestimonialsSection />
-        <CTASection />
+        <div className="cv-auto">
+          <TestimonialsSection />
+        </div>
+        <div className="cv-auto">
+          <CTASection />
+        </div>
       </div>
     </div>
   );

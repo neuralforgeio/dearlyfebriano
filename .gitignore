@@ -79,7 +79,7 @@ nohup.out
 /prisma/
 /.zscripts/
 /data/
-bun.lock
+
 src/lib/db.ts
 .turbo
 .env

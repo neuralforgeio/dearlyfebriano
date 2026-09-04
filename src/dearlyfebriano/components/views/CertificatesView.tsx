@@ -8,6 +8,7 @@ import {
   CloudOff,
   Download,
   ExternalLink,
+  FileText,
   FolderOpen,
   Loader2,
   RefreshCw,
@@ -183,7 +184,11 @@ function CertificateCard({
       <article
         role="button"
         tabIndex={0}
-        aria-label={`${certificate.title} ${t("by")} ${certificate.issuer} — ${t("open certificate preview")}`}
+        aria-label={`${certificate.title} ${t("by")} ${certificate.issuer} — ${
+          certificate.fileType === "pdf"
+            ? t("open PDF preview (all pages)")
+            : t("open certificate preview")
+        }`}
         onClick={openPreview}
         onKeyDown={handleKeyDown}
         className="card-shine group flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/60 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -205,12 +210,23 @@ function CertificateCard({
             aria-hidden
             className="glass absolute left-1/2 top-1/2 grid size-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           >
-            <ZoomIn className="size-5" />
+            {certificate.fileType === "pdf" ? (
+              <FileText className="size-5" />
+            ) : (
+              <ZoomIn className="size-5" />
+            )}
           </span>
           {certificate.source !== "drive" && (
             <span className="glass absolute left-3 top-3 inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-foreground">
               <CloudOff aria-hidden className="size-3" />
               {t("saved")}
+            </span>
+          )}
+          {/* Badge PDF — menandakan preview multi-halaman */}
+          {certificate.fileType === "pdf" && (
+            <span className="glass absolute right-3 top-3 inline-flex items-center gap-1 rounded-full border border-primary/40 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-primary">
+              <FileText aria-hidden className="size-3" />
+              PDF
             </span>
           )}
         </div>
@@ -364,7 +380,8 @@ export default function CertificatesView(): JSX.Element {
   );
 
   /* Buka lightbox galeri (semua hasil filter) pada index kartu yang diklik.
-     Drive images: pakai resolusi lebih besar (w1200) untuk preview. */
+     Drive images: pakai resolusi lebih besar (w1200) untuk preview.
+     Drive PDFs: pakai embedded viewer — SEMUA halaman bisa di-scroll. */
   const openLightboxAt = (index: number): void => {
     setLightbox({
       images: filteredCertificates.map((certificate) => ({
@@ -373,6 +390,14 @@ export default function CertificatesView(): JSX.Element {
           : certificate.imageUrl,
         alt: certificate.title,
         caption: `${certificate.title} — ${certificate.issuer}`,
+        pdfUrl:
+          certificate.fileType === "pdf" && certificate.driveFileId
+            ? `https://drive.google.com/file/d/${certificate.driveFileId}/preview`
+            : undefined,
+        downloadUrl: certificate.driveFileId
+          ? `https://drive.google.com/uc?export=download&id=${certificate.driveFileId}`
+          : undefined,
+        externalUrl: certificate.verifyUrl,
       })),
       index,
     });

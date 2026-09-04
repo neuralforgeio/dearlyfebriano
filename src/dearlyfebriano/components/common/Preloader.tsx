@@ -17,12 +17,26 @@ interface PreloaderProps {
   onComplete: () => void;
 }
 
-const PROGRESS_DURATION = 1600; // ms — progress bar fill
-const TOTAL_DURATION = 2300; // ms — auto-complete
+const STORAGE_KEY = "df:preloader-seen";
+const PROGRESS_DURATION = 1500; // ms — progress bar fill (kunjungan pertama)
+const TOTAL_DURATION = 2300; // ms — intro penuh, kunjungan PERTAMA saja
+const REPEAT_TOTAL_DURATION = 900; // ms — kunjungan berikutnya (reload) — jauh lebih responsif
 const REDUCED_TOTAL_DURATION = 500; // ms — reduced motion shortcut
 
 const CHAR_STAGGER = 0.04;
 const CHAR_BASE_DELAY = 0.15;
+
+/** TRUE bila user sudah pernah melihat intro (reload tidak disiksa
+ *  dengan 2.3s preloader penuh — website terasa jauh lebih ringan). */
+function isRepeatVisit(): boolean {
+  try {
+    if (localStorage.getItem(STORAGE_KEY) === "1") return true;
+    localStorage.setItem(STORAGE_KEY, "1");
+    return false;
+  } catch {
+    return false;
+  }
+}
 
 export default function Preloader({ onComplete }: PreloaderProps): JSX.Element {
   const reducedMotion = useReducedMotion();
@@ -53,14 +67,19 @@ export default function Preloader({ onComplete }: PreloaderProps): JSX.Element {
     if (reducedMotion) {
       timeout = window.setTimeout(finish, REDUCED_TOTAL_DURATION);
     } else {
+      const isRepeat = isRepeatVisit();
+      const totalDuration = isRepeat ? REPEAT_TOTAL_DURATION : TOTAL_DURATION;
+      const progressDuration = isRepeat
+        ? REPEAT_TOTAL_DURATION - 100
+        : PROGRESS_DURATION;
       const start = performance.now();
       const tick = (now: number) => {
-        const ratio = Math.min((now - start) / PROGRESS_DURATION, 1);
+        const ratio = Math.min((now - start) / progressDuration, 1);
         setProgress(ratio);
         if (ratio < 1) raf = requestAnimationFrame(tick);
       };
       raf = requestAnimationFrame(tick);
-      timeout = window.setTimeout(finish, TOTAL_DURATION);
+      timeout = window.setTimeout(finish, totalDuration);
     }
 
     return () => {

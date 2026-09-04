@@ -260,6 +260,13 @@ export function driveViewUrl(fileId: string): string {
   return `https://drive.google.com/file/d/${fileId}/view`;
 }
 
+/** URL embedded viewer Drive — merender PDF dengan SEMUA halaman
+ *  (scroll, zoom, navigasi halaman bawaan Google). Dipakai untuk
+ *  preview sertifikat PDF multi-halaman di lightbox. */
+export function drivePreviewUrl(fileId: string): string {
+  return `https://drive.google.com/file/d/${fileId}/preview`;
+}
+
 /**
  * Daftar sertifikat dari Drive, digabung metadata kurated.
  * Urutan: metadata kurated dulu (urutan Drive), lalu file tak
@@ -269,10 +276,12 @@ export function driveFilesToCertificates(files: DriveFile[]): Certificate[] {
   return files
     .filter((file) => file.kind === "image" || file.kind === "pdf")
     .map<Certificate>((file) => {
+      const fileType = file.kind === "pdf" ? "pdf" : "image";
       const meta = DRIVE_CERT_META[file.id];
       if (meta) {
         return {
           ...meta,
+          fileType,
           id: `drive-${file.id}`,
           verifyUrl: driveViewUrl(file.id),
           imageUrl: driveImageUrl(file.id),
@@ -282,6 +291,7 @@ export function driveFilesToCertificates(files: DriveFile[]): Certificate[] {
       return {
         id: `drive-${file.id}`,
         title,
+        fileType,
         issuer: inferIssuer(file.fileName),
         issueDate: "",
         category: inferCategory(title),

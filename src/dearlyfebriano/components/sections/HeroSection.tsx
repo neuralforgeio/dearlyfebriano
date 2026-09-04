@@ -78,7 +78,10 @@ export default function HeroSection(): JSX.Element {
         />
         <div className="absolute inset-0 bg-grid opacity-50 [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_70%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_70%)]" />
         <FloatingParticles />
-        <div className="noise-overlay absolute inset-0 opacity-[0.035] mix-blend-overlay" />
+        {/* PERF: film-grain noise overlay (feTurbulence + mix-blend-overlay)
+            dihapus — blend full-screen dipaksa re-composite tiap frame oleh
+            canvas particles & orbs yang beranimasi di bawahnya; biaya GPU
+            besar di laptop terintegrasi, manfaat visual minimal (op. 0.035). */}
       </div>
 
       {/* Content */}

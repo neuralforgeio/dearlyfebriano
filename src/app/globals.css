@@ -216,6 +216,16 @@
   animation: marquee 36s linear infinite;
 }
 
+/* PERF — content-visibility: browser SKIP layout/paint/style untuk
+ * section yang berada di luar viewport. Halaman panjang (home) jauh
+ * lebih ringan di-render & di-scroll di laptop low-end.
+ * contain-intrinsic-size memberi "tinggi placeholder" agar scrollbar
+ * tidak melompat saat section masuk/keluar viewport. */
+@utility cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 560px;
+}
+
 /* ============================================================
  * CARD EFFECTS — shine sweep + animated gradient border
  * ============================================================ */
