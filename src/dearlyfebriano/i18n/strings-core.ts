@@ -28,6 +28,7 @@ export const SUBJECT_STRINGS: string[] = [
 /** String UI umum yang muncul di banyak komponen. */
 export const COMMON_UI_STRINGS: string[] = [
   "Search",
+  "More",
   "Language",
   "opens in new tab",
   "Open menu",

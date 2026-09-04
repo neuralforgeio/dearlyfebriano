@@ -7,7 +7,6 @@ import { useUIStore, viewToHash, hashToView } from "@/dearlyfebriano/store/ui-st
 import { PRELOADER_SESSION_KEY } from "@/dearlyfebriano/lib/constants";
 import { getViewDescription, getViewTitle } from "@/dearlyfebriano/lib/titles";
 import ScrollProgress from "@/dearlyfebriano/components/animations/ScrollProgress";
-import CustomCursor from "@/dearlyfebriano/components/common/CustomCursor";
 import Preloader from "@/dearlyfebriano/components/common/Preloader";
 import ScrollToTop from "@/dearlyfebriano/components/common/ScrollToTop";
 import WhatsAppButton from "@/dearlyfebriano/components/common/WhatsAppButton";
@@ -224,7 +223,6 @@ export default function PortfolioApp() {
       </a>
 
       <ScrollProgress />
-      <CustomCursor />
       <CommandPalette />
       <ShortcutsDialog />
       <KonamiConfetti />

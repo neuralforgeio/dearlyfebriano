@@ -17,6 +17,7 @@ import { SocialIcon } from "@/dearlyfebriano/components/ui/SocialIcon";
 import { LanguageToggle } from "@/dearlyfebriano/components/common/LanguageToggle";
 import { cn } from "@/lib/utils";
 import { MobileMenu } from "./MobileMenu";
+import { NavbarMoreMenu } from "./NavbarMoreMenu";
 import { ThemeToggle } from "./ThemeToggle";
 
 /* ============================================================
@@ -25,8 +26,10 @@ import { ThemeToggle } from "./ThemeToggle";
  *   scrolling past 24px.
  * - Hides on scroll down, reveals on scroll up, always visible
  *   near the top. Respects prefers-reduced-motion (stays put).
- * - 3 zones on lg: logo / nav links / actions (GitHub, theme
- *   toggle, hamburger below lg).
+ * - Layout IN-FLOW (3 zona: logo / links / actions) — link nav
+ *   tidak pernah absolute sehingga mustahil menimpa zona aksi
+ *   kanan (bug lama: Contact menimpa toggle). Pada lg→xl item
+ *   sekunder lipat ke dropdown "More"; di xl+ semua tampil.
  * ============================================================ */
 
 /** Past this scroll offset the bar gets its scrolled treatment. */
@@ -35,6 +38,11 @@ const SCROLLED_THRESHOLD = 24;
 const SHOW_NEAR_TOP = 100;
 /** Dead zone (px) so tiny scroll jitter does not flip visibility. */
 const DIRECTION_DEAD_ZONE = 4;
+
+/** Item yang SELALU tampil di navbar lg+ (perjalanan utama user). */
+const PRIMARY_VIEWS = new Set(["home", "about", "projects", "contact"]);
+/** Item sekunder — in-flow mulai xl, dilipat ke "More" pada lg→xl. */
+const OVERFLOW_ITEMS = NAV_ITEMS.filter((item) => !PRIMARY_VIEWS.has(item.view));
 
 export function Navbar() {
   const view = useUIStore((state) => state.view);
@@ -108,14 +116,14 @@ export function Navbar() {
         >
           <nav
             aria-label={t("Primary navigation")}
-            className="relative mx-auto flex h-11 w-full max-w-6xl items-center justify-between px-4 sm:px-6"
+            className="mx-auto flex h-11 w-full max-w-6xl items-center justify-between gap-2 px-4 sm:px-6"
           >
-            {/* LEFT — logo */}
+            {/* LEFT — logo (out of the shared flex row, never shrinks) */}
             <button
               type="button"
               onClick={() => navigate("home")}
               aria-label={t("Go to home")}
-              className="flex h-11 items-center font-mono text-lg font-bold tracking-tight focus-visible:outline-2 focus-visible:outline-offset-4"
+              className="flex h-11 shrink-0 items-center font-mono text-lg font-bold tracking-tight focus-visible:outline-2 focus-visible:outline-offset-4"
             >
               <span className="text-foreground">dearly</span>
               <span className="text-gradient">febriano</span>
@@ -124,57 +132,69 @@ export function Navbar() {
               </span>
             </button>
 
-            {/* CENTER — nav links (true center, out of flow on lg) */}
-            <ul className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-1 lg:flex">
-              {NAV_ITEMS.map((item) => {
-                const isActive = item.view === activeView;
-                return (
-                  <li key={item.view}>
-                    <button
-                      type="button"
-                      onClick={() => navigate(item.view)}
-                      aria-current={isActive ? "page" : undefined}
-                      className={cn(
-                        "relative flex h-11 items-center rounded-md px-2.5 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2",
-                        isActive
-                          ? "font-medium text-foreground"
-                          : "text-muted-foreground hover:text-foreground"
-                      )}
+            {/* CENTER — nav links IN-FLOW (bukan absolute!) — link
+             * mengikuti ruang sisa antara logo & aksi, jadi Contact
+             * tidak akan pernah menimpa LanguageToggle/ThemeToggle.
+             * Item sekunder: hidden di lg, tampil di xl. */}
+            <div className="hidden min-w-0 flex-1 items-center justify-center gap-1 lg:flex">
+              <ul className="flex items-center gap-1">
+                {NAV_ITEMS.map((item) => {
+                  const isActive = item.view === activeView;
+                  const isPrimary = PRIMARY_VIEWS.has(item.view);
+                  return (
+                    <li
+                      key={item.view}
+                      className={isPrimary ? undefined : "hidden xl:block"}
                     >
-                      {isActive && (
-                        <motion.span
-                          aria-hidden
-                          layoutId="nav-active-pill"
-                          transition={underlineTransition}
-                          className="absolute inset-x-0 inset-y-1.5 rounded-full border border-border/60 bg-secondary/50"
-                        />
-                      )}
-                      <span className="relative z-10">{t(item.label)}</span>
-                      {isActive && (
-                        <motion.span
-                          layoutId="nav-active-underline"
-                          transition={underlineTransition}
-                          className="absolute inset-x-3 bottom-0.5 h-0.5 rounded-full bg-gradient-accent"
-                          aria-hidden="true"
-                        />
-                      )}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
+                      <button
+                        type="button"
+                        onClick={() => navigate(item.view)}
+                        aria-current={isActive ? "page" : undefined}
+                        className={cn(
+                          "relative flex h-11 items-center whitespace-nowrap rounded-md px-2.5 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2",
+                          isActive
+                            ? "font-medium text-foreground"
+                            : "text-muted-foreground hover:text-foreground"
+                        )}
+                      >
+                        {isActive && (
+                          <motion.span
+                            aria-hidden
+                            layoutId="nav-active-pill"
+                            transition={underlineTransition}
+                            className="absolute inset-x-0 inset-y-1.5 rounded-full border border-border/60 bg-secondary/50"
+                          />
+                        )}
+                        <span className="relative z-10">{t(item.label)}</span>
+                        {isActive && (
+                          <motion.span
+                            layoutId="nav-active-underline"
+                            transition={underlineTransition}
+                            className="absolute inset-x-3 bottom-0.5 h-0.5 rounded-full bg-gradient-accent"
+                            aria-hidden="true"
+                          />
+                        )}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+              {/* Lipatan item sekunder — hanya ada pada lg→xl */}
+              <div className="xl:hidden">
+                <NavbarMoreMenu items={OVERFLOW_ITEMS} activeView={activeView} />
+              </div>
+            </div>
 
-            {/* RIGHT — actions */}
-            <div className="flex items-center gap-1">
+            {/* RIGHT — actions (shrink-0: tidak pernah tergeser link) */}
+            <div className="flex shrink-0 items-center gap-1">
               <button
                 type="button"
                 onClick={() => setCommandOpen(true)}
                 aria-label={t("Open command palette (Ctrl+K)")}
                 title={t("Open command palette (Ctrl+K)")}
-                className="hidden h-10 items-center gap-2 rounded-full border border-border/70 bg-card/40 px-3 font-mono text-[11px] text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 lg:flex"
+                className="hidden h-10 items-center gap-1.5 rounded-full border border-border/70 bg-card/40 px-2.5 text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 lg:flex"
               >
                 <Search className="size-3.5" aria-hidden />
-                <span>{t("Search")}</span>
                 {/* Keycap utility (.kbd) — konsisten dengan ShortcutsDialog */}
                 <kbd className="kbd !h-6 !min-w-6 !px-1.5 !text-[9px]">
                   {isMac ? "⌘ K" : "Ctrl K"}
