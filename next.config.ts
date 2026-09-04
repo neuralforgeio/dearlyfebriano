@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "standalone",
+  /* CATATAN: `output: "standalone"` sengaja TIDAK dipakai.
+   * Vercel tidak membutuhkan standalone (punya build system sendiri),
+   * dan mode standalone memindahkan file tracing (next-server.js.nft.json)
+   * ke .next/standalone/ → hook onBuildComplete Vercel gagal dengan
+   * "ENOENT: no such file or directory .next/next-server.js.nft.json".
+   * Standalone hanya untuk self-host/Docker — tambahkan kembali bila perlu. */
   typescript: {
     ignoreBuildErrors: true,
   },

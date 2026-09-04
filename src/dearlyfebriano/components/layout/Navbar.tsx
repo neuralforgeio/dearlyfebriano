@@ -97,7 +97,7 @@ export function Navbar() {
           className={cn(
             "transition-[background-color,border-color,padding,backdrop-filter] duration-300",
             scrolled
-              ? "border-b border-border/60 bg-background/70 py-3 backdrop-blur-xl"
+              ? "border-b border-border/60 bg-background/70 py-3 backdrop-blur-md"
               : "border-b border-transparent bg-transparent py-5"
           )}
         >

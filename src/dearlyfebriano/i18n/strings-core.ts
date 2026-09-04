@@ -42,6 +42,7 @@ export const COMMON_UI_STRINGS: string[] = [
   "Close",
   "Copy",
   "Copied",
+  "Loading view…",
 ];
 
 /** Pesan error/sukses dari API yang ditampilkan user (toast/dll). */

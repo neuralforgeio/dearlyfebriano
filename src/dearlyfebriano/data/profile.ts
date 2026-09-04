@@ -13,15 +13,15 @@ export const profile = {
   name: "Dearly",
   fullName: "Dearly Febriano Irwansyah",
   initials: "DF",
-  roles: ["Full Stack Developer", "UI/UX Enthusiast", "Problem Solver"],
+  roles: ["Full Stack Developer", "Problem Solver", "AI Agent Developer"],
   tagline:
-    "I design and build fast, accessible, and delightful web experiences — from database schema to the last pixel.",
+    "Programmer and problem solver — I build fast web apps, scalable backends, and offline-first AI agents that turn complex problems into clean, working software.",
   bioShort:
-    "Full Stack Developer based in Surabaya who loves shipping products end-to-end. I turn complex problems into clean, maintainable code and interfaces people genuinely enjoy using.",
+    "Fullstack developer and AI agent builder from Surabaya. I research global tech advancements in-depth, ship trending projects, and love taking ideas from database schema to the final pixel.",
   bio: [
-    "I'm Dearly Febriano Irwansyah, a Full Stack Developer with 3+ years of experience building web applications from scratch. My journey started with curiosity about how websites work, and it grew into a career crafting products used by thousands of people.",
-    "On the frontend, I live in the React ecosystem — Next.js, TypeScript, and Tailwind CSS are my daily tools, and I obsess over animation details, accessibility, and performance budgets. On the backend, I design REST & GraphQL APIs, model databases, and keep things observable and reliable.",
-    "When I'm not coding, I explore UI design trends, contribute to open source, mentor junior developers, and hunt for the perfect cup of coffee. I believe great software is built at the intersection of engineering discipline and empathy for the user.",
+    "I'm Dearly Febriano Irwansyah, a programmer with a keen interest in technology. I frequently conduct in-depth research into global technological advancements — and as the times evolve, I work on trending projects and keep learning new things, constantly broadening and sharpening my skill set.",
+    "As a full-stack developer and problem solver, I build products end-to-end: from Instant Resume — a platform that speeds up CV creation without manual styling — to OpenForge, a local AI agent system that helps users complete tasks, search for information offline, build software, automate workflows, and manage device security with an offline-first approach.",
+    "These days I focus on web engineering, backend & scalable systems, and AI agent development: designing agents that prioritize privacy, performance, and full control over user data. Always learning, always shipping.",
   ],
   email: "dearlyfebrianoi@gmail.com",
   phone: "+62 838-5443-6555",
@@ -30,15 +30,15 @@ export const profile = {
   locationShort: "Surabaya, Indonesia",
   availability: "Available for Freelance",
   avatar: "/images/profile/avatar.jpg",
-  resumeUrl: "/resume.pdf", // TODO: ganti dengan CV asli Anda (letakkan file di public/resume.pdf)
-  siteUrl: "https://github.com/neuralforgeio/dearlyfebriano", // TODO: ganti dengan domain Anda setelah deploy
+  resumeUrl: "/resume.pdf", // CV asli: "CV DEARLY FEBRIANO IRWANSYAH.pdf"
+  siteUrl: "https://dearlyfebriano.vercel.app",
 };
 
 export const stats = {
-  projects: 24,
+  projects: 8,
   certificates: 5,
   years: 3,
-  clients: 18,
+  clients: 5,
 };
 
 export const funFacts: FunFact[] = [
@@ -76,17 +76,10 @@ export const funFacts: FunFact[] = [
 
 export const education: Education[] = [
   {
-    degree: "B.Sc. in Computer Science",
-    school: "Universitas Indonesia",
-    period: "2017 — 2021",
+    degree: "Senior High School",
+    school: "Dr. Soetomo Senior High School, Surabaya",
+    period: "2023 — 2026",
     description:
-      "Focused on software engineering, databases, and distributed systems. Active member of the campus developer community and led two student tech events.",
-  },
-  {
-    degree: "Full Stack Web Development Bootcamp",
-    school: "Hacktiv8 Indonesia",
-    period: "2020",
-    description:
-      "Intensive 12-week program covering JavaScript, React, Node.js, Express, and PostgreSQL. Built 4 group projects with agile workflows.",
+      "Recent graduate with a keen interest in technology. Spent the school years doing in-depth research into global tech advancements, freelancing as a software engineer, and building AI agent projects on the side.",
   },
 ];

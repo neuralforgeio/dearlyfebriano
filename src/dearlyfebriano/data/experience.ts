@@ -1,77 +1,45 @@
 import type { ExperienceItem } from "@/dearlyfebriano/types";
 
 /* ============================================================
- * EXPERIENCE DATA — ganti dengan pengalaman kerja asli Anda.
+ * EXPERIENCE DATA — diambil dari CV asli
+ * "CV DEARLY FEBRIANO IRWANSYAH.pdf" (Work Experience: CV Builder
+ * (Instant Resume), Software Engineer (Freelance), 2023).
  * ============================================================ */
 
 export const experiences: ExperienceItem[] = [
   {
-    id: "technova-senior",
-    role: "Senior Full Stack Developer",
-    company: "TechNova Solutions",
-    companyInitials: "TN",
-    location: "Surabaya, Indonesia",
-    locationType: "Remote",
-    period: { start: "Jan 2023", end: null, current: true },
-    summary:
-      "Leading a 5-person squad building a multi-tenant SaaS analytics platform used by 200+ B2B clients across Southeast Asia.",
-    responsibilities: [
-      "Architected the migration from a monolith to Next.js App Router + modular services, cutting p95 page load from 4.2s to 1.1s",
-      "Designed the public REST API consumed by 40+ integration partners, with OpenAPI docs and sandbox keys",
-      "Introduced end-to-end typesafety (tRPC → REST codegen) and raised test coverage from 34% to 81%",
-      "Mentored 3 junior developers through structured code reviews and pairing sessions",
-    ],
-    tech: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "AWS", "Docker"],
-  },
-  {
-    id: "digitalkreasi-fullstack",
-    role: "Full Stack Developer",
-    company: "PT Digital Kreasi Indonesia",
-    companyInitials: "DK",
-    location: "Surabaya, Indonesia",
-    locationType: "Hybrid",
-    period: { start: "Jun 2021", end: "Dec 2022", current: false },
-    summary:
-      "Built and shipped 12 client projects — company profiles, e-commerce, and internal tools — for retail and fintech clients.",
-    responsibilities: [
-      "Delivered an e-commerce revamp that grew client conversion rate by 31% in the first quarter after launch",
-      "Built a multi-vendor order management system processing 5k+ orders daily",
-      "Standardized the team's starter kit (Next.js + Prisma + CI), reducing project setup from days to hours",
-      "Owned the performance budget: every release shipped with Lighthouse 90+ on key pages",
-    ],
-    tech: ["React", "Node.js", "Express", "MongoDB", "Redis", "Tailwind CSS"],
-  },
-  {
-    id: "startuplab-intern",
-    role: "Frontend Developer Intern",
-    company: "StartupLab Accelerator",
-    companyInitials: "SL",
-    location: "Surabaya, Indonesia",
-    locationType: "Onsite",
-    period: { start: "Jan 2021", end: "Jun 2021", current: false },
-    summary:
-      "Joined the incubator's product team to prototype MVPs for early-stage startups during a 6-month program.",
-    responsibilities: [
-      "Shipped 4 MVP prototypes in 16 weeks, two of which successfully raised seed funding",
-      "Built reusable component libraries in React with Storybook documentation",
-      "Collaborated daily with founders to translate napkin sketches into clickable products",
-    ],
-    tech: ["React", "JavaScript", "Tailwind CSS", "Storybook"],
-  },
-  {
-    id: "freelance-dev",
-    role: "Freelance Web Developer",
+    id: "independent-dev",
+    role: "Independent Full-Stack & AI Agent Developer",
     company: "Self-employed",
     companyInitials: "SE",
-    location: "Remote",
+    location: "Surabaya, Indonesia",
     locationType: "Remote",
-    period: { start: "2020", end: "2021", current: false },
+    period: { start: "2024", end: null, current: true },
     summary:
-      "Started freelancing while in university — landing pages, school systems, and small business tools.",
+      "Building trending products end-to-end — web platforms, scalable backends, and OpenForge, an offline-first local AI agent system.",
     responsibilities: [
-      "Delivered 20+ projects with 100% on-time completion and recurring retainers from 6 clients",
-      "Learned the full cycle solo: requirements, design, build, deploy, invoice",
+      "Conduct in-depth research into global technological advancements and turn the findings into real, shipped projects",
+      "Design and build web and backend systems with a focus on scalability, performance, and reliability",
+      "Develop OpenForge — a local AI agent that helps users complete tasks, search information offline, build software, automate workflows, and manage device security",
+      "Continuously expand the stack: new frameworks, AI tooling, and engineering practices",
     ],
-    tech: ["JavaScript", "PHP", "MySQL", "jQuery"],
+    tech: ["TypeScript", "Next.js", "Node.js", "React", "AI Agents", "LLM Tooling"],
+  },
+  {
+    id: "cv-builder-freelance",
+    role: "Software Engineer (Freelance)",
+    company: "CV Builder — Instant Resume",
+    companyInitials: "IR",
+    location: "Surabaya, Indonesia",
+    locationType: "Remote",
+    period: { start: "2023", end: "2023", current: false },
+    summary:
+      "Freelance engagement: built a platform that makes it easier for others to create a CV — speeding up CV creation without manual styling.",
+    responsibilities: [
+      "Built a platform that lets anyone generate a polished CV without wrestling with manual styling",
+      "Automated layout, typography, and formatting so a complete resume comes together in minutes",
+      "Owned the full cycle solo: requirements, design, build, and delivery",
+    ],
+    tech: ["JavaScript", "React", "Node.js", "PDF Generation"],
   },
 ];

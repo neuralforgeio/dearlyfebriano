@@ -43,7 +43,7 @@ function TickerRow({ ariaHidden = false }: { ariaHidden?: boolean }) {
       {TECHS.map((tech) => (
         <span
           key={tech}
-          className="glass flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+          className="glass-flat flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
         >
           <TechIcon name={tech} className="size-3.5 text-primary" />
           {tech}

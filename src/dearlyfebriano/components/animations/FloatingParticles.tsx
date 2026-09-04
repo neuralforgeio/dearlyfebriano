@@ -9,6 +9,9 @@ import { cn } from "@/lib/utils";
  * twinkling dots drifting slowly, with faint connecting lines
  * between very close particles. Scales particle count with the
  * viewport area and handles resize + devicePixelRatio.
+ * PERF: rAF loop berhenti total saat canvas keluar viewport
+ * (IntersectionObserver) — canvas hero tak lagi membakar CPU/GPU
+ * saat user membaca section bawah.
  * ============================================================ */
 
 interface FloatingParticlesProps {
@@ -139,14 +142,38 @@ export default function FloatingParticles({
       raf = requestAnimationFrame(frame);
     };
 
+    /* Loop hanya berjalan saat canvas terlihat — hemat CPU/GPU
+       saat user scroll ke bawah. */
+    const startLoop = () => {
+      if (raf === 0) {
+        lastTime = performance.now();
+        raf = requestAnimationFrame(frame);
+      }
+    };
+    const stopLoop = () => {
+      if (raf !== 0) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
+
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(canvas);
+    const intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) startLoop();
+        else stopLoop();
+      },
+      { rootMargin: "80px" }
+    );
+    intersectionObserver.observe(canvas);
     resize();
-    raf = requestAnimationFrame(frame);
+    startLoop();
 
     return () => {
-      cancelAnimationFrame(raf);
+      stopLoop();
       resizeObserver.disconnect();
+      intersectionObserver.disconnect();
     };
   }, [reducedMotion, maxParticles]);
 

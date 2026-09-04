@@ -163,12 +163,24 @@
   background-image: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa);
 }
 
-/* Glassmorphism card */
+/* Glassmorphism card — blur 10px (naikkan jika perlu; blur besar
+ * pada banyak elemen = mahal di GPU terintegrasi saat scroll).
+ * Untuk elemen yang BERGERAK (marquee dsb.) gunakan `glass-flat`. */
 @utility glass {
   background-color: color-mix(in oklab, var(--card) 55%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid color-mix(in oklab, var(--border) 75%, transparent);
+}
+
+/* Varian glass TANPA backdrop-filter — untuk elemen animasi/
+ * bergerak (mis. pill di marquee). backdrop-filter pada elemen
+ * yang translate tiap frame memaksa re-blur backdrop terus-menerus
+ * (penyebab utama jank di laptop low-end). Opacity sedikit lebih
+ * tinggi untuk mengompensasi hilangnya blur — visual nyaris sama. */
+@utility glass-flat {
+  background-color: color-mix(in oklab, var(--card) 62%, transparent);
+  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
 }
 
 /* Subtle grid pattern overlay (opacity via parent) */

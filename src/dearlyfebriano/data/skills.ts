@@ -8,28 +8,39 @@ import type { SkillGroup } from "@/dearlyfebriano/types";
 
 export const skillGroups: SkillGroup[] = [
   {
+    id: "ai-agents",
+    label: "AI & Agents",
+    skills: [
+      { name: "AI Agent Development", level: 88 },
+      { name: "LLM Tooling", level: 85 },
+      { name: "Prompt Engineering", level: 86 },
+      { name: "Local LLMs", level: 82 },
+      { name: "Workflow Automation", level: 84 },
+    ],
+  },
+  {
     id: "frontend",
     label: "Frontend",
     skills: [
-      { name: "React", level: 95 },
-      { name: "Next.js", level: 92 },
-      { name: "TypeScript", level: 90 },
-      { name: "Tailwind CSS", level: 93 },
-      { name: "Framer Motion", level: 86 },
-      { name: "Redux", level: 80 },
-      { name: "React Native", level: 78 },
+      { name: "React", level: 90 },
+      { name: "Next.js", level: 90 },
+      { name: "TypeScript", level: 88 },
+      { name: "Tailwind CSS", level: 90 },
+      { name: "Framer Motion", level: 84 },
+      { name: "Redux", level: 78 },
+      { name: "React Native", level: 72 },
     ],
   },
   {
     id: "backend",
     label: "Backend",
     skills: [
-      { name: "Node.js", level: 90 },
-      { name: "Express", level: 88 },
-      { name: "NestJS", level: 76 },
-      { name: "GraphQL", level: 78 },
-      { name: "REST API Design", level: 90 },
-      { name: "WebSockets", level: 82 },
+      { name: "Node.js", level: 88 },
+      { name: "Express", level: 86 },
+      { name: "NestJS", level: 74 },
+      { name: "GraphQL", level: 76 },
+      { name: "REST API Design", level: 88 },
+      { name: "WebSockets", level: 80 },
     ],
   },
   {

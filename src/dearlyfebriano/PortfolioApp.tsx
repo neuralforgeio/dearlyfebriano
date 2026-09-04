@@ -1,12 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
+import { useCallback, useEffect, useRef, type JSX } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useUIStore, viewToHash, hashToView } from "@/dearlyfebriano/store/ui-store";
 import { PRELOADER_SESSION_KEY } from "@/dearlyfebriano/lib/constants";
 import { getViewDescription, getViewTitle } from "@/dearlyfebriano/lib/titles";
 import ScrollProgress from "@/dearlyfebriano/components/animations/ScrollProgress";
-import CommandPalette from "@/dearlyfebriano/components/common/CommandPalette";
 import CustomCursor from "@/dearlyfebriano/components/common/CustomCursor";
 import Preloader from "@/dearlyfebriano/components/common/Preloader";
 import ScrollToTop from "@/dearlyfebriano/components/common/ScrollToTop";
@@ -14,18 +14,46 @@ import WhatsAppButton from "@/dearlyfebriano/components/common/WhatsAppButton";
 import { Navbar } from "@/dearlyfebriano/components/layout/Navbar";
 import { Footer } from "@/dearlyfebriano/components/layout/Footer";
 import HomeView from "@/dearlyfebriano/components/sections/HomeView";
-import AboutView from "@/dearlyfebriano/components/views/AboutView";
-import ProjectsView from "@/dearlyfebriano/components/views/ProjectsView";
-import ProjectDetailView from "@/dearlyfebriano/components/views/ProjectDetailView";
-import CertificatesView from "@/dearlyfebriano/components/views/CertificatesView";
-import ExperienceView from "@/dearlyfebriano/components/views/ExperienceView";
-import NotesView from "@/dearlyfebriano/components/views/NotesView";
-import NoteDetailView from "@/dearlyfebriano/components/views/NoteDetailView";
-import ContactView from "@/dearlyfebriano/components/views/ContactView";
-import GuestbookView from "@/dearlyfebriano/components/views/GuestbookView";
-import NotFoundView from "@/dearlyfebriano/components/views/NotFoundView";
-import KonamiConfetti from "@/dearlyfebriano/components/common/KonamiConfetti";
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
+
+/* PERF: Home tetap di-import statis (LCP/SSR), sedangkan SEMUA view
+ * lain di-code-split via next/dynamic — chunk JS awal hanya berisi
+ * shell + home. View lain (beserta dependency beratnya) diunduh
+ * on-demand saat pertama kali dibuka; skeleton loading minimal
+ * menjaga UX tetap mulus. CommandPalette & KonamiConfetti juga
+ * lazy (cmdk + dialog kit tidak perlu di bundle awal). */
+const ViewFallback = (): JSX.Element => {
+  const { t } = useLanguage();
+  return (
+    <div
+      role="status"
+      aria-label={t("Loading view…")}
+      className="mx-auto min-h-[50vh] max-w-6xl animate-pulse px-4 py-20 sm:px-6"
+    >
+      <div className="mb-4 h-8 w-40 rounded-lg bg-muted" />
+      <div className="mb-8 h-4 w-64 rounded bg-muted" />
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="h-40 rounded-xl bg-muted" />
+        <div className="h-40 rounded-xl bg-muted" />
+        <div className="h-40 rounded-xl bg-muted" />
+      </div>
+    </div>
+  );
+};
+
+const AboutView = dynamic(() => import("@/dearlyfebriano/components/views/AboutView"), { loading: ViewFallback });
+const ProjectsView = dynamic(() => import("@/dearlyfebriano/components/views/ProjectsView"), { loading: ViewFallback });
+const ProjectDetailView = dynamic(() => import("@/dearlyfebriano/components/views/ProjectDetailView"), { loading: ViewFallback });
+const CertificatesView = dynamic(() => import("@/dearlyfebriano/components/views/CertificatesView"), { loading: ViewFallback });
+const ExperienceView = dynamic(() => import("@/dearlyfebriano/components/views/ExperienceView"), { loading: ViewFallback });
+const NotesView = dynamic(() => import("@/dearlyfebriano/components/views/NotesView"), { loading: ViewFallback });
+const NoteDetailView = dynamic(() => import("@/dearlyfebriano/components/views/NoteDetailView"), { loading: ViewFallback });
+const ContactView = dynamic(() => import("@/dearlyfebriano/components/views/ContactView"), { loading: ViewFallback });
+const GuestbookView = dynamic(() => import("@/dearlyfebriano/components/views/GuestbookView"), { loading: ViewFallback });
+const NotFoundView = dynamic(() => import("@/dearlyfebriano/components/views/NotFoundView"), { loading: ViewFallback });
+
+const CommandPalette = dynamic(() => import("@/dearlyfebriano/components/common/CommandPalette"));
+const KonamiConfetti = dynamic(() => import("@/dearlyfebriano/components/common/KonamiConfetti"));
 
 /* ============================================================
  * PortfolioApp — root SPA shell milik Dearly Febriano.

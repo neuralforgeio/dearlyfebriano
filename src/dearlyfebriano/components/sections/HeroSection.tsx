@@ -56,20 +56,23 @@ export default function HeroSection(): JSX.Element {
       id="hero"
       className="relative flex min-h-[92vh] items-center overflow-hidden pt-28 pb-16"
     >
-      {/* Ambient background layer */}
+      {/* Ambient background layer — orb memakai radial-gradient (bukan
+         filter blur): visual glow lembut yang sama, tanpa biaya
+         re-rasterisasi filter di GPU terintegrasi. Animasi x/y tetap
+         jalan (compositor-only). */}
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <motion.div
-          className="absolute -left-40 -top-32 size-[380px] rounded-full bg-primary/20 blur-[120px]"
+          className="absolute -left-40 -top-32 size-[380px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.20)_0%,rgba(99,102,241,0.08)_45%,transparent_70%)]"
           animate={reducedMotion ? undefined : { x: 50, y: 40 }}
           transition={{ duration: 16, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute -right-40 top-1/4 size-[460px] rounded-full bg-accent/15 blur-[130px]"
+          className="absolute -right-40 top-1/4 size-[460px] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.15)_0%,rgba(139,92,246,0.06)_45%,transparent_70%)]"
           animate={reducedMotion ? undefined : { x: -45, y: 55 }}
           transition={{ duration: 18, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute -bottom-24 left-1/3 size-[320px] rounded-full bg-[#a78bfa]/10 blur-[120px]"
+          className="absolute -bottom-24 left-1/3 size-[320px] rounded-full bg-[radial-gradient(circle,rgba(167,139,250,0.10)_0%,rgba(167,139,250,0.04)_45%,transparent_70%)]"
           animate={reducedMotion ? undefined : { x: 35, y: -30 }}
           transition={{ duration: 14, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
         />
@@ -222,15 +225,16 @@ export default function HeroSection(): JSX.Element {
           }
         >
           <div className="relative mx-auto size-64 sm:size-72 lg:size-80">
-            {/* Pulsing gradient orb behind the photo */}
+            {/* Pulsing gradient orb behind the photo — radial-gradient,
+                bukan blur-2xl (hemat GPU, visual identik) */}
             <div
               aria-hidden
-              className="absolute inset-0 rounded-full bg-gradient-accent opacity-20 blur-2xl animate-[pulse_6s_ease-in-out_infinite]"
+              className="absolute inset-0 animate-[pulse_6s_ease-in-out_infinite] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.26)_0%,rgba(99,102,241,0.10)_50%,transparent_72%)]"
             />
             {/* Soft ambient shadow to lift the avatar off the background */}
             <div
               aria-hidden
-              className="absolute inset-4 rounded-full bg-black/50 blur-2xl dark:bg-black/60"
+              className="absolute inset-4 rounded-full bg-[radial-gradient(circle,rgba(0,0,0,0.38)_0%,rgba(0,0,0,0.16)_55%,transparent_75%)] dark:bg-[radial-gradient(circle,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.22)_55%,transparent_75%)]"
             />
             <OrbitingBorder className="size-full drop-shadow-[0_24px_48px_rgba(0,0,0,0.45)]">
               <div className="relative size-full overflow-hidden rounded-full ring-4 ring-background">
