@@ -3,8 +3,11 @@ import type { View } from "@/dearlyfebriano/types";
 
 /* ============================================================
  * UI STORE (Zustand) — SPA navigation state + preloader flag.
- * Hash routing (#/projects, #/projects/slug, #notes, #notes/slug,
- * dst) disinkronkan oleh PortfolioApp.tsx.
+ * Path routing REAL (tanpa #): /about, /projects, /projects/slug,
+ * /notes/slug, dst — disinkronkan oleh PortfolioApp.tsx via
+ * history.pushState + popstate. Semua path di-serve page yang
+ * sama lewat rewrites next.config (afterFiles) sehingga URL
+ * bersih & shareable tanpa file route tambahan.
  * ============================================================ */
 
 interface UIState {
@@ -16,12 +19,12 @@ interface UIState {
   isCommandOpen: boolean;
   /** Dialog cheatsheet keyboard shortcuts — buka via tombol "?". */
   isShortcutsOpen: boolean;
-  /** True setelah hash awal dibaca (mencegah render view salah saat deep-link). */
+  /** True setelah path awal dibaca (mencegah render view salah saat deep-link). */
   isRouterReady: boolean;
 
-  /** User-triggered navigation (juga dipantau PortfolioApp untuk sync hash). */
+  /** User-triggered navigation (dipantau PortfolioApp untuk pushState path). */
   navigate: (view: View, detailSlug?: string) => void;
-  /** Internal navigation (dari hashchange listener) — tanpa sync ulang. */
+  /** Internal navigation (dari popstate listener) — tanpa push ulang. */
   setView: (view: View, detailSlug?: string | null) => void;
   setPreloaderDone: () => void;
   setMobileMenuOpen: (open: boolean) => void;
@@ -80,51 +83,71 @@ export const useUIStore = create<UIState>((set) => ({
   setRouterReady: () => set({ isRouterReady: true }),
 }));
 
-/** Helper: convert view state → location hash. */
-export function viewToHash(
+/** Helper: convert view state → REAL path (tanpa #).
+ * Mengembalikan null untuk view yang tidak punya URL sendiri
+ * ("not-found" hanya dihasilkan dari parse path, tidak pernah
+ * di-push). */
+export function viewToPath(
   view: View,
   projectSlug: string | null,
   noteSlug: string | null
-): string {
-  if (view === "project-detail" && projectSlug) return `#projects/${projectSlug}`;
-  if (view === "note-detail" && noteSlug) return `#notes/${noteSlug}`;
-  if (view === "home") return "#/";
-  if (view === "not-found") return "#not-found";
-  return `#${view}`;
+): string | null {
+  if (view === "project-detail" && projectSlug) return `/projects/${projectSlug}`;
+  if (view === "note-detail" && noteSlug) return `/notes/${noteSlug}`;
+  if (view === "home") return "/";
+  /* View internal tanpa URL canonical — tidak pernah di-push. */
+  if (view === "not-found" || view === "project-detail" || view === "note-detail") {
+    return null;
+  }
+  return `/${view}`;
 }
 
-/** Helper: parse location hash → view state. */
-export function hashToView(hash: string): {
+/** Helper: parse REAL path → view state. */
+export function pathToView(pathname: string): {
   view: View;
   projectSlug: string | null;
   noteSlug: string | null;
 } {
-  const clean = hash.replace(/^#\/?/, "").replace(/\/$/, "");
-  if (!clean) return { view: "home", projectSlug: null, noteSlug: null };
+  const clean = pathname.replace(/\/+$/, "");
+  if (!clean || clean === "") return { view: "home", projectSlug: null, noteSlug: null };
 
-  const [head, tail] = clean.split("/");
+  const segments = clean.split("/").filter(Boolean);
+  const [head, tail] = segments;
+
+  if (head === "projects" && tail) {
+    return { view: "project-detail", projectSlug: decodeURIComponent(tail), noteSlug: null };
+  }
+  if (head === "notes" && tail) {
+    return { view: "note-detail", projectSlug: null, noteSlug: decodeURIComponent(tail) };
+  }
   const views: View[] = [
     "home",
     "about",
     "projects",
-    "project-detail",
     "certificates",
     "experience",
     "notes",
-    "note-detail",
     "contact",
     "guestbook",
     "not-found",
   ];
-  if (head === "projects" && tail) {
-    return { view: "project-detail", projectSlug: tail, noteSlug: null };
-  }
-  if (head === "notes" && tail) {
-    return { view: "note-detail", projectSlug: null, noteSlug: tail };
-  }
   if (views.includes(head as View)) {
     return { view: head as View, projectSlug: null, noteSlug: null };
   }
-  /* Hash tak dikenal (mis. #foobar) → tampilkan view 404 yang elegan. */
+  /* Path tak dikenal (mis. /foobar) → tampilkan view 404 yang elegan. */
   return { view: "not-found", projectSlug: null, noteSlug: null };
+}
+
+/* ============================================================
+ * LEGACY HASH → PATH (kompatibilitas link lama #about, #/projects)
+ * Dipakai PortfolioApp saat load untuk redirect sekali.
+ * ============================================================ */
+
+/** Parse hash lama → path baru. null bila hash bukan route SPA. */
+export function legacyHashToPath(hash: string): string | null {
+  const raw = hash.replace(/^#/, "");
+  if (!raw || raw === "/") return "/";
+  const parsed = pathToView("/" + raw.replace(/^\/+/, ""));
+  const mapped = viewToPath(parsed.view, parsed.projectSlug, parsed.noteSlug);
+  return mapped ?? "/";
 }

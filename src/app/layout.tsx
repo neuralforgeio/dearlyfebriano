@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Inter, Fira_Code } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/dearlyfebriano/components/layout/Providers";
@@ -71,9 +72,11 @@ export const metadata: Metadata = {
     follow: true,
   },
   manifest: "/manifest.webmanifest",
-  alternates: {
-    canonical: "/",
-  },
+  /* canonical TIDAK statis di sini — halaman yang sama di-serve di
+   * banyak path (/about, /projects/slug, …); canonical "/" akan
+   * memberi tahu Google semua path itu duplikat root. PortfolioApp
+   * menyuntikkan <link rel="canonical"> self-referencing per path
+   * (dan og:url) setelah routing client aktif. */
 };
 
 export const viewport: Viewport = {
@@ -93,6 +96,25 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${firaCode.variable} bg-background font-sans text-foreground antialiased`}
       >
+        {/* SCROLL RESTORATION — harus berjalan SEBELUM paint/hydration
+            (beforeInteractive): (1) matikan restorasi scroll NATIVE browser
+            saat reload (kalau tidak, browser menang duluan dan mengalahkan
+            sistem sessionStorage kita); (2) pulihkan posisi pra-paint TANPA
+            flash. Kebijakan sesuai permintaan owner, berbasis TIPE navigasi
+            (Performance API): "reload" (F5) → kembali ke posisi terakhir;
+            "navigate" (user masuk/typed URL/link dari luar web) → MULAI DARI
+            ATAS (entry dianggap fresh — key lama path itu dihapus);
+            "back_forward" → kembali ke posisi (kontinuitas natural).
+            Key HARUS sinkron dengan scrollKey() PortfolioApp:
+            `dearlyfebriano:scroll:<path>`. */}
+        <Script
+          id="df-scroll-restoration"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if('scrollRestoration' in history)history.scrollRestoration='manual';var t=(performance.getEntriesByType('navigation')[0]||{}).type;var k='dearlyfebriano:scroll:'+location.pathname;if(t==='navigate'){sessionStorage.removeItem(k);}else{var v=parseInt(sessionStorage.getItem(k),10);if(v>0)window.scrollTo(0,v);}}catch(e){}",
+          }}
+        />
         <Providers>{children}</Providers>
       </body>
     </html>

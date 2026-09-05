@@ -1,6 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /* ROUTING: portfolio adalah path-SPA (tanpa #) — SEMUA path
+   * (/about, /projects/<slug>, dst) di-serve halaman yang sama.
+   * `afterFiles` berjalan SETELAH route file nyata + file publik,
+   * jadi /api/*, /images/*, /sitemap.xml, /robots.txt, dll tetap
+   * dimenangkan oleh file aslinya dan TIDAK ter-rewrite.
+   * Tidak ada file route tambahan — tetap satu page.tsx. */
+  async rewrites() {
+    return {
+      afterFiles: [{ source: "/:path*", destination: "/" }],
+    };
+  },
   /* CATATAN: `output: "standalone"` sengaja TIDAK dipakai.
    * Vercel tidak membutuhkan standalone (punya build system sendiri),
    * dan mode standalone memindahkan file tracing (next-server.js.nft.json)
