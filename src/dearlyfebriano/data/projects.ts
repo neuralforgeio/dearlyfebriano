@@ -5,6 +5,8 @@ import type { Project } from "@/dearlyfebriano/types";
  * "CV DEARLY FEBRIANO IRWANSYAH.pdf":
  * - OpenForge (AI Agent) — AI Development, 2026
  * - CV Builder (Instant Resume) — freelance, 2023
+ * - Akuma Joki (Roblox storefront) — freelance, 2026
+ * - Tromino Digital (React design system) — freelance, 2026
  * Ditambah website portfolio ini sebagai project live.
  * Gambar thumbnail ada di /public/images/projects/
  * ============================================================ */
@@ -223,6 +225,73 @@ export const projects: Project[] = [
         title: "A library bug hiding behind a weak test",
         description:
           "The bare Drawer.Close button had rendered in the wrong position since v1.0.0 — a cn() argument-order slip let the variant base's 'relative' win twMerge's last-wins conflict against 'absolute'. The test suite never caught it because toContain('absolute') happily passes on 'before:absolute'. I fixed the merge order in the library, removed the consumer workaround, and documented the assertion hole so future tests assert geometry, not substrings.",
+      },
+    ],
+    startDate: "2026-09",
+    endDate: undefined,
+    duration: "Ongoing",
+    featured: true,
+  },
+  {
+    slug: "arus-ledger",
+    title: "Arus Ledger",
+    shortDesc:
+      "A local-first personal money tracker PWA with no backend — custom numpad, hand-rolled SVG charts, formal four-page PDF reports with embedded diagrams, digital signature, and offline-first architecture.",
+    longDesc:
+      "Arus Ledger is a local-first personal money tracker PWA built on the principle that financial data should never leave your device. Every transaction, account, category, budget, and setting lives in IndexedDB via Dexie — there is no server, no API, no cloud sync, and no analytics. The application ships a custom numpad and bottom-sheet system, a hand-rolled SVG icon set, and six custom chart types rendered with raw SVG primitives (daily cashflow bar, category donut, six-month trend, day-of-week pattern, weekly comparison, and a calendar heatmap) — all without a charting library on the production path. The reporting layer generates a formal four-page PDF report using jsPDF: page one holds sectioned tables with Times New Roman titles, page two renders visual diagrams (bar chart, donut chart, horizontal bar) with justified explanatory paragraphs, page three is a templated narrative report with seven lettered sections, and page four is a formal closing page with a digital signature block. A styled Excel-compatible export, CSV, and digital signature pad round out the export toolkit. The UI follows an m-banking design language with a blue (#2563EB) accent, a collapsible desktop sidebar with Ctrl+/ shortcut, a mobile bottom navigation, and route-per-tab navigation using Next.js App Router — each tab (/, /transaksi, /laporan, /pengaturan) has its own URL with scroll-position persistence that restores on reload but resets on fresh visit.",
+    thumbnail: "/images/projects/arusledger.png",
+    images: [],
+    techStack: [
+      "Next.js 16",
+      "TypeScript",
+      "Tailwind CSS 4",
+      "Dexie/IndexedDB",
+      "jsPDF",
+      "PWA",
+      "Local-First",
+      "Vercel",
+    ],
+    category: "web",
+    status: "live",
+    liveUrl: "https://arus-ledger.vercel.app/",
+    githubUrl: "https://github.com/neuralforgeio/Arus-Ledger",
+    features: [
+      "Local-first architecture — all data stored in IndexedDB via Dexie, zero backend, zero network calls, data never leaves the device",
+      "Custom numpad with quick-amount chips (+5rb, +10rb, +20rb, +50rb, +100rb), '00' key, and a close button for easy dismissal",
+      "Six custom SVG chart types built with raw primitives — no charting library: daily cashflow bar, category donut, six-month trend, day-of-week pattern, weekly comparison, and calendar heatmap",
+      "Formal four-page PDF report: sectioned tables with Times New Roman titles, visual diagrams page (bar + donut + horizontal bar charts with justified explanations), templated narrative report (seven lettered sections A–G), and a dedicated closing page with digital signature block",
+      "Styled Excel-compatible export with three sheets (Ringkasan, Transaksi, Kategori), blue headers, cell borders, alternating rows, and color-coded amounts",
+      "Digital signature pad with canvas drawing, saves as base64 PNG, embedded directly into PDF reports on the closing page",
+      "Profile modal with name, phone, email, city, address, job title, company, and ID number — used to populate report headers and the closing page's place/date line",
+      "Route-per-tab navigation: / (Beranda), /transaksi, /laporan, /pengaturan — each with its own URL and scroll-position persistence (restore on reload, reset on fresh visit)",
+      "PWA with vanilla service worker, offline fallback page, install prompt banner, and update detection",
+      "Responsive m-banking UI: collapsible desktop sidebar (Ctrl+/ shortcut), mobile bottom navigation, blue (#2563EB) accent theme with light/dark mode",
+      "Multi-currency support (IDR/USD) with cached exchange rate from open.er-api.com",
+      "Integer IDR money semantics with local YYYY-MM-DD date keys and derived balances — never stored, always computed",
+      "Semantic versioning (v1.1.0) with version displayed in sidebar footer and settings",
+    ],
+    challenges: [
+      {
+        title:
+          "Rendering a formal four-page PDF report without a layout engine",
+        description:
+          "The PDF needed to look like a real financial report — sectioned tables, justified body text, visual diagrams, a narrative page, and a closing letter with a signature — but jsPDF has no layout engine. I built the report layer from primitives: a drawSectionTitle helper with alignment modes (centered for top-level titles, left-aligned for sub-sections), a drawJustifiedParagraph function that passes full paragraphs to jsPDF so it distributes inter-word spacing evenly (Word-style justify), and three chart-drawing functions (grouped bar, donut, horizontal bar) using raw rect/line/circle calls. The result is a four-page document where every title is Times New Roman, body text is justified, and the signature sits on a dedicated closing page rather than orphaned on a separate sheet.",
+      },
+      {
+        title: "Fixing the numpad that closed itself on every button press",
+        description:
+          "The custom numpad lived inside a BottomSheet with drag-to-dismiss behavior. When the user tapped a numpad key, pointer events bubbled to the sheet container and triggered the drag handler, causing the numpad to disappear. The root cause was the hidden input's onBlur firing the moment focus moved to a numpad button. The fix required two layers: the numpad container now calls e.preventDefault() on mousedown to stop the hidden input from blurring, and the input's onBlur uses a 150ms delayed check that keeps the numpad open if focus moved to a numpad button. A dedicated 'Tutup Keypad' button was also added for explicit dismissal.",
+      },
+      {
+        title:
+          "Deploying a panel-built project to Vercel without leaking environment files",
+        description:
+          "The project was developed inside a sandbox panel that ships its own infrastructure files (Caddyfile, Prisma schema, .zscripts, service worker configs, bun.lock). Pushing these to GitHub would expose the panel's internals and break the Vercel build. I rewrote .gitignore to exclude all panel/system files, untracked them with git rm --cached (keeping them on disk), and squashed the entire history into a single commit authored by the user. The Vercel build then failed three times: first because Next.js 16 deprecated the eslint key in next.config.ts, then because @types/node was missing from devDependencies. Each was fixed iteratively until the deployment went READY.",
+      },
+      {
+        title: "Route-per-tab navigation with scroll position persistence",
+        description:
+          "The app was originally a single-page component with tab state in React. Converting it to route-per-tab required extracting all shared state (DB, settings, sheet handlers) into an AppProvider context, building an AppShell that wraps every route with the sidebar and sheets, and creating four route pages. The scroll persistence hook saves scroll position to sessionStorage on scroll, restores it on reload by checking performance.getEntriesByType('navigation')[0].type === 'reload', and clears it on fresh navigation — so reload stays where you were, but closing the browser and reopening starts from the top. The outer container had to change from min-h-screen to h-screen so the main element actually scrolls internally instead of the whole page growing.",
       },
     ],
     startDate: "2026-09",
