@@ -299,6 +299,74 @@ export const projects: Project[] = [
     duration: "Ongoing",
     featured: true,
   },
+  {
+    slug: "bliyu",
+    title: "BliYu",
+    shortDesc:
+      "A zero-backend Indonesian e-commerce marketplace — 122 fixture products across 24 categories, a hand-rolled path-based router layered over Next.js App Router, integer-IDR money semantics, a five-step checkout with per-seller free-shipping rules, seller chat, product comparison, a voucher engine, and rolling flash-sale sessions.",
+    longDesc:
+      "BliYu is a pure-frontend Indonesian e-commerce marketplace built on the principle that the entire shopping experience — browsing, carting, checking out, paying, and tracking orders — should run flawlessly with zero real backend. All product, seller, order, and payment data lives in deterministic local fixtures (122 products, 24 categories, 515 image slots), so the app never makes a single network call for data. The money layer enforces integer-IDR semantics: every price, delta, discount, fee, and total is computed as whole-rupiah integers to eliminate floating-point drift. Navigation runs on a hand-rolled path-based router built with useSyncExternalStore over the History API, layered on top of Next.js App Router with a [...slug] catch-all for SSR deep links — 29 routes, real URLs like /produk/xxx instead of #/fragments, backward migration of legacy hash links, and modifier-key (cmd/ctrl-click) support. Client state uses Zustand with persist + skipHydration for SSR safety. The commerce layer includes a five-step checkout (delivery, voucher, review, payment, success), per-seller-group shipping with honest free-shipping thresholds and progress bars, a voucher engine validating scope per product/cart, seller chat with quick replies and product cards, variant-aware frequently-bought-together, side-by-side product comparison, a review center that keeps what the user actually wrote, and rolling two-hour flash-sale sessions with a live countdown that also respects prefers-reduced-motion and offers a WCAG pause control. The image pipeline ships real product photos mapped deterministically per product with a procedural SVG art fallback on error. The UI follows an Indonesian m-commerce design language with a red/gold accent, light/dark mode, mobile bottom navigation, sticky buy bars, and an ARIA combobox search with full keyboard navigation — capped with visible semantic versioning (v1.0.0) in the footer and settings.",
+    thumbnail: "/images/projects/bliyu.png",
+    images: [],
+    techStack: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS 4",
+      "Zustand",
+      "Custom History Router",
+      "Zero Backend",
+      "Vercel",
+    ],
+    category: "web",
+    status: "live",
+    liveUrl: "https://bliyu.vercel.app",
+    githubUrl: "https://github.com/neuralforgeio/BliYu",
+    features: [
+      "Zero-backend architecture — 122 products, 24 categories, 515 image slots, all deterministic local fixtures; no server, no API, no network calls for data",
+      "Hand-rolled path-based router over Next.js App Router — useSyncExternalStore + History API, 29 routes with clean URLs (/produk/xxx), [...slug] catch-all for SSR deep links, and one-shot migration of legacy #/ hash links",
+      "Integer-IDR money semantics — every price, variant delta, discount, shipping fee, and total computed as whole-rupiah integers, never floats",
+      "Five-step checkout flow — delivery, voucher, review, payment, success — with payment methods, per-seller-group shipping, and honest order totals that match what was selected",
+      "Per-seller free-shipping rules — threshold-based qualification and progress bars computed per seller group instead of a misleading global bar",
+      "Voucher engine with scope validation — owned ∪ claimed vouchers persisted across reloads, per-product and per-cart scope enforcement, claim/unclaim flows",
+      "Seller chat — quick replies, product cards, and product links that resolve to real slugs (not 404s)",
+      "Variant-aware product system — variant price deltas actually applied to totals, per-variant stock clamping, and frequently-bought-together that refuses to add unavailable required variants",
+      "Side-by-side product comparison with spec rows and honest add-to-compare from the product page",
+      "Rolling two-hour flash-sale sessions — countdown that renders live immediately after hydration, keeps rolling into the next session, and ships a WCAG-compliant pause control honoring prefers-reduced-motion",
+      "Review center that persists what the user actually writes — real star ratings and timestamps instead of discarding input",
+      "Real product photos with a deterministic procedural SVG art fallback on image error — zero broken images in production",
+      "Accessibility pass — ARIA combobox search with full keyboard navigation, AA contrast in both light and dark themes, ≥36px touch targets, and a top-level ErrorBoundary keyed per route",
+      "Semantic versioning visible to users — v1.0.0 shown in the footer and settings/about, backed by a GitHub release and changelog policy",
+    ],
+    challenges: [
+      {
+        title: "The Reviews tab that white-screened the entire app",
+        description:
+          "A deep audit found that opening the Reviews tab on any product page crashed the whole application: the ReviewSection component referenced a `user` variable defined outside its scope, throwing a ReferenceError that unmounted the entire React tree into a blank white screen — and there was no ErrorBoundary anywhere to catch it. The trap was that ESLint reported a clean bill of health while TypeScript's compiler had been flagging the exact line all along. The fix had two layers: moving the session hook into the correct scope, and adding a top-level ErrorBoundary keyed by route so any future render error degrades into a recoverable error screen instead of a white screen. The lasting change was making `tsc --noEmit` a hard quality gate — a green linter is not proof the app runs.",
+      },
+      {
+        title:
+          "Migrating a hand-rolled hash router to real paths across 29 routes",
+        description:
+          "The app originally used a custom hash router (#/produk/xxx) and every product, category, and deep link depended on it. Migrating to normal paths meant rewriting the router core: parseLocation now goes through URLSearchParams with safe per-segment decoding so malformed %-sequences and multi-= query strings can never throw, BliLink renders real <a href> anchors with modifier-key support (cmd/ctrl-click opens new tabs), legacy #/ fixture links are migrated once on mount, and a Next.js [...slug] catch-all page makes deep links server-renderable. Review anchors became controlled tab state so 'Lihat Ulasan' scrolls and activates the tab instead of navigating to a broken hash. The migration was verified live across all 29 routes with zero page errors and zero console errors.",
+      },
+      {
+        title: "Shipping 515 real product images with zero backend",
+        description:
+          "The marketplace needed real product thumbnails — procedural SVG placeholders looked fake — but the app has no backend to host dynamic images. I ran ~35 category-specific image searches (flannel shirts, coffee makers, mechanical keyboards, hijabs…), downloaded the results locally, and built a deterministic id-to-files mapping so every product, gallery, and recommendation slot resolves to a real photo. A procedural SVG art component stays registered as an onError fallback, so even if a file is missing the slot degrades gracefully instead of showing a broken image — verified with zero broken images in production.",
+      },
+      {
+        title:
+          "The shipping fee that charged Rp9.000 while Rp18.000 was selected",
+        description:
+          "A live checkout test caught a derived-state mismatch: the Regular radio (Rp18.000) was checked by default, but the order total charged the Economy fee (Rp9.000) — and the override silently bypassed the free-shipping threshold rules entirely. The root cause was two sources of truth: one function computed the fee from a hardcoded cheapest option while the UI read the selection. The fix collapsed them into a single derived shippingFeeMap per seller group — the checked radio is the fee that gets charged, and a group qualifies for free shipping exactly when its rules say so. This is also where the integer-IDR money law paid off: because every rupiah value is an integer, the corrected fees reconciled to the totals to the exact rupiah, with no rounding drift anywhere.",
+      },
+    ],
+    startDate: "2026-09",
+    endDate: undefined,
+    duration: "Ongoing",
+    featured: true,
+  },
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);
