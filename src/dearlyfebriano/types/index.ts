@@ -20,12 +20,15 @@ export type View =
 export type ProjectCategory = "web" | "mobile" | "api" | "opensource";
 export type ProjectStatus = "live" | "in-progress" | "archived";
 
+type ProjectPreviewMode = "auto" | "image" | "live"
+
 export interface Project {
   slug: string;
   title: string;
   shortDesc: string;
   longDesc: string;
-  thumbnail: string;
+  thumbnail?: string;
+  previewMode?: ProjectPreviewMode;
   /** Extra gallery images shown on the project detail view */
   images: string[];
   techStack: string[];

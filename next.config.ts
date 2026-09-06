@@ -31,6 +31,7 @@ const nextConfig: NextConfig = {
     localPatterns: [
       { pathname: "/images/**" },
       { pathname: "/api/certificates/image" },
+      { pathname: "/api/project-preview" },
     ],
     // Local SVG assets (certificate placeholders) rendered via next/image.
     dangerouslyAllowSVG: true,

@@ -8,7 +8,7 @@ import type { Project } from "@/dearlyfebriano/types";
  * - Akuma Joki (Roblox storefront) — freelance, 2026
  * - Tromino Digital (React design system) — freelance, 2026
  * Ditambah website portfolio ini sebagai project live.
- * Gambar thumbnail ada di /public/images/projects/
+ * Gambar thumbnail otomatis via api.screenshotone.com, diambil dari liveUrl. Dan bisa manua dari /public/images/projects/ jika project tersebut non-website dan perlu screenshot manual.
  * ============================================================ */
 
 export const projects: Project[] = [
@@ -19,7 +19,6 @@ export const projects: Project[] = [
       "A local AI agent system that helps users complete tasks, search information offline, build software, and automate workflows — privacy-first.",
     longDesc:
       "OpenForge is a local AI agent system designed to help users complete various tasks, search for information offline, build software, automate workflows, manage systems, and enhance device security. With an offline-first approach, OpenForge prioritizes privacy, performance, and full control over user data — everything runs locally, nothing silently leaves the machine.",
-    thumbnail: "/images/projects/openforgewebsite.png",
     images: [],
     techStack: [
       "TypeScript",
@@ -58,6 +57,7 @@ export const projects: Project[] = [
     duration: "Ongoing",
     featured: true,
   },
+
   {
     slug: "instant-resume",
     title: "Instant Resume",
@@ -65,13 +65,19 @@ export const projects: Project[] = [
       "CV Builder platform that makes it easy for anyone to create a professional CV — speeding up resume creation without manual styling.",
     longDesc:
       "Instant Resume is a CV builder platform built as a freelance software engineering engagement in 2023. It exists for one reason: creating a CV should take minutes, not an afternoon. Users fill in their details and the platform handles layout, typography, and formatting automatically — producing a polished, ready-to-send resume without touching a style setting.",
-    thumbnail: "/images/projects/instantresume.png",
     images: [],
-    techStack: ["JavaScript", "React", "Node.js", "PDF Generation"],
+    techStack: [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "PDF Generation",
+    ],
     category: "web",
     status: "live",
-    liveUrl: "https://instantresume-builder.vercel.app/",
-    githubUrl: "https://github.com/neuralforgeio",
+    liveUrl:
+      "https://instantresume-builder.vercel.app/",
+    githubUrl:
+      "https://github.com/neuralforgeio",
     features: [
       "Guided CV creation flow — fill in content, never fight with styling",
       "Automatic layout and typography: consistent, professional output every time",
@@ -95,6 +101,7 @@ export const projects: Project[] = [
     duration: "Freelance, 2023",
     featured: true,
   },
+
   {
     slug: "akumajoki-store",
     title: "Akuma Joki",
@@ -102,7 +109,6 @@ export const projects: Project[] = [
       "A full-stack Roblox joki & storefront platform with a retro pixel-art interface, multi-item checkout, order tracking, customer loyalty, wishlist, reviews, smart search, and a GitHub-synced admin dashboard.",
     longDesc:
       "A full-stack Roblox joki and digital storefront platform built around a retro pixel-art aesthetic, designed to handle the complete customer journey from browsing game-specific services to checkout, order tracking, reviews, wishlist management, loyalty rewards, and post-order recovery. The storefront supports multiple game catalogs including Blox Fruits, Expedition Antarctica, and Retail Tycoon 2, with category-based products, pricing, requirements, difficulty levels, promotional tags, and contextual game notices. Customers can add up to five services into a single order, receive one shared Order ID, and continue the transaction through a WhatsApp-integrated checkout flow while the order is simultaneously recorded for administrative tracking. The platform also includes a dedicated order-tracking experience that groups every item belonging to the same Order ID and calculates an overall status across mixed, processing, completed, or cancelled items. On top of the storefront, the project ships with a large admin dashboard covering games, products, orders, reports, FAQ, announcements, settings, live chat, game analytics, developer tools, deployment controls, security/debug tooling, and maintenance mode. Content such as games, reviews, FAQs, announcements, about-page statistics, customer reports, and store settings can be synchronized through GitHub-backed JSON data so deployed instances stay aligned across environments. A smart-search API interprets natural-language-style queries such as cheapest or most expensive services, identifies relevant games, filters matching products, ranks the results, and returns a compact result set without requiring an external AI SDK. The client experience is further extended with persistent Zustand state for carts and selected orders, wishlist and recently-viewed data, loyalty points and tier progression, achievement badges, multilingual UI, responsive navigation, PWA installation handling, animated interactions, notification utilities, and a pixel-styled component system tailored specifically to the brand.",
-    thumbnail: "/images/projects/akumajoki.png",
     images: [],
     techStack: [
       "Next.js",
@@ -121,8 +127,9 @@ export const projects: Project[] = [
     ],
     category: "web",
     status: "live",
-    liveUrl: undefined,
-    githubUrl: "https://github.com/neuralforgeio/akuma-joki",
+    liveUrl: "https://akuma-joki.vercel.app/",
+    githubUrl:
+      "https://github.com/neuralforgeio/akuma-joki",
     features: [
       "Full Roblox storefront with multiple game catalogs, service categories, prices, requirements, difficulty levels, promotional tags, and game-specific notices.",
       "Multi-item cart and checkout supporting up to five services under one shared Order ID, with grouped order records and a WhatsApp handoff containing every selected item.",
@@ -138,7 +145,6 @@ export const projects: Project[] = [
       "Maintenance/takedown mode that can redirect the complete application to a dedicated maintenance page through a single configuration switch.",
       "PWA-oriented experience with installation prompts, cache/service-worker recovery handling, and automated synchronization helpers designed for production deployments.",
     ],
-
     challenges: [
       {
         title: "Fixing production blank-page failures",
@@ -161,22 +167,24 @@ export const projects: Project[] = [
           "The storefront contains editable business data such as game services, difficulty levels, promotional labels, contact information, FAQs, announcements, statistics, and reports. Maintaining separate hardcoded values risked the public site and dashboard drifting apart. The architecture therefore introduced synchronized data resolution: deployed data overrides defaults when valid, while the original definitions remain as a safe fallback, giving the application both editability and resilience.",
       },
       {
-        title: "Replacing an external AI dependency with deterministic search",
+        title:
+          "Replacing an external AI dependency with deterministic search",
         description:
           "The smart-search feature needed to understand useful customer phrases without adding a heavyweight AI runtime or SDK. Instead of making every search dependent on an LLM, the API parses intent locally, recognizes game aliases, extracts meaningful keywords, filters catalog data, falls back to broader text matching, applies price sorting when requested, and returns the best five results. This keeps the feature lightweight, predictable, and directly tied to the actual storefront catalog.",
       },
       {
-        title: "Resolving routing conflicts in Next.js App Router",
+        title:
+          "Resolving routing conflicts in Next.js App Router",
         description:
           "A default page generated by the development environment was unintentionally taking precedence over the intended homepage route, causing the deployed site to display the wrong content. The conflicting root page and associated default assets were removed so the grouped main route could correctly own the / route and render the actual Akuma Joki application.",
       },
     ],
-
     startDate: "2026-07",
     endDate: undefined,
     duration: "Ongoing",
     featured: true,
   },
+
   {
     slug: "tromino-digital",
     title: "Tromino Digital",
@@ -184,7 +192,6 @@ export const projects: Project[] = [
       "A 29-component React design system with hand-rolled interaction primitives — zero UI dependencies — plus its own living docs site with live playgrounds.",
     longDesc:
       "A design system I built from scratch: 29 components in three tiers (core, overlay, showcase) sitting on hand-rolled interaction primitives — focus trap, roving tabindex, typeahead, fuzzy scoring, anchored positioning, dismissable layer, scroll lock — with zero runtime UI dependencies (no Radix, no HeadlessUI, no MUI, no cmdk) and 528 behavior-first tests (RTL + user-event + axe) enforcing the WAI-ARIA APG patterns. It ships with its own docs site: a single-route, hash-navigated Next.js app where every component gets a live playground with deep-linkable props and a device-width preview (pin to 390/768px), a three-tier token reference with a live export API (CSS, flat JSON, W3C Design Tokens format — parsed from the real stylesheet at runtime), a bundle-size dashboard, accessibility contract, changelog and roadmap.",
-    thumbnail: "/images/projects/trominodigital.png",
     images: [],
     techStack: [
       "Next.js",
@@ -198,8 +205,10 @@ export const projects: Project[] = [
     ],
     category: "web",
     status: "live",
-    liveUrl: "https://tromino-digital.vercel.app",
-    githubUrl: "https://github.com/neuralforgeio/tromino-digital",
+    liveUrl:
+      "https://tromino-digital.vercel.app",
+    githubUrl:
+      "https://github.com/neuralforgeio/tromino-digital",
     features: [
       "29 components in three tiers, every one implementing its WAI-ARIA APG pattern with a keyboard table in the docs",
       "Hand-rolled interaction primitives: focus trap, roving tabindex, typeahead, fuzzy scoring, anchored positioning, dismissable layer, scroll lock",
@@ -232,6 +241,7 @@ export const projects: Project[] = [
     duration: "Ongoing",
     featured: true,
   },
+
   {
     slug: "arus-ledger",
     title: "Arus Ledger",
@@ -239,7 +249,6 @@ export const projects: Project[] = [
       "A local-first personal money tracker PWA with no backend — custom numpad, hand-rolled SVG charts, formal four-page PDF reports with embedded diagrams, digital signature, and offline-first architecture.",
     longDesc:
       "Arus Ledger is a local-first personal money tracker PWA built on the principle that financial data should never leave your device. Every transaction, account, category, budget, and setting lives in IndexedDB via Dexie — there is no server, no API, no cloud sync, and no analytics. The application ships a custom numpad and bottom-sheet system, a hand-rolled SVG icon set, and six custom chart types rendered with raw SVG primitives (daily cashflow bar, category donut, six-month trend, day-of-week pattern, weekly comparison, and a calendar heatmap) — all without a charting library on the production path. The reporting layer generates a formal four-page PDF report using jsPDF: page one holds sectioned tables with Times New Roman titles, page two renders visual diagrams (bar chart, donut chart, horizontal bar) with justified explanatory paragraphs, page three is a templated narrative report with seven lettered sections, and page four is a formal closing page with a digital signature block. A styled Excel-compatible export, CSV, and digital signature pad round out the export toolkit. The UI follows an m-banking design language with a blue (#2563EB) accent, a collapsible desktop sidebar with Ctrl+/ shortcut, a mobile bottom navigation, and route-per-tab navigation using Next.js App Router — each tab (/, /transaksi, /laporan, /pengaturan) has its own URL with scroll-position persistence that restores on reload but resets on fresh visit.",
-    thumbnail: "/images/projects/arusledger.png",
     images: [],
     techStack: [
       "Next.js 16",
@@ -253,8 +262,10 @@ export const projects: Project[] = [
     ],
     category: "web",
     status: "live",
-    liveUrl: "https://arus-ledger.vercel.app/",
-    githubUrl: "https://github.com/neuralforgeio/Arus-Ledger",
+    liveUrl:
+      "https://arus-ledger.vercel.app/",
+    githubUrl:
+      "https://github.com/neuralforgeio/Arus-Ledger",
     features: [
       "Local-first architecture — all data stored in IndexedDB via Dexie, zero backend, zero network calls, data never leaves the device",
       "Custom numpad with quick-amount chips (+5rb, +10rb, +20rb, +50rb, +100rb), '00' key, and a close button for easy dismissal",
@@ -278,7 +289,8 @@ export const projects: Project[] = [
           "The PDF needed to look like a real financial report — sectioned tables, justified body text, visual diagrams, a narrative page, and a closing letter with a signature — but jsPDF has no layout engine. I built the report layer from primitives: a drawSectionTitle helper with alignment modes (centered for top-level titles, left-aligned for sub-sections), a drawJustifiedParagraph function that passes full paragraphs to jsPDF so it distributes inter-word spacing evenly (Word-style justify), and three chart-drawing functions (grouped bar, donut, horizontal bar) using raw rect/line/circle calls. The result is a four-page document where every title is Times New Roman, body text is justified, and the signature sits on a dedicated closing page rather than orphaned on a separate sheet.",
       },
       {
-        title: "Fixing the numpad that closed itself on every button press",
+        title:
+          "Fixing the numpad that closed itself on every button press",
         description:
           "The custom numpad lived inside a BottomSheet with drag-to-dismiss behavior. When the user tapped a numpad key, pointer events bubbled to the sheet container and triggered the drag handler, causing the numpad to disappear. The root cause was the hidden input's onBlur firing the moment focus moved to a numpad button. The fix required two layers: the numpad container now calls e.preventDefault() on mousedown to stop the hidden input from blurring, and the input's onBlur uses a 150ms delayed check that keeps the numpad open if focus moved to a numpad button. A dedicated 'Tutup Keypad' button was also added for explicit dismissal.",
       },
@@ -289,7 +301,8 @@ export const projects: Project[] = [
           "The project was developed inside a sandbox panel that ships its own infrastructure files (Caddyfile, Prisma schema, .zscripts, service worker configs, bun.lock). Pushing these to GitHub would expose the panel's internals and break the Vercel build. I rewrote .gitignore to exclude all panel/system files, untracked them with git rm --cached (keeping them on disk), and squashed the entire history into a single commit authored by the user. The Vercel build then failed three times: first because Next.js 16 deprecated the eslint key in next.config.ts, then because @types/node was missing from devDependencies. Each was fixed iteratively until the deployment went READY.",
       },
       {
-        title: "Route-per-tab navigation with scroll position persistence",
+        title:
+          "Route-per-tab navigation with scroll position persistence",
         description:
           "The app was originally a single-page component with tab state in React. Converting it to route-per-tab required extracting all shared state (DB, settings, sheet handlers) into an AppProvider context, building an AppShell that wraps every route with the sidebar and sheets, and creating four route pages. The scroll persistence hook saves scroll position to sessionStorage on scroll, restores it on reload by checking performance.getEntriesByType('navigation')[0].type === 'reload', and clears it on fresh navigation — so reload stays where you were, but closing the browser and reopening starts from the top. The outer container had to change from min-h-screen to h-screen so the main element actually scrolls internally instead of the whole page growing.",
       },
@@ -299,6 +312,7 @@ export const projects: Project[] = [
     duration: "Ongoing",
     featured: true,
   },
+
   {
     slug: "bliyu",
     title: "BliYu",
@@ -306,7 +320,6 @@ export const projects: Project[] = [
       "A zero-backend Indonesian e-commerce marketplace — 122 fixture products across 24 categories, a hand-rolled path-based router layered over Next.js App Router, integer-IDR money semantics, a five-step checkout with per-seller free-shipping rules, seller chat, product comparison, a voucher engine, and rolling flash-sale sessions.",
     longDesc:
       "BliYu is a pure-frontend Indonesian e-commerce marketplace built on the principle that the entire shopping experience — browsing, carting, checking out, paying, and tracking orders — should run flawlessly with zero real backend. All product, seller, order, and payment data lives in deterministic local fixtures (122 products, 24 categories, 515 image slots), so the app never makes a single network call for data. The money layer enforces integer-IDR semantics: every price, delta, discount, fee, and total is computed as whole-rupiah integers to eliminate floating-point drift. Navigation runs on a hand-rolled path-based router built with useSyncExternalStore over the History API, layered on top of Next.js App Router with a [...slug] catch-all for SSR deep links — 29 routes, real URLs like /produk/xxx instead of #/fragments, backward migration of legacy hash links, and modifier-key (cmd/ctrl-click) support. Client state uses Zustand with persist + skipHydration for SSR safety. The commerce layer includes a five-step checkout (delivery, voucher, review, payment, success), per-seller-group shipping with honest free-shipping thresholds and progress bars, a voucher engine validating scope per product/cart, seller chat with quick replies and product cards, variant-aware frequently-bought-together, side-by-side product comparison, a review center that keeps what the user actually wrote, and rolling two-hour flash-sale sessions with a live countdown that also respects prefers-reduced-motion and offers a WCAG pause control. The image pipeline ships real product photos mapped deterministically per product with a procedural SVG art fallback on error. The UI follows an Indonesian m-commerce design language with a red/gold accent, light/dark mode, mobile bottom navigation, sticky buy bars, and an ARIA combobox search with full keyboard navigation — capped with visible semantic versioning (v1.0.0) in the footer and settings.",
-    thumbnail: "/images/projects/bliyu.png",
     images: [],
     techStack: [
       "Next.js 16",
@@ -321,7 +334,8 @@ export const projects: Project[] = [
     category: "web",
     status: "live",
     liveUrl: "https://bliyu.vercel.app",
-    githubUrl: "https://github.com/neuralforgeio/BliYu",
+    githubUrl:
+      "https://github.com/neuralforgeio/BliYu",
     features: [
       "Zero-backend architecture — 122 products, 24 categories, 515 image slots, all deterministic local fixtures; no server, no API, no network calls for data",
       "Hand-rolled path-based router over Next.js App Router — useSyncExternalStore + History API, 29 routes with clean URLs (/produk/xxx), [...slug] catch-all for SSR deep links, and one-shot migration of legacy #/ hash links",
