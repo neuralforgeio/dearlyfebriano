@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import {
+  useCallback,
   useMemo,
   useState,
   type KeyboardEvent as ReactKeyboardEvent,
@@ -38,11 +39,11 @@ import { useUIStore } from "@/dearlyfebriano/store/ui-store";
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 
 import ProjectHealthBadge from "../projects/ProjectHealthBadge";
-
 import type { Project, ProjectCategory } from "@/dearlyfebriano/types";
 
 import { cn } from "@/lib/utils";
 import type { JSX } from "react";
+import PortfolioHealthDashboard from "../projects/PortfolioHealthDashboard";
 
 /* ============================================================
  * ProjectsView
@@ -446,6 +447,7 @@ function ProjectCard({ project, index }: ProjectCardProps): JSX.Element {
  * ============================================================ */
 
 export default function ProjectsView(): JSX.Element {
+  const [showDiagnostics, setShowDiagnostics] = useState(false);
   const [activeFilter, setActiveFilter] = useState<ProjectCategory | "all">(
     "all",
   );
@@ -709,6 +711,39 @@ export default function ProjectsView(): JSX.Element {
           )}
         </FadeIn>
       )}
+
+      {/* ======================================================
+       * Developer Diagnostics
+       *
+       * Hidden by default so the Projects page remains focused
+       * on projects. The health scanner is only mounted after
+       * the visitor explicitly opens this section.
+       * ====================================================== */}
+
+      <div className="mt-14 border-t border-border/50 pt-6">
+        <button
+          type="button"
+          onClick={() => setShowDiagnostics((value) => !value)}
+          aria-expanded={showDiagnostics}
+          className="group mx-auto flex items-center gap-2 rounded-full border border-border/60 bg-card/30 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-all hover:border-primary/30 hover:bg-card/60 hover:text-foreground"
+        >
+          <span className="size-1.5 rounded-full bg-primary/60 transition-all group-hover:scale-125 group-hover:bg-primary" />
+
+          {showDiagnostics ? t("Hide diagnostics") : t("Developer diagnostics")}
+
+          <span
+            aria-hidden
+            className={cn(
+              "transition-transform duration-300",
+              showDiagnostics && "rotate-180",
+            )}
+          >
+            ↓
+          </span>
+        </button>
+
+        {showDiagnostics && <PortfolioHealthDashboard />}
+      </div>
     </div>
   );
 }

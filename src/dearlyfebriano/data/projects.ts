@@ -120,7 +120,7 @@ export const projects: Project[] = [
     category: "web",
     status: "live",
     liveUrl: "https://instantresume-builder.vercel.app/",
-    githubUrl: "https://github.com/neuralforgeio",
+    githubUrl: "https://github.com/neuralforgeio/CV-Builder-App",
     features: [
       "Guided CV creation flow — fill in content, never fight with styling",
       "Automatic layout and typography: consistent, professional output every time",
