@@ -3,7 +3,6 @@
 import Image from "next/image";
 
 import {
-  useEffect,
   useState,
   type JSX,
   type KeyboardEvent as ReactKeyboardEvent,
@@ -62,9 +61,9 @@ import type { Project } from "@/dearlyfebriano/types";
  *    -> no preview available
  *
  * Loading:
- * - Shows circular spinner while automatic screenshot loads
- * - Spinner disappears after image is loaded
- * - Failed screenshot automatically falls back to thumbnail
+ * - Circular loading indicator while image loads
+ * - Automatically disappears after successful load
+ * - Screenshot failure falls back to thumbnail
  * ============================================================ */
 
 const MAX_VISIBLE_TECH = 4;
@@ -88,11 +87,13 @@ function ProjectPreview({
     setScreenshotFailed,
   ] = useState(false);
 
-  const [thumbnailFailed, setThumbnailFailed] =
-    useState(false);
+  const [
+    thumbnailFailed,
+    setThumbnailFailed,
+  ] = useState(false);
 
   /* ----------------------------------------------------------
-   * Build automatic screenshot URL
+   * Automatic screenshot URL
    * ---------------------------------------------------------- */
 
   const automaticPreviewUrl = project.liveUrl
@@ -102,9 +103,7 @@ function ProjectPreview({
     : undefined;
 
   /* ----------------------------------------------------------
-   * Determine which preview should be shown
-   *
-   * Automatic screenshot has priority.
+   * Determine preview source
    * ---------------------------------------------------------- */
 
   const shouldUseScreenshot =
@@ -120,27 +119,9 @@ function ProjectPreview({
         !thumbnailFailed
     );
 
-  /* ----------------------------------------------------------
-   * No preview at all
-   * ---------------------------------------------------------- */
-
   const hasNoPreview =
     !shouldUseScreenshot &&
     !shouldUseThumbnail;
-
-  /* ----------------------------------------------------------
-   * Reset state when project changes
-   * ---------------------------------------------------------- */
-
-  useEffect(() => {
-    setIsLoading(true);
-    setScreenshotFailed(false);
-    setThumbnailFailed(false);
-  }, [
-    project.slug,
-    project.liveUrl,
-    project.thumbnail,
-  ]);
 
   /* ==========================================================
    * AUTOMATIC SCREENSHOT
@@ -149,18 +130,12 @@ function ProjectPreview({
   if (shouldUseScreenshot) {
     return (
       <div className="relative aspect-video overflow-hidden bg-muted">
-        {/* ----------------------------------------------
-         * Loading state
-         * ---------------------------------------------- */}
+        {/* Loading */}
 
         {isLoading && (
           <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/70 backdrop-blur-[2px]">
             <div className="relative flex items-center justify-center">
-              {/* Soft pulse */}
-
               <div className="absolute size-16 animate-ping rounded-full bg-primary/10" />
-
-              {/* Spinner */}
 
               <LoaderCircle
                 aria-hidden
@@ -168,16 +143,12 @@ function ProjectPreview({
                 strokeWidth={1.5}
               />
 
-              {/* Center point */}
-
               <span className="absolute size-2 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary)/0.9)]" />
             </div>
           </div>
         )}
 
-        {/* ----------------------------------------------
-         * Automatic screenshot image
-         * ---------------------------------------------- */}
+        {/* Screenshot */}
 
         <Image
           src={automaticPreviewUrl}
@@ -201,9 +172,7 @@ function ProjectPreview({
           }}
         />
 
-        {/* ----------------------------------------------
-         * Overlay after image loaded
-         * ---------------------------------------------- */}
+        {/* Overlay */}
 
         {!isLoading && (
           <>
@@ -221,18 +190,14 @@ function ProjectPreview({
           </>
         )}
 
-        {/* ----------------------------------------------
-         * Status
-         * ---------------------------------------------- */}
+        {/* Status */}
 
         <StatusBadge
           status={project.status}
           className="absolute left-3 top-3"
         />
 
-        {/* ----------------------------------------------
-         * Category
-         * ---------------------------------------------- */}
+        {/* Category */}
 
         <span className="glass absolute right-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-[11px] capitalize text-muted-foreground">
           {project.category}
@@ -248,9 +213,7 @@ function ProjectPreview({
   if (shouldUseThumbnail) {
     return (
       <div className="relative aspect-video overflow-hidden bg-muted">
-        {/* ----------------------------------------------
-         * Thumbnail loading
-         * ---------------------------------------------- */}
+        {/* Loading */}
 
         {isLoading && (
           <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/70 backdrop-blur-[2px]">
@@ -267,6 +230,8 @@ function ProjectPreview({
             </div>
           </div>
         )}
+
+        {/* Thumbnail */}
 
         <Image
           src={project.thumbnail}
@@ -339,10 +304,6 @@ function ProjectPreview({
     );
   }
 
-  /* ----------------------------------------------------------
-   * TypeScript fallback
-   * ---------------------------------------------------------- */
-
   return (
     <div className="relative flex aspect-video items-center justify-center overflow-hidden bg-muted">
       <ImageOff
@@ -387,6 +348,19 @@ function ProjectCard({
         MAX_VISIBLE_TECH
     );
 
+  /*
+   * Key forces ProjectPreview to remount when
+   * the project or its preview source changes.
+   *
+   * This replaces the previous useEffect-based
+   * state reset and keeps eslint happy.
+   */
+  const previewKey = [
+    project.slug,
+    project.liveUrl ?? "",
+    project.thumbnail ?? "",
+  ].join("|");
+
   return (
     <StaggerItem
       className="h-full"
@@ -405,36 +379,19 @@ function ProjectCard({
           onKeyDown={handleKeyDown}
           className="flex h-full flex-col outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/70"
         >
-          {/* ==================================================
-           * Preview
-           * ================================================== */}
-
           <ProjectPreview
+            key={previewKey}
             project={project}
           />
 
-          {/* ==================================================
-           * Content
-           * ================================================== */}
-
           <div className="flex flex-1 flex-col gap-3 p-5">
-            {/* Title */}
-
             <h3 className="text-lg font-semibold transition-colors group-hover:text-primary">
               {project.title}
             </h3>
 
-            {/* Description */}
-
             <p className="line-clamp-2 text-sm text-muted-foreground">
-              {t(
-                project.shortDesc
-              )}
+              {t(project.shortDesc)}
             </p>
-
-            {/* ==================================================
-             * Technologies
-             * ================================================== */}
 
             <div className="mt-auto flex flex-wrap items-center gap-2">
               {project.techStack
@@ -457,14 +414,8 @@ function ProjectCard({
               )}
             </div>
 
-            {/* ==================================================
-             * Bottom actions
-             * ================================================== */}
-
             <div className="flex items-center justify-between border-t border-border/60 pt-4">
               <div className="flex items-center gap-4">
-                {/* Live */}
-
                 {project.liveUrl && (
                   <a
                     href={
@@ -490,8 +441,6 @@ function ProjectCard({
                     {t("Live")}
                   </a>
                 )}
-
-                {/* GitHub */}
 
                 {project.githubUrl && (
                   <a
@@ -519,8 +468,6 @@ function ProjectCard({
                   </a>
                 )}
               </div>
-
-              {/* Arrow */}
 
               <ArrowUpRight
                 aria-hidden
@@ -553,10 +500,6 @@ export default function ProjectsPreview(): JSX.Element {
       className="py-20 sm:py-28"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        {/* ==================================================
-         * Section heading
-         * ================================================== */}
-
         <SectionHeading
           eyebrow={t(
             "Portfolio"
@@ -568,10 +511,6 @@ export default function ProjectsPreview(): JSX.Element {
             "A selection of work I'm proud of — from e-commerce platforms to developer tooling."
           )}
         />
-
-        {/* ==================================================
-         * Project cards
-         * ================================================== */}
 
         <StaggerContainer
           className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
@@ -592,10 +531,6 @@ export default function ProjectsPreview(): JSX.Element {
             )
           )}
         </StaggerContainer>
-
-        {/* ==================================================
-         * View all button
-         * ================================================== */}
 
         <FadeIn
           delay={0.1}

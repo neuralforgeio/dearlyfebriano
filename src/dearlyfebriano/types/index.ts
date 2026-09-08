@@ -22,6 +22,12 @@ export type ProjectStatus = "live" | "in-progress" | "archived";
 
 type ProjectPreviewMode = "auto" | "image" | "live"
 
+export interface ProjectMetric {
+  label: string;
+  value: string;
+  description?: string;
+}
+
 export interface Project {
   slug: string;
   title: string;

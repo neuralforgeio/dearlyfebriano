@@ -28,6 +28,10 @@ import { TechBadge } from "@/dearlyfebriano/components/ui/TechIcon";
 
 import Lightbox from "@/dearlyfebriano/components/common/Lightbox";
 
+import ProjectMetrics from "@/dearlyfebriano/components/sections/ProjectMetrics";
+
+import { getProjectMetrics } from "@/dearlyfebriano/data/project-metrics";
+
 import {
   getAdjacentProjects,
   getProjectBySlug,
@@ -593,6 +597,8 @@ export default function ProjectDetailView(): JSX.Element {
 
   const galleryImages = buildGalleryImages(project);
 
+  const metrics = getProjectMetrics(project.slug);
+
   const previewUrl = getProjectPreviewUrl(project);
 
   const period = `${formatTimeline(project.startDate)} — ${
@@ -836,6 +842,8 @@ export default function ProjectDetailView(): JSX.Element {
           )}
         </button>
       </FadeIn>
+
+      <ProjectMetrics metrics={metrics} />
 
       {/* ========================================
        * Gallery
