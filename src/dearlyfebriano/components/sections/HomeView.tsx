@@ -10,7 +10,9 @@ import SkillsSection from "@/dearlyfebriano/components/sections/SkillsSection";
 import StatsCounter from "@/dearlyfebriano/components/sections/StatsCounter";
 import TechTicker from "@/dearlyfebriano/components/sections/TechTicker";
 import TestimonialsSection from "@/dearlyfebriano/components/sections/TestimonialsSection";
-import ServicesSection from "@/components/sections/ServiceSection";
+import ServicesSection from "@/dearlyfebriano/components/sections/ServiceSection";
+import TechStackExplorer from "./TechStackExplorer";
+import ResumePreview from "./ResumePreview";
 
 /* ============================================================
  * HomeView — assembles all home sections. Each section
@@ -56,6 +58,15 @@ export default function HomeView(): JSX.Element {
         <div className="cv-auto">
           <ServicesSection />
         </div>
+        <Divider />
+        <div className="cv-auto">
+          <TechStackExplorer />
+        </div>
+        <Divider />
+        <div className="cv-auto">
+          <ResumePreview />
+        </div>
+        <Divider />
         <div className="cv-auto">
           <NotesPreview />
         </div>
