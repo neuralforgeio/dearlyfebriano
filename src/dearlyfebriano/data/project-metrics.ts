@@ -1,4 +1,5 @@
 import type { ProjectMetric } from "@/dearlyfebriano/types";
+import generatedIntelligence from "./generated-project-intelligence.json";
 
 /* ============================================================
  * PROJECT METRICS
@@ -12,10 +13,16 @@ import type { ProjectMetric } from "@/dearlyfebriano/types";
  * - tidak perlu mengubah struktur project besar-besaran
  * ============================================================ */
 
-export const projectMetrics: Record<
-  string,
-  ProjectMetric[]
-> = {
+interface GeneratedProjectIntelligence {
+  projects?: Record<
+    string,
+    {
+      metrics?: ProjectMetric[];
+    }
+  >;
+}
+
+export const projectMetrics: Record<string, ProjectMetric[]> = {
   /* ==========================================================
    * FLOWCANVAS
    * ========================================================== */
@@ -156,8 +163,15 @@ export const projectMetrics: Record<
  * GET METRICS
  * ============================================================ */
 
-export function getProjectMetrics(
-  slug: string
-): ProjectMetric[] {
-  return projectMetrics[slug] ?? [];
+export function getProjectMetrics(slug: string): ProjectMetric[] {
+  const manual = projectMetrics[slug];
+
+  if (manual && manual.length > 0) {
+    return manual;
+  }
+
+  const generated = (generatedIntelligence as GeneratedProjectIntelligence)
+    .projects?.[slug]?.metrics;
+
+  return generated ?? [];
 }

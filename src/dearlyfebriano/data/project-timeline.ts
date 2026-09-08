@@ -1,4 +1,5 @@
 import type { ProjectTimeline } from "@/dearlyfebriano/types";
+import generatedIntelligence from "./generated-project-intelligence.json";
 
 /* ============================================================
  * PROJECT ENGINEERING TIMELINES
@@ -13,6 +14,15 @@ import type { ProjectTimeline } from "@/dearlyfebriano/types";
  *
  * Jangan mengisi tanggal yang tidak benar-benar diketahui.
  * ============================================================ */
+
+interface GeneratedProjectIntelligence {
+  projects?: Record<
+    string,
+    {
+      timeline?: ProjectTimeline[];
+    }
+  >;
+}
 
 export const projectTimelines: Record<string, ProjectTimeline[]> = {
   /* ==========================================================
@@ -268,5 +278,14 @@ export const projectTimelines: Record<string, ProjectTimeline[]> = {
  * ============================================================ */
 
 export function getProjectTimeline(slug: string): ProjectTimeline[] {
-  return projectTimelines[slug] ?? [];
+  const manual = projectTimelines[slug];
+
+  if (manual && manual.length > 0) {
+    return manual;
+  }
+
+  const generated = (generatedIntelligence as GeneratedProjectIntelligence)
+    .projects?.[slug]?.timeline;
+
+  return generated ?? [];
 }

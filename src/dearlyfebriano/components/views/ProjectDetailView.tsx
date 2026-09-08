@@ -46,6 +46,8 @@ import { getProjectArchitecture } from "@/dearlyfebriano/data/project-architectu
 
 import ProjectTimeline from "@/dearlyfebriano/components/projects/ProjectTimeline";
 
+import ProjectIntelligence from "@/dearlyfebriano/components/projects/ProjectIntelligence";
+
 import { getProjectTimeline } from "@/dearlyfebriano/data/project-timeline";
 
 import { useUIStore } from "@/dearlyfebriano/store/ui-store";
@@ -185,9 +187,7 @@ function galleryImagesCount(
  * ============================================================ */
 
 interface PreviewMediaProps {
-  project: NonNullable<
-    ReturnType<typeof getProjectBySlug>
-  >;
+  project: NonNullable<ReturnType<typeof getProjectBySlug>>;
   alt: string;
   sizes: string;
   className?: string;
@@ -213,11 +213,9 @@ function PreviewMedia({
    * Image state
    * ============================================================ */
 
-  const [imageLoading, setImageLoading] =
-    useState(true);
+  const [imageLoading, setImageLoading] = useState(true);
 
-  const [screenshotFailed, setScreenshotFailed] =
-    useState(false);
+  const [screenshotFailed, setScreenshotFailed] = useState(false);
 
   /* ============================================================
    * Preview URL
@@ -227,21 +225,13 @@ function PreviewMedia({
    * none -> unavailable
    * ============================================================ */
 
-  const automaticPreviewUrl =
-    project.liveUrl
-      ? `/api/project-preview?url=${encodeURIComponent(
-          project.liveUrl
-        )}`
-      : undefined;
+  const automaticPreviewUrl = project.liveUrl
+    ? `/api/project-preview?url=${encodeURIComponent(project.liveUrl)}`
+    : undefined;
 
-  const useAutomaticPreview =
-    Boolean(
-      automaticPreviewUrl &&
-        !screenshotFailed
-    );
+  const useAutomaticPreview = Boolean(automaticPreviewUrl && !screenshotFailed);
 
-  const fallbackThumbnail =
-    project.thumbnail;
+  const fallbackThumbnail = project.thumbnail;
 
   /* ============================================================
    * Reset loading state when project changes
@@ -250,11 +240,7 @@ function PreviewMedia({
   useEffect(() => {
     setImageLoading(true);
     setScreenshotFailed(false);
-  }, [
-    project.slug,
-    project.liveUrl,
-    project.thumbnail,
-  ]);
+  }, [project.slug, project.liveUrl, project.thumbnail]);
 
   /* ============================================================
    * Automatic screenshot
@@ -265,7 +251,7 @@ function PreviewMedia({
       <div
         className={cn(
           "relative w-full overflow-hidden bg-muted",
-          aspectClassName
+          aspectClassName,
         )}
       >
         {/* Loading overlay */}
@@ -283,8 +269,7 @@ function PreviewMedia({
                 aria-hidden
                 className={cn(
                   "relative size-10 text-primary",
-                  !reducedMotion &&
-                    "animate-spin"
+                  !reducedMotion && "animate-spin",
                 )}
                 strokeWidth={1.5}
               />
@@ -304,12 +289,10 @@ function PreviewMedia({
           priority={priority}
           className={cn(
             "object-cover transition-opacity duration-500",
-            imageLoading
-              ? "opacity-0"
-              : "opacity-100",
+            imageLoading ? "opacity-0" : "opacity-100",
             !reducedMotion &&
               "transition-transform duration-700 group-hover:scale-[1.03]",
-            className
+            className,
           )}
           onLoad={() => {
             setImageLoading(false);
@@ -367,7 +350,7 @@ function PreviewMedia({
       <div
         className={cn(
           "relative w-full overflow-hidden bg-muted",
-          aspectClassName
+          aspectClassName,
         )}
       >
         {imageLoading && (
@@ -379,8 +362,7 @@ function PreviewMedia({
                 aria-hidden
                 className={cn(
                   "relative size-10 text-primary",
-                  !reducedMotion &&
-                    "animate-spin"
+                  !reducedMotion && "animate-spin",
                 )}
                 strokeWidth={1.5}
               />
@@ -398,12 +380,10 @@ function PreviewMedia({
           priority={priority}
           className={cn(
             "object-cover transition-opacity duration-500",
-            imageLoading
-              ? "opacity-0"
-              : "opacity-100",
+            imageLoading ? "opacity-0" : "opacity-100",
             !reducedMotion &&
               "transition-transform duration-700 group-hover:scale-[1.03]",
-            className
+            className,
           )}
           onLoad={() => {
             setImageLoading(false);
@@ -444,18 +424,13 @@ function PreviewMedia({
     <div
       className={cn(
         "relative flex w-full items-center justify-center overflow-hidden bg-muted",
-        aspectClassName
+        aspectClassName,
       )}
     >
       <div className="flex flex-col items-center gap-2 text-center text-muted-foreground">
-        <ImageOff
-          aria-hidden
-          className="size-10 opacity-30"
-        />
+        <ImageOff aria-hidden className="size-10 opacity-30" />
 
-        <span className="font-mono text-xs">
-          Preview unavailable
-        </span>
+        <span className="font-mono text-xs">Preview unavailable</span>
       </div>
 
       {showStatus && (
@@ -858,13 +833,19 @@ export default function ProjectDetailView(): JSX.Element {
         </button>
       </FadeIn>
 
-      <ProjectMetrics metrics={metrics} />
+      {project.githubUrl ? (
+        <ProjectIntelligence slug={project.slug} />
+      ) : (
+        <>
+          <ProjectMetrics metrics={metrics} />
 
-      <ProjectArchitecture architecture={architecture} />
+          <ProjectArchitecture architecture={architecture} />
+
+          <ProjectTimeline timeline={timeline} />
+        </>
+      )}
 
       <ProjectGithub githubUrl={project.githubUrl} />
-
-      <ProjectTimeline timeline={timeline} />
 
       {/* ========================================
        * Gallery

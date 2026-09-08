@@ -65,7 +65,9 @@ server.log
 /tests/
 /download/
 /mini-services/
-/scripts/
+# Internal tooling is tracked
+!/scripts/
+!/scripts/**
 /db/
 /download
 /upload/

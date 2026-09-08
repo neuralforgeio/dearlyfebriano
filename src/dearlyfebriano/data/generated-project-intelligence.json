@@ -1,0 +1,2122 @@
+{
+  "version": 1,
+  "projects": {
+    "dearlyfebriano": {
+      "slug": "dearlyfebriano",
+      "title": "dearlyfebriano",
+      "repositoryUrl": null,
+      "liveUrl": null,
+      "analyzedAt": "2026-09-08T03:56:23.557Z",
+      "provenance": {
+        "metrics": "deterministic",
+        "architecture": "deterministic-import-analysis",
+        "timeline": "git-history"
+      },
+      "metrics": [
+        {
+          "label": "Source Files",
+          "value": "152",
+          "description": "Tracked source files included in the scan"
+        },
+        {
+          "label": "Code Lines",
+          "value": "29,620",
+          "description": "Lines across code-oriented source files"
+        },
+        {
+          "label": "Components",
+          "value": "102",
+          "description": "Detected React-style component files"
+        },
+        {
+          "label": "Test Files",
+          "value": "0",
+          "description": "0 lines detected in test sources"
+        },
+        {
+          "label": "Routes",
+          "value": "1",
+          "description": "Next.js App Router pages detected"
+        },
+        {
+          "label": "API Routes",
+          "value": "8",
+          "description": "Next.js API route handlers detected"
+        },
+        {
+          "label": "Dependencies",
+          "value": "57",
+          "description": "Runtime + development dependencies"
+        },
+        {
+          "label": "Commits",
+          "value": "24",
+          "description": "Commits available in local git history"
+        }
+      ],
+      "architecture": {
+        "nodes": [
+          {
+            "id": "dearlyfebriano",
+            "label": "Dearlyfebriano",
+            "description": "Source module: Dearlyfebriano.",
+            "category": "Module",
+            "x": 18,
+            "y": 15
+          },
+          {
+            "id": "components",
+            "label": "Components",
+            "description": "Reusable UI components and presentation logic.",
+            "category": "Presentation",
+            "x": 50,
+            "y": 15
+          },
+          {
+            "id": "lib",
+            "label": "Lib",
+            "description": "Shared utilities, services, integrations, and infrastructure code.",
+            "category": "Service",
+            "x": 82,
+            "y": 15
+          },
+          {
+            "id": "app",
+            "label": "App",
+            "description": "Application routes, pages, layouts, API handlers, and framework entry points.",
+            "category": "Presentation",
+            "x": 18,
+            "y": 45
+          },
+          {
+            "id": "hooks",
+            "label": "Hooks",
+            "description": "Reusable React hooks and client-side behavior.",
+            "category": "Shared",
+            "x": 50,
+            "y": 45
+          },
+          {
+            "id": "..",
+            "label": "..",
+            "description": "Source module: ...",
+            "category": "Module",
+            "x": 82,
+            "y": 45
+          }
+        ],
+        "edges": [
+          {
+            "from": "components",
+            "to": "lib"
+          },
+          {
+            "from": "dearlyfebriano",
+            "to": "components"
+          },
+          {
+            "from": "dearlyfebriano",
+            "to": "lib"
+          },
+          {
+            "from": "app",
+            "to": "dearlyfebriano"
+          },
+          {
+            "from": "components",
+            "to": "hooks"
+          },
+          {
+            "from": "hooks",
+            "to": "components"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2026-09-04",
+          "title": "General development",
+          "description": "5 commits in this phase. Dominant activity: general development."
+        },
+        {
+          "date": "2026-09-04",
+          "title": "General development",
+          "description": "5 commits in this phase. Dominant activity: general development."
+        },
+        {
+          "date": "2026-09-05 → 2026-09-06",
+          "title": "General development",
+          "description": "5 commits in this phase. Dominant activity: general development."
+        },
+        {
+          "date": "2026-09-07 → 2026-09-08",
+          "title": "Feature development",
+          "description": "5 commits in this phase. Dominant activity: feature development."
+        },
+        {
+          "date": "2026-09-08",
+          "title": "Recent development",
+          "description": "4 commits in this phase. Dominant activity: general development."
+        }
+      ],
+      "raw": {
+        "metrics": {
+          "sourceFiles": 152,
+          "codeFiles": 151,
+          "testFiles": 0,
+          "totalLines": 30093,
+          "codeLines": 29620,
+          "testLines": 0,
+          "extensions": {
+            ".mjs": 3,
+            ".ts": 43,
+            ".css": 1,
+            ".tsx": 105
+          },
+          "routes": 1,
+          "apiRoutes": 8,
+          "components": 102,
+          "frameworks": [
+            "Next.js",
+            "React",
+            "Tailwind CSS",
+            "Zustand",
+            "Framer Motion",
+            "TypeScript"
+          ]
+        },
+        "architecture": {
+          "moduleCount": 6,
+          "connectionCount": 6
+        },
+        "timeline": {
+          "available": true,
+          "commitsAnalyzed": 24,
+          "commitCount": 24
+        },
+        "git": {
+          "commitCount": 24,
+          "firstCommit": {
+            "hash": "f8c3bc01bc57ba10f6b1853d512df9fbf830170c",
+            "date": "2026-09-04",
+            "message": "Portfolio Dearly Febriano Irwansyah — v2: EN/ID auto-translate, JSON message store, Vercel-ready"
+          },
+          "latestCommit": {
+            "hash": "d88c009dfc17e453f6076ccf091adae6cea81243",
+            "date": "2026-09-08",
+            "message": "New: HIRE ME WITH WHATSAPP AND GMAIL (RESEND)"
+          }
+        },
+        "package": {
+          "exists": true,
+          "name": "dearlyfebriano-portfolio",
+          "dependencies": 47,
+          "devDependencies": 10,
+          "totalDependencies": 57,
+          "scripts": [
+            "dev",
+            "build",
+            "start",
+            "lint",
+            "project:analyze"
+          ],
+          "manager": "bun"
+        },
+        "frameworks": [
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "Zustand",
+          "Framer Motion",
+          "TypeScript"
+        ]
+      },
+      "draft": {
+        "slug": "dearlyfebriano",
+        "title": "dearlyfebriano",
+        "shortDesc": "Project summary",
+        "longDesc": "Project description generated from the repository analysis. Review this text before publishing.",
+        "images": [],
+        "techStack": [
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "Zustand",
+          "Framer Motion",
+          "TypeScript"
+        ],
+        "category": "web",
+        "status": "in-progress",
+        "features": [],
+        "challenges": [],
+        "startDate": "",
+        "featured": false,
+        "__notes": [
+          "Package manager: bun",
+          "Review generated data before publication."
+        ]
+      }
+    },
+    "finora": {
+      "slug": "finora",
+      "title": "Finora",
+      "repositoryUrl": "https://github.com/neuralforgeio/Finora",
+      "liveUrl": null,
+      "analyzedAt": "2026-09-08T06:02:26.721Z",
+      "provenance": {
+        "metrics": "deterministic",
+        "architecture": "deterministic-import-analysis",
+        "timeline": "git-history"
+      },
+      "metrics": [
+        {
+          "label": "Source Files",
+          "value": "207",
+          "description": "Tracked source files included in the scan"
+        },
+        {
+          "label": "Code Lines",
+          "value": "38,452",
+          "description": "Lines across code-oriented source files"
+        },
+        {
+          "label": "Components",
+          "value": "125",
+          "description": "Detected React-style component files"
+        },
+        {
+          "label": "Test Files",
+          "value": "0",
+          "description": "0 lines detected in test sources"
+        },
+        {
+          "label": "Routes",
+          "value": "1",
+          "description": "Next.js App Router pages detected"
+        },
+        {
+          "label": "API Routes",
+          "value": "1",
+          "description": "Next.js API route handlers detected"
+        },
+        {
+          "label": "Dependencies",
+          "value": "72",
+          "description": "Runtime + development dependencies"
+        },
+        {
+          "label": "Commits",
+          "value": "5",
+          "description": "Commits available in local git history"
+        }
+      ],
+      "architecture": {
+        "nodes": [
+          {
+            "id": "features",
+            "label": "Features",
+            "description": "Source module: Features.",
+            "category": "Module",
+            "x": 18,
+            "y": 15
+          },
+          {
+            "id": "components",
+            "label": "Components",
+            "description": "Reusable UI components and presentation logic.",
+            "category": "Presentation",
+            "x": 50,
+            "y": 15
+          },
+          {
+            "id": "domain",
+            "label": "Domain",
+            "description": "Source module: Domain.",
+            "category": "Module",
+            "x": 82,
+            "y": 15
+          },
+          {
+            "id": "stores",
+            "label": "Stores",
+            "description": "Source module: Stores.",
+            "category": "Module",
+            "x": 18,
+            "y": 45
+          },
+          {
+            "id": "lib",
+            "label": "Lib",
+            "description": "Shared utilities, services, integrations, and infrastructure code.",
+            "category": "Service",
+            "x": 50,
+            "y": 45
+          },
+          {
+            "id": "views",
+            "label": "Views",
+            "description": "Source module: Views.",
+            "category": "Presentation",
+            "x": 82,
+            "y": 45
+          },
+          {
+            "id": "app",
+            "label": "App",
+            "description": "Application routes, pages, layouts, API handlers, and framework entry points.",
+            "category": "Presentation",
+            "x": 18,
+            "y": 75
+          },
+          {
+            "id": "data",
+            "label": "Data",
+            "description": "Static or generated application data.",
+            "category": "Data",
+            "x": 50,
+            "y": 75
+          },
+          {
+            "id": "hooks",
+            "label": "Hooks",
+            "description": "Reusable React hooks and client-side behavior.",
+            "category": "Shared",
+            "x": 82,
+            "y": 75
+          },
+          {
+            "id": "services",
+            "label": "Services",
+            "description": "Application services and external integrations.",
+            "category": "Service",
+            "x": 18,
+            "y": 90
+          }
+        ],
+        "edges": [
+          {
+            "from": "features",
+            "to": "components"
+          },
+          {
+            "from": "features",
+            "to": "domain"
+          },
+          {
+            "from": "features",
+            "to": "stores"
+          },
+          {
+            "from": "components",
+            "to": "lib"
+          },
+          {
+            "from": "views",
+            "to": "features"
+          },
+          {
+            "from": "features",
+            "to": "lib"
+          },
+          {
+            "from": "components",
+            "to": "domain"
+          },
+          {
+            "from": "components",
+            "to": "stores"
+          },
+          {
+            "from": "stores",
+            "to": "domain"
+          },
+          {
+            "from": "app",
+            "to": "components"
+          },
+          {
+            "from": "app",
+            "to": "features"
+          },
+          {
+            "from": "components",
+            "to": "hooks"
+          },
+          {
+            "from": "data",
+            "to": "domain"
+          },
+          {
+            "from": "stores",
+            "to": "data"
+          },
+          {
+            "from": "app",
+            "to": "stores"
+          },
+          {
+            "from": "components",
+            "to": "views"
+          },
+          {
+            "from": "features",
+            "to": "services"
+          },
+          {
+            "from": "hooks",
+            "to": "components"
+          },
+          {
+            "from": "services",
+            "to": "domain"
+          },
+          {
+            "from": "stores",
+            "to": "services"
+          },
+          {
+            "from": "views",
+            "to": "components"
+          },
+          {
+            "from": "views",
+            "to": "domain"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2026-09-08",
+          "title": "General development",
+          "description": "1 commits in this phase. Dominant activity: general development."
+        },
+        {
+          "date": "2026-09-08",
+          "title": "Maintenance & tooling",
+          "description": "1 commits in this phase. Dominant activity: maintenance & tooling."
+        },
+        {
+          "date": "2026-09-08",
+          "title": "General development",
+          "description": "1 commits in this phase. Dominant activity: general development."
+        },
+        {
+          "date": "2026-09-08",
+          "title": "Documentation",
+          "description": "1 commits in this phase. Dominant activity: documentation."
+        },
+        {
+          "date": "2026-09-08",
+          "title": "Recent development",
+          "description": "1 commits in this phase. Dominant activity: documentation."
+        }
+      ],
+      "raw": {
+        "metrics": {
+          "sourceFiles": 207,
+          "codeFiles": 206,
+          "testFiles": 0,
+          "totalLines": 38691,
+          "codeLines": 38452,
+          "testLines": 0,
+          "extensions": {
+            ".mjs": 2,
+            ".ts": 33,
+            ".css": 1,
+            ".tsx": 171
+          },
+          "routes": 1,
+          "apiRoutes": 1,
+          "components": 125,
+          "frameworks": [
+            "Next.js",
+            "React",
+            "Tailwind CSS",
+            "Zustand",
+            "Framer Motion",
+            "TypeScript"
+          ]
+        },
+        "architecture": {
+          "moduleCount": 10,
+          "connectionCount": 22
+        },
+        "timeline": {
+          "available": true,
+          "commitsAnalyzed": 5,
+          "commitCount": 5
+        },
+        "git": {
+          "commitCount": 5,
+          "firstCommit": {
+            "hash": "d0d53390eeef21392d59d69baf3729b04a911049",
+            "date": "2026-09-08",
+            "message": "Finora v1.0.0 — initial release"
+          },
+          "latestCommit": {
+            "hash": "5a132c798efa494cd94adb0f9cc513169f6da2a0",
+            "date": "2026-09-08",
+            "message": "docs: remove pipeline test marker"
+          }
+        },
+        "package": {
+          "exists": true,
+          "name": "finora",
+          "dependencies": 63,
+          "devDependencies": 9,
+          "totalDependencies": 72,
+          "scripts": [
+            "dev",
+            "build",
+            "start",
+            "lint"
+          ],
+          "manager": "bun"
+        },
+        "frameworks": [
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "Zustand",
+          "Framer Motion",
+          "TypeScript"
+        ]
+      },
+      "draft": {
+        "slug": "finora",
+        "title": "Finora",
+        "shortDesc": "Project summary",
+        "longDesc": "Project description generated from the repository analysis. Review this text before publishing.",
+        "images": [],
+        "techStack": [
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "Zustand",
+          "Framer Motion",
+          "TypeScript"
+        ],
+        "category": "web",
+        "status": "in-progress",
+        "githubUrl": "https://github.com/neuralforgeio/Finora",
+        "features": [],
+        "challenges": [],
+        "startDate": "",
+        "featured": false,
+        "__notes": [
+          "Package manager: bun",
+          "Review generated data before publication."
+        ]
+      }
+    },
+    "bliyu": {
+      "slug": "bliyu",
+      "title": "BliYu",
+      "repositoryUrl": "https://github.com/neuralforgeio/BliYu",
+      "liveUrl": null,
+      "analyzedAt": "2026-09-08T04:06:38.230Z",
+      "provenance": {
+        "metrics": "deterministic",
+        "architecture": "deterministic-import-analysis",
+        "timeline": "git-history"
+      },
+      "metrics": [
+        {
+          "label": "Source Files",
+          "value": "196",
+          "description": "Tracked source files included in the scan"
+        },
+        {
+          "label": "Code Lines",
+          "value": "43,430",
+          "description": "Lines across code-oriented source files"
+        },
+        {
+          "label": "Components",
+          "value": "130",
+          "description": "Detected React-style component files"
+        },
+        {
+          "label": "Test Files",
+          "value": "0",
+          "description": "0 lines detected in test sources"
+        },
+        {
+          "label": "Routes",
+          "value": "2",
+          "description": "Next.js App Router pages detected"
+        },
+        {
+          "label": "API Routes",
+          "value": "0",
+          "description": "Next.js API route handlers detected"
+        },
+        {
+          "label": "Dependencies",
+          "value": "73",
+          "description": "Runtime + development dependencies"
+        },
+        {
+          "label": "Commits",
+          "value": "12",
+          "description": "Commits available in local git history"
+        }
+      ],
+      "architecture": {
+        "nodes": [
+          {
+            "id": "components",
+            "label": "Components",
+            "description": "Reusable UI components and presentation logic.",
+            "category": "Presentation",
+            "x": 18,
+            "y": 15
+          },
+          {
+            "id": "lib",
+            "label": "Lib",
+            "description": "Shared utilities, services, integrations, and infrastructure code.",
+            "category": "Service",
+            "x": 50,
+            "y": 15
+          },
+          {
+            "id": "data",
+            "label": "Data",
+            "description": "Static or generated application data.",
+            "category": "Data",
+            "x": 82,
+            "y": 15
+          },
+          {
+            "id": "stores",
+            "label": "Stores",
+            "description": "Source module: Stores.",
+            "category": "Module",
+            "x": 18,
+            "y": 45
+          },
+          {
+            "id": "app",
+            "label": "App",
+            "description": "Application routes, pages, layouts, API handlers, and framework entry points.",
+            "category": "Presentation",
+            "x": 50,
+            "y": 45
+          },
+          {
+            "id": "hooks",
+            "label": "Hooks",
+            "description": "Reusable React hooks and client-side behavior.",
+            "category": "Shared",
+            "x": 82,
+            "y": 45
+          },
+          {
+            "id": "root",
+            "label": "Root",
+            "description": "Source module: Root.",
+            "category": "Module",
+            "x": 18,
+            "y": 75
+          },
+          {
+            "id": "..",
+            "label": "..",
+            "description": "Source module: ...",
+            "category": "Module",
+            "x": 50,
+            "y": 75
+          }
+        ],
+        "edges": [
+          {
+            "from": "components",
+            "to": "lib"
+          },
+          {
+            "from": "components",
+            "to": "data"
+          },
+          {
+            "from": "components",
+            "to": "stores"
+          },
+          {
+            "from": "data",
+            "to": "lib"
+          },
+          {
+            "from": "lib",
+            "to": "data"
+          },
+          {
+            "from": "stores",
+            "to": "lib"
+          },
+          {
+            "from": "stores",
+            "to": "data"
+          },
+          {
+            "from": "app",
+            "to": "lib"
+          },
+          {
+            "from": "app",
+            "to": "data"
+          },
+          {
+            "from": "app",
+            "to": "components"
+          },
+          {
+            "from": "components",
+            "to": "hooks"
+          },
+          {
+            "from": "hooks",
+            "to": "components"
+          },
+          {
+            "from": "root",
+            "to": "lib"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2026-09-06",
+          "title": "Feature development",
+          "description": "3 commits in this phase. Dominant activity: feature development."
+        },
+        {
+          "date": "2026-09-07 → 2026-09-06",
+          "title": "General development",
+          "description": "3 commits in this phase. Dominant activity: general development."
+        },
+        {
+          "date": "2026-09-07",
+          "title": "Bug fixing",
+          "description": "3 commits in this phase. Dominant activity: bug fixing."
+        },
+        {
+          "date": "2026-09-07",
+          "title": "Recent development",
+          "description": "3 commits in this phase. Dominant activity: feature development."
+        }
+      ],
+      "raw": {
+        "metrics": {
+          "sourceFiles": 196,
+          "codeFiles": 195,
+          "testFiles": 0,
+          "totalLines": 43722,
+          "codeLines": 43430,
+          "testLines": 0,
+          "extensions": {
+            ".mjs": 2,
+            ".ts": 58,
+            ".css": 1,
+            ".tsx": 135
+          },
+          "routes": 2,
+          "apiRoutes": 0,
+          "components": 130,
+          "frameworks": [
+            "Next.js",
+            "React",
+            "Tailwind CSS",
+            "Zustand",
+            "Framer Motion",
+            "TypeScript"
+          ]
+        },
+        "architecture": {
+          "moduleCount": 8,
+          "connectionCount": 13
+        },
+        "timeline": {
+          "available": true,
+          "commitsAnalyzed": 12,
+          "commitCount": 12
+        },
+        "git": {
+          "commitCount": 12,
+          "firstCommit": {
+            "hash": "6c31ead51c6871c09839ecb2eb09becfdf9ce5fa",
+            "date": "2026-09-06",
+            "message": "feat: BliYu v1.0.0 — marketplace frontend Indonesia"
+          },
+          "latestCommit": {
+            "hash": "d3a121ed6af1b05616afeebc6c30c8450476fc66",
+            "date": "2026-09-07",
+            "message": "feat: v1.3.4 — cron QA per jam tahan process-reaper (via dev server child)"
+          }
+        },
+        "package": {
+          "exists": true,
+          "name": "bliyu",
+          "dependencies": 64,
+          "devDependencies": 9,
+          "totalDependencies": 73,
+          "scripts": [
+            "dev",
+            "build",
+            "start",
+            "lint",
+            "qa:hourly",
+            "qa:status",
+            "qa:cron"
+          ],
+          "manager": null
+        },
+        "frameworks": [
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "Zustand",
+          "Framer Motion",
+          "TypeScript"
+        ]
+      },
+      "draft": {
+        "slug": "bliyu",
+        "title": "BliYu",
+        "shortDesc": "Project summary",
+        "longDesc": "Project description generated from the repository analysis. Review this text before publishing.",
+        "images": [],
+        "techStack": [
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "Zustand",
+          "Framer Motion",
+          "TypeScript"
+        ],
+        "category": "web",
+        "status": "in-progress",
+        "githubUrl": "https://github.com/neuralforgeio/BliYu",
+        "features": [],
+        "challenges": [],
+        "startDate": "",
+        "featured": false,
+        "__notes": [
+          "Package manager: unknown",
+          "Review generated data before publication."
+        ]
+      }
+    },
+    "flowcanvas": {
+      "slug": "flowcanvas",
+      "title": "FlowCanvas",
+      "repositoryUrl": "https://github.com/neuralforgeio/FlowCanvas",
+      "liveUrl": null,
+      "analyzedAt": "2026-09-08T04:07:18.981Z",
+      "provenance": {
+        "metrics": "deterministic",
+        "architecture": "deterministic-import-analysis",
+        "timeline": "git-history"
+      },
+      "metrics": [
+        {
+          "label": "Source Files",
+          "value": "88",
+          "description": "Tracked source files included in the scan"
+        },
+        {
+          "label": "Code Lines",
+          "value": "17,043",
+          "description": "Lines across code-oriented source files"
+        },
+        {
+          "label": "Components",
+          "value": "65",
+          "description": "Detected React-style component files"
+        },
+        {
+          "label": "Test Files",
+          "value": "0",
+          "description": "0 lines detected in test sources"
+        },
+        {
+          "label": "Routes",
+          "value": "1",
+          "description": "Next.js App Router pages detected"
+        },
+        {
+          "label": "API Routes",
+          "value": "0",
+          "description": "Next.js API route handlers detected"
+        },
+        {
+          "label": "Dependencies",
+          "value": "75",
+          "description": "Runtime + development dependencies"
+        },
+        {
+          "label": "Commits",
+          "value": "5",
+          "description": "Commits available in local git history"
+        }
+      ],
+      "architecture": {
+        "nodes": [
+          {
+            "id": "components",
+            "label": "Components",
+            "description": "Reusable UI components and presentation logic.",
+            "category": "Presentation",
+            "x": 18,
+            "y": 15
+          },
+          {
+            "id": "lib",
+            "label": "Lib",
+            "description": "Shared utilities, services, integrations, and infrastructure code.",
+            "category": "Service",
+            "x": 50,
+            "y": 15
+          },
+          {
+            "id": "hooks",
+            "label": "Hooks",
+            "description": "Reusable React hooks and client-side behavior.",
+            "category": "Shared",
+            "x": 82,
+            "y": 15
+          },
+          {
+            "id": "app",
+            "label": "App",
+            "description": "Application routes, pages, layouts, API handlers, and framework entry points.",
+            "category": "Presentation",
+            "x": 18,
+            "y": 45
+          },
+          {
+            "id": "..",
+            "label": "..",
+            "description": "Source module: ...",
+            "category": "Module",
+            "x": 50,
+            "y": 45
+          }
+        ],
+        "edges": [
+          {
+            "from": "components",
+            "to": "lib"
+          },
+          {
+            "from": "app",
+            "to": "components"
+          },
+          {
+            "from": "components",
+            "to": "hooks"
+          },
+          {
+            "from": "hooks",
+            "to": "components"
+          },
+          {
+            "from": "lib",
+            "to": ".."
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2026-09-07",
+          "title": "Feature development",
+          "description": "1 commits in this phase. Dominant activity: feature development."
+        },
+        {
+          "date": "2026-09-07",
+          "title": "Bug fixing",
+          "description": "1 commits in this phase. Dominant activity: bug fixing."
+        },
+        {
+          "date": "2026-09-07",
+          "title": "Feature development",
+          "description": "1 commits in this phase. Dominant activity: feature development."
+        },
+        {
+          "date": "2026-09-07",
+          "title": "Feature development",
+          "description": "1 commits in this phase. Dominant activity: feature development."
+        },
+        {
+          "date": "2026-09-07",
+          "title": "Recent development",
+          "description": "1 commits in this phase. Dominant activity: bug fixing."
+        }
+      ],
+      "raw": {
+        "metrics": {
+          "sourceFiles": 88,
+          "codeFiles": 87,
+          "testFiles": 0,
+          "totalLines": 17444,
+          "codeLines": 17043,
+          "testLines": 0,
+          "extensions": {
+            ".mjs": 2,
+            ".ts": 18,
+            ".css": 1,
+            ".tsx": 67
+          },
+          "routes": 1,
+          "apiRoutes": 0,
+          "components": 65,
+          "frameworks": [
+            "Next.js",
+            "React",
+            "Prisma",
+            "Tailwind CSS",
+            "Zustand",
+            "Framer Motion",
+            "TypeScript"
+          ]
+        },
+        "architecture": {
+          "moduleCount": 5,
+          "connectionCount": 5
+        },
+        "timeline": {
+          "available": true,
+          "commitsAnalyzed": 5,
+          "commitCount": 5
+        },
+        "git": {
+          "commitCount": 5,
+          "firstCommit": {
+            "hash": "273f8dbb3cd2784b71cf5f56068a3f558b6817fa",
+            "date": "2026-09-07",
+            "message": "feat: rilis awal FlowCanvas v1.0.0"
+          },
+          "latestCommit": {
+            "hash": "bcb034e6b36753a0cd97d5da62f12917dd6c1f55",
+            "date": "2026-09-07",
+            "message": "fix: perbaikan 24 bug hasil audit menyeluruh — kanvas, undo, simulasi, ekspor, impor (v1.2.1)"
+          }
+        },
+        "package": {
+          "exists": true,
+          "name": "flowcanvas",
+          "dependencies": 66,
+          "devDependencies": 9,
+          "totalDependencies": 75,
+          "scripts": [
+            "dev",
+            "build",
+            "start",
+            "lint"
+          ],
+          "manager": "bun"
+        },
+        "frameworks": [
+          "Next.js",
+          "React",
+          "Prisma",
+          "Tailwind CSS",
+          "Zustand",
+          "Framer Motion",
+          "TypeScript"
+        ]
+      },
+      "draft": {
+        "slug": "flowcanvas",
+        "title": "FlowCanvas",
+        "shortDesc": "Project summary",
+        "longDesc": "Project description generated from the repository analysis. Review this text before publishing.",
+        "images": [],
+        "techStack": [
+          "Next.js",
+          "React",
+          "Prisma",
+          "Tailwind CSS",
+          "Zustand",
+          "Framer Motion",
+          "TypeScript"
+        ],
+        "category": "web",
+        "status": "in-progress",
+        "githubUrl": "https://github.com/neuralforgeio/FlowCanvas",
+        "features": [],
+        "challenges": [],
+        "startDate": "",
+        "featured": false,
+        "__notes": [
+          "Package manager: bun",
+          "Review generated data before publication."
+        ]
+      }
+    },
+    "arus-ledger": {
+      "slug": "arus-ledger",
+      "title": "Arus-Ledger",
+      "repositoryUrl": "https://github.com/neuralforgeio/Arus-Ledger",
+      "liveUrl": null,
+      "analyzedAt": "2026-09-08T04:07:48.190Z",
+      "provenance": {
+        "metrics": "deterministic",
+        "architecture": "deterministic-import-analysis",
+        "timeline": "git-history"
+      },
+      "metrics": [
+        {
+          "label": "Source Files",
+          "value": "101",
+          "description": "Tracked source files included in the scan"
+        },
+        {
+          "label": "Code Lines",
+          "value": "20,923",
+          "description": "Lines across code-oriented source files"
+        },
+        {
+          "label": "Components",
+          "value": "69",
+          "description": "Detected React-style component files"
+        },
+        {
+          "label": "Test Files",
+          "value": "0",
+          "description": "0 lines detected in test sources"
+        },
+        {
+          "label": "Routes",
+          "value": "6",
+          "description": "Next.js App Router pages detected"
+        },
+        {
+          "label": "API Routes",
+          "value": "1",
+          "description": "Next.js API route handlers detected"
+        },
+        {
+          "label": "Dependencies",
+          "value": "72",
+          "description": "Runtime + development dependencies"
+        },
+        {
+          "label": "Commits",
+          "value": "11",
+          "description": "Commits available in local git history"
+        }
+      ],
+      "architecture": {
+        "nodes": [
+          {
+            "id": "components",
+            "label": "Components",
+            "description": "Reusable UI components and presentation logic.",
+            "category": "Presentation",
+            "x": 18,
+            "y": 15
+          },
+          {
+            "id": "lib",
+            "label": "Lib",
+            "description": "Shared utilities, services, integrations, and infrastructure code.",
+            "category": "Service",
+            "x": 50,
+            "y": 15
+          },
+          {
+            "id": "hooks",
+            "label": "Hooks",
+            "description": "Reusable React hooks and client-side behavior.",
+            "category": "Shared",
+            "x": 82,
+            "y": 15
+          },
+          {
+            "id": "app",
+            "label": "App",
+            "description": "Application routes, pages, layouts, API handlers, and framework entry points.",
+            "category": "Presentation",
+            "x": 18,
+            "y": 45
+          },
+          {
+            "id": "..",
+            "label": "..",
+            "description": "Source module: ...",
+            "category": "Module",
+            "x": 50,
+            "y": 45
+          }
+        ],
+        "edges": [
+          {
+            "from": "components",
+            "to": "lib"
+          },
+          {
+            "from": "components",
+            "to": "hooks"
+          },
+          {
+            "from": "app",
+            "to": "components"
+          },
+          {
+            "from": "app",
+            "to": "lib"
+          },
+          {
+            "from": "hooks",
+            "to": "lib"
+          },
+          {
+            "from": "lib",
+            "to": "hooks"
+          },
+          {
+            "from": "hooks",
+            "to": "components"
+          },
+          {
+            "from": "lib",
+            "to": "components"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2026-09-05",
+          "title": "Bug fixing",
+          "description": "3 commits in this phase. Dominant activity: bug fixing."
+        },
+        {
+          "date": "2026-09-05",
+          "title": "Feature development",
+          "description": "3 commits in this phase. Dominant activity: feature development."
+        },
+        {
+          "date": "2026-09-05",
+          "title": "Bug fixing",
+          "description": "3 commits in this phase. Dominant activity: bug fixing."
+        },
+        {
+          "date": "2026-09-05",
+          "title": "Recent development",
+          "description": "2 commits in this phase. Dominant activity: feature development."
+        }
+      ],
+      "raw": {
+        "metrics": {
+          "sourceFiles": 101,
+          "codeFiles": 100,
+          "testFiles": 0,
+          "totalLines": 21166,
+          "codeLines": 20923,
+          "testLines": 0,
+          "extensions": {
+            ".mjs": 2,
+            ".ts": 20,
+            ".js": 1,
+            ".css": 1,
+            ".tsx": 77
+          },
+          "routes": 6,
+          "apiRoutes": 1,
+          "components": 69,
+          "frameworks": [
+            "Next.js",
+            "React",
+            "Tailwind CSS",
+            "Zustand",
+            "Framer Motion",
+            "TypeScript"
+          ]
+        },
+        "architecture": {
+          "moduleCount": 5,
+          "connectionCount": 8
+        },
+        "timeline": {
+          "available": true,
+          "commitsAnalyzed": 11,
+          "commitCount": 11
+        },
+        "git": {
+          "commitCount": 11,
+          "firstCommit": {
+            "hash": "62eb3a0f7a6bc7ea88c3e245b2aa7952870c5f71",
+            "date": "2026-09-05",
+            "message": "Initial commit: ARUS — Local-first personal money tracker PWA"
+          },
+          "latestCommit": {
+            "hash": "7c82c99b69350fb230d84ee2d61851281c18b533",
+            "date": "2026-09-05",
+            "message": "feat: v1.3.0 — platform auto-detect download button with hide-when-installed"
+          }
+        },
+        "package": {
+          "exists": true,
+          "name": "arus-ledger",
+          "dependencies": 63,
+          "devDependencies": 9,
+          "totalDependencies": 72,
+          "scripts": [
+            "dev",
+            "build",
+            "start",
+            "lint"
+          ],
+          "manager": "npm"
+        },
+        "frameworks": [
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "Zustand",
+          "Framer Motion",
+          "TypeScript"
+        ]
+      },
+      "draft": {
+        "slug": "arus-ledger",
+        "title": "Arus-Ledger",
+        "shortDesc": "Project summary",
+        "longDesc": "Project description generated from the repository analysis. Review this text before publishing.",
+        "images": [],
+        "techStack": [
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "Zustand",
+          "Framer Motion",
+          "TypeScript"
+        ],
+        "category": "web",
+        "status": "in-progress",
+        "githubUrl": "https://github.com/neuralforgeio/Arus-Ledger",
+        "features": [],
+        "challenges": [],
+        "startDate": "",
+        "featured": false,
+        "__notes": [
+          "Package manager: npm",
+          "Review generated data before publication."
+        ]
+      }
+    },
+    "tromino-digital": {
+      "slug": "tromino-digital",
+      "title": "tromino-digital",
+      "repositoryUrl": "https://github.com/neuralforgeio/tromino-digital",
+      "liveUrl": null,
+      "analyzedAt": "2026-09-08T04:08:08.233Z",
+      "provenance": {
+        "metrics": "deterministic",
+        "architecture": "deterministic-import-analysis",
+        "timeline": "git-history"
+      },
+      "metrics": [
+        {
+          "label": "Source Files",
+          "value": "228",
+          "description": "Tracked source files included in the scan"
+        },
+        {
+          "label": "Code Lines",
+          "value": "38,515",
+          "description": "Lines across code-oriented source files"
+        },
+        {
+          "label": "Components",
+          "value": "86",
+          "description": "Detected React-style component files"
+        },
+        {
+          "label": "Test Files",
+          "value": "42",
+          "description": "8,565 lines detected in test sources"
+        },
+        {
+          "label": "Routes",
+          "value": "1",
+          "description": "Next.js App Router pages detected"
+        },
+        {
+          "label": "API Routes",
+          "value": "4",
+          "description": "Next.js API route handlers detected"
+        },
+        {
+          "label": "Dependencies",
+          "value": "90",
+          "description": "Runtime + development dependencies"
+        },
+        {
+          "label": "Commits",
+          "value": "3",
+          "description": "Commits available in local git history"
+        }
+      ],
+      "architecture": {
+        "nodes": [
+          {
+            "id": "app",
+            "label": "App",
+            "description": "Application routes, pages, layouts, API handlers, and framework entry points.",
+            "category": "Presentation",
+            "x": 18,
+            "y": 15
+          },
+          {
+            "id": "docs",
+            "label": "Docs",
+            "description": "Source module: Docs.",
+            "category": "Module",
+            "x": 50,
+            "y": 15
+          },
+          {
+            "id": "lib",
+            "label": "Lib",
+            "description": "Shared utilities, services, integrations, and infrastructure code.",
+            "category": "Service",
+            "x": 82,
+            "y": 15
+          },
+          {
+            "id": "..",
+            "label": "..",
+            "description": "Source module: ...",
+            "category": "Module",
+            "x": 18,
+            "y": 45
+          },
+          {
+            "id": "root",
+            "label": "Root",
+            "description": "Source module: Root.",
+            "category": "Module",
+            "x": 50,
+            "y": 45
+          }
+        ],
+        "edges": [
+          {
+            "from": "app",
+            "to": "docs"
+          },
+          {
+            "from": "app",
+            "to": "lib"
+          },
+          {
+            "from": "..",
+            "to": "docs"
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2026-09-04",
+          "title": "General development",
+          "description": "1 commits in this phase. Dominant activity: general development."
+        },
+        {
+          "date": "2026-09-04",
+          "title": "Bug fixing",
+          "description": "1 commits in this phase. Dominant activity: bug fixing."
+        },
+        {
+          "date": "2026-09-04",
+          "title": "Recent development",
+          "description": "1 commits in this phase. Dominant activity: bug fixing."
+        }
+      ],
+      "raw": {
+        "metrics": {
+          "sourceFiles": 228,
+          "codeFiles": 226,
+          "testFiles": 42,
+          "totalLines": 39062,
+          "codeLines": 38515,
+          "testLines": 8565,
+          "extensions": {
+            ".ts": 70,
+            ".tsx": 154,
+            ".mjs": 2,
+            ".css": 2
+          },
+          "routes": 1,
+          "apiRoutes": 4,
+          "components": 86,
+          "frameworks": [
+            "Next.js",
+            "React",
+            "Prisma",
+            "Tailwind CSS",
+            "Zustand",
+            "Framer Motion",
+            "TypeScript"
+          ]
+        },
+        "architecture": {
+          "moduleCount": 5,
+          "connectionCount": 3
+        },
+        "timeline": {
+          "available": true,
+          "commitsAnalyzed": 3,
+          "commitCount": 3
+        },
+        "git": {
+          "commitCount": 3,
+          "firstCommit": {
+            "hash": "6f1e62daf581b868082ba8cc108ea4c915996804",
+            "date": "2026-09-04",
+            "message": "Tromino Digital v1.5.0 — 29-component React design system + living docs"
+          },
+          "latestCommit": {
+            "hash": "cb6aeab0393416b344293229c56a548b9a5144e5",
+            "date": "2026-09-04",
+            "message": "fix(deploy): Vercel install — drop unused Storybook prerelease dep, pin bun"
+          }
+        },
+        "package": {
+          "exists": true,
+          "name": "tromino-docs",
+          "dependencies": 67,
+          "devDependencies": 23,
+          "totalDependencies": 90,
+          "scripts": [
+            "dev",
+            "build",
+            "build:netlify",
+            "build:vercel",
+            "start",
+            "lint",
+            "typecheck",
+            "test",
+            "test:watch",
+            "test:coverage",
+            "storybook",
+            "build-storybook",
+            "bundle-size",
+            "gates",
+            "db:push",
+            "db:generate",
+            "db:migrate",
+            "db:reset"
+          ],
+          "manager": "bun"
+        },
+        "frameworks": [
+          "Next.js",
+          "React",
+          "Prisma",
+          "Tailwind CSS",
+          "Zustand",
+          "Framer Motion",
+          "TypeScript"
+        ]
+      },
+      "draft": {
+        "slug": "tromino-digital",
+        "title": "tromino-digital",
+        "shortDesc": "Project summary",
+        "longDesc": "Project description generated from the repository analysis. Review this text before publishing.",
+        "images": [],
+        "techStack": [
+          "Next.js",
+          "React",
+          "Prisma",
+          "Tailwind CSS",
+          "Zustand",
+          "Framer Motion",
+          "TypeScript"
+        ],
+        "category": "web",
+        "status": "in-progress",
+        "githubUrl": "https://github.com/neuralforgeio/tromino-digital",
+        "features": [],
+        "challenges": [],
+        "startDate": "",
+        "featured": false,
+        "__notes": [
+          "Package manager: bun",
+          "Review generated data before publication."
+        ]
+      }
+    },
+    "openforge": {
+      "slug": "openforge",
+      "title": "openforge",
+      "repositoryUrl": "https://github.com/neuralforgeio/openforge",
+      "liveUrl": null,
+      "analyzedAt": "2026-09-08T04:08:43.491Z",
+      "provenance": {
+        "metrics": "deterministic",
+        "architecture": "deterministic-import-analysis",
+        "timeline": "git-history"
+      },
+      "metrics": [
+        {
+          "label": "Source Files",
+          "value": "361",
+          "description": "Tracked source files included in the scan"
+        },
+        {
+          "label": "Code Lines",
+          "value": "54,947",
+          "description": "Lines across code-oriented source files"
+        },
+        {
+          "label": "Components",
+          "value": "18",
+          "description": "Detected React-style component files"
+        },
+        {
+          "label": "Test Files",
+          "value": "110",
+          "description": "17,193 lines detected in test sources"
+        },
+        {
+          "label": "Routes",
+          "value": "2",
+          "description": "Next.js App Router pages detected"
+        },
+        {
+          "label": "API Routes",
+          "value": "0",
+          "description": "Next.js API route handlers detected"
+        },
+        {
+          "label": "Dependencies",
+          "value": "5",
+          "description": "Runtime + development dependencies"
+        },
+        {
+          "label": "Commits",
+          "value": "184",
+          "description": "Commits available in local git history"
+        }
+      ],
+      "architecture": {
+        "nodes": [
+          {
+            "id": "..",
+            "label": "..",
+            "description": "Source module: ...",
+            "category": "Module",
+            "x": 36,
+            "y": 15
+          },
+          {
+            "id": "root",
+            "label": "Root",
+            "description": "Source module: Root.",
+            "category": "Module",
+            "x": 64,
+            "y": 15
+          }
+        ],
+        "edges": []
+      },
+      "timeline": [
+        {
+          "date": "2026-07-15 → 2026-07-16",
+          "title": "Feature development",
+          "description": "37 commits in this phase. Dominant activity: feature development."
+        },
+        {
+          "date": "2026-07-16 → 2026-08-02",
+          "title": "Feature development",
+          "description": "37 commits in this phase. Dominant activity: feature development."
+        },
+        {
+          "date": "2026-08-02 → 2026-08-05",
+          "title": "Feature development",
+          "description": "37 commits in this phase. Dominant activity: feature development."
+        },
+        {
+          "date": "2026-08-05 → 2026-08-08",
+          "title": "Feature development",
+          "description": "37 commits in this phase. Dominant activity: feature development."
+        },
+        {
+          "date": "2026-08-08 → 2026-08-11",
+          "title": "Recent development",
+          "description": "36 commits in this phase. Dominant activity: documentation."
+        }
+      ],
+      "raw": {
+        "metrics": {
+          "sourceFiles": 361,
+          "codeFiles": 360,
+          "testFiles": 110,
+          "totalLines": 55016,
+          "codeLines": 54947,
+          "testLines": 17193,
+          "extensions": {
+            ".py": 315,
+            ".css": 1,
+            ".tsx": 32,
+            ".mjs": 2,
+            ".ts": 9,
+            ".js": 1,
+            ".rb": 1
+          },
+          "routes": 2,
+          "apiRoutes": 0,
+          "components": 18,
+          "frameworks": [
+            "Next.js",
+            "React",
+            "TypeScript"
+          ]
+        },
+        "architecture": {
+          "moduleCount": 2,
+          "connectionCount": 0
+        },
+        "timeline": {
+          "available": true,
+          "commitsAnalyzed": 184,
+          "commitCount": 184
+        },
+        "git": {
+          "commitCount": 184,
+          "firstCommit": {
+            "hash": "51291b051d1405833777cb1783bb55da417c5322",
+            "date": "2026-07-15",
+            "message": "Initial commit"
+          },
+          "latestCommit": {
+            "hash": "89d98401fe976f65aa7b56a7a0fee54ebe801f0e",
+            "date": "2026-08-11",
+            "message": "feat(cli): OpenCode-parity subcommands (tools/models/session/run) + thinking-line dedup + allow_absolute opt-in; verified on llama.cpp E2E"
+          }
+        },
+        "package": {
+          "exists": true,
+          "name": "openforge",
+          "dependencies": 5,
+          "devDependencies": 0,
+          "totalDependencies": 5,
+          "scripts": [
+            "dev",
+            "build",
+            "lint"
+          ],
+          "manager": "bun"
+        },
+        "frameworks": [
+          "Next.js",
+          "React",
+          "TypeScript"
+        ]
+      },
+      "draft": {
+        "slug": "openforge",
+        "title": "openforge",
+        "shortDesc": "Project summary",
+        "longDesc": "Project description generated from the repository analysis. Review this text before publishing.",
+        "images": [],
+        "techStack": [
+          "Next.js",
+          "React",
+          "TypeScript"
+        ],
+        "category": "web",
+        "status": "in-progress",
+        "githubUrl": "https://github.com/neuralforgeio/openforge",
+        "features": [],
+        "challenges": [],
+        "startDate": "",
+        "featured": false,
+        "__notes": [
+          "Package manager: bun",
+          "Review generated data before publication."
+        ]
+      }
+    },
+    "akuma-joki": {
+      "slug": "akuma-joki",
+      "title": "akuma-joki",
+      "repositoryUrl": "https://github.com/neuralforgeio/akuma-joki",
+      "liveUrl": null,
+      "analyzedAt": "2026-09-08T04:09:33.348Z",
+      "provenance": {
+        "metrics": "deterministic",
+        "architecture": "deterministic-import-analysis",
+        "timeline": "git-history"
+      },
+      "metrics": [
+        {
+          "label": "Source Files",
+          "value": "309",
+          "description": "Tracked source files included in the scan"
+        },
+        {
+          "label": "Code Lines",
+          "value": "70,119",
+          "description": "Lines across code-oriented source files"
+        },
+        {
+          "label": "Components",
+          "value": "94",
+          "description": "Detected React-style component files"
+        },
+        {
+          "label": "Test Files",
+          "value": "3",
+          "description": "513 lines detected in test sources"
+        },
+        {
+          "label": "Routes",
+          "value": "33",
+          "description": "Next.js App Router pages detected"
+        },
+        {
+          "label": "API Routes",
+          "value": "12",
+          "description": "Next.js API route handlers detected"
+        },
+        {
+          "label": "Dependencies",
+          "value": "57",
+          "description": "Runtime + development dependencies"
+        },
+        {
+          "label": "Commits",
+          "value": "176",
+          "description": "Commits available in local git history"
+        }
+      ],
+      "architecture": {
+        "nodes": [
+          {
+            "id": "components",
+            "label": "Components",
+            "description": "Reusable UI components and presentation logic.",
+            "category": "Presentation",
+            "x": 18,
+            "y": 15
+          },
+          {
+            "id": "lib",
+            "label": "Lib",
+            "description": "Shared utilities, services, integrations, and infrastructure code.",
+            "category": "Service",
+            "x": 50,
+            "y": 15
+          },
+          {
+            "id": "app",
+            "label": "App",
+            "description": "Application routes, pages, layouts, API handlers, and framework entry points.",
+            "category": "Presentation",
+            "x": 82,
+            "y": 15
+          },
+          {
+            "id": "hooks",
+            "label": "Hooks",
+            "description": "Reusable React hooks and client-side behavior.",
+            "category": "Shared",
+            "x": 18,
+            "y": 45
+          },
+          {
+            "id": "..",
+            "label": "..",
+            "description": "Source module: ...",
+            "category": "Module",
+            "x": 50,
+            "y": 45
+          },
+          {
+            "id": "root",
+            "label": "Root",
+            "description": "Source module: Root.",
+            "category": "Module",
+            "x": 82,
+            "y": 45
+          }
+        ],
+        "edges": [
+          {
+            "from": "components",
+            "to": "lib"
+          },
+          {
+            "from": "app",
+            "to": "lib"
+          },
+          {
+            "from": "app",
+            "to": "components"
+          },
+          {
+            "from": "app",
+            "to": "hooks"
+          },
+          {
+            "from": "components",
+            "to": "hooks"
+          },
+          {
+            "from": "..",
+            "to": "components"
+          },
+          {
+            "from": "app",
+            "to": ".."
+          },
+          {
+            "from": "hooks",
+            "to": "components"
+          },
+          {
+            "from": "lib",
+            "to": ".."
+          },
+          {
+            "from": "root",
+            "to": ".."
+          }
+        ]
+      },
+      "timeline": [
+        {
+          "date": "2026-07-07 → 2026-07-10",
+          "title": "Feature development",
+          "description": "36 commits in this phase. Dominant activity: feature development."
+        },
+        {
+          "date": "2026-07-10 → 2026-07-12",
+          "title": "Feature development",
+          "description": "36 commits in this phase. Dominant activity: feature development."
+        },
+        {
+          "date": "2026-07-12 → 2026-07-13",
+          "title": "Feature development",
+          "description": "36 commits in this phase. Dominant activity: feature development."
+        },
+        {
+          "date": "2026-07-13 → 2026-07-16",
+          "title": "Feature development",
+          "description": "36 commits in this phase. Dominant activity: feature development."
+        },
+        {
+          "date": "2026-07-16 → 2026-08-03",
+          "title": "Recent development",
+          "description": "32 commits in this phase. Dominant activity: general development."
+        }
+      ],
+      "raw": {
+        "metrics": {
+          "sourceFiles": 309,
+          "codeFiles": 290,
+          "testFiles": 3,
+          "totalLines": 74198,
+          "codeLines": 70119,
+          "testLines": 513,
+          "extensions": {
+            ".mjs": 3,
+            ".tsx": 135,
+            ".ts": 54,
+            ".py": 89,
+            ".css": 19,
+            ".js": 9
+          },
+          "routes": 33,
+          "apiRoutes": 12,
+          "components": 94,
+          "frameworks": [
+            "Next.js",
+            "React",
+            "Tailwind CSS",
+            "Zustand",
+            "Framer Motion",
+            "TypeScript"
+          ]
+        },
+        "architecture": {
+          "moduleCount": 6,
+          "connectionCount": 10
+        },
+        "timeline": {
+          "available": true,
+          "commitsAnalyzed": 176,
+          "commitCount": 176
+        },
+        "git": {
+          "commitCount": 176,
+          "firstCommit": {
+            "hash": "563c6fd3ec0ed50837f39b842bdca531f615437c",
+            "date": "2026-07-07",
+            "message": "feat: AKUMA JOKI — Joki & Store Roblox (Next.js 16 App Router)"
+          },
+          "latestCommit": {
+            "hash": "562842ca919effa4c50f545582fe8239601ef20f",
+            "date": "2026-08-03",
+            "message": "fix: ROOT CAUSE — hapus src/app/page.tsx (Z.ai default page yang show Z logo)"
+          }
+        },
+        "package": {
+          "exists": true,
+          "name": "akuma-joki",
+          "dependencies": 48,
+          "devDependencies": 9,
+          "totalDependencies": 57,
+          "scripts": [
+            "dev",
+            "build",
+            "start",
+            "lint",
+            "push"
+          ],
+          "manager": "npm"
+        },
+        "frameworks": [
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "Zustand",
+          "Framer Motion",
+          "TypeScript"
+        ]
+      },
+      "draft": {
+        "slug": "akuma-joki",
+        "title": "akuma-joki",
+        "shortDesc": "Project summary",
+        "longDesc": "Project description generated from the repository analysis. Review this text before publishing.",
+        "images": [],
+        "techStack": [
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "Zustand",
+          "Framer Motion",
+          "TypeScript"
+        ],
+        "category": "web",
+        "status": "in-progress",
+        "githubUrl": "https://github.com/neuralforgeio/akuma-joki",
+        "features": [],
+        "challenges": [],
+        "startDate": "",
+        "featured": false,
+        "__notes": [
+          "Package manager: npm",
+          "Review generated data before publication."
+        ]
+      }
+    }
+  },
+  "generatedAt": "2026-09-08T06:02:26.719Z",
+  "generator": "scripts/project-analyzer.mjs"
+}

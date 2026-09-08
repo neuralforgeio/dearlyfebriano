@@ -6,7 +6,8 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start -p 3000",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "project:analyze": "node scripts/project-analyzer.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
