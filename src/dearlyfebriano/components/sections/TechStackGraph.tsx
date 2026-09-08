@@ -104,8 +104,8 @@ function buildGraphData(): {
 
     const column = index % columns;
 
-    const x =
-      columns === 1 ? 50 : 13 + column * (74 / Math.max(1, columns - 1));
+    // fix this bug
+    const x = columns === 1 ? 50 : 13 + column * (74 / Math.max(1, columns - 1));
 
     const y = ranked.length <= 6 ? 25 + row * 48 : 16 + row * 31;
 

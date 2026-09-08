@@ -37,10 +37,9 @@ import { projects } from "@/dearlyfebriano/data/projects";
 import { useUIStore } from "@/dearlyfebriano/store/ui-store";
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 
-import type {
-  Project,
-  ProjectCategory,
-} from "@/dearlyfebriano/types";
+import ProjectHealthBadge from "../projects/ProjectHealthBadge";
+
+import type { Project, ProjectCategory } from "@/dearlyfebriano/types";
 
 import { cn } from "@/lib/utils";
 import type { JSX } from "react";
@@ -87,11 +86,7 @@ const SORT_OPTIONS: {
   { value: "az", label: "Title A–Z" },
 ];
 
-function compareProjects(
-  a: Project,
-  b: Project,
-  sortOrder: SortOrder
-): number {
+function compareProjects(a: Project, b: Project, sortOrder: SortOrder): number {
   switch (sortOrder) {
     case "oldest":
       return a.startDate.localeCompare(b.startDate);
@@ -123,10 +118,7 @@ function PageHeader({
   description,
 }: PageHeaderProps): JSX.Element {
   return (
-    <FadeIn
-      y={20}
-      className="flex flex-col gap-4"
-    >
+    <FadeIn y={20} className="flex flex-col gap-4">
       <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
         {eyebrow}
       </span>
@@ -159,16 +151,12 @@ function PageHeader({
  *    -> jika keduanya tidak tersedia
  * ============================================================ */
 
-function getAutomaticPreviewUrl(
-  project: Project
-): string | undefined {
+function getAutomaticPreviewUrl(project: Project): string | undefined {
   if (!project.liveUrl) {
     return undefined;
   }
 
-  return `/api/project-preview?url=${encodeURIComponent(
-    project.liveUrl
-  )}`;
+  return `/api/project-preview?url=${encodeURIComponent(project.liveUrl)}`;
 }
 
 /* ============================================================
@@ -179,19 +167,14 @@ interface ProjectPreviewProps {
   project: Project;
 }
 
-function ProjectPreview({
-  project,
-}: ProjectPreviewProps): JSX.Element {
+function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
   const [screenshotFailed, setScreenshotFailed] = useState(false);
 
-  const automaticPreviewUrl =
-    getAutomaticPreviewUrl(project);
+  const automaticPreviewUrl = getAutomaticPreviewUrl(project);
 
-  const shouldUseAutomaticScreenshot =
-    Boolean(
-      automaticPreviewUrl &&
-        !screenshotFailed
-    );
+  const shouldUseAutomaticScreenshot = Boolean(
+    automaticPreviewUrl && !screenshotFailed,
+  );
 
   const fallbackThumbnail = project.thumbnail;
 
@@ -228,6 +211,10 @@ function ProjectPreview({
           </span>
         </div>
 
+        <div className="absolute bottom-3 right-3">
+          <ProjectHealthBadge slug={project.slug} />
+        </div>
+
         <StatusBadge
           status={project.status}
           className="absolute left-3 top-3"
@@ -247,6 +234,9 @@ function ProjectPreview({
   if (fallbackThumbnail) {
     return (
       <div className="relative aspect-video overflow-hidden bg-muted">
+        <div className="absolute bottom-3 right-3">
+          <ProjectHealthBadge slug={project.slug} />
+        </div>
         <Image
           src={fallbackThumbnail}
           alt={`${project.title} preview`}
@@ -279,20 +269,12 @@ function ProjectPreview({
   return (
     <div className="relative flex aspect-video items-center justify-center overflow-hidden bg-muted">
       <div className="flex flex-col items-center gap-2 text-muted-foreground">
-        <ImageOff
-          aria-hidden
-          className="size-8 opacity-40"
-        />
+        <ImageOff aria-hidden className="size-8 opacity-40" />
 
-        <span className="font-mono text-xs">
-          Preview unavailable
-        </span>
+        <span className="font-mono text-xs">Preview unavailable</span>
       </div>
 
-      <StatusBadge
-        status={project.status}
-        className="absolute left-3 top-3"
-      />
+      <StatusBadge status={project.status} className="absolute left-3 top-3" />
 
       <span className="glass absolute right-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wider text-foreground">
         {project.category}
@@ -310,43 +292,23 @@ interface ProjectCardProps {
   index: number;
 }
 
-function ProjectCard({
-  project,
-  index,
-}: ProjectCardProps): JSX.Element {
-  const navigate = useUIStore(
-    (state) => state.navigate
-  );
+function ProjectCard({ project, index }: ProjectCardProps): JSX.Element {
+  const navigate = useUIStore((state) => state.navigate);
 
   const { t } = useLanguage();
 
-  const reducedMotion =
-    useReducedMotion();
+  const reducedMotion = useReducedMotion();
 
-  const visibleTech =
-    project.techStack.slice(
-      0,
-      MAX_VISIBLE_TECH
-    );
+  const visibleTech = project.techStack.slice(0, MAX_VISIBLE_TECH);
 
-  const hiddenTech =
-    project.techStack.length -
-    visibleTech.length;
+  const hiddenTech = project.techStack.length - visibleTech.length;
 
   const openDetail = (): void => {
-    navigate(
-      "project-detail",
-      project.slug
-    );
+    navigate("project-detail", project.slug);
   };
 
-  const handleKeyDown = (
-    event: ReactKeyboardEvent<HTMLElement>
-  ): void => {
-    if (
-      event.key === "Enter" ||
-      event.key === " "
-    ) {
+  const handleKeyDown = (event: ReactKeyboardEvent<HTMLElement>): void => {
+    if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       openDetail();
     }
@@ -358,9 +320,7 @@ function ProjectCard({
         <article
           role="link"
           tabIndex={0}
-          aria-label={`${project.title} — ${t(
-            "open project details"
-          )}`}
+          aria-label={`${project.title} — ${t("open project details")}`}
           onClick={openDetail}
           onKeyDown={handleKeyDown}
           className="card-shine group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/60 transition-all duration-300 hover:-translate-y-2 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -380,9 +340,7 @@ function ProjectCard({
            * Project Preview
            * ========================================== */}
 
-          <ProjectPreview
-            project={project}
-          />
+          <ProjectPreview project={project} />
 
           {/* ==========================================
            * Body
@@ -405,9 +363,7 @@ function ProjectCard({
 
             <ul
               className="flex flex-wrap gap-2"
-              aria-label={t(
-                "Technologies used"
-              )}
+              aria-label={t("Technologies used")}
             >
               {visibleTech.map((tech) => (
                 <li key={tech}>
@@ -432,20 +388,13 @@ function ProjectCard({
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(event) =>
-                    event.stopPropagation()
-                  }
-                  aria-label={`${project.title} ${t(
-                    "live demo"
-                  )} (${t(
-                    "opens in new tab"
+                  onClick={(event) => event.stopPropagation()}
+                  aria-label={`${project.title} ${t("live demo")} (${t(
+                    "opens in new tab",
                   )})`}
                   className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
-                  <ExternalLink
-                    className="size-3.5"
-                    aria-hidden
-                  />
+                  <ExternalLink className="size-3.5" aria-hidden />
 
                   {t("Live")}
                 </a>
@@ -458,20 +407,13 @@ function ProjectCard({
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(event) =>
-                    event.stopPropagation()
-                  }
-                  aria-label={`${project.title} ${t(
-                    "source code"
-                  )} (${t(
-                    "opens in new tab"
+                  onClick={(event) => event.stopPropagation()}
+                  aria-label={`${project.title} ${t("source code")} (${t(
+                    "opens in new tab",
                   )})`}
                   className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
-                  <Github
-                    className="size-3.5"
-                    aria-hidden
-                  />
+                  <Github className="size-3.5" aria-hidden />
 
                   {t("Code")}
                 </a>
@@ -487,7 +429,7 @@ function ProjectCard({
                   className={cn(
                     "size-4",
                     !reducedMotion &&
-                      "-translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                      "-translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100",
                   )}
                 />
               </span>
@@ -504,86 +446,52 @@ function ProjectCard({
  * ============================================================ */
 
 export default function ProjectsView(): JSX.Element {
-  const [
-    activeFilter,
-    setActiveFilter,
-  ] = useState<
-    ProjectCategory | "all"
-  >("all");
+  const [activeFilter, setActiveFilter] = useState<ProjectCategory | "all">(
+    "all",
+  );
 
-  const [search, setSearch] =
-    useState("");
+  const [search, setSearch] = useState("");
 
-  const [
-    sortOrder,
-    setSortOrder,
-  ] = useState<SortOrder>("newest");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
 
-  const { t } =
-    useLanguage();
+  const { t } = useLanguage();
 
-  const reducedMotion =
-    useReducedMotion();
+  const reducedMotion = useReducedMotion();
 
   /* ==========================================
    * Filter + Search + Sort
    * ========================================== */
 
-  const filteredProjects =
-    useMemo(() => {
-      const query =
-        search.trim().toLowerCase();
+  const filteredProjects = useMemo(() => {
+    const query = search.trim().toLowerCase();
 
-      return projects
-        .filter((project) => {
-          const matchesCategory =
-            activeFilter === "all" ||
-            project.category ===
-              activeFilter;
+    return projects
+      .filter((project) => {
+        const matchesCategory =
+          activeFilter === "all" || project.category === activeFilter;
 
-          if (!matchesCategory) {
-            return false;
-          }
+        if (!matchesCategory) {
+          return false;
+        }
 
-          if (!query) {
-            return true;
-          }
+        if (!query) {
+          return true;
+        }
 
-          return (
-            project.title
-              .toLowerCase()
-              .includes(query) ||
-            project.shortDesc
-              .toLowerCase()
-              .includes(query) ||
-            project.techStack.some(
-              (tech) =>
-                tech
-                  .toLowerCase()
-                  .includes(query)
-            )
-          );
-        })
-        .sort((a, b) =>
-          compareProjects(
-            a,
-            b,
-            sortOrder
-          )
+        return (
+          project.title.toLowerCase().includes(query) ||
+          project.shortDesc.toLowerCase().includes(query) ||
+          project.techStack.some((tech) => tech.toLowerCase().includes(query))
         );
-    }, [
-      activeFilter,
-      search,
-      sortOrder,
-    ]);
+      })
+      .sort((a, b) => compareProjects(a, b, sortOrder));
+  }, [activeFilter, search, sortOrder]);
 
   /* ==========================================
    * Filter state
    * ========================================== */
 
-  const hasFilters =
-    activeFilter !== "all" ||
-    search.trim() !== "";
+  const hasFilters = activeFilter !== "all" || search.trim() !== "";
 
   const resetFilters = (): void => {
     setActiveFilter("all");
@@ -604,7 +512,7 @@ export default function ProjectsView(): JSX.Element {
         eyebrow={t("Portfolio")}
         title={t("All Projects")}
         description={t(
-          "Everything I've built — shipped products, experiments, and open source."
+          "Everything I've built — shipped products, experiments, and open source.",
         )}
       />
 
@@ -621,63 +529,47 @@ export default function ProjectsView(): JSX.Element {
         <div
           className="flex flex-wrap gap-2"
           role="group"
-          aria-label={t(
-            "Filter projects by category"
-          )}
+          aria-label={t("Filter projects by category")}
         >
-          {PROJECT_FILTERS.map(
-            (filter) => {
-              const isActive =
-                activeFilter ===
-                filter.value;
+          {PROJECT_FILTERS.map((filter) => {
+            const isActive = activeFilter === filter.value;
 
-              return (
-                <button
-                  key={filter.value}
-                  type="button"
-                  onClick={() =>
-                    setActiveFilter(
-                      filter.value
-                    )
-                  }
-                  aria-pressed={
-                    isActive
-                  }
-                  className={cn(
-                    "relative rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                    isActive
-                      ? "border-primary text-primary-foreground"
-                      : "border-border/70 text-muted-foreground hover:border-primary/40 hover:text-foreground"
-                  )}
-                >
-                  {isActive && (
-                    <motion.span
-                      aria-hidden
-                      layoutId="projects-filter"
-                      className="absolute inset-0 rounded-full bg-primary"
-                      transition={
-                        reducedMotion
-                          ? {
-                              duration: 0,
-                            }
-                          : {
-                              type: "spring",
-                              stiffness: 400,
-                              damping: 32,
-                            }
-                      }
-                    />
-                  )}
+            return (
+              <button
+                key={filter.value}
+                type="button"
+                onClick={() => setActiveFilter(filter.value)}
+                aria-pressed={isActive}
+                className={cn(
+                  "relative rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                  isActive
+                    ? "border-primary text-primary-foreground"
+                    : "border-border/70 text-muted-foreground hover:border-primary/40 hover:text-foreground",
+                )}
+              >
+                {isActive && (
+                  <motion.span
+                    aria-hidden
+                    layoutId="projects-filter"
+                    className="absolute inset-0 rounded-full bg-primary"
+                    transition={
+                      reducedMotion
+                        ? {
+                            duration: 0,
+                          }
+                        : {
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 32,
+                          }
+                    }
+                  />
+                )}
 
-                  <span className="relative z-10">
-                    {t(
-                      filter.label
-                    )}
-                  </span>
-                </button>
-              );
-            }
-          )}
+                <span className="relative z-10">{t(filter.label)}</span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Search */}
@@ -691,16 +583,10 @@ export default function ProjectsView(): JSX.Element {
           <Input
             type="search"
             value={search}
-            onChange={(event) =>
-              setSearch(
-                event.target.value
-              )
-            }
-            placeholder={t(
-              "Search projects…"
-            )}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder={t("Search projects…")}
             aria-label={t(
-              "Search projects by name, description, or technology"
+              "Search projects by name, description, or technology",
             )}
             className="max-w-xs pl-9"
           />
@@ -711,38 +597,21 @@ export default function ProjectsView(): JSX.Element {
         <div className="w-full sm:w-auto">
           <Select
             value={sortOrder}
-            onValueChange={(value) =>
-              setSortOrder(
-                value as SortOrder
-              )
-            }
+            onValueChange={(value) => setSortOrder(value as SortOrder)}
           >
             <SelectTrigger
               className="w-full max-w-[180px] font-mono text-xs"
-              aria-label={t(
-                "Sort projects"
-              )}
+              aria-label={t("Sort projects")}
             >
               <SelectValue />
             </SelectTrigger>
 
             <SelectContent>
-              {SORT_OPTIONS.map(
-                (option) => (
-                  <SelectItem
-                    key={
-                      option.value
-                    }
-                    value={
-                      option.value
-                    }
-                  >
-                    {t(
-                      option.label
-                    )}
-                  </SelectItem>
-                )
-              )}
+              {SORT_OPTIONS.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {t(option.label)}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
@@ -756,10 +625,7 @@ export default function ProjectsView(): JSX.Element {
         aria-live="polite"
         className="mt-6 font-mono text-xs text-muted-foreground"
       >
-        {t("Showing")}{" "}
-        {filteredProjects.length}{" "}
-        {t("of")}{" "}
-        {projects.length}{" "}
+        {t("Showing")} {filteredProjects.length} {t("of")} {projects.length}{" "}
         {t("projects")}
       </p>
 
@@ -767,60 +633,49 @@ export default function ProjectsView(): JSX.Element {
        * Grid
        * ======================================== */}
 
-      {filteredProjects.length >
-      0 ? (
-        <motion.div
-          layout
-          className="mt-6 grid gap-6 md:grid-cols-2"
-        >
+      {filteredProjects.length > 0 ? (
+        <motion.div layout className="mt-6 grid gap-6 md:grid-cols-2">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map(
-              (project) => (
-                <motion.div
-                  key={project.slug}
-                  layout
-                  initial={
-                    reducedMotion
-                      ? {
-                          opacity: 0,
-                        }
-                      : {
-                          opacity: 0,
-                          scale: 0.96,
-                        }
-                  }
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                  }}
-                  exit={
-                    reducedMotion
-                      ? {
-                          opacity: 0,
-                        }
-                      : {
-                          opacity: 0,
-                          scale: 0.96,
-                        }
-                  }
-                  transition={{
-                    duration:
-                      reducedMotion
-                        ? 0.15
-                        : 0.25,
-                    ease: "easeOut",
-                  }}
-                  className="h-full"
-                >
-                  <ProjectCard
-                    project={project}
-                    index={projects.indexOf(
-                      project
-                    )}
-                  />
-                </motion.div>
-              )
-            )}
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.slug}
+                layout
+                initial={
+                  reducedMotion
+                    ? {
+                        opacity: 0,
+                      }
+                    : {
+                        opacity: 0,
+                        scale: 0.96,
+                      }
+                }
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                exit={
+                  reducedMotion
+                    ? {
+                        opacity: 0,
+                      }
+                    : {
+                        opacity: 0,
+                        scale: 0.96,
+                      }
+                }
+                transition={{
+                  duration: reducedMotion ? 0.15 : 0.25,
+                  ease: "easeOut",
+                }}
+                className="h-full"
+              >
+                <ProjectCard
+                  project={project}
+                  index={projects.indexOf(project)}
+                />
+              </motion.div>
+            ))}
           </AnimatePresence>
         </motion.div>
       ) : (
@@ -835,29 +690,21 @@ export default function ProjectsView(): JSX.Element {
           />
 
           <h2 className="mt-4 text-lg font-semibold text-foreground">
-            {t(
-              "No projects match your filters"
-            )}
+            {t("No projects match your filters")}
           </h2>
 
           <p className="mt-2 text-sm text-muted-foreground">
-            {t(
-              "Try a different keyword or category."
-            )}
+            {t("Try a different keyword or category.")}
           </p>
 
           {hasFilters && (
             <Button
               type="button"
               variant="outline"
-              onClick={
-                resetFilters
-              }
+              onClick={resetFilters}
               className="mt-6"
             >
-              {t(
-                "Reset filters"
-              )}
+              {t("Reset filters")}
             </Button>
           )}
         </FadeIn>
