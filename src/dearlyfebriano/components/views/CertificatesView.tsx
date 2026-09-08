@@ -29,6 +29,7 @@ import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 import type { Certificate } from "@/dearlyfebriano/types";
 import { cn } from "@/lib/utils";
 import type { JSX } from "react";
+import { useCertificateStore } from "@/dearlyfebriano/store/certificate-store";
 
 /* ============================================================
  * CertificatesView — credential gallery, LIVE-SYNCED dari

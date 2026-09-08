@@ -1,5 +1,6 @@
 import { Coffee, Gamepad2, BookOpen, Plane, Music4, Camera } from "lucide-react";
 import type { Education, FunFact } from "@/dearlyfebriano/types";
+import { projects } from "./projects";
 
 /* ============================================================
  * CENTRAL PROFILE DATA
@@ -35,7 +36,7 @@ export const profile = {
 };
 
 export const stats = {
-  projects: 4,
+  projects: projects.length,
   certificates: 5,
   years: 3,
   clients: 5,
