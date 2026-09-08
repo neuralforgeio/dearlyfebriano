@@ -1,13 +1,28 @@
 "use client";
 
 import { ThemeProvider } from "next-themes";
+
 import { Toaster } from "@/components/ui/sonner";
+
 import { LanguageProvider } from "@/dearlyfebriano/i18n/language-context";
 
+import AutoTranslate from "@/dearlyfebriano/components/i18n/AutoTranslate";
+
 /* ============================================================
- * Providers — theme (next-themes) + language (EN/ID auto
- * translate) + toast (sonner). Dark mode adalah default
- * sesuai design system portfolio.
+ * Providers
+ *
+ * Order:
+ *
+ * ThemeProvider
+ *   ↓
+ * LanguageProvider
+ *   ↓
+ * AutoTranslate
+ *   ↓
+ * Portfolio
+ *
+ * AutoTranslate must be BELOW LanguageProvider because it uses
+ * useLanguage().
  * ============================================================ */
 
 export function Providers({ children }: { children: React.ReactNode }) {
@@ -18,9 +33,13 @@ export function Providers({ children }: { children: React.ReactNode }) {
       enableSystem={false}
       disableTransitionOnChange
     >
-      <LanguageProvider>{children}</LanguageProvider>
+      <LanguageProvider>
+        <AutoTranslate />
+
+        {children}
+      </LanguageProvider>
+
       <Toaster position="bottom-right" richColors closeButton />
     </ThemeProvider>
   );
 }
-

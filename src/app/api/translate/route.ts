@@ -4,87 +4,94 @@ import { translate } from "google-translate-api-x";
 
 import { getClientIp, rateLimit } from "@/dearlyfebriano/lib/rate-limit";
 
-/* ============================================================
- * POST /api/translate
- *
- * Body:
- *   {
- *     strings: string[]
- *   }
- *
- * Behavior:
- * - menerima batch string
- * - string pendek diterjemahkan langsung
- * - string panjang otomatis dipecah menjadi beberapa chunk
- * - hasil chunk digabung kembali
- * - cache server digunakan untuk menghindari translate ulang
- *
- * ============================================================ */
-
 export const runtime = "nodejs";
 
 /* ============================================================
- * Request limits
+ * Limits
  * ============================================================ */
 
 const MAX_STRINGS = 60;
 
-/*
- * Ini bukan lagi hard limit untuk panjang string sumber.
- * String panjang akan di-split terlebih dahulu.
- */
 const MAX_SOURCE_LENGTH = 12000;
 
-/*
- * Ukuran aman per potongan yang dikirim ke translator.
- */
 const TRANSLATION_CHUNK_LENGTH = 1700;
-
-/*
- * Jarak overlap kecil membantu menjaga kontinuitas kalimat
- * ketika sebuah kalimat kebetulan terpotong di batas chunk.
- *
- * Namun untuk menjaga hasil tetap stabil, overlap hanya dipakai
- * di level paragraf/splitter dan tidak menggandakan output.
- */
-const CACHE_PREFIX = "v2:";
-
-/* ============================================================
- * Quality overrides
- * ============================================================ */
-
-const QUALITY_OVERRIDES: Record<string, string> = {
-  Home: "Beranda",
-};
 
 /* ============================================================
  * Server cache
+ *
+ * Cache is separated by target:
+ *
+ * en:source
+ * id:source
  * ============================================================ */
 
+const CACHE_VERSION = "v4";
+
 const globalCache = globalThis as unknown as {
-  __dfTranslateCacheV2?: Map<string, string>;
+  __dfTranslateCacheV4?: Map<string, string>;
 };
 
-const cache: Map<string, string> =
-  globalCache.__dfTranslateCacheV2 ??
-  (globalCache.__dfTranslateCacheV2 = new Map());
+const cache =
+  globalCache.__dfTranslateCacheV4 ??
+  (globalCache.__dfTranslateCacheV4 = new Map());
 
 /* ============================================================
  * Helpers
  * ============================================================ */
 
-function cacheKey(source: string): string {
-  return `${CACHE_PREFIX}${source}`;
-}
-
-function normalizeSource(value: string): string {
+function normalize(value: string): string {
   return value.replace(/\r\n/g, "\n");
 }
 
-/**
- * Split a long natural-language string without destroying
- * paragraph boundaries whenever possible.
- */
+function cacheKey(source: string, target: "en" | "id"): string {
+  return `${CACHE_VERSION}:${target}:${source}`;
+}
+
+/* ============================================================
+ * Quality overrides
+ * ============================================================ */
+
+const OVERRIDES: Record<string, Partial<Record<"en" | "id", string>>> = {
+  Home: {
+    en: "Home",
+    id: "Beranda",
+  },
+
+  Projects: {
+    en: "Projects",
+    id: "Proyek",
+  },
+
+  Certificates: {
+    en: "Certificates",
+    id: "Sertifikat",
+  },
+
+  Experience: {
+    en: "Experience",
+    id: "Pengalaman",
+  },
+
+  Notes: {
+    en: "Notes",
+    id: "Catatan",
+  },
+
+  Contact: {
+    en: "Contact",
+    id: "Kontak",
+  },
+
+  Guestbook: {
+    en: "Guestbook",
+    id: "Buku Tamu",
+  },
+};
+
+/* ============================================================
+ * Split long text
+ * ============================================================ */
+
 function splitLongText(text: string): string[] {
   if (text.length <= TRANSLATION_CHUNK_LENGTH) {
     return [text];
@@ -92,9 +99,6 @@ function splitLongText(text: string): string[] {
 
   const chunks: string[] = [];
 
-  /*
-   * Prefer paragraph boundaries first.
-   */
   const paragraphs = text.split(/\n{2,}/);
 
   let current = "";
@@ -102,6 +106,7 @@ function splitLongText(text: string): string[] {
   const flush = (): void => {
     if (current.length > 0) {
       chunks.push(current);
+
       current = "";
     }
   };
@@ -112,28 +117,26 @@ function splitLongText(text: string): string[] {
 
     if (candidate.length <= TRANSLATION_CHUNK_LENGTH) {
       current = candidate;
+
       continue;
     }
 
     flush();
 
-    /*
-     * Paragraph itself is too large.
-     * Split by sentence-ish boundaries.
-     */
     if (paragraph.length > TRANSLATION_CHUNK_LENGTH) {
-      const sentenceParts = paragraph.split(/(?<=[.!?])\s+/);
+      const sentences = paragraph.split(/(?<=[.!?])\s+/);
 
       let sentenceChunk = "";
 
-      for (const sentence of sentenceParts) {
-        const sentenceCandidate =
+      for (const sentence of sentences) {
+        const candidateSentence =
           sentenceChunk.length === 0
             ? sentence
             : `${sentenceChunk} ${sentence}`;
 
-        if (sentenceCandidate.length <= TRANSLATION_CHUNK_LENGTH) {
-          sentenceChunk = sentenceCandidate;
+        if (candidateSentence.length <= TRANSLATION_CHUNK_LENGTH) {
+          sentenceChunk = candidateSentence;
+
           continue;
         }
 
@@ -141,10 +144,6 @@ function splitLongText(text: string): string[] {
           chunks.push(sentenceChunk);
         }
 
-        /*
-         * Extremely long single sentence:
-         * hard-split it safely.
-         */
         if (sentence.length > TRANSLATION_CHUNK_LENGTH) {
           for (
             let index = 0;
@@ -174,17 +173,36 @@ function splitLongText(text: string): string[] {
 
   flush();
 
-  return chunks.filter((chunk) => chunk.length > 0);
+  return chunks.filter(Boolean);
 }
 
-/**
- * Translate one chunk.
- */
-async function translateChunk(text: string): Promise<string> {
+/* ============================================================
+ * Translate one chunk
+ * ============================================================ */
+
+async function translateChunk(
+  text: string,
+  target: "en" | "id",
+): Promise<string> {
+  const override = OVERRIDES[text]?.[target];
+
+  if (override !== undefined) {
+    return override;
+  }
+
+  /*
+   * IMPORTANT:
+   *
+   * `auto` means Google Translate detects whether the source
+   * text is English, Indonesian, or another supported language.
+   */
+
   const result = await translate(text, {
-    from: "en",
-    to: "id",
+    from: "auto",
+    to: target,
+
     autoCorrect: false,
+
     requestOptions: {
       timeout: 15000,
     },
@@ -197,20 +215,29 @@ async function translateChunk(text: string): Promise<string> {
   return result?.text ?? text;
 }
 
-/**
- * Translate one complete source string while preserving its
- * original source key.
- */
-async function translateString(source: string): Promise<string> {
-  const key = cacheKey(source);
+/* ============================================================
+ * Translate full source string
+ * ============================================================ */
 
-  const existing = cache.get(key);
+async function translateString(
+  source: string,
+  target: "en" | "id",
+): Promise<string> {
+  const normalized = normalize(source);
 
-  if (existing !== undefined) {
-    return existing;
+  if (!normalized) {
+    return normalized;
   }
 
-  const override = QUALITY_OVERRIDES[source];
+  const key = cacheKey(normalized, target);
+
+  const cached = cache.get(key);
+
+  if (cached !== undefined) {
+    return cached;
+  }
+
+  const override = OVERRIDES[normalized]?.[target];
 
   if (override !== undefined) {
     cache.set(key, override);
@@ -218,38 +245,21 @@ async function translateString(source: string): Promise<string> {
     return override;
   }
 
-  const normalized = normalizeSource(source);
-
-  if (normalized.length === 0) {
-    return normalized;
-  }
-
-  /*
-   * Reject absurdly large payloads.
-   * This protects the endpoint from accidental huge inputs.
-   */
   if (normalized.length > MAX_SOURCE_LENGTH) {
     throw new Error(`String exceeds ${MAX_SOURCE_LENGTH} characters.`);
   }
 
-  const parts = splitLongText(normalized);
+  const chunks = splitLongText(normalized);
 
-  const translatedParts: string[] = [];
+  const translatedChunks: string[] = [];
 
-  for (const part of parts) {
-    const translated = await translateChunk(part);
+  for (const chunk of chunks) {
+    const translated = await translateChunk(chunk, target);
 
-    translatedParts.push(translated);
+    translatedChunks.push(translated);
   }
 
-  /*
-   * We use a simple newline join for long text.
-   *
-   * For single-paragraph text, this preserves readability
-   * without requiring the original client to know about
-   * chunking.
-   */
-  const translated = translatedParts.join("\n");
+  const translated = translatedChunks.join("\n");
 
   cache.set(key, translated);
 
@@ -281,12 +291,12 @@ export async function POST(request: NextRequest): Promise<Response> {
   }
 
   /* ----------------------------------------------------------
-   * Parse body
+   * Parse JSON
    * ---------------------------------------------------------- */
 
   const body = await request.json().catch(() => null);
 
-  const strings: unknown =
+  const strings =
     body && typeof body === "object"
       ? (
           body as {
@@ -295,8 +305,32 @@ export async function POST(request: NextRequest): Promise<Response> {
         ).strings
       : null;
 
+  const target =
+    body && typeof body === "object"
+      ? (
+          body as {
+            target?: unknown;
+          }
+        ).target
+      : null;
+
   /* ----------------------------------------------------------
-   * Validate array
+   * Validate target
+   * ---------------------------------------------------------- */
+
+  if (target !== "en" && target !== "id") {
+    return NextResponse.json(
+      {
+        error: "Invalid target language.",
+      },
+      {
+        status: 400,
+      },
+    );
+  }
+
+  /* ----------------------------------------------------------
+   * Validate strings
    * ---------------------------------------------------------- */
 
   if (
@@ -314,18 +348,11 @@ export async function POST(request: NextRequest): Promise<Response> {
     );
   }
 
-  /* ----------------------------------------------------------
-   * Validate individual strings
-   *
-   * We allow long strings now because the server handles the
-   * chunking internally.
-   * ---------------------------------------------------------- */
-
   if (
     !strings.every(
       (item) =>
         typeof item === "string" &&
-        item.length >= 1 &&
+        item.length > 0 &&
         item.length <= MAX_SOURCE_LENGTH,
     )
   ) {
@@ -339,59 +366,46 @@ export async function POST(request: NextRequest): Promise<Response> {
     );
   }
 
-  const sourceStrings = Array.from(new Set(strings as string[]));
+  const uniqueStrings = Array.from(new Set(strings as string[]));
 
   /* ----------------------------------------------------------
-   * Translate in parallel by source string.
-   *
-   * Each source string may internally consist of multiple
-   * translation chunks.
+   * Translation
    * ---------------------------------------------------------- */
 
   const translations: Record<string, string> = {};
 
   const results = await Promise.all(
-    sourceStrings.map(async (source) => {
+    uniqueStrings.map(async (source) => {
       try {
-        const translated = await translateString(source);
+        const translated = await translateString(source, target as "en" | "id");
 
         return {
           source,
           translated,
         };
       } catch (error) {
-        console.error("[translate] string error:", error);
+        console.error("[translate]", error);
+
+        /*
+         * Fallback:
+         * returning source prevents the client from
+         * replacing its current content with undefined.
+         */
 
         return {
           source,
-          translated: undefined,
+          translated: source,
         };
       }
     }),
   );
 
   for (const result of results) {
-    if (result.translated !== undefined) {
-      translations[result.source] = result.translated;
-    }
-  }
-
-  /* ----------------------------------------------------------
-   * If nothing could be translated, return 502.
-   * ---------------------------------------------------------- */
-
-  if (Object.keys(translations).length === 0) {
-    return NextResponse.json(
-      {
-        error: "Translation service unavailable.",
-      },
-      {
-        status: 502,
-      },
-    );
+    translations[result.source] = result.translated;
   }
 
   return NextResponse.json({
     translations,
+    target,
   });
 }

@@ -1,6 +1,8 @@
 import PortfolioApp from "@/dearlyfebriano/PortfolioApp";
+import AutoTranslate from "@/dearlyfebriano/components/i18n/AutoTranslate";
 import { profile } from "@/dearlyfebriano/data/profile";
 import { socialLinks } from "@/dearlyfebriano/data/socialLinks";
+import { LanguageProvider } from "@/dearlyfebriano/i18n/language-context";
 
 /* ============================================================
  * Halaman utama (satu-satunya route user-visible: "/").
@@ -32,7 +34,10 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <PortfolioApp />
+      <LanguageProvider>
+        <AutoTranslate />
+        <PortfolioApp />
+      </LanguageProvider>
     </>
   );
 }

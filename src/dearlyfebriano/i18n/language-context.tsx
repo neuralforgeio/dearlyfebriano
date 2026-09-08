@@ -54,7 +54,9 @@ function readCachedDict(): Record<string, string> {
     const raw = window.localStorage.getItem(DICT_STORAGE_KEY);
     if (!raw) return {};
     const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === "object" ? (parsed as Record<string, string>) : {};
+    return parsed && typeof parsed === "object"
+      ? (parsed as Record<string, string>)
+      : {};
   } catch {
     return {};
   }
@@ -76,7 +78,10 @@ function chunkStrings(strings: string[]): string[][] {
   let size = 0;
   for (const text of strings) {
     const cost = Math.max(text.length, 32);
-    if (current.length >= CHUNK_MAX_ITEMS || (size + cost > CHUNK_CHAR_BUDGET && current.length > 0)) {
+    if (
+      current.length >= CHUNK_MAX_ITEMS ||
+      (size + cost > CHUNK_CHAR_BUDGET && current.length > 0)
+    ) {
       chunks.push(current);
       current = [];
       size = 0;
@@ -154,8 +159,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
               body: JSON.stringify({ strings: chunk }),
             });
             if (!response.ok) continue; // chunk gagal → tetap English untuk string itu
-            const data = (await response.json()) as { translations?: Record<string, string> };
-            if (data.translations && Object.keys(data.translations).length > 0) {
+            const data = (await response.json()) as {
+              translations?: Record<string, string>;
+            };
+            if (
+              data.translations &&
+              Object.keys(data.translations).length > 0
+            ) {
               merged = { ...merged, ...data.translations };
               setDict({ ...merged });
               setTranslated(countTranslated(merged));
@@ -181,13 +191,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const t = useCallback(
-    (text: string) => (lang === "id" ? dict[text] ?? text : text),
-    [lang, dict]
-  );
+  const t = useCallback((text: string) => dict[text] ?? text, [dict]);
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t, loading, progress: { translated, total } }}>
+    <LanguageContext.Provider
+      value={{ lang, setLang, t, loading, progress: { translated, total } }}
+    >
       {children}
     </LanguageContext.Provider>
   );
