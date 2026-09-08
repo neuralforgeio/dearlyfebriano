@@ -38,6 +38,10 @@ import {
   getRelatedProjects,
 } from "@/dearlyfebriano/data/projects";
 
+import ProjectArchitecture from "@/dearlyfebriano/components/sections/ProjectArchitecture";
+
+import { getProjectArchitecture } from "@/dearlyfebriano/data/project-architecture";
+
 import { useUIStore } from "@/dearlyfebriano/store/ui-store";
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 
@@ -46,6 +50,7 @@ import { formatTimeline } from "@/dearlyfebriano/lib/helpers";
 import { cn } from "@/lib/utils";
 
 import type { JSX } from "react";
+import { projectArchitectures } from "@/dearlyfebriano/data/project-architecture";
 
 /* ============================================================
  * ProjectDetailView
@@ -599,6 +604,8 @@ export default function ProjectDetailView(): JSX.Element {
 
   const metrics = getProjectMetrics(project.slug);
 
+  const architecture = getProjectArchitecture(project.slug);
+
   const previewUrl = getProjectPreviewUrl(project);
 
   const period = `${formatTimeline(project.startDate)} — ${
@@ -844,6 +851,8 @@ export default function ProjectDetailView(): JSX.Element {
       </FadeIn>
 
       <ProjectMetrics metrics={metrics} />
+
+      <ProjectArchitecture architecture={architecture} />
 
       {/* ========================================
        * Gallery

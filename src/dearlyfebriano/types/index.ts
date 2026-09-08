@@ -17,6 +17,32 @@ export type View =
   | "guestbook"
   | "not-found";
 
+export interface ArchitectureNode {
+  id: string;
+  label: string;
+  description?: string;
+  category?: string;
+
+  /**
+   * Position inside the architecture canvas.
+   * Values are percentages from 0 to 100
+   */
+
+  x: number;
+  y: number;
+}
+
+export interface ArchitectureEdge {
+  from: string;
+  to: string;
+  label?: string;
+}
+
+export interface ProjectArchitecture {
+  nodes: ArchitectureNode[];
+  edges: ArchitectureEdge[];
+}
+
 export type ProjectCategory = "web" | "mobile" | "api" | "opensource";
 export type ProjectStatus = "live" | "in-progress" | "archived";
 
