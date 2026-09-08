@@ -532,7 +532,7 @@ export default function ProjectsPreview(): JSX.Element {
           )}
         </StaggerContainer>
 
-        <FadeIn
+      <FadeIn
           delay={0.1}
           className="mt-12 flex justify-center"
         >

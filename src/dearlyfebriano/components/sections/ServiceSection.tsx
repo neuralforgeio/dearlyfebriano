@@ -119,8 +119,10 @@ export default function ServicesSection(): JSX.Element {
 
         <SectionHeading
           eyebrow="SOFTWARE DEVELOPMENT"
-          title="Turn Your Idea Into a Real Product"
-          description="Custom software development for businesses, personal projects, startups, and digital products."
+          title={t("Turn Your Idea Into a Real Product")}
+          description={t(
+            "Custom software development for businesses, personal projects, startups, and digital products.",
+          )}
         />
 
         {/* ==================================================
@@ -173,11 +175,11 @@ export default function ServicesSection(): JSX.Element {
 
                   <div className="min-w-0">
                     <p className="truncate text-xs font-semibold text-foreground">
-                      Custom Software Development
+                      {t("Custom Software Development")}
                     </p>
 
                     <p className="truncate font-mono text-[10px] text-muted-foreground">
-                      Built around your requirements
+                      {t("Built around your requirements")}
                     </p>
                   </div>
                 </div>
@@ -209,15 +211,15 @@ export default function ServicesSection(): JSX.Element {
                   </p>
 
                   <h3 className="mt-1 text-xl font-semibold tracking-tight text-foreground">
-                    Have an idea?
+                    {t("Have an idea?")}
                     <br />
-                    Let&apos;s build it.
+                    {t("Let's build it.")}
                   </h3>
 
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    Ceritakan kebutuhan software Anda, lalu kita tentukan
-                    solusi, fitur, teknologi, timeline, dan estimasi biaya yang
-                    paling sesuai.
+                    {t(
+                      "Tell me about your software requirements, then we can determine the most suitable solution, features, technology, timeline, and estimated cost.",
+                    )}
                   </p>
                 </div>
               </div>
@@ -229,11 +231,11 @@ export default function ServicesSection(): JSX.Element {
 
             <div className="mt-6">
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
-                Services
+                {t("Services")}
               </p>
 
               <h3 className="mt-2 text-lg font-semibold text-foreground">
-                What I Can Build
+                {t("What I Can Build")}
               </h3>
 
               <div className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -248,7 +250,7 @@ export default function ServicesSection(): JSX.Element {
                     />
 
                     <span className="text-sm text-foreground/90">
-                      {service}
+                      {t(service)}
                     </span>
                   </div>
                 ))}
@@ -267,25 +269,23 @@ export default function ServicesSection(): JSX.Element {
 
                 <div>
                   <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                    Pricing
+                    {t("Pricing")}
                   </p>
 
                   <h3 className="font-semibold text-foreground">
-                    Custom quotation for every project
+                    {t("Custom quotation for every project")}
                   </h3>
                 </div>
               </div>
 
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                Tidak ada harga yang dipukul rata. Estimasi disesuaikan dengan
-                jumlah fitur, kompleksitas, scope project, dan estimasi waktu
-                pengerjaan.
+                {t("There is no one-size-fits-all price. Estimates are tailored based on the number of features, complexity, project scope, and estimated completion time.")}
               </p>
 
               <div className="mt-4 grid gap-2 sm:grid-cols-2">
                 {[
-                  "Jumlah fitur",
-                  "Tingkat kompleksitas",
+                  "Number of features",
+                  "Level of Complexity",
                   "Project scope",
                   "Estimated timeline",
                 ].map((item) => (
@@ -294,7 +294,7 @@ export default function ServicesSection(): JSX.Element {
                     className="flex items-center gap-2 text-xs text-muted-foreground"
                   >
                     <span className="size-1.5 rounded-full bg-primary" />
-                    {item}
+                    {t(item)}
                   </div>
                 ))}
               </div>
@@ -307,28 +307,28 @@ export default function ServicesSection(): JSX.Element {
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <div className="rounded-2xl border border-border/70 bg-card/40 p-5">
                 <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                  Payment
+                  {t("Payment")}
                 </p>
 
                 <div className="mt-3 flex items-center gap-3">
                   <div className="text-2xl font-bold text-primary">50%</div>
 
                   <p className="text-sm text-foreground">
-                    DP untuk memulai project
+                    {t("Down payment to start the project")}
                   </p>
                 </div>
               </div>
 
               <div className="rounded-2xl border border-border/70 bg-card/40 p-5">
                 <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                  Final Payment
+                  {t("Final Payment")}
                 </p>
 
                 <div className="mt-3 flex items-center gap-3">
                   <div className="text-2xl font-bold text-primary">50%</div>
 
                   <p className="text-sm text-foreground">
-                    Pelunasan setelah project selesai
+                    {t("Final payment upon project completion")}
                   </p>
                 </div>
               </div>
@@ -346,12 +346,11 @@ export default function ServicesSection(): JSX.Element {
 
                 <div>
                   <h3 className="font-semibold text-foreground">
-                    Professional & Secure
+                    {t("Professional & Secure")}
                   </h3>
 
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    Scope, fitur, timeline, dan biaya dibahas terlebih dahulu
-                    agar ekspektasi project jelas sejak awal.
+                    {t("The scope, features, timeline, and costs are discussed upfront so that project expectations are clear from the start.")}
                   </p>
                 </div>
               </div>

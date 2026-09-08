@@ -31,9 +31,9 @@ const DICT_STORAGE_KEY = `dearlyfebriano:dict:id:v${DICT_VERSION}`;
 
 /** Budget karakter per request translate (menjaga durasi
  *  serverless function tetap pendek, aman untuk Vercel). */
-const CHUNK_CHAR_BUDGET = 3000;
+const CHUNK_CHAR_BUDGET = 2400;
 /** Maksimum jumlah string per request. */
-const CHUNK_MAX_ITEMS = 40;
+const CHUNK_MAX_ITEMS = 30;
 
 interface LanguageContextValue {
   lang: Language;
