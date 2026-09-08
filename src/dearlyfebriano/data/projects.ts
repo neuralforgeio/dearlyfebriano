@@ -13,6 +13,56 @@ import type { Project } from "@/dearlyfebriano/types";
 
 export const projects: Project[] = [
   {
+    slug: "finora",
+    title: "Finora",
+    shortDesc:
+      "A modern financial operations platform that helps accountants and sales teams work faster, reduce repetitive work, and understand business performance in one place.",
+    longDesc:
+      "Finora connects accounting, sales, collections, and analytics in one calm, precise workspace. A deal closed in the pipeline becomes a draft invoice for finance; a recorded payment updates receivables, cash, the bank feed, and the ledger in one action; the collections queue prioritizes exactly the invoices that need attention today. Built frontend-first with a deterministic demo workspace, a centralized multi-currency system, and double-entry integrity enforced end to end.",
+    images: [],
+    techStack: [
+      "TypeScript",
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Zustand",
+      "Recharts",
+      "Vercel",
+    ],
+    category: "web",
+    status: "live",
+    liveUrl: "https://finora-financial.vercel.app",
+    githubUrl: "https://github.com/neuralforgeio/Finora",
+    features: [
+      "One connected workflow — Opportunity → Quote → Invoice → Payment → Reconciliation → Dashboards, every screen reading from the same live dataset",
+      "Centralized currency system across 37 views: USD, IDR, EUR, GBP, SGD with locale-aware formatting (Rp 1.000.000 / $1,000,000.00) and instant workspace-wide switching",
+      "MoneyInput primitive — grouped live formatting, caret preservation, and paste normalization for every amount field; money, percentage, and quantity inputs stay deliberately separate",
+      "Double-entry integrity enforced: journals must balance, payments never exceed outstanding balances, closed-period posting is blocked, and the balance sheet ties live",
+      "Bank reconciliation that completes only at zero variance, with rule-based categorization suggestions and duplicate detection",
+      "Collections workspace prioritizing overdue invoices by amount, age, and payment behavior — the shared ground between finance and sales",
+      "Analytics center: revenue, expenses, profit, cash flow, budgets with variance alerts, and profitability by customer, product, rep, and service",
+      "Role-aware experience — Owner, Administrator, Accountant, Sales Manager, and Sales Rep views with a command palette (Ctrl+K) and cross-module search",
+    ],
+    challenges: [
+      {
+        title: "One currency system for 37 screens",
+        description:
+          "Every module had its own notion of money — raw number inputs here, ad-hoc toLocaleString there, '$' + amount inside notification strings. Patching the Bills page alone would have left three dozen screens lying. I built a single currency layer (typed definitions, formatter, parser, MoneyInput) and threaded the workspace currency through roughly 400 call sites, so switching to Indonesian Rupiah re-renders KPIs, tables, charts, forms, and even the command palette — with no exchange-rate fakery, presentation only.",
+      },
+      {
+        title: "Financial inputs that stay editable",
+        description:
+          "Live-formatted money inputs usually break editing: the caret jumps to the end, decimals fight the grouping separators, and pasting 'Rp 1.000.000' produces garbage. MoneyInput keeps a raw numeric model behind a grouped display layer, restores the caret by counting digits to its right, normalizes pasted values in any common format, and treats empty as empty — never as zero.",
+      },
+    ],
+    startDate: "2026-09",
+    endDate: undefined,
+    duration: "Ongoing",
+    featured: true,
+  },
+
+  {
     slug: "openforge",
     title: "OpenForge",
     shortDesc:
