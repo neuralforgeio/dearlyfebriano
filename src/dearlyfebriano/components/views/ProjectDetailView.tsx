@@ -32,6 +32,8 @@ import ProjectMetrics from "@/dearlyfebriano/components/sections/ProjectMetrics"
 
 import { getProjectMetrics } from "@/dearlyfebriano/data/project-metrics";
 
+import ProjectGithub from "@/dearlyfebriano/components/projects/ProjectGithub";
+
 import {
   getAdjacentProjects,
   getProjectBySlug,
@@ -853,6 +855,8 @@ export default function ProjectDetailView(): JSX.Element {
       <ProjectMetrics metrics={metrics} />
 
       <ProjectArchitecture architecture={architecture} />
+
+      <ProjectGithub githubUrl={project.githubUrl} />
 
       {/* ========================================
        * Gallery
