@@ -59,6 +59,8 @@ import { cn } from "@/lib/utils";
 
 import type { JSX } from "react";
 import { projectArchitectures } from "@/dearlyfebriano/data/project-architecture";
+import ProjectWhyBuilt from "@/dearlyfebriano/components/projects/ProjectWhyBuilt";
+import { projectWhyBuilt } from "@/dearlyfebriano/data/project-why-built";
 
 /* ============================================================
  * ProjectDetailView
@@ -591,6 +593,8 @@ export default function ProjectDetailView(): JSX.Element {
 
   const timeline = getProjectTimeline(project.slug);
 
+  const whyBuilt = projectWhyBuilt[project.slug] ?? null;
+
   const period = `${formatTimeline(project.startDate)} — ${
     project.endDate ? formatTimeline(project.endDate) : t("Present")
   }`;
@@ -846,6 +850,8 @@ export default function ProjectDetailView(): JSX.Element {
       )}
 
       <ProjectGithub githubUrl={project.githubUrl} />
+
+      <ProjectWhyBuilt data={whyBuilt} />
 
       {/* ========================================
        * Gallery
