@@ -199,4 +199,11 @@ export const VIEW_STRINGS: string[] = [
   // ----- StatusBadge (label map: live / in-progress / archived) -----
   "In Progress",
   "Archived",
+
+  // ----- Project cards / preview badges (shared) -----
+  "Live Preview",
+  "Preview unavailable",
+  "Project preview unavailable",
+  "press",
+  "to open gallery",
 ];

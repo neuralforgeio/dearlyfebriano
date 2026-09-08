@@ -211,6 +211,8 @@ function PreviewMedia({
 }: PreviewMediaProps): JSX.Element {
   const reducedMotion = useReducedMotion();
 
+  const { t } = useLanguage();
+
   /* ============================================================
    * Image state
    * ============================================================ */
@@ -319,7 +321,7 @@ function PreviewMedia({
         {!imageLoading && (
           <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 font-mono text-[10px] font-medium text-white backdrop-blur-md">
             <span className="size-1.5 animate-pulse rounded-full bg-emerald-400" />
-            Live Preview
+            {t("Live Preview")}
           </span>
         )}
 
@@ -432,7 +434,7 @@ function PreviewMedia({
       <div className="flex flex-col items-center gap-2 text-center text-muted-foreground">
         <ImageOff aria-hidden className="size-10 opacity-30" />
 
-        <span className="font-mono text-xs">Preview unavailable</span>
+        <span className="font-mono text-xs">{t("Preview unavailable")}</span>
       </div>
 
       {showStatus && (
@@ -863,11 +865,11 @@ export default function ProjectDetailView(): JSX.Element {
             <SectionHeading eyebrow={t("Gallery")} title={t("Screenshots")} />
 
             <p className="hidden items-center gap-1.5 font-mono text-[10px] text-muted-foreground sm:flex">
-              press
+              {t("press")}
               <kbd className="rounded border border-border bg-secondary px-1.5 py-0.5 text-[10px] text-foreground/80">
                 g
               </kbd>
-              to open gallery
+              {t("to open gallery")}
             </p>
           </div>
 

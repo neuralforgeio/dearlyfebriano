@@ -73,4 +73,55 @@ export const SECTION_STRINGS: string[] = [
   "open article",
   "Article tags",
   "Browse all notes",
+
+  // HeroSection
+  "Available for Freelance",
+  "Open to Remote Work",
+  "Open project inquiry",
+  "Hire Me",
+  "Available for freelance projects and software engineering opportunities",
+
+  // ResumePreview
+  "Resume",
+  "Professional profile & CV",
+  "View Resume",
+  "What I focus on",
+  "Resume Preview",
+  "Interested?",
+  "Discuss a project",
+  "Professional inquiries",
+  "Contact by email",
+  "Send an email",
+  "Curriculum Vitae",
+
+  // ProjectArchitecture
+  "Project architecture",
+  "Architecture",
+  "How it fits together",
+  "System map",
+  "Architecture overview",
+  "nodes",
+  "Click a node to inspect it",
+  "System",
+  "A high-level view of the major systems and how data flows between them.",
+
+  // ProjectMetrics
+  "Project results",
+  "Results",
+  "Project metrics",
+  "Key results",
+
+  // TechStackExplorer / TechStackGraph
+  "Technology",
+  "Tech Stack Explorer",
+  "Technology explorer view",
+  "List",
+  "Graph",
+  "Technologies",
+  "Technologies used across projects",
+  "Select a technology",
+  "Click a technology to see which projects use it.",
+  "Used across projects",
+  "Explore the technologies I use and see which projects are built with each one.",
+  "Interactive technology relationship graph",
 ];

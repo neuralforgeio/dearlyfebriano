@@ -99,7 +99,9 @@ export default function ServicesSection(): JSX.Element {
   const whatsappNumber = "6283854436555";
 
   const whatsappMessage = encodeURIComponent(
-    "Halo Dear Engineer, saya ingin konsultasi mengenai project software yang ingin saya buat.",
+    lang === "id"
+      ? "Halo Dear Engineer, saya ingin konsultasi mengenai project software yang ingin saya buat."
+      : "Hello Dear Engineer, I would like to consult about a software project I want to build.",
   );
 
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
@@ -365,16 +367,17 @@ export default function ServicesSection(): JSX.Element {
         <FadeIn delay={0.15} className="mt-20">
           <div className="text-center">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
-              How It Works
+              {t("How It Works")}
             </p>
 
             <h3 className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              Simple, transparent workflow
+              {t("Simple, transparent workflow")}
             </h3>
 
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              Setiap project dimulai dari diskusi terlebih dahulu sehingga scope
-              dan ekspektasi sudah jelas sebelum development dimulai.
+              {t(
+                "Every project starts with a discussion first so that the scope and expectations are clear before development begins.",
+              )}
             </p>
           </div>
 
@@ -396,11 +399,11 @@ export default function ServicesSection(): JSX.Element {
                   </div>
 
                   <h4 className="mt-4 text-sm font-semibold text-foreground">
-                    {step.title}
+                    {t(step.title)}
                   </h4>
 
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                    {step.description}
+                    {t(step.description)}
                   </p>
                 </div>
               </div>
@@ -418,21 +421,21 @@ export default function ServicesSection(): JSX.Element {
 
             <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
-                Why work with me?
+                {t("Why work with me?")}
               </p>
 
               <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
-                Clean code.
+                {t("Clean code.")}
                 <br />
-                Clear process.
+                {t("Clear process.")}
                 <br />
-                Real product.
+                {t("Real product.")}
               </h3>
 
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Fokus saya bukan hanya membuat project terlihat jadi, tetapi
-                membuat software yang masuk akal untuk digunakan, dikembangkan,
-                dan dipelihara.
+                {t(
+                  "My focus is not just making a project look finished, but making software that makes sense to use, develop, and maintain.",
+                )}
               </p>
             </div>
 
@@ -467,19 +470,19 @@ export default function ServicesSection(): JSX.Element {
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-2xl">
                 <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
-                  Free Consultation
+                  {t("Free Consultation")}
                 </p>
 
                 <h3 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                  Punya ide project?
+                  {t("Have a project idea?")}
                   <br />
-                  Mari bahas dulu.
+                  {t("Let's discuss it first.")}
                 </h3>
 
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  Konsultasi awal gratis. Ceritakan ide, kebutuhan, atau masalah
-                  yang ingin Anda selesaikan. Kita tentukan pendekatan terbaik
-                  sebelum membahas pengerjaan.
+                  {t(
+                    "The initial consultation is free. Tell me your idea, requirements, or the problem you want to solve. We'll figure out the best approach together before talking about the work itself.",
+                  )}
                 </p>
               </div>
 
@@ -496,14 +499,14 @@ export default function ServicesSection(): JSX.Element {
                     aria-label="Consult via WhatsApp"
                   >
                     <MessageCircle className="size-4" aria-hidden />
-                    Konsultasi via WhatsApp
+                    {t("Consult via WhatsApp")}
                   </a>
                 </Button>
 
                 <Button asChild size="lg" variant="outline" className="w-full">
                   <a href={emailUrl} aria-label="Send project inquiry by email">
                     <Mail className="size-4" aria-hidden />
-                    Email Project Inquiry
+                    {t("Email Project Inquiry")}
                   </a>
                 </Button>
               </div>
@@ -516,7 +519,7 @@ export default function ServicesSection(): JSX.Element {
          * ================================================== */}
 
         <p className="mt-6 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-          IDE KAMU · KODE KAMI · PROJECT JADI
+          {t("YOUR IDEA · OUR CODE · PROJECT DONE")}
         </p>
       </div>
     </section>

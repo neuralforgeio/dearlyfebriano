@@ -169,6 +169,8 @@ interface ProjectPreviewProps {
 }
 
 function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
+  const { t } = useLanguage();
+
   const [screenshotFailed, setScreenshotFailed] = useState(false);
 
   const automaticPreviewUrl = getAutomaticPreviewUrl(project);
@@ -208,7 +210,7 @@ function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
         <div className="absolute bottom-3 left-3">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-md">
             <span className="size-1.5 animate-pulse rounded-full bg-emerald-400" />
-            Live Preview
+            {t("Live Preview")}
           </span>
         </div>
 
@@ -272,7 +274,7 @@ function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
       <div className="flex flex-col items-center gap-2 text-muted-foreground">
         <ImageOff aria-hidden className="size-8 opacity-40" />
 
-        <span className="font-mono text-xs">Preview unavailable</span>
+        <span className="font-mono text-xs">{t("Preview unavailable")}</span>
       </div>
 
       <StatusBadge status={project.status} className="absolute left-3 top-3" />

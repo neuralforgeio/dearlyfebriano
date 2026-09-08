@@ -67,8 +67,6 @@ export const PROJECT_STRINGS: string[] = [
   "How It Works",
   "Simple, transparent workflow",
 
-  "Setiap project dimulai dari diskusi terlebih dahulu sehingga scope dan ekspektasi sudah jelas sebelum development dimulai.",
-
   "Free Consultation",
   "Discuss your idea, requirements, features, scope, and expected result.",
 
@@ -89,8 +87,6 @@ export const PROJECT_STRINGS: string[] = [
   "Clear process.",
   "Real product.",
 
-  "Fokus saya bukan hanya membuat project terlihat jadi, tetapi membuat software yang masuk akal untuk digunakan, dikembangkan, dan dipelihara.",
-
   "Fullstack development — frontend & backend",
   "Clean, structured, and scalable code",
   "Modern and responsive UI/UX",
@@ -99,18 +95,136 @@ export const PROJECT_STRINGS: string[] = [
   "Post-project support",
 
   "Free Consultation",
-  "Punya ide project?",
-  "Mari bahas dulu.",
-
-  "Konsultasi awal gratis. Ceritakan ide, kebutuhan, atau masalah yang ingin Anda selesaikan. Kita tentukan pendekatan terbaik sebelum membahas pengerjaan.",
-
-  "Konsultasi via WhatsApp",
   "Email Project Inquiry",
 
-  "IDE KAMU · KODE KAMI · PROJECT JADI",
+  /* ==========================================================
+   * ServiceSection (workflow & CTA)
+   * ========================================================== */
+
+  "How It Works",
+  "Simple, transparent workflow",
+  "Every project starts with a discussion first so that the scope and expectations are clear before development begins.",
+  "Why work with me?",
+  "Clean code.",
+  "Clear process.",
+  "Real product.",
+  "My focus is not just making a project look finished, but making software that makes sense to use, develop, and maintain.",
+  "Have a project idea?",
+  "Let's discuss it first.",
+  "The initial consultation is free. Tell me your idea, requirements, or the problem you want to solve. We'll figure out the best approach together before talking about the work itself.",
+  "Consult via WhatsApp",
+
+  "YOUR IDEA · OUR CODE · PROJECT DONE",
 
   /* ==========================================================
-   * Project Intelligence
+   * HireDialog
+   * ========================================================== */
+
+  "Please enter your name.",
+  "Please enter your email.",
+  "Please enter a valid email address.",
+  "Please choose an inquiry type.",
+  "Your project inquiry has been sent successfully.",
+  "Unable to send the email. Please try again or use WhatsApp.",
+  "Project inquiry",
+  "Let's talk about your project",
+  "What are you looking for?",
+  "Tell me about the project",
+  "Tell me a little more",
+  "These details help prepare the right conversation.",
+  "Your full name",
+  "Your email",
+  "Project type",
+  "Expected timeline",
+  "Needed features",
+  "Description",
+  "Ready to continue?",
+  "Inquiry summary",
+  "Type",
+  "Project",
+  "Features",
+  "To be discussed",
+  "Not provided",
+  "Continue on WhatsApp",
+  "Send as professional email",
+  "Continue",
+  "Review inquiry",
+  "Continue to WhatsApp",
+  "Sending...",
+  "Send via Email",
+  "Freelance Project",
+  "Software Engineering Job",
+  "Collaboration",
+  "Consultation",
+  "Inquiry",
+  "Web Application",
+  "Mobile Application",
+  "Desktop Application",
+  "REST API & Backend",
+  "E-Commerce",
+  "Dashboard & Admin Panel",
+  "Authentication & Authorization",
+  "Automation & Bot",
+  "Deployment & Hosting",
+  "As soon as possible",
+  "1–2 weeks",
+  "2–4 weeks",
+  "1–2 months",
+  "2–3 months",
+  "Flexible",
+  "Authentication",
+  "Dashboard",
+  "Payment",
+  "REST API",
+  "Admin Panel",
+  "Database",
+  "Search",
+  "Notification",
+  "Automation",
+  "Deployment",
+
+  /* ==========================================================
+   * ProjectGithub
+   * ========================================================== */
+
+  "Preview",
+  "GitHub verification",
+  "Verification",
+  "GitHub repository",
+  "Verify Repository",
+  "Verifying GitHub repository...",
+  "GitHub data unavailable",
+  "Verified repository",
+  "Public",
+  "Refresh",
+  "View Repository",
+  "Stars",
+  "Forks",
+  "Open Issues",
+  "Last Push",
+  "Latest commit",
+  "No commit information available.",
+  "Source available",
+  "Default branch",
+  "Updated",
+
+  /* ==========================================================
+   * ProjectHealthBadge / ProjectTimeline / ProjectWhyBuilt / ProjectIntelligence
+   * ========================================================== */
+
+  "Slow response",
+  "How the project evolved",
+  "milestone",
+  "milestones",
+  "Why I built this",
+  "Analyzing project...",
+  "Automatic analysis unavailable",
+  "A high-level view of the major engineering stages from foundation to production.",
+  "Reading repository structure, source modules, and recent Git history.",
+  "Unable to analyze project.",
+
+  /* ==========================================================
+   * ProjectIntelligence
    * ========================================================== */
 
   "Automatic analysis",

@@ -22,6 +22,14 @@ import { articles } from "@/dearlyfebriano/data/articles";
 
 import { projectWhyBuilt } from "@/dearlyfebriano/data/project-why-built";
 
+import { projectTimelines } from "@/dearlyfebriano/data/project-timeline";
+
+import { projectMetrics } from "@/dearlyfebriano/data/project-metrics";
+
+import { projectArchitectures } from "@/dearlyfebriano/data/project-architecture";
+
+import generatedIntelligence from "@/dearlyfebriano/data/generated-project-intelligence.json";
+
 import { CORE_STRINGS } from "./strings-core";
 
 import { SECTION_STRINGS } from "./strings-sections";
@@ -56,7 +64,7 @@ import { PROJECT_STRINGS } from "./strings-projects";
  * - dll.
  * ============================================================ */
 
-export const DICT_VERSION = 7;
+export const DICT_VERSION = 8;
 
 /* ============================================================
  * Heuristic collector
@@ -129,6 +137,9 @@ for (const source of [
   education,
   projects,
   projectWhyBuilt,
+  projectTimelines,
+  projectMetrics,
+  projectArchitectures,
   skillGroups,
   experiences,
   testimonials,
@@ -138,6 +149,11 @@ for (const source of [
 ]) {
   collect(source, dataStrings);
 }
+
+/* Generated project intelligence (metrics / architecture / timeline dari
+ * git-history) — juga dirender memakai t(), jadi wajib ikut dikumpulkan. */
+
+collect(generatedIntelligence, dataStrings);
 
 /* ============================================================
  * Final dictionary

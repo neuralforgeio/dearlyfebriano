@@ -79,6 +79,8 @@ interface ProjectPreviewProps {
 function ProjectPreview({
   project,
 }: ProjectPreviewProps): JSX.Element {
+  const { t } = useLanguage();
+
   const [isLoading, setIsLoading] =
     useState(true);
 
@@ -184,7 +186,7 @@ function ProjectPreview({
             <div className="absolute bottom-3 left-3">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 font-mono text-[10px] font-medium text-white backdrop-blur-md">
                 <span className="size-1.5 animate-pulse rounded-full bg-emerald-400" />
-                Live Preview
+                {t("Live Preview")}
               </span>
             </div>
           </>
@@ -288,7 +290,7 @@ function ProjectPreview({
           />
 
           <span className="font-mono text-xs">
-            Preview unavailable
+            {t("Preview unavailable")}
           </span>
         </div>
 
