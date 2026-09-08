@@ -44,6 +44,10 @@ import ProjectArchitecture from "@/dearlyfebriano/components/sections/ProjectArc
 
 import { getProjectArchitecture } from "@/dearlyfebriano/data/project-architecture";
 
+import ProjectTimeline from "@/dearlyfebriano/components/projects/ProjectTimeline";
+
+import { getProjectTimeline } from "@/dearlyfebriano/data/project-timeline";
+
 import { useUIStore } from "@/dearlyfebriano/store/ui-store";
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 
@@ -610,6 +614,8 @@ export default function ProjectDetailView(): JSX.Element {
 
   const previewUrl = getProjectPreviewUrl(project);
 
+  const timeline = getProjectTimeline(project.slug);
+
   const period = `${formatTimeline(project.startDate)} — ${
     project.endDate ? formatTimeline(project.endDate) : t("Present")
   }`;
@@ -857,6 +863,8 @@ export default function ProjectDetailView(): JSX.Element {
       <ProjectArchitecture architecture={architecture} />
 
       <ProjectGithub githubUrl={project.githubUrl} />
+
+      <ProjectTimeline timeline={timeline} />
 
       {/* ========================================
        * Gallery

@@ -43,10 +43,28 @@ export interface ProjectArchitecture {
   edges: ArchitectureEdge[];
 }
 
+export interface ProjectTimeline {
+  /**
+   * Optional because not every historical milestone
+   * has an exact known date.
+   *
+   * Examples:
+   * "2026-09"
+   * "Development"
+   * "Production"
+   * "Ongoing"
+   */
+  date?: string;
+
+  title: string;
+
+  description: string;
+}
+
 export type ProjectCategory = "web" | "mobile" | "api" | "opensource";
 export type ProjectStatus = "live" | "in-progress" | "archived";
 
-type ProjectPreviewMode = "auto" | "image" | "live"
+type ProjectPreviewMode = "auto" | "image" | "live";
 
 export interface ProjectMetric {
   label: string;
