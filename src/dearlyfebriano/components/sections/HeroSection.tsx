@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 import {
@@ -28,6 +28,8 @@ import OrbitingBorder from "@/dearlyfebriano/components/animations/OrbitingBorde
 import TextReveal from "@/dearlyfebriano/components/animations/TextReveal";
 
 import Typewriter from "@/dearlyfebriano/components/animations/Typewriter";
+
+import HireDialog from "@/dearlyfebriano/components/hire/HireDialog";
 
 import { SocialIcon } from "@/dearlyfebriano/components/ui/SocialIcon";
 
@@ -103,6 +105,8 @@ export default function HeroSection(): JSX.Element {
 
   const { t } = useLanguage();
 
+  const [hireDialogOpen, setHireDialogOpen] = useState(false);
+
   /* ============================================================
    * View My Work
    * ============================================================ */
@@ -119,12 +123,6 @@ export default function HeroSection(): JSX.Element {
    * Uses the centralized WhatsApp number
    * from profile.ts.
    * ============================================================ */
-
-  const whatsappUrl =
-    `https://wa.me/${profile.whatsappNumber}` +
-    `?text=${encodeURIComponent(
-      "Hi Dearly, I found your portfolio and would like to discuss a software project.",
-    )}`;
 
   return (
     <section
@@ -375,23 +373,18 @@ export default function HeroSection(): JSX.Element {
               <MagneticButton>
                 <Button
                   size="lg"
-                  asChild
+                  type="button"
                   variant="outline"
+                  onClick={() => setHireDialogOpen(true)}
                   className="group border-emerald-500/30 bg-emerald-500/5 text-foreground hover:border-emerald-500/50 hover:bg-emerald-500/10"
+                  aria-label={t("Open project inquiry")}
                 >
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={t("Hire me via WhatsApp")}
-                  >
-                    <MessageCircle
-                      aria-hidden
-                      className="size-4 text-emerald-500 transition-transform duration-300 group-hover:scale-110"
-                    />
+                  <MessageCircle
+                    aria-hidden
+                    className="size-4 text-emerald-500 transition-transform duration-300 group-hover:scale-110"
+                  />
 
-                    {t("Hire Me")}
-                  </a>
+                  {t("Hire Me")}
                 </Button>
               </MagneticButton>
 
@@ -589,6 +582,11 @@ export default function HeroSection(): JSX.Element {
 
         <ChevronDown className="size-4 animate-bounce" />
       </div>
+
+      <HireDialog
+        open={hireDialogOpen}
+        onClose={() => setHireDialogOpen(false)}
+      />
     </section>
   );
 }
