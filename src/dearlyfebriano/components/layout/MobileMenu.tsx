@@ -144,7 +144,7 @@ export function MobileMenu() {
             />
 
             {/* Header — monogram DF + nama + role + tombol tutup */}
-            <div className="flex items-center gap-3 border-b border-border/70 px-4 py-4">
+            <div className="flex items-center gap-3 border-b border-border px-4 py-4">
               <button
                 type="button"
                 onClick={() => navigate("home")}
@@ -167,7 +167,7 @@ export function MobileMenu() {
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label={t("Close menu")}
-                className="grid size-10 shrink-0 place-items-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2"
+                className="grid size-10 shrink-0 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2"
               >
                 <X className="size-5" aria-hidden="true" />
               </button>
@@ -223,7 +223,7 @@ export function MobileMenu() {
                             "grid size-9 shrink-0 place-items-center rounded-lg border transition-colors",
                             isActive
                               ? "border-primary/50 bg-primary/10 text-primary"
-                              : "border-border/70 bg-card/60 text-muted-foreground group-hover:text-foreground"
+                              : "border-border bg-card text-muted-foreground group-hover:text-foreground"
                           )}
                         >
                           <Icon className="size-[17px]" aria-hidden="true" />
@@ -257,7 +257,7 @@ export function MobileMenu() {
             </nav>
 
             {/* Footer — toggles + socials + availability */}
-            <div className="space-y-4 border-t border-border/70 px-4 py-4">
+            <div className="space-y-4 border-t border-border px-4 py-4">
               <div className="flex items-center justify-between gap-2">
                 <LanguageToggle />
                 <ThemeToggle />
@@ -270,14 +270,14 @@ export function MobileMenu() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${link.label} (${t("opens in new tab")})`}
-                      className="grid size-9 place-items-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+                      className="grid size-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
                     >
                       <SocialIcon icon={link.icon} className="size-[16px]" />
                     </a>
                   </li>
                 ))}
               </ul>
-              <p className="flex items-center justify-center gap-2.5 rounded-full border border-border/80 bg-card/60 px-4 py-2 text-xs text-muted-foreground">
+              <p className="flex items-center justify-center gap-2.5 rounded-full border border-border bg-card px-4 py-2 text-xs text-muted-foreground">
                 <span className="relative flex size-2 shrink-0" aria-hidden="true">
                   <span className="absolute inline-flex h-full w-full  rounded-full bg-success opacity-60" />
                   <span className="relative inline-flex h-full w-full rounded-full bg-success" />

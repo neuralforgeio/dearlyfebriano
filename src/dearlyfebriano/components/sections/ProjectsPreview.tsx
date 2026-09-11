@@ -134,17 +134,7 @@ function ProjectPreview({
 
         {isLoading && (
           <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/90">
-            <div className="relative flex items-center justify-center">
-              <div className="absolute size-16  rounded-full bg-primary/10" />
-
-              <LoaderCircle
-                aria-hidden
-                className="relative size-10 animate-spin text-primary"
-                strokeWidth={1.5}
-              />
-
-              <span className="absolute size-2 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary)/0.9)]" />
-            </div>
+            <LoaderCircle aria-hidden className="size-8 animate-spin text-muted-foreground" strokeWidth={1.5} />
           </div>
         )}
 
@@ -183,7 +173,7 @@ function ProjectPreview({
 
             <div className="absolute bottom-3 left-3">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 font-mono text-[10px] font-medium text-white">
-                <span className="size-1.5 animate-pulse rounded-full bg-success" />
+                <span className="size-1.5 rounded-full bg-success" />
                 {t("Live Preview")}
               </span>
             </div>
@@ -217,17 +207,7 @@ function ProjectPreview({
 
         {isLoading && (
           <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/90">
-            <div className="relative flex items-center justify-center">
-              <div className="absolute size-16  rounded-full bg-primary/10" />
-
-              <LoaderCircle
-                aria-hidden
-                className="relative size-10 animate-spin text-primary"
-                strokeWidth={1.5}
-              />
-
-              <span className="absolute size-2 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary)/0.9)]" />
-            </div>
+            <LoaderCircle aria-hidden className="size-8 animate-spin text-muted-foreground" strokeWidth={1.5} />
           </div>
         )}
 
@@ -366,7 +346,7 @@ function ProjectCard({
       className="h-full"
       y={30}
     >
-      <div className="h-full cursor-pointer overflow-hidden rounded-2xl border border-border/70 bg-card/60 transition-all duration-300 hover:border-foreground/25 hover:shadow-xl hover:shadow-primary/10">
+      <div className="h-full cursor-pointer overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-foreground/25 hover:shadow-md">
         <div
           role="link"
           tabIndex={0}
@@ -414,7 +394,7 @@ function ProjectCard({
               )}
             </div>
 
-            <div className="flex items-center justify-between border-t border-border/60 pt-4">
+            <div className="flex items-center justify-between border-t border-border pt-4">
               <div className="flex items-center gap-4">
                 {project.liveUrl && (
                   <a

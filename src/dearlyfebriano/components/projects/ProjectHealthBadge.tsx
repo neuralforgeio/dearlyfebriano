@@ -182,7 +182,7 @@ export default function ProjectHealthBadge({
     return (
       <span
         className={cn(
-          "inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-black/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground",
+          "inline-flex items-center gap-1.5 rounded-full border border-border bg-black/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground",
           compact && "px-2 py-0.5",
         )}
       >
@@ -204,7 +204,7 @@ export default function ProjectHealthBadge({
         onClick={() => void loadHealth(true)}
         title={t("Retry project health check")}
         className={cn(
-          "inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-black/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground",
+          "inline-flex items-center gap-1.5 rounded-full border border-border bg-black/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground",
           compact && "px-2 py-0.5",
         )}
       >

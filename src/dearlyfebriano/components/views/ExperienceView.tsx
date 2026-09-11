@@ -56,7 +56,7 @@ function TimelineEntry({
       {/* Node dot on the rail — glow anchors it visually to the line */}
       <span
         aria-hidden
-        className="absolute left-3 top-7 z-10 size-4 rounded-full bg-primary shadow-[0_0_12px_rgba(139,92,246,0.45)] ring-4 ring-background md:left-1/2 md:-translate-x-1/2"
+        className="absolute left-3 top-7 z-10 size-4 rounded-full bg-primary ring-4 ring-background md:left-1/2 md:-translate-x-1/2"
       />
       {/* Desktop connector: horizontal line bridging the grid gap between
           the rail dot and the card edge, so the dot feels anchored to the
@@ -81,7 +81,7 @@ function TimelineEntry({
       >
         <article
           className={cn(
-            "rounded-2xl border border-border/70 bg-card/60 p-6 transition-colors hover:border-foreground/25",
+            "rounded-xl border border-border bg-card p-6 transition-colors hover:border-foreground/25",
             isLeft && "md:text-right"
           )}
         >

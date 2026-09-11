@@ -77,7 +77,7 @@ export default function ProjectArchitecture({
             )}
           />
 
-          <div className="hidden items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 sm:flex">
+          <div className="hidden items-center gap-2 rounded-md border border-border bg-secondary px-3 py-1.5 sm:flex">
             <GitBranch className="size-3.5 text-primary" aria-hidden />
 
             <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
@@ -92,8 +92,8 @@ export default function ProjectArchitecture({
        * ====================================================== */}
 
       <FadeIn delay={0.08} className="mt-6">
-        <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
-          <div className="border-b border-border/60 bg-background/30 px-5 py-4">
+        <div className="overflow-hidden rounded-xl border border-border bg-card">
+          <div className="border-b border-border bg-background/30 px-5 py-4">
             <div className="flex items-center gap-3">
               <div className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
                 <Layers3 className="size-4" aria-hidden />
@@ -118,7 +118,7 @@ export default function ProjectArchitecture({
 
           <div className="overflow-x-auto bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.055)_1px,transparent_1px)] [background-size:20px_20px]">
             <div className="min-w-[760px] p-6 sm:p-8">
-              <div className="relative aspect-[16/10] min-h-[560px] w-full overflow-hidden rounded-2xl border border-border/60 bg-background/70">
+              <div className="relative aspect-[16/10] min-h-[560px] w-full overflow-hidden rounded-xl border border-border bg-background/70">
                 <svg
                   aria-hidden="true"
                   className="absolute inset-0 size-full"
@@ -227,12 +227,12 @@ export default function ProjectArchitecture({
                         setSelectedNodeId(isSelected ? null : node.id)
                       }
                       className={[
-                        "absolute -translate-x-1/2 -translate-y-1/2 rounded-2xl border text-left transition-all duration-300",
+                        "absolute -translate-x-1/2 -translate-y-1/2 rounded-xl border text-left transition-all duration-300",
                         "hover:-translate-x-1/2 hover:-translate-y-[calc(50%+3px)]",
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70",
                         isSelected
-                          ? "z-20 border-primary/70 bg-primary/10 shadow-xl shadow-primary/10"
-                          : "z-10 border-border/80 bg-card shadow-card hover:border-foreground/25",
+                          ? "z-20 border-primary/70 bg-primary/10 shadow-md"
+                          : "z-10 border-border bg-card shadow-sm hover:border-foreground/25",
                       ].join(" ")}
                       style={{
                         left: `${node.x}%`,
@@ -252,7 +252,7 @@ export default function ProjectArchitecture({
                             className={[
                               "size-1.5 rounded-full",
                               isSelected
-                                ? "bg-primary shadow-[0_0_10px_hsl(var(--primary)/0.8)]"
+                                ? "bg-primary"
                                 : "bg-muted-foreground/40",
                             ].join(" ")}
                           />
@@ -278,7 +278,7 @@ export default function ProjectArchitecture({
 
                 {!selectedNode && (
                   <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-muted-foreground">
+                    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-muted-foreground">
                       <Info className="size-3" aria-hidden />
 
                       {t("Click a node to inspect it")}
@@ -294,7 +294,7 @@ export default function ProjectArchitecture({
            * ================================================== */}
 
           {selectedNode && (
-            <div className="border-t border-border/70 bg-background/30 px-5 py-5 sm:px-6">
+            <div className="border-t border-border bg-background/30 px-5 py-5 sm:px-6">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                   <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary">
@@ -315,7 +315,7 @@ export default function ProjectArchitecture({
                 <button
                   type="button"
                   onClick={() => setSelectedNodeId(null)}
-                  className="self-start rounded-full border border-border/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground"
+                  className="self-start rounded-full border border-border px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground"
                 >
                   {t("Close")}
                 </button>

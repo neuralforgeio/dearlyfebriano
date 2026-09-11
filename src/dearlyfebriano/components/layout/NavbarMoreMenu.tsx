@@ -131,7 +131,7 @@ export function NavbarMoreMenu({ items, activeView }: NavbarMoreMenuProps): JSX.
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={panelTransition}
             onKeyDown={handleMenuKeyDown}
-            className="absolute right-0 top-full z-50 mt-2 w-44 origin-top-right rounded-xl border border-border/70 bg-card p-1 shadow-pop"
+            className="absolute right-0 top-full z-50 mt-2 w-44 origin-top-right rounded-xl border border-border bg-card p-1 shadow-md"
           >
             <ul ref={listRef} className="flex flex-col">
               {items.map((item) => {

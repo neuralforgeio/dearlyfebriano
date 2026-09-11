@@ -201,8 +201,8 @@ export default function TechStackGraph({
        * Graph
        * ====================================================== */}
 
-      <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
-        <div className="border-b border-border/70 bg-background/30 p-5 sm:p-6">
+      <div className="overflow-hidden rounded-xl border border-border bg-card">
+        <div className="border-b border-border bg-background/30 p-5 sm:p-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div className="flex items-start gap-3">
               <div className="grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">
@@ -226,7 +226,7 @@ export default function TechStackGraph({
               </div>
             </div>
 
-            <div className="flex shrink-0 items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5">
+            <div className="flex shrink-0 items-center gap-2 rounded-md border border-border bg-secondary px-3 py-1.5">
               <Sparkles className="size-3.5 text-primary" aria-hidden />
 
               <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
@@ -242,7 +242,7 @@ export default function TechStackGraph({
 
         <div className="overflow-x-auto">
           <div className="min-w-[760px] p-4 sm:p-6">
-            <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-background/50">
+            <div className="relative overflow-hidden rounded-xl border border-border bg-background/50">
               {/* Grid */}
 
               <div
@@ -500,7 +500,7 @@ export default function TechStackGraph({
          * Legend
          * ====================================================== */}
 
-        <div className="border-t border-border/70 bg-background/20 p-4 sm:px-6">
+        <div className="border-t border-border bg-background/20 p-4 sm:px-6">
           <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
             <span className="inline-flex items-center gap-2">
               <span className="size-2 rounded-full bg-primary" />
@@ -515,7 +515,7 @@ export default function TechStackGraph({
             </span>
 
             <span className="inline-flex items-center gap-2">
-              <span className="h-px w-6 border-t border-dashed border-primary/40" />
+              <span className="h-px w-6 border-t border-dashed border-border" />
 
               {t("Relationship")}
             </span>
@@ -533,7 +533,7 @@ export default function TechStackGraph({
 
       {selectedTech && (
         <FadeIn y={12} className="mt-5">
-          <div className="rounded-2xl border border-primary/25 bg-primary/5 p-5">
+          <div className="rounded-xl border border-border bg-card p-5">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <div className="flex items-center gap-2">
@@ -558,7 +558,7 @@ export default function TechStackGraph({
               <button
                 type="button"
                 onClick={() => handleSelectTech(null)}
-                className="inline-flex shrink-0 items-center justify-center rounded-xl border border-border/70 bg-background/50 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/30 hover:text-foreground"
+                className="inline-flex shrink-0 items-center justify-center rounded-xl border border-border bg-background/50 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground"
               >
                 {t("Clear selection")}
               </button>
@@ -570,7 +570,7 @@ export default function TechStackGraph({
                   key={project.slug}
                   type="button"
                   onClick={() => navigate("project-detail", project.slug)}
-                  className="group flex items-center justify-between rounded-xl border border-border/70 bg-background/50 p-4 text-left transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:bg-card"
+                  className="group flex items-center justify-between rounded-xl border border-border bg-background/50 p-4 text-left transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:bg-card"
                 >
                   <div className="min-w-0">
                     <p className="font-medium text-foreground transition-colors group-hover:text-primary">

@@ -24,7 +24,7 @@ export function LanguageToggle({ className }: { className?: string }) {
       aria-label="Language"
       title="Language / Bahasa"
       className={cn(
-        "flex h-10 items-center gap-0.5 rounded-full border border-border/70 bg-card/40 p-0.5",
+        "flex h-10 items-center gap-0.5 rounded-full border border-border bg-card p-0.5",
         className
       )}
     >

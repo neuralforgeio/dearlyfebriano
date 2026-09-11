@@ -53,7 +53,7 @@ export default function NotesPreview(): JSX.Element {
                     navigate("note-detail", article.slug);
                   }
                 }}
-                className=" group relative flex h-full cursor-pointer flex-col rounded-2xl border border-border/70 bg-card/60 p-6 transition-all duration-300.5 hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className=" group relative flex h-full cursor-pointer flex-col rounded-xl border border-border bg-card p-6 transition-all duration-300.5 hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <div className="flex items-center gap-2">
                   <span
@@ -80,7 +80,7 @@ export default function NotesPreview(): JSX.Element {
                   {article.tags.slice(0, 2).map((tag) => (
                     <li
                       key={tag}
-                      className="inline-flex items-center gap-1 rounded-full border border-border/70 px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground"
+                      className="inline-flex items-center gap-1 rounded-full border border-border px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground"
                     >
                       <Hash className="size-2.5 text-primary/70" aria-hidden />
                       {tag}

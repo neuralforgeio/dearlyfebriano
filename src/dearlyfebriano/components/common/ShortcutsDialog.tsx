@@ -152,7 +152,7 @@ export default function ShortcutsDialog(): JSX.Element {
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
             onClick={(event) => event.stopPropagation()}
-            className="card-surface relative w-full max-w-md overflow-hidden rounded-2xl border border-border/80 shadow-2xl shadow-primary/10"
+            className="card-surface relative w-full max-w-md overflow-hidden rounded-xl border border-border shadow-2xl "
           >
             {/* Aksen gradient tipis di tepi atas — konsisten tema site. */}
             <div
@@ -161,7 +161,7 @@ export default function ShortcutsDialog(): JSX.Element {
             />
 
             {/* Header */}
-            <div className="flex items-center justify-between gap-3 border-b border-border/70 px-5 py-4">
+            <div className="flex items-center justify-between gap-3 border-b border-border px-5 py-4">
               <div className="flex items-center gap-3">
                 <span className="grid size-9 place-items-center rounded-xl border border-primary/30 bg-primary/10 text-primary">
                   <Keyboard className="size-4" aria-hidden />
@@ -180,7 +180,7 @@ export default function ShortcutsDialog(): JSX.Element {
                 type="button"
                 aria-label={t("Close preview")}
                 onClick={() => setOpen(false)}
-                className="grid size-8 place-items-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="grid size-8 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <X className="size-4" aria-hidden />
               </button>
@@ -230,7 +230,7 @@ export default function ShortcutsDialog(): JSX.Element {
             </div>
 
             {/* Footer hint */}
-            <div className="border-t border-border/70 px-5 py-3">
+            <div className="border-t border-border px-5 py-3">
               <p className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-center font-mono text-[11px] text-muted-foreground">
                 {t("Press")}
                 <KeyCap>?</KeyCap>

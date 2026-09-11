@@ -45,14 +45,14 @@ export default function SkillsSection(): JSX.Element {
                   "relative rounded-full px-4 py-2 text-sm font-medium transition-colors",
                   isActive
                     ? "text-primary-foreground"
-                    : "border border-border/70 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
+                    : "border border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground"
                 )}
               >
                 {isActive && (
                   <motion.span
                     aria-hidden
                     layoutId="skills-active-tab"
-                    className="absolute inset-0 rounded-full bg-primary shadow-lg shadow-primary/25"
+                    className="absolute inset-0 rounded-full bg-primary shadow-md"
                     transition={
                       reducedMotion
                         ? { duration: 0 }

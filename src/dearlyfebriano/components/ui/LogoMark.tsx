@@ -25,7 +25,7 @@ export function LogoMark({ className, label = "Dearly Febriano" }: LogoMarkProps
         className
       )}
     >
-      <span className="font-serif text-[13px] font-semibold leading-none tracking-tight text-foreground">
+      <span className="font-sans text-[13px] font-semibold leading-none tracking-tight text-foreground">
         {profile.initials}
       </span>
     </span>

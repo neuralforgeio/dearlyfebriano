@@ -71,7 +71,7 @@ function MessageCard({ message, onDelete }: MessageCardProps): JSX.Element {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.18 } }}
       transition={{ type: "spring", stiffness: 320, damping: 30 }}
-      className="group card-surface rounded-2xl border border-border/70 p-5 transition-colors hover:border-primary/30"
+      className="group card-surface rounded-xl border border-border p-5 transition-colors hover:border-foreground/25"
     >
       <div className="flex items-start gap-4">
         {/* Avatar initials */}
@@ -113,7 +113,7 @@ function MessageCard({ message, onDelete }: MessageCardProps): JSX.Element {
             ) : (
               <span
                 title={t("Stored in database (email not configured)")}
-                className="inline-flex items-center rounded-full border border-border/70 px-2.5 py-0.5 font-mono text-[10px] text-muted-foreground"
+                className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 font-mono text-[10px] text-muted-foreground"
               >
                 {t("stored")}
               </span>
@@ -142,7 +142,7 @@ function MessageCard({ message, onDelete }: MessageCardProps): JSX.Element {
 
 function MessageSkeleton(): JSX.Element {
   return (
-    <div className="space-y-3 rounded-2xl border border-border/70 bg-card/60 p-5">
+    <div className="space-y-3 rounded-xl border border-border bg-card p-5">
       <div className="flex items-center gap-4">
         <Skeleton className="size-10 rounded-full" />
         <div className="flex-1 space-y-2">
@@ -350,7 +350,7 @@ export default function ContactMessagesSection({
     <FadeIn y={20} delay={0.15} className="mt-14 sm:mt-16">
       <section
         aria-label={t("Owner tools — recent contact messages")}
-        className="card-surface rounded-3xl border border-border/60 p-6 sm:p-8"
+        className="card-surface rounded-xl border border-border p-6 sm:p-8"
       >
         {/* Header */}
         <div className="flex flex-wrap items-center gap-3">
@@ -364,7 +364,7 @@ export default function ContactMessagesSection({
               {isAdmin && messages.length > 0 && (
                 <span
                   aria-live="polite"
-                  className="ml-2 inline-flex items-center rounded-full border border-border/70 bg-secondary px-2.5 py-0.5 font-mono text-[10px] text-muted-foreground"
+                  className="ml-2 inline-flex items-center rounded-full border border-border bg-secondary px-2.5 py-0.5 font-mono text-[10px] text-muted-foreground"
                 >
                   {messages.length}
                 </span>
@@ -435,7 +435,7 @@ export default function ContactMessagesSection({
               transition={{ duration: 0.25, ease: "easeOut" }}
               className="overflow-hidden"
             >
-              <div className="mt-5 flex flex-col gap-2 rounded-2xl border border-border/70 bg-card/50 p-4 sm:flex-row sm:items-end">
+              <div className="mt-5 flex flex-col gap-2 rounded-xl border border-border bg-card p-4 sm:flex-row sm:items-end">
                 <div className="flex-1">
                   <Label
                     htmlFor="contact-admin-key"
@@ -507,7 +507,7 @@ export default function ContactMessagesSection({
                     "rounded-full border px-3 py-1 font-mono text-[11px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                     activeSubject === "all"
                       ? "border-primary/60 bg-primary/10 text-primary"
-                      : "border-border/60 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
+                      : "border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground"
                   )}
                 >
                   {t("all")} ({messages.length})
@@ -524,7 +524,7 @@ export default function ContactMessagesSection({
                         "rounded-full border px-3 py-1 font-mono text-[11px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                         isActive
                           ? "border-primary/60 bg-primary/10 text-primary"
-                          : "border-border/60 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
+                          : "border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground"
                       )}
                     >
                       {t(subject)} ({count})
@@ -542,7 +542,7 @@ export default function ContactMessagesSection({
             ) : loadError ? (
               <div
                 role="alert"
-                className="flex flex-col items-center gap-3 rounded-2xl border border-destructive/30 bg-destructive/5 p-8 text-center"
+                className="flex flex-col items-center gap-3 rounded-xl border border-destructive/30 bg-destructive/5 p-8 text-center"
               >
                 <p className="text-sm text-muted-foreground">{t(loadError)}</p>
                 <Button type="button" variant="outline" size="sm" onClick={handleRetry}>
@@ -551,7 +551,7 @@ export default function ContactMessagesSection({
                 </Button>
               </div>
             ) : filteredMessages.length === 0 ? (
-              <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed border-border/70 p-10 text-center">
+              <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-border p-10 text-center">
                 <Inbox aria-hidden className="size-8 text-muted-foreground/60" />
                 <p className="text-sm text-muted-foreground">
                   {activeSubject === "all"
@@ -598,7 +598,7 @@ export default function ContactMessagesSection({
                   {t("will be permanently removed from recent messages.")}
                 </p>
                 {pendingDelete?.message && (
-                  <p className="mt-2 max-h-24 overflow-y-auto whitespace-pre-wrap rounded-lg border border-border/70 bg-secondary/50 p-3 font-mono text-xs text-muted-foreground">
+                  <p className="mt-2 max-h-24 overflow-y-auto whitespace-pre-wrap rounded-lg border border-border bg-secondary/50 p-3 font-mono text-xs text-muted-foreground">
                     {pendingDelete.message.slice(0, 300)}
                     {pendingDelete.message.length > 300 ? "…" : ""}
                   </p>

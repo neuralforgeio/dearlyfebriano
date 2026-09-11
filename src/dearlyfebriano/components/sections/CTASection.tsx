@@ -26,7 +26,7 @@ export default function CTASection(): JSX.Element {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: reducedMotion ? 0.3 : 0.5, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-2xl bg-foreground px-6 py-14 sm:px-12 sm:py-20"
+          className="relative overflow-hidden rounded-xl bg-foreground px-6 py-14 sm:px-12 sm:py-20"
         >
           <div className="relative z-10 flex flex-col items-center gap-6 text-center">
             <p className="eyebrow text-background/70">

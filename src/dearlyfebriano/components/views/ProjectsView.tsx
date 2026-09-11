@@ -208,7 +208,7 @@ function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
         {/* Small live indicator */}
         <div className="absolute bottom-3 left-3 flex items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/70 px-2.5 py-1 text-[10px] font-medium text-white">
-            <span className="size-1.5 animate-pulse rounded-full bg-success" />
+            <span className="size-1.5 rounded-full bg-success" />
             {t("Live Preview")}
           </span>
 
@@ -329,7 +329,7 @@ function ProjectCard({ project, index }: ProjectCardProps): JSX.Element {
           aria-label={`${project.title} — ${t("open project details")}`}
           onClick={openDetail}
           onKeyDown={handleKeyDown}
-          className=" group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/60 transition-all duration-300 hover:border-foreground/25 hover:shadow-xl hover:shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className=" group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-foreground/25 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           {/* ==========================================
            * Ghost index number
@@ -378,7 +378,7 @@ function ProjectCard({ project, index }: ProjectCardProps): JSX.Element {
               ))}
 
               {hiddenTech > 0 && (
-                <li className="inline-flex items-center rounded-full border border-border/70 px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground">
+                <li className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground">
                   +{hiddenTech}
                 </li>
               )}
@@ -551,7 +551,7 @@ export default function ProjectsView(): JSX.Element {
                   "relative rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
                     ? "border-primary text-primary-foreground"
-                    : "border-border/70 text-muted-foreground hover:border-foreground/25 hover:text-foreground",
+                    : "border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground",
                 )}
               >
                 {isActive && (
@@ -730,7 +730,7 @@ export default function ProjectsView(): JSX.Element {
           type="button"
           onClick={() => setShowDiagnostics((value) => !value)}
           aria-expanded={showDiagnostics}
-          className="group mx-auto flex items-center gap-2 rounded-full border border-border/60 bg-card/30 px-4 py-2 eyebrow transition-all hover:border-primary/30 hover:bg-card/60 hover:text-foreground"
+          className="group mx-auto flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 eyebrow transition-all hover:border-foreground/25 hover:bg-card hover:text-foreground"
         >
           <span className="size-1.5 rounded-full bg-primary/60 transition-all group-hover:bg-primary" />
 

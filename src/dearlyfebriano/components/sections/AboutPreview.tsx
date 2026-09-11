@@ -63,36 +63,30 @@ export default function AboutPreview(): JSX.Element {
           </FadeIn>
 
           <FadeIn delay={0.15} x={16} y={0}>
-            <div className="card-surface rounded-2xl p-6 font-mono text-sm leading-7">
+            <div className="card-surface rounded-lg p-6 font-mono text-sm leading-7">
               <p className="text-muted-foreground">{"// currently"}</p>
               <p className="text-muted-foreground">{"{"}</p>
               <p className="pl-4">
-                <span className="text-primary">"role"</span>
+                <span className="text-foreground">"role"</span>
                 <span className="text-muted-foreground">{": "}</span>
-                <span className="text-success">"{t(profile.roles[0])}"</span>
+                <span className="text-primary">"{t(profile.roles[0])}"</span>
                 <span className="text-muted-foreground">,</span>
               </p>
               <p className="pl-4">
-                <span className="text-primary">"focus"</span>
+                <span className="text-foreground">"focus"</span>
                 <span className="text-muted-foreground">{": ["}</span>
-                <span className="text-success">"SaaS analytics"</span>
+                <span className="text-primary">"SaaS analytics"</span>
                 <span className="text-muted-foreground">{", "}</span>
-                <span className="text-success">"DX tooling"</span>
+                <span className="text-primary">"DX tooling"</span>
                 <span className="text-muted-foreground">{"]"}</span>
                 <span className="text-muted-foreground">,</span>
               </p>
               <p className="pl-4">
-                <span className="text-primary">"status"</span>
+                <span className="text-foreground">"status"</span>
                 <span className="text-muted-foreground">{": "}</span>
-                <span className="text-success">"{t(profile.availability)}"</span>
+                <span className="text-primary">"{t(profile.availability)}"</span>
               </p>
-              <p className="text-muted-foreground">
-                {"}"}
-                <span
-                  aria-hidden
-                  className="ml-2 inline-block h-4 w-2 translate-y-0.5 animate-pulse bg-primary/60"
-                />
-              </p>
+              <p className="text-muted-foreground">{"}"}</p>
             </div>
           </FadeIn>
         </div>
@@ -101,7 +95,7 @@ export default function AboutPreview(): JSX.Element {
           {TECH_STRIP.map((name) => (
             <StaggerItem
               key={name}
-              className="grid size-12 place-items-center rounded-xl border border-border/70 bg-card/60 text-muted-foreground transition-all hover:border-foreground/25 hover:text-primary hover:shadow-lg hover:shadow-primary/10"
+              className="grid size-12 place-items-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground"
             >
               <TechIcon name={name} className="size-6" />
               <span className="sr-only">{name}</span>

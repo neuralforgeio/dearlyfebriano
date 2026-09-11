@@ -136,7 +136,7 @@ export default function CommandPalette(): JSX.Element {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="card-surface w-full max-w-lg overflow-hidden rounded-2xl border border-border/80 shadow-2xl shadow-primary/10"
+            className="card-surface w-full max-w-lg overflow-hidden rounded-xl border border-border shadow-2xl "
             onClick={(event) => event.stopPropagation()}
           >
             <Command loop>
@@ -291,7 +291,7 @@ export default function CommandPalette(): JSX.Element {
                 </CommandGroup>
               </CommandList>
 
-              <div className="flex items-center justify-between border-t border-border/60 px-4 py-2.5 font-mono text-[10px] text-muted-foreground">
+              <div className="flex items-center justify-between border-t border-border px-4 py-2.5 font-mono text-[10px] text-muted-foreground">
                 <span className="flex items-center gap-1.5">
                   <kbd className="rounded border border-border bg-secondary px-1.5 py-0.5">↑↓</kbd>
                   {t("navigate")}

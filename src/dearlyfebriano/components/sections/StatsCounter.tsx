@@ -237,7 +237,7 @@ export default function StatsCounter(): JSX.Element {
                    * Number — serif, tabular count-up
                    * ========================================== */}
 
-                  <span className="font-serif text-3xl font-semibold tabular-nums text-foreground sm:text-4xl">
+                  <span className="text-3xl font-semibold tabular-nums text-foreground sm:text-4xl">
                     <CountUp
                       value={
                         stat.value

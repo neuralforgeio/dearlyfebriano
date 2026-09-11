@@ -167,7 +167,7 @@ export default function ProjectGithub({
     return (
       <section aria-label={t("GitHub verification")} className="mt-14">
         <FadeIn>
-          <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
+          <div className="overflow-hidden rounded-xl border border-border bg-card">
             <div className="p-5 sm:p-6">
               <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-start gap-4">
@@ -195,7 +195,7 @@ export default function ProjectGithub({
                 <button
                   type="button"
                   onClick={loadRepository}
-                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-primary/20 transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-white shadow-lg transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
                 >
                   <Github className="size-4" aria-hidden />
 
@@ -217,7 +217,7 @@ export default function ProjectGithub({
     return (
       <section aria-label={t("GitHub verification")} className="mt-14">
         <FadeIn>
-          <div className="rounded-3xl border border-border/70 bg-card/50">
+          <div className="rounded-xl border border-border bg-card">
             <div className="flex min-h-[180px] flex-col items-center justify-center p-6 text-center">
               <div className="relative grid size-14 place-items-center">
                 <span className="absolute size-14  rounded-full bg-primary/10" />
@@ -251,7 +251,7 @@ export default function ProjectGithub({
     return (
       <section aria-label={t("GitHub verification")} className="mt-14">
         <FadeIn>
-          <div className="rounded-3xl border border-amber-500/20 bg-amber-500/5">
+          <div className="rounded-xl border border-amber-500/20 bg-amber-500/5">
             <div className="flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
               <div className="flex items-start gap-4">
                 <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-amber-500/10 text-amber-500">
@@ -277,7 +277,7 @@ export default function ProjectGithub({
                 <button
                   type="button"
                   onClick={loadRepository}
-                  className="inline-flex items-center gap-2 rounded-xl border border-border/70 bg-background/50 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-foreground/25"
+                  className="inline-flex items-center gap-2 rounded-xl border border-border bg-background/50 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-foreground/25"
                 >
                   {t("Retry")}
                 </button>
@@ -312,15 +312,15 @@ export default function ProjectGithub({
   return (
     <section aria-label={t("GitHub verification")} className="mt-14">
       <FadeIn>
-        <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
+        <div className="overflow-hidden rounded-xl border border-border bg-card">
           {/* ==================================================
            * Header
            * ================================================== */}
 
-          <div className="border-b border-border/70 bg-background/30 p-5 sm:p-6">
+          <div className="border-b border-border bg-background/30 p-5 sm:p-6">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
               <div className="flex items-start gap-4">
-                <div className="grid size-12 shrink-0 place-items-center rounded-2xl bg-primary/10 text-primary">
+                <div className="grid size-12 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
                   <Github className="size-6" aria-hidden />
                 </div>
 
@@ -353,7 +353,7 @@ export default function ProjectGithub({
                 <button
                   type="button"
                   onClick={loadRepository}
-                  className="inline-flex items-center gap-2 rounded-xl border border-border/70 bg-background/50 px-3.5 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground"
+                  className="inline-flex items-center gap-2 rounded-xl border border-border bg-background/50 px-3.5 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground"
                 >
                   {t("Refresh")}
                 </button>
@@ -376,7 +376,7 @@ export default function ProjectGithub({
            * Metrics
            * ================================================== */}
 
-          <div className="grid gap-px border-b border-border/70 bg-border/50 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-px border-b border-border bg-border/50 sm:grid-cols-2 lg:grid-cols-4">
             <Metric
               icon={<Star className="size-4" aria-hidden />}
               label={t("Stars")}
@@ -454,7 +454,7 @@ export default function ProjectGithub({
            * Repository metadata
            * ================================================== */}
 
-          <div className="border-t border-border/70 bg-background/20 px-5 py-4 sm:px-6">
+          <div className="border-t border-border bg-background/20 px-5 py-4 sm:px-6">
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[10px] text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
                 <CheckCircle2
@@ -495,7 +495,7 @@ interface MetricProps {
 
 function Metric({ icon, label, value }: MetricProps): JSX.Element {
   return (
-    <div className="bg-card/70 p-4 sm:p-5">
+    <div className="bg-card p-4 sm:p-5">
       <div className="flex items-center gap-2 text-muted-foreground">
         <span className="text-primary">{icon}</span>
 

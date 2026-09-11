@@ -68,7 +68,7 @@ function FeaturedCard({ article }: { article: Article }): JSX.Element {
               navigate("note-detail", article.slug);
             }
           }}
-          className="card-surface group relative block w-full cursor-pointer overflow-hidden rounded-2xl p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:p-8"
+          className="card-surface group relative block w-full cursor-pointer overflow-hidden rounded-xl p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:p-8"
         >
           {/* Ambient orbs */}
 
@@ -137,7 +137,7 @@ function ArticleCard({ article, index }: { article: Article; index: number }): J
                 navigate("note-detail", article.slug);
               }
             }}
-            className=" group relative flex h-full cursor-pointer flex-col rounded-2xl border border-border/70 bg-card/60 p-6 transition-all duration-300.5 hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className=" group relative flex h-full cursor-pointer flex-col rounded-xl border border-border bg-card p-6 transition-all duration-300.5 hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             {/* Ghost index number */}
             <span
@@ -169,14 +169,14 @@ function ArticleCard({ article, index }: { article: Article; index: number }): J
               {visibleTags.map((tag) => (
                 <li
                   key={tag}
-                  className="inline-flex items-center gap-1 rounded-full border border-border bg-card/60 px-2.5 py-0.5 font-mono text-[11px] text-foreground/75"
+                  className="inline-flex items-center gap-1 rounded-full border border-border bg-card px-2.5 py-0.5 font-mono text-[11px] text-foreground/75"
                 >
                   <Hash className="size-2.5 text-primary/70" aria-hidden />
                   {tag}
                 </li>
               ))}
               {hiddenTags > 0 && (
-                <li className="inline-flex items-center rounded-full border border-border bg-card/60 px-2.5 py-0.5 font-mono text-[11px] text-foreground/75">
+                <li className="inline-flex items-center rounded-full border border-border bg-card px-2.5 py-0.5 font-mono text-[11px] text-foreground/75">
                   +{hiddenTags}
                 </li>
               )}
@@ -283,7 +283,7 @@ export default function NotesView(): JSX.Element {
               "relative rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
               activeTag === null
                 ? "border-primary text-primary"
-                : "border-border/70 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
+                : "border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground"
             )}
           >
             {t("All")}
@@ -302,7 +302,7 @@ export default function NotesView(): JSX.Element {
                   "relative rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
                     ? "border-primary text-primary"
-                    : "border-border/70 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
+                    : "border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground"
                 )}
               >
                 {tag}

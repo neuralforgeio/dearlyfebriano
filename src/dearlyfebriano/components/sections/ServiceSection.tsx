@@ -136,8 +136,8 @@ export default function ServicesSection(): JSX.Element {
            * ================================================= */}
 
           <FadeIn x={-24} className="relative">
-            <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/60 p-2">
-              <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-background">
+            <div className="overflow-hidden rounded-xl border border-border bg-card p-2">
+              <div className="relative overflow-hidden rounded-xl border border-border bg-background">
                 <Image
                   src={
                     lang === "id"
@@ -168,7 +168,7 @@ export default function ServicesSection(): JSX.Element {
             {/* Floating label */}
 
             <div className="absolute -bottom-4 left-4 right-4 sm:left-8 sm:right-8">
-              <div className="card-surface flex items-center justify-between gap-4 rounded-2xl border border-border px-4 py-3">
+              <div className="card-surface flex items-center justify-between gap-4 rounded-xl border border-border px-4 py-3">
                 <div className="flex min-w-0 items-center gap-3">
                   <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
                     <Code2 className="size-4" aria-hidden />
@@ -200,7 +200,7 @@ export default function ServicesSection(): JSX.Element {
           <FadeIn x={24} delay={0.1} className="pt-2 lg:pt-4">
             {/* Intro */}
 
-            <div className="rounded-2xl border border-border/70 bg-card/40 p-6">
+            <div className="rounded-xl border border-border bg-card p-6">
               <div className="flex items-start gap-4">
                 <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
                   <Sparkles className="size-5" aria-hidden />
@@ -243,7 +243,7 @@ export default function ServicesSection(): JSX.Element {
                 {SERVICES.map((service) => (
                   <div
                     key={service}
-                    className="group flex items-start gap-2.5 rounded-xl border border-border/60 bg-card/40 px-3.5 py-3 transition-colors hover:border-foreground/25 hover:bg-card/70"
+                    className="group flex items-start gap-2.5 rounded-xl border border-border bg-card px-3.5 py-3 transition-colors hover:border-foreground/25 hover:bg-card"
                   >
                     <CheckCircle2
                       className="mt-0.5 size-4 shrink-0 text-primary"
@@ -262,7 +262,7 @@ export default function ServicesSection(): JSX.Element {
              * Pricing
              * ================================================= */}
 
-            <div className="mt-6 rounded-2xl border border-border/70 bg-card/40 p-5">
+            <div className="mt-6 rounded-xl border border-border bg-card p-5">
               <div className="flex items-center gap-3">
                 <div className="grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">
                   <Code2 className="size-5" aria-hidden />
@@ -306,7 +306,7 @@ export default function ServicesSection(): JSX.Element {
              * ================================================= */}
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-border/70 bg-card/40 p-5">
+              <div className="rounded-xl border border-border bg-card p-5">
                 <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                   {t("Payment")}
                 </p>
@@ -320,7 +320,7 @@ export default function ServicesSection(): JSX.Element {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-border/70 bg-card/40 p-5">
+              <div className="rounded-xl border border-border bg-card p-5">
                 <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                   {t("Final Payment")}
                 </p>
@@ -339,7 +339,7 @@ export default function ServicesSection(): JSX.Element {
              * Security
              * ================================================= */}
 
-            <div className="mt-6 rounded-2xl border border-border bg-transparent p-5">
+            <div className="mt-6 rounded-xl border border-border bg-transparent p-5">
               <div className="flex items-start gap-3">
                 <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-secondary text-success">
                   <ShieldCheck className="size-5" aria-hidden />
@@ -383,7 +383,7 @@ export default function ServicesSection(): JSX.Element {
           <div className="mt-10 grid gap-4 md:grid-cols-5">
             {WORKFLOW.map((step, index) => (
               <div key={step.number} className="relative h-full">
-                <div className="h-full rounded-2xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:border-foreground/25 hover:shadow-lg hover:shadow-primary/5">
+                <div className="h-full rounded-xl border border-border bg-card p-5 transition-colors duration-200 hover:border-foreground/25 hover:shadow-md">
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-xs text-primary">
                       {step.number}
@@ -418,7 +418,7 @@ export default function ServicesSection(): JSX.Element {
           <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
             {/* Heading card */}
 
-            <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6">
+            <div className="rounded-xl border border-primary/20 bg-primary/5 p-6">
               <p className="eyebrow text-primary">
                 {t("Why work with me?")}
               </p>
@@ -444,7 +444,7 @@ export default function ServicesSection(): JSX.Element {
               {ADVANTAGES.map((advantage) => (
                 <div
                   key={advantage}
-                  className="flex items-start gap-3 rounded-xl border border-border/70 bg-card/50 p-4"
+                  className="flex items-start gap-3 rounded-xl border border-border bg-card p-4"
                 >
                   <CheckCircle2
                     className="mt-0.5 size-5 shrink-0 text-primary"
@@ -465,7 +465,7 @@ export default function ServicesSection(): JSX.Element {
          * ================================================== */}
 
         <FadeIn delay={0.1} className="mt-14">
-          <div className="rounded-3xl border border-primary/30 bg-primary/5 p-6 sm:p-8">
+          <div className="rounded-xl border border-primary/30 bg-primary/5 p-6 sm:p-8">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-2xl">
                 <p className="eyebrow text-primary">
@@ -489,7 +489,7 @@ export default function ServicesSection(): JSX.Element {
                 <Button
                   asChild
                   size="lg"
-                  className="w-full bg-[#25D366] text-white shadow-lg shadow-[#25D366]/20 hover:bg-[#20b458]"
+                  className="w-full bg-[#25D366] text-white shadow-lg hover:bg-[#20b458]"
                 >
                   <a
                     href={whatsappUrl}

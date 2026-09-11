@@ -50,7 +50,7 @@ export default function ProjectTimeline({
             )}
           />
 
-          <div className="hidden items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 sm:flex">
+          <div className="hidden items-center gap-2 rounded-md border border-border bg-secondary px-3 py-1.5 sm:flex">
             <Clock3 className="size-3.5 text-primary" aria-hidden />
 
             <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
@@ -66,7 +66,7 @@ export default function ProjectTimeline({
        * ====================================================== */}
 
       <FadeIn delay={0.08} className="mt-8">
-        <div className="rounded-3xl border border-border/70 bg-card/50 p-5 sm:p-7">
+        <div className="rounded-xl border border-border bg-card p-5 sm:p-7">
           <div className="relative">
             {/* Vertical line */}
 
@@ -92,8 +92,8 @@ export default function ProjectTimeline({
                             className={[
                               "grid size-8 place-items-center rounded-full border bg-background shadow-sm sm:size-9",
                               isLast
-                                ? "border-primary/60 shadow-primary/10"
-                                : "border-border/80",
+                                ? "border-primary/60 "
+                                : "border-border",
                             ].join(" ")}
                           >
                             {isLast ? (
@@ -116,10 +116,10 @@ export default function ProjectTimeline({
 
                         <article
                           className={[
-                            "rounded-2xl border p-4 transition-all duration-300 sm:p-5",
+                            "rounded-xl border p-4 transition-all duration-300 sm:p-5",
                             isLast
                               ? "border-primary/30 bg-primary/5"
-                              : "border-border/70 bg-background/30 hover:border-primary/30",
+                              : "border-border bg-background/30 hover:border-foreground/25",
                           ].join(" ")}
                         >
                           <div className="flex flex-wrap items-center justify-between gap-2">
@@ -133,7 +133,7 @@ export default function ProjectTimeline({
                                   "rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider",
                                   isLast
                                     ? "border-primary/20 bg-primary/10 text-primary"
-                                    : "border-border/70 bg-secondary text-muted-foreground",
+                                    : "border-border bg-secondary text-muted-foreground",
                                 ].join(" ")}
                               >
                                 {t(item.date)}

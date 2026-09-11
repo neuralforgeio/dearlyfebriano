@@ -145,7 +145,7 @@ function SyncIndicator({
         onClick={onRefresh}
         disabled={isRefreshing}
         aria-label={t("Re-sync certificates from Google Drive")}
-        className="inline-flex size-7 items-center justify-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        className="inline-flex size-7 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         <RefreshCw
           aria-hidden
@@ -191,10 +191,10 @@ function CertificateCard({
         }`}
         onClick={openPreview}
         onKeyDown={handleKeyDown}
-        className=" group flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/60 transition-all duration-300.5 hover:border-foreground/25 hover:shadow-xl hover:shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        className=" group flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-300.5 hover:border-foreground/25 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         {/* Certificate image */}
-        <div className="relative aspect-[1200/850] overflow-hidden border-b border-border/60">
+        <div className="relative aspect-[1200/850] overflow-hidden border-b border-border">
           <Image
             src={certificate.imageUrl}
             alt={`${certificate.title} — ${t("certificate issued by")} ${certificate.issuer}`}
@@ -237,7 +237,7 @@ function CertificateCard({
             <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
               {certificate.issuer}
             </p>
-            <span className="shrink-0 rounded-full border border-border/70 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+            <span className="shrink-0 rounded-full border border-border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
               {t(CATEGORY_LABELS[certificate.category as CertificateCategory] ?? certificate.category)}
             </span>
           </div>
@@ -296,8 +296,8 @@ function CertificateCard({
 
 function CardSkeleton(): JSX.Element {
   return (
-    <div className="overflow-hidden rounded-2xl border border-border/70 bg-card/60">
-      <Skeleton className="aspect-[1200/850] rounded-none border-b border-border/60" />
+    <div className="overflow-hidden rounded-xl border border-border bg-card">
+      <Skeleton className="aspect-[1200/850] rounded-none border-b border-border" />
       <div className="space-y-3 p-5">
         <Skeleton className="h-2.5 w-24" />
         <Skeleton className="h-4 w-full" />
@@ -446,7 +446,7 @@ export default function CertificatesView(): JSX.Element {
                   "relative rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
                     ? "border-primary text-primary-foreground"
-                    : "border-border/70 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
+                    : "border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground"
                 )}
               >
                 {isActive && (
@@ -484,7 +484,7 @@ export default function CertificatesView(): JSX.Element {
               "rounded-full border px-3 py-1 font-mono text-[11px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
               activeIssuer === "all"
                 ? "border-primary/60 bg-primary/10 text-primary"
-                : "border-border/60 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
+                : "border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground"
             )}
           >
             {t("all")} ({certificates.length})
@@ -501,7 +501,7 @@ export default function CertificatesView(): JSX.Element {
                   "rounded-full border px-3 py-1 font-mono text-[11px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
                     ? "border-primary/60 bg-primary/10 text-primary"
-                    : "border-border/60 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
+                    : "border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground"
                 )}
               >
                 {issuer} ({count})
@@ -564,7 +564,7 @@ export default function CertificatesView(): JSX.Element {
               setActiveCategory("all");
               setActiveIssuer("all");
             }}
-            className="mt-6 inline-flex h-9 items-center justify-center rounded-md border border-border/70 bg-card/60 px-4 text-sm font-medium text-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="mt-6 inline-flex h-9 items-center justify-center rounded-md border border-border bg-card px-4 text-sm font-medium text-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             {t("Show all certificates")}
           </button>

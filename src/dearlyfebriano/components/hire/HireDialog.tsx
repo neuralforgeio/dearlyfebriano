@@ -405,12 +405,12 @@ export default function HireDialog({
 
       {/* Modal */}
 
-      <div className="relative z-10 flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-3xl border border-border/70 bg-background shadow-2xl shadow-black/50">
+      <div className="relative z-10 flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-xl border border-border bg-background shadow-2xl shadow-black/50">
         {/* ====================================================
          * Header
          * ==================================================== */}
 
-        <div className="border-b border-border/70 bg-card/70 px-5 py-4 sm:px-6">
+        <div className="border-b border-border bg-card px-5 py-4 sm:px-6">
           <div className="flex items-start justify-between gap-4">
             <div className="flex min-w-0 items-start gap-3">
               <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
@@ -441,7 +441,7 @@ export default function HireDialog({
               type="button"
               onClick={handleClose}
               aria-label={t("Close")}
-              className="grid size-9 shrink-0 place-items-center rounded-xl border border-border/70 text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+              className="grid size-9 shrink-0 place-items-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
             >
               <X className="size-4" aria-hidden />
             </button>
@@ -501,11 +501,11 @@ export default function HireDialog({
                       type="button"
                       onClick={() => setInquiryType(option.id)}
                       className={[
-                        "group flex items-start gap-4 rounded-2xl border p-4 text-left transition-all duration-200",
+                        "group flex items-start gap-4 rounded-xl border p-4 text-left transition-all duration-200",
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70",
                         active
-                          ? "border-primary/50 bg-primary/5 shadow-lg shadow-primary/5"
-                          : "border-border/70 bg-card/30 hover:border-primary/30 hover:bg-card/60",
+                          ? "border-primary/50 bg-primary/5 shadow-lg"
+                          : "border-border bg-card hover:border-foreground/25 hover:bg-card",
                       ].join(" ")}
                     >
                       <div
@@ -581,7 +581,7 @@ export default function HireDialog({
                     value={name}
                     onChange={(event) => setName(event.target.value)}
                     placeholder={t("Your full name")}
-                    className="mt-2 h-11 w-full rounded-xl border border-border/70 bg-background px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
+                    className="mt-2 h-11 w-full rounded-xl border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
                   />
                 </div>
 
@@ -600,7 +600,7 @@ export default function HireDialog({
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                     placeholder="you@example.com"
-                    className="mt-2 h-11 w-full rounded-xl border border-border/70 bg-background px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
+                    className="mt-2 h-11 w-full rounded-xl border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
                   />
                 </div>
               </div>
@@ -627,7 +627,7 @@ export default function HireDialog({
                           event.target.value as (typeof PROJECT_TYPES)[number],
                         )
                       }
-                      className="mt-2 h-11 w-full rounded-xl border border-border/70 bg-background px-3 text-sm text-foreground outline-none transition-colors focus:border-primary/50"
+                      className="mt-2 h-11 w-full rounded-xl border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors focus:border-primary/50"
                     >
                       {PROJECT_TYPES.map((type) => (
                         <option key={type} value={type}>
@@ -655,7 +655,7 @@ export default function HireDialog({
                           event.target.value as (typeof TIMELINES)[number],
                         )
                       }
-                      className="mt-2 h-11 w-full rounded-xl border border-border/70 bg-background px-3 text-sm text-foreground outline-none transition-colors focus:border-primary/50"
+                      className="mt-2 h-11 w-full rounded-xl border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors focus:border-primary/50"
                     >
                       {TIMELINES.map((item) => (
                         <option key={item} value={item}>
@@ -685,7 +685,7 @@ export default function HireDialog({
                               "flex items-center gap-2.5 rounded-xl border px-3 py-2.5 text-left text-sm transition-colors",
                               checked
                                 ? "border-primary/40 bg-primary/5 text-foreground"
-                                : "border-border/70 bg-card/30 text-muted-foreground hover:border-primary/30 hover:text-foreground",
+                                : "border-border bg-card text-muted-foreground hover:border-foreground/25 hover:text-foreground",
                             ].join(" ")}
                           >
                             <span
@@ -729,7 +729,7 @@ export default function HireDialog({
                   placeholder={t(
                     "Tell me about your idea, requirements, current situation, or what you would like to discuss...",
                   )}
-                  className="mt-2 w-full resize-none rounded-xl border border-border/70 bg-background px-3 py-3 text-sm leading-relaxed text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary/50"
+                  className="mt-2 w-full resize-none rounded-xl border border-border bg-background px-3 py-3 text-sm leading-relaxed text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary/50"
                 />
 
                 <div className="mt-1 text-right font-mono text-[10px] text-muted-foreground">
@@ -761,7 +761,7 @@ export default function HireDialog({
 
               {/* Summary */}
 
-              <div className="mt-5 rounded-2xl border border-border/70 bg-card/40 p-4">
+              <div className="mt-5 rounded-xl border border-border bg-card p-4">
                 <p className="font-mono text-[10px] uppercase tracking-widest text-primary">
                   {t("Inquiry summary")}
                 </p>
@@ -805,7 +805,7 @@ export default function HireDialog({
 
               {/* WhatsApp info */}
 
-              <div className="mt-5 rounded-2xl border border-[#25D366]/20 bg-[#25D366]/5 p-5">
+              <div className="mt-5 rounded-xl border border-[#25D366]/20 bg-[#25D366]/5 p-5">
                 <div className="flex items-start gap-3">
                   <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-[#25D366]/10 text-[#25D366]">
                     <MessageCircle className="size-5" aria-hidden />
@@ -827,7 +827,7 @@ export default function HireDialog({
 
               {/* Email info */}
 
-              <div className="mt-3 rounded-2xl border border-border/70 bg-card/40 p-5">
+              <div className="mt-3 rounded-xl border border-border bg-card p-5">
                 <div className="flex items-start gap-3">
                   <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
                     <Mail className="size-5" aria-hidden />
@@ -854,7 +854,7 @@ export default function HireDialog({
          * Footer
          * ==================================================== */}
 
-        <div className="border-t border-border/70 bg-card/40 px-5 py-4 sm:px-6">
+        <div className="border-t border-border bg-card px-5 py-4 sm:px-6">
           <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
             {/* Back */}
 
@@ -869,7 +869,7 @@ export default function HireDialog({
 
                 setStep((current) => (current - 1) as 1 | 2 | 3);
               }}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-border/70 px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/30 hover:text-foreground disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground disabled:cursor-not-allowed disabled:opacity-50"
             >
               <ChevronLeft className="size-4" aria-hidden />
 

@@ -130,7 +130,7 @@ export function Footer() {
         </div>
 
         {/* Bottom row: copyright / made with / clock / command hint / back to top */}
-        <div className="mt-10 flex flex-col justify-between gap-3 border-t border-border/60 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
+        <div className="mt-10 flex flex-col justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
           <p>
             &copy; {currentYear} {profile.fullName}. {t("All rights reserved.")}
           </p>

@@ -174,7 +174,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
   if (loading) {
     return (
       <section aria-label={t("Portfolio health")} className="mt-10">
-        <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
+        <div className="overflow-hidden rounded-xl border border-border bg-card">
           <div className="flex min-h-[220px] flex-col items-center justify-center p-6 text-center">
             <div className="relative">
               <div className="absolute -inset-3  rounded-full bg-primary/10" />
@@ -208,7 +208,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
   if (error || !data) {
     return (
       <section aria-label={t("Portfolio health")} className="mt-10">
-        <div className="rounded-3xl border border-border/70 bg-card/50 p-6">
+        <div className="rounded-xl border border-border bg-card p-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-3">
               <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-amber-500/10 text-amber-500">
@@ -233,7 +233,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
             <button
               type="button"
               onClick={() => void loadHealth(true)}
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border/70 px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-foreground/25"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-foreground/25"
             >
               <RefreshCw className="size-4" aria-hidden />
 
@@ -256,8 +256,8 @@ export default function PortfolioHealthDashboard(): JSX.Element {
        * ====================================================== */}
 
       <FadeIn>
-        <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
-          <div className="border-b border-border/70 bg-background/20 p-5 sm:p-6">
+        <div className="overflow-hidden rounded-xl border border-border bg-card">
+          <div className="border-b border-border bg-background/20 p-5 sm:p-6">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
               <div className="flex items-start gap-3">
                 <div
@@ -311,7 +311,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
                 type="button"
                 disabled={scanning}
                 onClick={() => void loadHealth(true)}
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border/70 bg-background/40 px-4 py-2.5 text-xs font-medium text-foreground transition-all hover:border-foreground/25 hover:bg-card disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border bg-background/40 px-4 py-2.5 text-xs font-medium text-foreground transition-all hover:border-foreground/25 hover:bg-card disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {scanning ? (
                   <LoaderCircle className="size-3.5 animate-spin" aria-hidden />
@@ -328,7 +328,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
            * Summary cards
            * ==================================================== */}
 
-          <div className="grid grid-cols-2 divide-x divide-y divide-border/60 border-b border-border/70 sm:grid-cols-3 lg:grid-cols-6 lg:divide-y-0">
+          <div className="grid grid-cols-2 divide-x divide-y divide-border/60 border-b border-border sm:grid-cols-3 lg:grid-cols-6 lg:divide-y-0">
             <HealthSummaryCard
               value={summary.totalProjects}
               label={t("Projects")}
@@ -451,7 +451,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
                     />
 
                     {project.live.latencyMs !== null && (
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/30 px-2.5 py-1 font-mono text-[9px] text-muted-foreground">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/30 px-2.5 py-1 font-mono text-[9px] text-muted-foreground">
                         <Clock3 className="size-3" aria-hidden />
                         {project.live.latencyMs} ms
                       </span>
@@ -489,7 +489,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
            * Footer
            * ==================================================== */}
 
-          <div className="border-t border-border/70 bg-background/20 px-5 py-3">
+          <div className="border-t border-border bg-background/20 px-5 py-3">
             <div className="flex flex-col gap-2 text-[9px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
               <span className="inline-flex items-center gap-1.5 font-mono uppercase tracking-wider">
                 <Sparkles className="size-3 text-primary" aria-hidden />
@@ -561,8 +561,8 @@ function HealthDot({ project }: { project: HealthProject }): JSX.Element {
       className={cn(
         "mt-1.5 size-2.5 shrink-0 rounded-full",
         healthy
-          ? "bg-success shadow-[0_0_12px_rgba(16,185,129,0.45)]"
-          : "bg-amber-500 shadow-[0_0_12px_rgba(245,158,11,0.45)]",
+          ? "bg-success"
+          : "bg-amber-500",
       )}
       aria-hidden
     />

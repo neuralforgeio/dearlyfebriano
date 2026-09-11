@@ -60,7 +60,7 @@ export function SectionHeading({
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, delay: 0.25, ease: "easeOut" }}
-          className="absolute -bottom-2 left-0 h-px w-16 origin-left bg-border"
+          className="absolute -bottom-2 left-0 h-px w-16 origin-left bg-primary"
           aria-hidden
         />
       </div>

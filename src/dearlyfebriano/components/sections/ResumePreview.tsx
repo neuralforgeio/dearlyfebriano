@@ -90,7 +90,7 @@ export default function ResumePreview(): JSX.Element {
          * ==================================================== */}
 
         <FadeIn delay={0.08} className="mt-10">
-          <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/60">
+          <div className="overflow-hidden rounded-xl border border-border bg-card">
             <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
               {/* =================================================
                * PROFILE
@@ -100,7 +100,7 @@ export default function ResumePreview(): JSX.Element {
                 <div className="flex items-start gap-4">
                   {/* Icon */}
 
-                  <div className="grid size-12 shrink-0 place-items-center rounded-2xl bg-primary/10 text-primary">
+                  <div className="grid size-12 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
                     <FileText className="size-5" aria-hidden />
                   </div>
 
@@ -132,7 +132,7 @@ export default function ResumePreview(): JSX.Element {
                 <div className="mt-6 flex flex-wrap gap-2">
                   {/* Location */}
 
-                  <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/50 px-3 py-1.5 text-xs text-muted-foreground">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/50 px-3 py-1.5 text-xs text-muted-foreground">
                     <MapPin className="size-3.5 text-primary" aria-hidden />
 
                     {profile.locationShort}
@@ -140,7 +140,7 @@ export default function ResumePreview(): JSX.Element {
 
                   {/* Experience */}
 
-                  <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/50 px-3 py-1.5 text-xs text-muted-foreground">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/50 px-3 py-1.5 text-xs text-muted-foreground">
                     <Briefcase className="size-3.5 text-primary" aria-hidden />
                     {stats.years}+ {t("yrs experience")}
                   </span>
@@ -162,7 +162,7 @@ export default function ResumePreview(): JSX.Element {
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Button
                     asChild
-                    className="bg-primary text-white shadow-lg shadow-primary/20 hover:opacity-90"
+                    className="bg-primary text-white shadow-lg hover:opacity-90"
                   >
                     <a
                       href={profile.resumeUrl}
@@ -189,7 +189,7 @@ export default function ResumePreview(): JSX.Element {
                * HIGHLIGHTS
                * ================================================= */}
 
-              <div className="border-t border-border/70 bg-background/30 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
+              <div className="border-t border-border bg-background/30 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
                 <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-primary">
                   {t("Highlights")}
                 </p>
@@ -222,10 +222,10 @@ export default function ResumePreview(): JSX.Element {
          * ==================================================== */}
 
         <FadeIn delay={0.12} className="mt-8">
-          <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
+          <div className="overflow-hidden rounded-xl border border-border bg-card">
             {/* PDF toolbar */}
 
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/70 bg-card/70 px-4 py-3 sm:px-5">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-card px-4 py-3 sm:px-5">
               <div className="flex items-center gap-3">
                 <div className="grid size-8 place-items-center rounded-lg bg-primary/10 text-primary">
                   <FileText className="size-4" aria-hidden />
@@ -266,7 +266,7 @@ export default function ResumePreview(): JSX.Element {
             {/* PDF */}
 
             <div className="bg-muted/20 p-2 sm:p-4">
-              <div className="overflow-hidden rounded-2xl border border-border/70 bg-background">
+              <div className="overflow-hidden rounded-xl border border-border bg-background">
                 <iframe
                   src={`${profile.resumeUrl}#view=FitH`}
                   title={`${profile.fullName} — Resume`}
@@ -290,7 +290,7 @@ export default function ResumePreview(): JSX.Element {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group rounded-2xl border border-[#25D366]/25 bg-[#25D366]/5 p-5 transition-all duration-300 hover:border-[#25D366]/40 hover:bg-[#25D366]/10"
+              className="group rounded-xl border border-[#25D366]/25 bg-[#25D366]/5 p-5 transition-all duration-300 hover:border-[#25D366]/40 hover:bg-[#25D366]/10"
             >
               <div className="flex items-center gap-3">
                 <div className="grid size-10 place-items-center rounded-xl bg-[#25D366]/10 text-[#25D366]">
@@ -328,7 +328,7 @@ export default function ResumePreview(): JSX.Element {
 
             <a
               href={emailUrl}
-              className="group rounded-2xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:border-foreground/25"
+              className="group rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:border-foreground/25"
             >
               <div className="flex items-center gap-3">
                 <div className="grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">

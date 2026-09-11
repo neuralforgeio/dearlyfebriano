@@ -73,7 +73,7 @@ export default function NotFoundView(): JSX.Element {
             type="button"
             size="lg"
             onClick={() => navigate("home")}
-            className="group w-full bg-primary text-white shadow-lg shadow-primary/25 hover:opacity-90 sm:w-auto"
+            className="group w-full bg-primary text-white shadow-md hover:opacity-90 sm:w-auto"
           >
             <ArrowLeft
               aria-hidden

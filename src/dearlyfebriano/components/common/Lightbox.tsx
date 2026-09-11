@@ -50,7 +50,7 @@ function PdfEmbed({ item }: { item: LightboxImage }): JSX.Element {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className="relative h-full w-full overflow-hidden rounded-xl border border-border/70 bg-card/80">
+    <div className="relative h-full w-full overflow-hidden rounded-xl border border-border bg-card/80">
       {!isLoaded && (
         <div
           role="status"

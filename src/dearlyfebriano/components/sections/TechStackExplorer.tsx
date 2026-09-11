@@ -102,7 +102,7 @@ export default function TechStackExplorer(): JSX.Element {
 
           <FadeIn delay={0.05} className="shrink-0">
             <div
-              className="inline-flex items-center rounded-xl border border-border/70 bg-card/50 p-1"
+              className="inline-flex items-center rounded-xl border border-border bg-card p-1"
               role="group"
               aria-label={t("Technology explorer view")}
             >
@@ -165,7 +165,7 @@ export default function TechStackExplorer(): JSX.Element {
              * ================================================= */}
 
             <FadeIn x={-20}>
-              <div className="rounded-2xl border border-border/70 bg-card/50 p-5">
+              <div className="rounded-xl border border-border bg-card p-5">
                 <div className="mb-5 flex items-center gap-3">
                   <div className="grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">
                     <Code2 className="size-5" aria-hidden />
@@ -203,7 +203,7 @@ export default function TechStackExplorer(): JSX.Element {
                           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",
                           isSelected
                             ? "border-primary/50 bg-primary/10"
-                            : "border-border/60 bg-background/40 hover:border-primary/30 hover:bg-card",
+                            : "border-border bg-background/40 hover:border-foreground/25 hover:bg-card",
                         ].join(" ")}
                       >
                         <TechBadge name={tech.name} />
@@ -224,10 +224,10 @@ export default function TechStackExplorer(): JSX.Element {
              * ================================================= */}
 
             <FadeIn x={20} delay={0.1}>
-              <div className="min-h-full rounded-2xl border border-border/70 bg-card/50 p-5">
+              <div className="min-h-full rounded-xl border border-border bg-card p-5">
                 {!selected ? (
                   <div className="flex min-h-[260px] flex-col items-center justify-center text-center">
-                    <div className="grid size-14 place-items-center rounded-2xl bg-primary/10 text-primary">
+                    <div className="grid size-14 place-items-center rounded-xl bg-primary/10 text-primary">
                       <Code2 className="size-6" aria-hidden />
                     </div>
 
@@ -271,7 +271,7 @@ export default function TechStackExplorer(): JSX.Element {
                           onClick={() =>
                             navigate("project-detail", project.slug)
                           }
-                          className="group flex w-full items-center justify-between rounded-xl border border-border/60 bg-background/40 p-4 text-left transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:bg-card/80"
+                          className="group flex w-full items-center justify-between rounded-xl border border-border bg-background/40 p-4 text-left transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:bg-card/80"
                         >
                           <div className="min-w-0">
                             <p className="font-medium text-foreground transition-colors group-hover:text-primary">

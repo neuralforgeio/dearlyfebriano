@@ -74,7 +74,7 @@ export default function AboutView(): JSX.Element {
         <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Avatar card */}
           <FadeIn x={-24} className="relative mx-auto w-full max-w-sm lg:mx-0">
-            <div className="relative rounded-2xl border border-border bg-card p-3">
+            <div className="relative rounded-xl border border-border bg-card p-3">
               <div className="relative aspect-square w-full overflow-hidden rounded-xl">
                 <Image
                   src={profile.avatar}
@@ -151,7 +151,7 @@ export default function AboutView(): JSX.Element {
             const Icon = fact.icon;
             return (
               <StaggerItem key={fact.label} className="h-full">
-                <div className="group h-full rounded-2xl border border-border/70 bg-card/60 p-5 transition-all duration-300 hover:border-foreground/25">
+                <div className="group h-full rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:border-foreground/25">
                   <div className="grid size-10 place-items-center rounded-lg bg-primary/10 text-primary">
                     <Icon className="size-5" aria-hidden />
                   </div>
@@ -172,7 +172,7 @@ export default function AboutView(): JSX.Element {
         <StaggerContainer className="grid gap-4 md:grid-cols-2">
           {education.map((item) => (
             <StaggerItem key={item.degree} className="h-full">
-              <article className="h-full rounded-2xl border border-border/70 bg-card/60 p-6 transition-colors hover:border-foreground/25">
+              <article className="h-full rounded-xl border border-border bg-card p-6 transition-colors hover:border-foreground/25">
                 <div className="flex items-center gap-4">
                   <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
                     <GraduationCap className="size-5" aria-hidden />
@@ -209,7 +209,7 @@ export default function AboutView(): JSX.Element {
                 {group.skills.map((skill) => (
                   <li
                     key={skill.name}
-                    className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 px-3 py-1 transition-colors hover:border-foreground/25"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 transition-colors hover:border-foreground/25"
                   >
                     <span className="text-sm text-foreground">{skill.name}</span>
                     <span
@@ -230,7 +230,7 @@ export default function AboutView(): JSX.Element {
       <section aria-label={t("Contact call to action")} className="mt-20 sm:mt-24">
         <FadeIn>
           <motion.div
-            className="card-surface flex flex-col items-start justify-between gap-5 rounded-2xl p-6 sm:flex-row sm:items-center sm:p-8"
+            className="card-surface flex flex-col items-start justify-between gap-5 rounded-xl p-6 sm:flex-row sm:items-center sm:p-8"
             whileHover={reducedMotion ? undefined : { y: -2 }}
             transition={{ type: "spring", stiffness: 300, damping: 24 }}
           >

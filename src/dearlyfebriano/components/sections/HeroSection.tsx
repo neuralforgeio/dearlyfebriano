@@ -90,8 +90,8 @@ export default function HeroSection(): JSX.Element {
            * Welcome eyebrow
            * ----------------------------------------------- */}
 
-          <FadeIn delay={0} y={14}>
-            <span className="eyebrow inline-flex items-center gap-2.5">
+          <FadeIn delay={0} y={12}>
+            <span className="inline-flex items-center gap-2.5 rounded-md border border-border bg-secondary px-3.5 py-1.5 text-xs text-muted-foreground">
               <span>{t("Welcome to my portfolio")}</span>
 
               <span
@@ -361,16 +361,9 @@ export default function HeroSection(): JSX.Element {
           }
         >
           <div className="relative mx-auto size-64 sm:size-72 lg:size-80">
-            {/* Static halo — hairline ring offset */}
+            {/* Photo — minimal treatment: hairline ring + neutral shadow */}
 
-            <div
-              aria-hidden
-              className="absolute -inset-3 rounded-full border border-border"
-            />
-
-            {/* Photo */}
-
-            <div className="relative size-full overflow-hidden rounded-full ring-1 ring-border">
+            <div className="relative size-full overflow-hidden rounded-full ring-1 ring-border shadow-md">
               <Image
                 src={profile.avatar}
                 alt="Portrait of Dearly Febriano Irwansyah"

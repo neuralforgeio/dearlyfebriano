@@ -40,7 +40,7 @@ import type { JSX, MouseEvent as ReactMouseEvent, RefObject } from "react";
 const CALLOUT_STYLES = {
   tip: { icon: Lightbulb, classes: "border-border bg-transparent", iconClasses: "text-success" },
   warning: { icon: TriangleAlert, classes: "border-amber-500/40 bg-amber-500/5", iconClasses: "text-amber-500" },
-  info: { icon: Info, classes: "border-primary/40 bg-primary/5", iconClasses: "text-primary" },
+  info: { icon: Info, classes: "border-border bg-secondary", iconClasses: "text-primary" },
 } as const;
 
 function slugifyHeading(text: string): string {
@@ -101,7 +101,7 @@ function ReadingProgress({
       aria-valuenow={progress}
       aria-valuemin={0}
       aria-valuemax={100}
-      className="sticky top-20 z-20 mt-8 flex items-center gap-3 rounded-full border border-border/60 bg-background/95 py-1.5 pl-4 pr-3"
+      className="sticky top-20 z-20 mt-8 flex items-center gap-3 rounded-full border border-border bg-background/95 py-1.5 pl-4 pr-3"
     >
       <span className="eyebrow">
         {t("Reading")}
@@ -139,8 +139,8 @@ function CodeBlock({ language, code }: { language: string; code: string }): JSX.
   };
 
   return (
-    <figure className="overflow-hidden rounded-xl border border-border/70">
-      <figcaption className="flex items-center justify-between border-b border-border/70 bg-secondary/60 px-4 py-2">
+    <figure className="overflow-hidden rounded-xl border border-border">
+      <figcaption className="flex items-center justify-between border-b border-border bg-secondary/60 px-4 py-2">
         <span className="flex items-center gap-3">
           {/* Mac-style traffic lights */}
           <span aria-hidden className="flex items-center gap-1.5">
@@ -350,7 +350,7 @@ export default function NoteDetailView(): JSX.Element {
           <Button
             type="button"
             onClick={() => navigate("notes")}
-            className="mt-8 bg-primary text-white shadow-lg shadow-primary/25 hover:opacity-90"
+            className="mt-8 bg-primary text-white shadow-md hover:opacity-90"
           >
             <ArrowLeft className="size-4" aria-hidden />
             {t("Back to notes")}
@@ -393,7 +393,7 @@ export default function NoteDetailView(): JSX.Element {
           {article.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-border/70 px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground"
+              className="rounded-full border border-border px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground"
             >
               {tag}
             </span>
@@ -406,7 +406,7 @@ export default function NoteDetailView(): JSX.Element {
           {t(article.excerpt)}
         </p>
 
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-border/60 py-4">
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-border py-4">
           <div className="flex items-center gap-3">
             <Image
               src={profile.avatar}
@@ -456,7 +456,7 @@ export default function NoteDetailView(): JSX.Element {
           </article>
 
           {/* Share row */}
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border/60 pt-6">
+          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
             <Button
               type="button"
               variant="outline"
@@ -510,7 +510,7 @@ export default function NoteDetailView(): JSX.Element {
         <FadeIn delay={0.15} className="hidden xl:block">
           <nav
             aria-label={t("Table of contents")}
-            className="sticky top-28 border-l border-border/60 pl-4"
+            className="sticky top-28 border-l border-border pl-4"
           >
             <p className="eyebrow">
               {t("On this page")}
@@ -586,7 +586,7 @@ export default function NoteDetailView(): JSX.Element {
                   type="button"
                   onClick={() => navigate("note-detail", relatedArticle.slug)}
                   aria-label={`${t("Read related note:")} ${relatedArticle.title}`}
-                  className=" group relative flex h-full flex-col gap-3 overflow-hidden rounded-2xl border border-border/70 bg-card/60 p-5 text-left transition-all duration-300 hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className=" group relative flex h-full flex-col gap-3 overflow-hidden rounded-xl border border-border bg-card p-5 text-left transition-all duration-300 hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   <span
                     aria-hidden
@@ -634,7 +634,7 @@ export default function NoteDetailView(): JSX.Element {
             disabled={!prev}
             onClick={() => prev && navigate("note-detail", prev.slug)}
             aria-label={prev ? `${t("Previous article:")} ${prev.title}` : t("No previous article")}
-            className="group rounded-2xl border border-border/70 bg-card/60 p-5 text-left transition-all hover:border-foreground/25 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="group rounded-xl border border-border bg-card p-5 text-left transition-all hover:border-foreground/25 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <span className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
               <ArrowLeft
@@ -655,7 +655,7 @@ export default function NoteDetailView(): JSX.Element {
             disabled={!next}
             onClick={() => next && navigate("note-detail", next.slug)}
             aria-label={next ? `${t("Next article:")} ${next.title}` : t("No next article")}
-            className="group rounded-2xl border border-border/70 bg-card/60 p-5 text-right transition-all hover:border-foreground/25 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="group rounded-xl border border-border bg-card p-5 text-right transition-all hover:border-foreground/25 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <span className="flex items-center justify-end gap-2 font-mono text-xs text-muted-foreground">
               {t("Next article")}

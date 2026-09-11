@@ -67,7 +67,7 @@ export default function TestimonialsSection(): JSX.Element {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: reducedMotion ? 0 : -48 }}
                   transition={{ duration: reducedMotion ? 0 : 0.35, ease: "easeOut" }}
-                  className="card-surface rounded-2xl p-8 text-center sm:p-10"
+                  className="card-surface rounded-xl p-8 text-center sm:p-10"
                 >
                   <Quote aria-hidden className="mx-auto mb-5 size-8 text-primary/40" />
                   <blockquote className="text-base italic leading-relaxed text-foreground/90 sm:text-lg">

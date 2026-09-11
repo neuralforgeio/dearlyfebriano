@@ -280,7 +280,7 @@ function PreviewMedia({
 
               {/* Center dot */}
 
-              <span className="absolute size-2 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary)/0.8)]" />
+              <span className="absolute size-2 rounded-full bg-primary" />
             </div>
           </div>
         )}
@@ -320,7 +320,7 @@ function PreviewMedia({
 
         {!imageLoading && (
           <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 font-mono text-[10px] font-medium text-white">
-            <span className="size-1.5 animate-pulse rounded-full bg-success" />
+            <span className="size-1.5 rounded-full bg-success" />
             {t("Live Preview")}
           </span>
         )}
@@ -371,7 +371,7 @@ function PreviewMedia({
                 strokeWidth={1.5}
               />
 
-              <span className="absolute size-2 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary)/0.8)]" />
+              <span className="absolute size-2 rounded-full bg-primary" />
             </div>
           </div>
         )}
@@ -567,7 +567,7 @@ export default function ProjectDetailView(): JSX.Element {
           <Button
             type="button"
             onClick={() => navigate("projects")}
-            className="mt-8 bg-primary text-white shadow-lg shadow-primary/25 hover:opacity-90"
+            className="mt-8 bg-primary text-white shadow-md hover:opacity-90"
           >
             <ArrowLeft className="size-4" aria-hidden />
             {t("Back to projects")}
@@ -811,7 +811,7 @@ export default function ProjectDetailView(): JSX.Element {
               : t("Project preview unavailable")
           }
           className={cn(
-            "group relative block w-full overflow-hidden rounded-2xl border border-border/70 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+            "group relative block w-full overflow-hidden rounded-xl border border-border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
             previewUrl
               ? "cursor-zoom-in hover:border-foreground/25"
               : "cursor-default",
@@ -908,7 +908,7 @@ export default function ProjectDetailView(): JSX.Element {
                   aria-label={`${t("Open")} ${image.alt} ${t(
                     "in fullscreen preview",
                   )}`}
-                  className="group relative block aspect-video w-full cursor-zoom-in overflow-hidden rounded-xl border border-border/70 transition-colors hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className="group relative block aspect-video w-full cursor-zoom-in overflow-hidden rounded-xl border border-border transition-colors hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   <Image
                     src={image.src}
@@ -963,7 +963,7 @@ export default function ProjectDetailView(): JSX.Element {
         <div className="grid gap-3 sm:grid-cols-2">
           {project.features.map((feature, index) => (
             <FadeIn key={feature} delay={index * 0.04} className="h-full">
-              <div className="flex h-full gap-3 rounded-xl border border-border/70 bg-card/60 p-4 transition-colors hover:border-foreground/25">
+              <div className="flex h-full gap-3 rounded-xl border border-border bg-card p-4 transition-colors hover:border-foreground/25">
                 <CheckCircle2
                   aria-hidden
                   className="mt-0.5 size-5 shrink-0 text-primary"
@@ -994,7 +994,7 @@ export default function ProjectDetailView(): JSX.Element {
         <div className="space-y-4">
           {project.challenges.map((challenge, index) => (
             <FadeIn key={challenge.title} delay={index * 0.05}>
-              <article className="rounded-2xl border border-border/70 bg-card/60 p-6 transition-colors hover:border-foreground/25">
+              <article className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-foreground/25">
                 <p className="font-mono text-xs text-primary" aria-hidden>
                   {String(index + 1).padStart(2, "0")}
                 </p>
@@ -1048,7 +1048,7 @@ export default function ProjectDetailView(): JSX.Element {
                         navigate("project-detail", related.slug);
                       }
                     }}
-                    className=" group flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/60 transition-all duration-300.5 hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className=" group flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-300.5 hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     {/* Related preview */}
 
@@ -1109,7 +1109,7 @@ export default function ProjectDetailView(): JSX.Element {
                 ? `${t("Previous project:")} ${prev.title}`
                 : t("No previous project")
             }
-            className="group rounded-2xl border border-border/70 bg-card/60 p-5 text-left transition-all hover:border-foreground/25 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="group rounded-xl border border-border bg-card p-5 text-left transition-all hover:border-foreground/25 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <span className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
               <ArrowLeft
@@ -1140,7 +1140,7 @@ export default function ProjectDetailView(): JSX.Element {
                 ? `${t("Next project:")} ${next.title}`
                 : t("No next project")
             }
-            className="group rounded-2xl border border-border/70 bg-card/60 p-5 text-right transition-all hover:border-foreground/25 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="group rounded-xl border border-border bg-card p-5 text-right transition-all hover:border-foreground/25 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <span className="flex items-center justify-end gap-2 font-mono text-xs text-muted-foreground">
               {t("Next project")}

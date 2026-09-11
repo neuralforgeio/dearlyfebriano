@@ -240,7 +240,7 @@ export default function GitHubStatsBadge({
         target="_blank"
         rel="noopener noreferrer"
         title={`${repository.fullName} — ${t("view on GitHub")}`}
-        className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-black/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground"
+        className="inline-flex items-center gap-2 rounded-full border border-border bg-black/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground"
       >
         <span className="inline-flex items-center gap-1">
           <Star className="size-3 text-amber-300" aria-hidden />

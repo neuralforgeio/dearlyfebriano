@@ -28,7 +28,7 @@ export default function WhatsAppButton(): JSX.Element {
       onMouseLeave={() => setIsTooltipVisible(false)}
       onFocus={() => setIsTooltipVisible(true)}
       onBlur={() => setIsTooltipVisible(false)}
-      className="group fixed bottom-6 right-6 z-40 flex size-12 print:hidden items-center justify-center rounded-full bg-[#25D366] text-white shadow-pop transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background md:size-13"
+      className="group fixed bottom-6 right-6 z-40 flex size-12 print:hidden items-center justify-center rounded-full bg-[#25D366] text-white shadow-md transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background md:size-13"
     >
       <SiWhatsapp aria-hidden className="relative size-6" />
       <span

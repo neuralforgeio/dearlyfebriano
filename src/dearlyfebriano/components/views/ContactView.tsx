@@ -116,7 +116,7 @@ function InfoCard({
     </>
   );
   const className = cn(
-    "card-surface flex w-full items-center gap-4 rounded-2xl p-4 transition-colors hover:border-foreground/25",
+    "card-surface flex w-full items-center gap-4 rounded-xl p-4 transition-colors hover:border-foreground/25",
     href && "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
     copyValue && "pr-14"
   );
@@ -243,7 +243,7 @@ export default function ContactView(): JSX.Element {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: reducedMotion ? 0 : -12 }}
                 transition={{ duration: reducedMotion ? 0.15 : 0.35, ease: "easeOut" }}
-                className="card-surface flex h-full min-h-[400px] flex-col items-center justify-center rounded-2xl p-8 text-center sm:p-12"
+                className="card-surface flex h-full min-h-[400px] flex-col items-center justify-center rounded-xl p-8 text-center sm:p-12"
                 aria-live="polite"
               >
                 <motion.div
@@ -458,7 +458,7 @@ export default function ContactView(): JSX.Element {
               downloadVCard();
               toast.success(t("Contact card downloaded — check your files"));
             }}
-            className="card-surface group flex w-full items-center gap-4 rounded-2xl p-4 text-left transition-all hover:-translate-y-0.5 hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="card-surface group flex w-full items-center gap-4 rounded-xl p-4 text-left transition-all hover:-translate-y-0.5 hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
               <Contact className="size-5" aria-hidden />
@@ -475,7 +475,7 @@ export default function ContactView(): JSX.Element {
           </button>
 
           {/* Availability */}
-          <div className="card-surface rounded-2xl p-4">
+          <div className="card-surface rounded-xl p-4">
             <p className="flex items-center gap-2.5 text-sm font-medium text-foreground">
               <span className="relative flex size-2.5" aria-hidden>
                 {!reducedMotion && (
@@ -491,7 +491,7 @@ export default function ContactView(): JSX.Element {
           </div>
 
           {/* WhatsApp */}
-          <div className="rounded-2xl border border-[#25D366]/30 bg-[#25D366]/10 p-5">
+          <div className="rounded-xl border border-[#25D366]/30 bg-[#25D366]/10 p-5">
             <div className="flex items-center gap-3">
               <SiWhatsapp aria-hidden className="size-6 text-[#25D366]" />
               <h2 className="font-semibold text-foreground">{t("Prefer WhatsApp?")}</h2>
@@ -524,7 +524,7 @@ export default function ContactView(): JSX.Element {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${link.label} ${t("profile (opens in a new tab)")}`}
-                className="grid size-10 place-items-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="grid size-10 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <SocialIcon icon={link.icon} />
               </a>

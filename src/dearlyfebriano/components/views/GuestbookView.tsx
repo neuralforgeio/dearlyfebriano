@@ -105,7 +105,7 @@ function PageHeader({ eyebrow, title, description }: PageHeaderProps): JSX.Eleme
 
 function EntrySkeleton(): JSX.Element {
   return (
-    <div className="space-y-3 rounded-2xl border border-border/70 bg-card/60 p-5">
+    <div className="space-y-3 rounded-xl border border-border bg-card p-5">
       <div className="flex items-center gap-3">
         <Skeleton className="size-9 rounded-full" />
         <div className="flex-1 space-y-2">
@@ -341,7 +341,7 @@ export default function GuestbookView(): JSX.Element {
             onSubmit={handleSubmit}
             noValidate
             aria-label={t("Sign the guestbook")}
-            className="card-surface flex h-fit flex-col gap-5 rounded-2xl p-6"
+            className="card-surface flex h-fit flex-col gap-5 rounded-xl p-6"
           >
             <div>
               <h2 className="text-lg font-semibold text-foreground">{t("Sign the guestbook")}</h2>
@@ -403,7 +403,7 @@ export default function GuestbookView(): JSX.Element {
             <Button
               type="submit"
               disabled={isPosting}
-              className="bg-primary text-white shadow-lg shadow-primary/25 hover:opacity-90"
+              className="bg-primary text-white shadow-md hover:opacity-90"
             >
               {isPosting ? (
                 <>
@@ -436,7 +436,7 @@ export default function GuestbookView(): JSX.Element {
                   aria-expanded={showKeyInput}
                   aria-label={t("Turn on manage mode to remove messages")}
                   title={t("Owner: manage messages")}
-                  className="inline-flex size-7 items-center justify-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className="inline-flex size-7 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   <ShieldCheck aria-hidden className="size-3.5" />
                 </button>
@@ -472,7 +472,7 @@ export default function GuestbookView(): JSX.Element {
                 className="overflow-hidden"
                 aria-label={t("Enter admin key")}
               >
-                <div className="mt-3 flex items-center gap-2 rounded-xl border border-border/70 bg-card/60 p-3">
+                <div className="mt-3 flex items-center gap-2 rounded-xl border border-border bg-card p-3">
                   <KeyRound aria-hidden className="size-4 shrink-0 text-muted-foreground" />
                   <Input
                     type="password"
@@ -514,7 +514,7 @@ export default function GuestbookView(): JSX.Element {
             ) : loadError ? (
               <div
                 role="alert"
-                className="flex flex-col items-center gap-4 rounded-2xl border border-destructive/30 bg-destructive/5 p-8 text-center"
+                className="flex flex-col items-center gap-4 rounded-xl border border-destructive/30 bg-destructive/5 p-8 text-center"
               >
                 <AlertTriangle aria-hidden className="size-8 text-destructive" />
                 <p className="text-sm text-foreground">{t(loadError)}</p>
@@ -549,10 +549,10 @@ export default function GuestbookView(): JSX.Element {
                         exit={{ opacity: 0, scale: 0.97 }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
                         className={cn(
-                          "group/entry rounded-2xl border bg-card/60 p-5 transition-colors duration-300",
+                          "group/entry rounded-xl border bg-card p-5 transition-colors duration-300",
                           isAdmin
                             ? "border-primary/30 hover:border-foreground/25"
-                            : "border-border/70 hover:border-primary/30"
+                            : "border-border hover:border-foreground/25"
                         )}
                       >
                         <header className="flex items-center gap-3">
@@ -581,7 +581,7 @@ export default function GuestbookView(): JSX.Element {
                               type="button"
                               onClick={() => setPendingDelete(entry)}
                               aria-label={`${t("Delete message from")} ${entry.name}`}
-                              className="inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-border/60 text-muted-foreground transition-colors hover:border-destructive/50 hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                              className="inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-destructive/50 hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                             >
                               <Trash2 aria-hidden className="size-4" />
                             </button>
@@ -636,7 +636,7 @@ export default function GuestbookView(): JSX.Element {
                               "grid size-8 place-items-center rounded-md border font-mono text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                               item === page
                                 ? "border-primary bg-primary/10 text-primary"
-                                : "border-border/70 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
+                                : "border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground"
                             )}
                           >
                             {item}
@@ -674,7 +674,7 @@ export default function GuestbookView(): JSX.Element {
                   {t("This will permanently remove the message from")}{" "}
                   <span className="font-semibold text-foreground">{pendingDelete?.name}</span>:
                 </p>
-                <p className="rounded-lg border border-border/70 bg-secondary/50 p-3 font-mono text-xs text-muted-foreground">
+                <p className="rounded-lg border border-border bg-secondary/50 p-3 font-mono text-xs text-muted-foreground">
                   “{pendingDelete?.message}”
                 </p>
                 <p>{t("This action cannot be undone.")}</p>

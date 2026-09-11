@@ -87,7 +87,7 @@ export default function ProjectIntelligence({
   if (loading) {
     return (
       <section className="mt-14">
-        <div className="rounded-3xl border border-border/70 bg-card/50">
+        <div className="rounded-xl border border-border bg-card">
           <div className="flex min-h-[220px] flex-col items-center justify-center p-6 text-center">
             <div className="relative">
               <span className="absolute -inset-3  rounded-full bg-primary/10" />
@@ -117,7 +117,7 @@ export default function ProjectIntelligence({
   if (error) {
     return (
       <section className="mt-14">
-        <div className="rounded-3xl border border-border/70 bg-card/50">
+        <div className="rounded-xl border border-border bg-card">
           <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-widest text-amber-500">
@@ -134,7 +134,7 @@ export default function ProjectIntelligence({
             <button
               type="button"
               onClick={() => void load()}
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border/70 px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-foreground/25"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-foreground/25"
             >
               <RefreshCw className="size-4" aria-hidden />
 
@@ -172,7 +172,7 @@ export default function ProjectIntelligence({
             </p>
           </div>
 
-          <div className="flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5">
+          <div className="flex items-center gap-2 rounded-md border border-border bg-secondary px-3 py-1.5">
             <Sparkles className="size-3.5 text-primary" aria-hidden />
 
             <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
@@ -203,7 +203,7 @@ export default function ProjectIntelligence({
 
       {intelligence.techStack.length > 0 && (
         <FadeIn delay={0.1} className="mt-6">
-          <div className="rounded-2xl border border-border/70 bg-card/50 p-5">
+          <div className="rounded-xl border border-border bg-card p-5">
             <div className="flex items-center gap-3">
               <div className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
                 <Layers3 className="size-4" aria-hidden />
@@ -228,8 +228,8 @@ export default function ProjectIntelligence({
        * ====================================================== */}
 
       <FadeIn delay={0.15} className="mt-6">
-        <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
-          <div className="border-b border-border/70 p-5">
+        <div className="overflow-hidden rounded-xl border border-border bg-card">
+          <div className="border-b border-border p-5">
             <div className="flex items-center gap-3">
               <div className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
                 <GitBranch className="size-4" aria-hidden />
@@ -250,7 +250,7 @@ export default function ProjectIntelligence({
 
           <div className="overflow-x-auto">
             <div className="min-w-[760px] p-6">
-              <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-border/60 bg-background/60">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-border bg-background/60">
                 <svg
                   aria-hidden="true"
                   className="absolute inset-0 size-full"
@@ -314,7 +314,7 @@ export default function ProjectIntelligence({
                 {intelligence.architecture.nodes.map((node) => (
                   <div
                     key={node.id}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-border/80 bg-card px-4 py-3 shadow-card"
+                    className="absolute -translate-x-1/2 -translate-y-1/2 rounded-xl border border-border bg-card px-4 py-3 shadow-sm"
                     style={{
                       left: `${node.x}%`,
                       top: `${node.y}%`,
@@ -346,7 +346,7 @@ export default function ProjectIntelligence({
 
       {intelligence.timeline.length > 0 && (
         <FadeIn delay={0.2} className="mt-6">
-          <div className="rounded-3xl border border-border/70 bg-card/50 p-5 sm:p-7">
+          <div className="rounded-xl border border-border bg-card p-5 sm:p-7">
             <div className="flex items-center gap-3">
               <div className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
                 <Clock3 className="size-4" aria-hidden />
@@ -399,7 +399,7 @@ function IntelligenceMetricCard({
   metric: IntelligenceMetric;
 }): JSX.Element {
   return (
-    <div className="rounded-2xl border border-border/70 bg-card/50 p-5">
+    <div className="rounded-xl border border-border bg-card p-5">
       <div className="flex items-center gap-2 text-muted-foreground">
         <BarChart3 className="size-4 text-primary" aria-hidden />
 
@@ -432,7 +432,7 @@ function TimelineItem({
 }): JSX.Element {
   return (
     <li className="relative grid grid-cols-[32px_1fr] gap-4">
-      <div className="relative z-10 grid size-8 place-items-center rounded-full border border-border/80 bg-background">
+      <div className="relative z-10 grid size-8 place-items-center rounded-full border border-border bg-background">
         {index === total - 1 ? (
           <Sparkles className="size-3.5 text-primary" aria-hidden />
         ) : (
@@ -443,7 +443,7 @@ function TimelineItem({
         )}
       </div>
 
-      <article className="rounded-2xl border border-border/70 bg-background/30 p-4">
+      <article className="rounded-xl border border-border bg-background/30 p-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h3 className="font-semibold text-foreground">{item.title}</h3>
 

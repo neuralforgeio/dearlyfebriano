@@ -54,7 +54,7 @@ export default function ProjectMetrics({
             )}
           />
 
-          <div className="hidden shrink-0 items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 sm:flex">
+          <div className="hidden shrink-0 items-center gap-2 rounded-md border border-border bg-secondary px-3 py-1.5 sm:flex">
             <TrendingUp className="size-3.5 text-primary" aria-hidden />
 
             <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
@@ -75,7 +75,7 @@ export default function ProjectMetrics({
             delay={index * 0.05}
             className="h-full"
           >
-            <div className="group relative h-full overflow-hidden rounded-2xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:border-foreground/25 hover:shadow-lg hover:shadow-primary/5">
+            <div className="group relative h-full overflow-hidden rounded-lg border border-border bg-card p-5 transition-colors duration-200 hover:border-foreground/25 hover:shadow-md">
               {/* Decorative icon */}
 
               <div className="absolute right-4 top-4 opacity-20 transition-opacity duration-300 group-hover:opacity-40">
