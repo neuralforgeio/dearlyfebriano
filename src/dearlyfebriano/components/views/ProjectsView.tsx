@@ -39,6 +39,7 @@ import { useUIStore } from "@/dearlyfebriano/store/ui-store";
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 
 import ProjectHealthBadge from "../projects/ProjectHealthBadge";
+import GitHubStatsBadge from "../projects/GitHubStatsBadge";
 import type { Project, ProjectCategory } from "@/dearlyfebriano/types";
 
 import { cn } from "@/lib/utils";
@@ -207,11 +208,15 @@ function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
         />
 
         {/* Small live indicator */}
-        <div className="absolute bottom-3 left-3">
+        <div className="absolute bottom-3 left-3 flex items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-md">
             <span className="size-1.5 animate-pulse rounded-full bg-emerald-400" />
             {t("Live Preview")}
           </span>
+
+          {project.githubUrl && (
+            <GitHubStatsBadge repoUrl={project.githubUrl} />
+          )}
         </div>
 
         <div className="absolute bottom-3 right-3">

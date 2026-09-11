@@ -33,6 +33,7 @@ import ProjectMetrics from "@/dearlyfebriano/components/sections/ProjectMetrics"
 import { getProjectMetrics } from "@/dearlyfebriano/data/project-metrics";
 
 import ProjectGithub from "@/dearlyfebriano/components/projects/ProjectGithub";
+import GitHubStatsBadge from "@/dearlyfebriano/components/projects/GitHubStatsBadge";
 
 import {
   getAdjacentProjects,
@@ -701,6 +702,23 @@ export default function ProjectDetailView(): JSX.Element {
               <StatusBadge status={project.status} />
             </div>
           </div>
+
+          {/* GitHub live stats */}
+
+          {project.githubUrl && (
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                {t("Repository")}
+              </p>
+
+              <div className="mt-1">
+                <GitHubStatsBadge
+                  repoUrl={project.githubUrl}
+                  variant="full"
+                />
+              </div>
+            </div>
+          )}
 
           {/* Action buttons */}
 
