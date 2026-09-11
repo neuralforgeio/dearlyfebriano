@@ -16,8 +16,8 @@ const STATUS_CONFIG: Record<
   live: {
     label: "Live",
     icon: Circle,
-    className: "border-emerald-500/30 bg-emerald-500/10 text-emerald-500",
-    dotClass: "bg-emerald-500",
+    className: "border-border bg-secondary text-success",
+    dotClass: "bg-success",
   },
   "in-progress": {
     label: "In Progress",

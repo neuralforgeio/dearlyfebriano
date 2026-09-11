@@ -181,11 +181,11 @@ export default function Lightbox({
           exit={{ opacity: 0 }}
           transition={{ duration: reducedMotion ? 0.15 : 0.25 }}
           onClick={() => onCloseRef.current()}
-          className="fixed inset-0 z-[95] flex cursor-zoom-out items-center justify-center bg-background/90 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-[95] flex cursor-zoom-out items-center justify-center bg-background/95 p-4"
         >
           {/* Counter */}
           {total > 1 && (
-            <p className="glass pointer-events-none absolute left-4 top-4 rounded-full border border-border px-3 py-1 font-mono text-xs text-foreground">
+            <p className="card-surface pointer-events-none absolute left-4 top-4 rounded-full border border-border px-3 py-1 font-mono text-xs text-foreground">
               {safeIndex + 1} / {total}
             </p>
           )}
@@ -298,7 +298,7 @@ export default function Lightbox({
                   goTo(safeIndex - 1);
                 }}
                 className={cn(
-                  "glass absolute left-3 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-border text-foreground transition-all hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:left-6",
+                  "card-surface absolute left-3 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-border text-foreground transition-all hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:left-6",
                   !hasPrev && "pointer-events-none opacity-30"
                 )}
               >
@@ -313,7 +313,7 @@ export default function Lightbox({
                   goTo(safeIndex + 1);
                 }}
                 className={cn(
-                  "glass absolute right-3 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-border text-foreground transition-all hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:right-6",
+                  "card-surface absolute right-3 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-border text-foreground transition-all hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:right-6",
                   !hasNext && "pointer-events-none opacity-30"
                 )}
               >
@@ -330,7 +330,7 @@ export default function Lightbox({
               event.stopPropagation();
               onCloseRef.current();
             }}
-            className="glass absolute right-4 top-4 flex size-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="card-surface absolute right-4 top-4 flex size-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <X className="size-5" aria-hidden />
           </button>

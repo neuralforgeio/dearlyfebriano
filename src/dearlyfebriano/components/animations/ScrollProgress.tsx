@@ -23,7 +23,7 @@ export default function ScrollProgress(): JSX.Element {
   return (
     <motion.div
       aria-hidden
-      className="fixed left-0 top-0 z-[80] h-[3px] w-full origin-left bg-gradient-accent"
+      className="fixed left-0 top-0 z-[80] h-0.5 w-full origin-left bg-primary"
       style={{ scaleX, opacity }}
     />
   );

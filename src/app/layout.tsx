@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Inter, Fira_Code } from "next/font/google";
+import { Inter, Fira_Code, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/dearlyfebriano/components/layout/Providers";
 import { profile } from "@/dearlyfebriano/data/profile";
@@ -14,6 +14,12 @@ const inter = Inter({
 const firaCode = Fira_Code({
   subsets: ["latin"],
   variable: "--font-fira-code",
+  display: "swap",
+});
+
+const sourceSerif4 = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-serif-var",
   display: "swap",
 });
 
@@ -94,7 +100,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${firaCode.variable} bg-background font-sans text-foreground antialiased`}
+        className={`${inter.variable} ${firaCode.variable} ${sourceSerif4.variable} bg-background font-sans text-foreground antialiased`}
       >
         {/* SCROLL RESTORATION — harus berjalan SEBELUM paint/hydration
             (beforeInteractive): (1) matikan restorasi scroll NATIVE browser

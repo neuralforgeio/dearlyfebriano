@@ -57,34 +57,34 @@ export default function AboutPreview(): JSX.Element {
               {t("Learn more about me")}
               <ArrowRight
                 aria-hidden
-                className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+                className="size-4 transition-transform duration-300"
               />
             </Button>
           </FadeIn>
 
           <FadeIn delay={0.15} x={16} y={0}>
-            <div className="glass rounded-2xl p-6 font-mono text-sm leading-7">
+            <div className="card-surface rounded-2xl p-6 font-mono text-sm leading-7">
               <p className="text-muted-foreground">{"// currently"}</p>
               <p className="text-muted-foreground">{"{"}</p>
               <p className="pl-4">
                 <span className="text-primary">"role"</span>
                 <span className="text-muted-foreground">{": "}</span>
-                <span className="text-emerald-400">"{t(profile.roles[0])}"</span>
+                <span className="text-success">"{t(profile.roles[0])}"</span>
                 <span className="text-muted-foreground">,</span>
               </p>
               <p className="pl-4">
                 <span className="text-primary">"focus"</span>
                 <span className="text-muted-foreground">{": ["}</span>
-                <span className="text-emerald-400">"SaaS analytics"</span>
+                <span className="text-success">"SaaS analytics"</span>
                 <span className="text-muted-foreground">{", "}</span>
-                <span className="text-emerald-400">"DX tooling"</span>
+                <span className="text-success">"DX tooling"</span>
                 <span className="text-muted-foreground">{"]"}</span>
                 <span className="text-muted-foreground">,</span>
               </p>
               <p className="pl-4">
                 <span className="text-primary">"status"</span>
                 <span className="text-muted-foreground">{": "}</span>
-                <span className="text-emerald-400">"{t(profile.availability)}"</span>
+                <span className="text-success">"{t(profile.availability)}"</span>
               </p>
               <p className="text-muted-foreground">
                 {"}"}
@@ -101,7 +101,7 @@ export default function AboutPreview(): JSX.Element {
           {TECH_STRIP.map((name) => (
             <StaggerItem
               key={name}
-              className="grid size-12 place-items-center rounded-xl border border-border/70 bg-card/60 text-muted-foreground transition-all hover:-translate-y-1 hover:border-primary/60 hover:text-primary hover:shadow-lg hover:shadow-primary/10"
+              className="grid size-12 place-items-center rounded-xl border border-border/70 bg-card/60 text-muted-foreground transition-all hover:border-foreground/25 hover:text-primary hover:shadow-lg hover:shadow-primary/10"
             >
               <TechIcon name={name} className="size-6" />
               <span className="sr-only">{name}</span>

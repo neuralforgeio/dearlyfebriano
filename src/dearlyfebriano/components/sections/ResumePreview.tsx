@@ -16,7 +16,6 @@ import type { JSX } from "react";
 import { Button } from "@/components/ui/button";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
 
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 
@@ -70,7 +69,7 @@ export default function ResumePreview(): JSX.Element {
 
         <FadeIn>
           <div className="flex flex-col gap-4">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+            <span className="eyebrow text-primary">
               {t("Resume")}
             </span>
 
@@ -91,7 +90,7 @@ export default function ResumePreview(): JSX.Element {
          * ==================================================== */}
 
         <FadeIn delay={0.08} className="mt-10">
-          <GlowCard className="overflow-hidden rounded-3xl border border-border/70 bg-card/60">
+          <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/60">
             <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
               {/* =================================================
                * PROFILE
@@ -108,7 +107,7 @@ export default function ResumePreview(): JSX.Element {
                   {/* Name */}
 
                   <div className="min-w-0">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-primary">
                       Curriculum Vitae
                     </p>
 
@@ -148,9 +147,9 @@ export default function ResumePreview(): JSX.Element {
 
                   {/* Availability */}
 
-                  <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1.5 text-xs text-emerald-500">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-border bg-transparent px-3 py-1.5 text-xs text-success">
                     <span
-                      className="size-1.5 rounded-full bg-emerald-500"
+                      className="size-1.5 rounded-full bg-success"
                       aria-hidden
                     />
 
@@ -163,7 +162,7 @@ export default function ResumePreview(): JSX.Element {
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Button
                     asChild
-                    className="bg-gradient-accent text-white shadow-lg shadow-primary/20 hover:opacity-90"
+                    className="bg-primary text-white shadow-lg shadow-primary/20 hover:opacity-90"
                   >
                     <a
                       href={profile.resumeUrl}
@@ -191,7 +190,7 @@ export default function ResumePreview(): JSX.Element {
                * ================================================= */}
 
               <div className="border-t border-border/70 bg-background/30 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-primary">
                   {t("Highlights")}
                 </p>
 
@@ -215,7 +214,7 @@ export default function ResumePreview(): JSX.Element {
                 </ul>
               </div>
             </div>
-          </GlowCard>
+          </div>
         </FadeIn>
 
         {/* ====================================================
@@ -223,7 +222,7 @@ export default function ResumePreview(): JSX.Element {
          * ==================================================== */}
 
         <FadeIn delay={0.12} className="mt-8">
-          <GlowCard className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
+          <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
             {/* PDF toolbar */}
 
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/70 bg-card/70 px-4 py-3 sm:px-5">
@@ -276,7 +275,7 @@ export default function ResumePreview(): JSX.Element {
                 />
               </div>
             </div>
-          </GlowCard>
+          </div>
         </FadeIn>
 
         {/* ====================================================
@@ -291,7 +290,7 @@ export default function ResumePreview(): JSX.Element {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group rounded-2xl border border-[#25D366]/25 bg-[#25D366]/5 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#25D366]/40 hover:bg-[#25D366]/10"
+              className="group rounded-2xl border border-[#25D366]/25 bg-[#25D366]/5 p-5 transition-all duration-300 hover:border-[#25D366]/40 hover:bg-[#25D366]/10"
             >
               <div className="flex items-center gap-3">
                 <div className="grid size-10 place-items-center rounded-xl bg-[#25D366]/10 text-[#25D366]">
@@ -329,7 +328,7 @@ export default function ResumePreview(): JSX.Element {
 
             <a
               href={emailUrl}
-              className="group rounded-2xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40"
+              className="group rounded-2xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:border-foreground/25"
             >
               <div className="flex items-center gap-3">
                 <div className="grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">

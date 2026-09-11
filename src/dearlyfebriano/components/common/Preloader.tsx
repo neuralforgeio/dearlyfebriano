@@ -106,7 +106,7 @@ export default function Preloader({ onComplete }: PreloaderProps): JSX.Element {
       <div className="flex flex-col items-center gap-8 px-6 text-center">
         <div
           aria-hidden
-          className="flex flex-wrap items-baseline justify-center text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl"
+          className="flex flex-wrap items-baseline justify-center text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl"
         >
           {firstNameChars.map((char, index) => (
             <motion.span
@@ -127,7 +127,7 @@ export default function Preloader({ onComplete }: PreloaderProps): JSX.Element {
           {surnameChars.map((char, index) => (
             <motion.span
               key={`last-${index}`}
-              className="text-gradient inline-block"
+              className="text-foreground inline-block"
               initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -147,14 +147,14 @@ export default function Preloader({ onComplete }: PreloaderProps): JSX.Element {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: reducedMotion ? 0 : 0.8, duration: 0.5 }}
-          className="font-mono text-[11px] uppercase tracking-[0.4em] text-muted-foreground"
+          className="eyebrow"
         >
           {t("Full Stack Developer")}
         </motion.p>
 
         <div className="h-[2px] w-40 overflow-hidden rounded-full bg-border">
           <motion.div
-            className="h-full w-full origin-left bg-gradient-accent"
+            className="h-full w-full origin-left bg-primary"
             style={{ scaleX: reducedMotion ? 1 : progress }}
           />
         </div>

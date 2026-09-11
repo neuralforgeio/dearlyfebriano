@@ -35,21 +35,21 @@ export default function NotFoundView(): JSX.Element {
           }
           className="select-none font-mono text-[110px] font-bold leading-none tracking-tighter sm:text-[150px]"
         >
-          <span className="text-gradient">4</span>
+          <span className="text-foreground">4</span>
           <motion.span
-            className="text-gradient inline-block"
+            className="text-foreground inline-block"
             animate={reducedMotion ? undefined : { y: [0, -6, 0] }}
             transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
           >
             0
           </motion.span>
-          <span className="text-gradient">4</span>
+          <span className="text-foreground">4</span>
         </motion.div>
       </FadeIn>
 
       {/* Terminal-style line */}
       <FadeIn delay={0.15} y={12}>
-        <p className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-mono text-xs text-muted-foreground">
+        <p className="card-surface inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-mono text-xs text-muted-foreground">
           <span aria-hidden className="text-primary">$</span>
           <span>GET</span>
           <span className="text-foreground">#{`<unknown-route>`}</span>
@@ -73,11 +73,11 @@ export default function NotFoundView(): JSX.Element {
             type="button"
             size="lg"
             onClick={() => navigate("home")}
-            className="group w-full bg-gradient-accent text-white shadow-lg shadow-primary/25 hover:opacity-90 sm:w-auto"
+            className="group w-full bg-primary text-white shadow-lg shadow-primary/25 hover:opacity-90 sm:w-auto"
           >
             <ArrowLeft
               aria-hidden
-              className="size-4 transition-transform duration-300 group-hover:-translate-x-1"
+              className="size-4 transition-transform duration-300"
             />
             {t("Back to home")}
           </Button>

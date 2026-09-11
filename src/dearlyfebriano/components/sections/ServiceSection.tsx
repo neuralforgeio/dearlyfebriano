@@ -18,7 +18,6 @@ import { Button } from "@/components/ui/button";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
 
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
 
 import { SectionHeading } from "@/dearlyfebriano/components/ui/SectionHeading";
 
@@ -137,7 +136,7 @@ export default function ServicesSection(): JSX.Element {
            * ================================================= */}
 
           <FadeIn x={-24} className="relative">
-            <GlowCard className="overflow-hidden rounded-3xl border border-border/70 bg-card/60 p-2">
+            <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/60 p-2">
               <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-background">
                 <Image
                   src={
@@ -164,12 +163,12 @@ export default function ServicesSection(): JSX.Element {
                   className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/10 via-transparent to-transparent"
                 />
               </div>
-            </GlowCard>
+            </div>
 
             {/* Floating label */}
 
             <div className="absolute -bottom-4 left-4 right-4 sm:left-8 sm:right-8">
-              <div className="glass flex items-center justify-between gap-4 rounded-2xl border border-primary/20 px-4 py-3 shadow-xl shadow-primary/10 backdrop-blur-xl">
+              <div className="card-surface flex items-center justify-between gap-4 rounded-2xl border border-border px-4 py-3">
                 <div className="flex min-w-0 items-center gap-3">
                   <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
                     <Code2 className="size-4" aria-hidden />
@@ -208,7 +207,7 @@ export default function ServicesSection(): JSX.Element {
                 </div>
 
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-primary">
                     Dear Engineer
                   </p>
 
@@ -232,7 +231,7 @@ export default function ServicesSection(): JSX.Element {
              * ================================================= */}
 
             <div className="mt-6">
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+              <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-primary">
                 {t("Services")}
               </p>
 
@@ -244,7 +243,7 @@ export default function ServicesSection(): JSX.Element {
                 {SERVICES.map((service) => (
                   <div
                     key={service}
-                    className="group flex items-start gap-2.5 rounded-xl border border-border/60 bg-card/40 px-3.5 py-3 transition-colors hover:border-primary/40 hover:bg-card/70"
+                    className="group flex items-start gap-2.5 rounded-xl border border-border/60 bg-card/40 px-3.5 py-3 transition-colors hover:border-foreground/25 hover:bg-card/70"
                   >
                     <CheckCircle2
                       className="mt-0.5 size-4 shrink-0 text-primary"
@@ -340,9 +339,9 @@ export default function ServicesSection(): JSX.Element {
              * Security
              * ================================================= */}
 
-            <div className="mt-6 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-5">
+            <div className="mt-6 rounded-2xl border border-border bg-transparent p-5">
               <div className="flex items-start gap-3">
-                <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-emerald-500/10 text-emerald-500">
+                <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-secondary text-success">
                   <ShieldCheck className="size-5" aria-hidden />
                 </div>
 
@@ -366,7 +365,7 @@ export default function ServicesSection(): JSX.Element {
 
         <FadeIn delay={0.15} className="mt-20">
           <div className="text-center">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
+            <p className="eyebrow text-primary">
               {t("How It Works")}
             </p>
 
@@ -384,7 +383,7 @@ export default function ServicesSection(): JSX.Element {
           <div className="mt-10 grid gap-4 md:grid-cols-5">
             {WORKFLOW.map((step, index) => (
               <div key={step.number} className="relative h-full">
-                <div className="h-full rounded-2xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5">
+                <div className="h-full rounded-2xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:border-foreground/25 hover:shadow-lg hover:shadow-primary/5">
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-xs text-primary">
                       {step.number}
@@ -420,7 +419,7 @@ export default function ServicesSection(): JSX.Element {
             {/* Heading card */}
 
             <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6">
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
+              <p className="eyebrow text-primary">
                 {t("Why work with me?")}
               </p>
 
@@ -466,10 +465,10 @@ export default function ServicesSection(): JSX.Element {
          * ================================================== */}
 
         <FadeIn delay={0.1} className="mt-14">
-          <GlowCard className="rounded-3xl border border-primary/30 bg-primary/5 p-6 sm:p-8">
+          <div className="rounded-3xl border border-primary/30 bg-primary/5 p-6 sm:p-8">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-2xl">
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
+                <p className="eyebrow text-primary">
                   {t("Free Consultation")}
                 </p>
 
@@ -511,14 +510,14 @@ export default function ServicesSection(): JSX.Element {
                 </Button>
               </div>
             </div>
-          </GlowCard>
+          </div>
         </FadeIn>
 
         {/* ==================================================
          * Bottom note
          * ================================================== */}
 
-        <p className="mt-6 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+        <p className="mt-6 text-center eyebrow">
           {t("YOUR IDEA · OUR CODE · PROJECT DONE")}
         </p>
       </div>

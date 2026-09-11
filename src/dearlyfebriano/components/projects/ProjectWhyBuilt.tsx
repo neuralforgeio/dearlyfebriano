@@ -13,7 +13,6 @@ import type { JSX } from "react";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
 
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
 
 import { SectionHeading } from "@/dearlyfebriano/components/ui/SectionHeading";
 
@@ -47,28 +46,28 @@ export default function ProjectWhyBuilt({
       icon: Target,
       eyebrow: "The problem",
       title: "What needed to be solved?",
-      text: data.problem,
+     text: data.problem,
     },
 
     {
       icon: Lightbulb,
       eyebrow: "The motivation",
       title: "Why I built it",
-      text: data.motivation,
+     text: data.motivation,
     },
 
     {
       icon: Wrench,
       eyebrow: "The approach",
       title: "How I approached it",
-      text: data.approach,
+     text: data.approach,
     },
 
     {
       icon: Trophy,
       eyebrow: "The outcome",
       title: "What came out of it",
-      text: data.outcome,
+     text: data.outcome,
     },
   ];
 
@@ -102,18 +101,18 @@ export default function ProjectWhyBuilt({
               delay={index * 0.06}
               className="h-full"
             >
-              <GlowCard className="group h-full rounded-2xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:border-primary/30 sm:p-6">
+              <div className="group h-full rounded-2xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:border-primary/30 sm:p-6">
                 <div className="flex items-start gap-4">
                   {/* Icon */}
 
-                  <div className="grid size-11 shrink-0 place-items-center rounded-xl border border-primary/20 bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-105">
+                  <div className="grid size-11 shrink-0 place-items-center rounded-xl border border-primary/20 bg-primary/10 text-primary transition-transform duration-300">
                     <Icon className="size-5" aria-hidden />
                   </div>
 
                   {/* Content */}
 
                   <div className="min-w-0">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-primary">
                       {t(section.eyebrow)}
                     </p>
 
@@ -136,7 +135,7 @@ export default function ProjectWhyBuilt({
 
                   <ArrowRight className="size-3" aria-hidden />
                 </div>
-              </GlowCard>
+              </div>
             </FadeIn>
           );
         })}
@@ -148,14 +147,14 @@ export default function ProjectWhyBuilt({
 
       {data.decisions.length > 0 && (
         <FadeIn delay={0.1} className="mt-6">
-          <GlowCard className="rounded-2xl border border-border/70 bg-card/50 p-5 sm:p-6">
+          <div className="rounded-2xl border border-border/70 bg-card/50 p-5 sm:p-6">
             <div className="flex items-start gap-4">
               <div className="grid size-11 shrink-0 place-items-center rounded-xl border border-primary/20 bg-primary/10 text-primary">
                 <Compass className="size-5" aria-hidden />
               </div>
 
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-primary">
                   {t("Engineering decisions")}
                 </p>
 
@@ -183,7 +182,7 @@ export default function ProjectWhyBuilt({
                 </li>
               ))}
             </ul>
-          </GlowCard>
+          </div>
         </FadeIn>
       )}
     </section>

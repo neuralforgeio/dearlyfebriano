@@ -6,7 +6,6 @@ import { useMemo, useState, type JSX } from "react";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
 
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
 
 import { SectionHeading } from "@/dearlyfebriano/components/ui/SectionHeading";
 
@@ -166,14 +165,14 @@ export default function TechStackExplorer(): JSX.Element {
              * ================================================= */}
 
             <FadeIn x={-20}>
-              <GlowCard className="rounded-2xl border border-border/70 bg-card/50 p-5">
+              <div className="rounded-2xl border border-border/70 bg-card/50 p-5">
                 <div className="mb-5 flex items-center gap-3">
                   <div className="grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">
                     <Code2 className="size-5" aria-hidden />
                   </div>
 
                   <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                    <p className="eyebrow">
                       {t("Technologies")}
                     </p>
 
@@ -217,7 +216,7 @@ export default function TechStackExplorer(): JSX.Element {
                     );
                   })}
                 </div>
-              </GlowCard>
+              </div>
             </FadeIn>
 
             {/* =================================================
@@ -225,7 +224,7 @@ export default function TechStackExplorer(): JSX.Element {
              * ================================================= */}
 
             <FadeIn x={20} delay={0.1}>
-              <GlowCard className="min-h-full rounded-2xl border border-border/70 bg-card/50 p-5">
+              <div className="min-h-full rounded-2xl border border-border/70 bg-card/50 p-5">
                 {!selected ? (
                   <div className="flex min-h-[260px] flex-col items-center justify-center text-center">
                     <div className="grid size-14 place-items-center rounded-2xl bg-primary/10 text-primary">
@@ -249,7 +248,7 @@ export default function TechStackExplorer(): JSX.Element {
                   <div>
                     <div className="flex items-center justify-between gap-4">
                       <div>
-                        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                        <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-primary">
                           {t("Used across projects")}
                         </p>
 
@@ -272,7 +271,7 @@ export default function TechStackExplorer(): JSX.Element {
                           onClick={() =>
                             navigate("project-detail", project.slug)
                           }
-                          className="group flex w-full items-center justify-between rounded-xl border border-border/60 bg-background/40 p-4 text-left transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:bg-card/80"
+                          className="group flex w-full items-center justify-between rounded-xl border border-border/60 bg-background/40 p-4 text-left transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:bg-card/80"
                         >
                           <div className="min-w-0">
                             <p className="font-medium text-foreground transition-colors group-hover:text-primary">
@@ -292,7 +291,7 @@ export default function TechStackExplorer(): JSX.Element {
                     </div>
                   </div>
                 )}
-              </GlowCard>
+              </div>
             </FadeIn>
           </div>
         )}

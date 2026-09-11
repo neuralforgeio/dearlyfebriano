@@ -6,7 +6,6 @@ import type { JSX } from "react";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
 
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
 
 import { SectionHeading } from "@/dearlyfebriano/components/ui/SectionHeading";
 
@@ -76,7 +75,7 @@ export default function ProjectMetrics({
             delay={index * 0.05}
             className="h-full"
           >
-            <GlowCard className="group relative h-full overflow-hidden rounded-2xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5">
+            <div className="group relative h-full overflow-hidden rounded-2xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:border-foreground/25 hover:shadow-lg hover:shadow-primary/5">
               {/* Decorative icon */}
 
               <div className="absolute right-4 top-4 opacity-20 transition-opacity duration-300 group-hover:opacity-40">
@@ -109,7 +108,7 @@ export default function ProjectMetrics({
                 aria-hidden
                 className="absolute inset-x-5 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-50 transition-opacity duration-300 group-hover:opacity-100"
               />
-            </GlowCard>
+            </div>
           </FadeIn>
         ))}
       </div>

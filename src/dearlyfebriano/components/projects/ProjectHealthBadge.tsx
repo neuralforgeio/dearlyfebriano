@@ -182,7 +182,7 @@ export default function ProjectHealthBadge({
     return (
       <span
         className={cn(
-          "inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-black/50 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground backdrop-blur-md",
+          "inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-black/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground",
           compact && "px-2 py-0.5",
         )}
       >
@@ -204,7 +204,7 @@ export default function ProjectHealthBadge({
         onClick={() => void loadHealth(true)}
         title={t("Retry project health check")}
         className={cn(
-          "inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-black/50 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground backdrop-blur-md transition-colors hover:border-primary/40 hover:text-foreground",
+          "inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-black/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground",
           compact && "px-2 py-0.5",
         )}
       >
@@ -229,7 +229,7 @@ export default function ProjectHealthBadge({
     return (
       <div
         className={cn(
-          "inline-flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-black/55 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-emerald-300 backdrop-blur-md",
+          "inline-flex items-center gap-1.5 rounded-full border border-border bg-black/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-success",
           compact && "px-2 py-0.5",
         )}
         title={latency !== null ? `${t("Response")}: ${latency}ms` : t("Live")}
@@ -266,7 +266,7 @@ export default function ProjectHealthBadge({
           latency !== null ? ` · ${latency}ms` : ""
         }`}
         className={cn(
-          "inline-flex items-center gap-1.5 rounded-full border border-amber-400/25 bg-black/55 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-amber-300 backdrop-blur-md transition-colors hover:border-amber-300/40",
+          "inline-flex items-center gap-1.5 rounded-full border border-amber-400/25 bg-black/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-amber-300 transition-colors hover:border-amber-300/40",
           compact && "px-2 py-0.5",
         )}
       >
@@ -289,7 +289,7 @@ export default function ProjectHealthBadge({
       onClick={() => void loadHealth(true)}
       title={health.live.error ?? t("Project is currently unavailable")}
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border border-red-400/20 bg-black/55 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-red-300 backdrop-blur-md transition-colors hover:border-red-300/40",
+        "inline-flex items-center gap-1.5 rounded-full border border-red-400/20 bg-black/70 px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider text-red-300 transition-colors hover:border-red-300/40",
         compact && "px-2 py-0.5",
       )}
     >
@@ -299,7 +299,7 @@ export default function ProjectHealthBadge({
 
       {githubAvailable && (
         <Github
-          className="ml-0.5 size-3 text-emerald-300"
+          className="ml-0.5 size-3 text-success"
           aria-label={t("GitHub verified")}
         />
       )}

@@ -12,7 +12,6 @@ import { useMemo, useState, type JSX } from "react";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
 
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
 
 import { projects } from "@/dearlyfebriano/data/projects";
 
@@ -202,7 +201,7 @@ export default function TechStackGraph({
        * Graph
        * ====================================================== */}
 
-      <GlowCard className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
+      <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
         <div className="border-b border-border/70 bg-background/30 p-5 sm:p-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div className="flex items-start gap-3">
@@ -211,7 +210,7 @@ export default function TechStackGraph({
               </div>
 
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-primary">
                   {t("Interactive graph")}
                 </p>
 
@@ -389,7 +388,7 @@ export default function TechStackGraph({
                       <text
                         x={project.x * 10}
                         y={project.y * 6.2 - 2}
-                        textAnchor="middle"
+                       textAnchor="middle"
                         className="fill-foreground text-[17px] font-semibold"
                         opacity={muted ? 0.2 : 1}
                       >
@@ -399,7 +398,7 @@ export default function TechStackGraph({
                       <text
                         x={project.x * 10}
                         y={project.y * 6.2 + 15}
-                        textAnchor="middle"
+                       textAnchor="middle"
                         className="fill-muted-foreground text-[10px]"
                         opacity={muted ? 0.15 : 0.9}
                       >
@@ -472,7 +471,7 @@ export default function TechStackGraph({
                       <text
                         x={tech.x * 10}
                         y={tech.y * 6.2 - 2}
-                        textAnchor="middle"
+                       textAnchor="middle"
                         className="fill-foreground text-[12px] font-medium"
                         opacity={active ? 1 : 0.2}
                       >
@@ -482,7 +481,7 @@ export default function TechStackGraph({
                       <text
                         x={tech.x * 10}
                         y={tech.y * 6.2 + 14}
-                        textAnchor="middle"
+                       textAnchor="middle"
                         className="fill-primary text-[9px] font-mono"
                         opacity={active ? 1 : 0.15}
                       >
@@ -526,7 +525,7 @@ export default function TechStackGraph({
             </span>
           </div>
         </div>
-      </GlowCard>
+      </div>
 
       {/* ======================================================
        * Selected technology details
@@ -534,13 +533,13 @@ export default function TechStackGraph({
 
       {selectedTech && (
         <FadeIn y={12} className="mt-5">
-          <GlowCard className="rounded-2xl border border-primary/25 bg-primary/5 p-5">
+          <div className="rounded-2xl border border-primary/25 bg-primary/5 p-5">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <div className="flex items-center gap-2">
                   <Layers3 className="size-4 text-primary" aria-hidden />
 
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-primary">
                     {t("Selected technology")}
                   </p>
                 </div>
@@ -571,7 +570,7 @@ export default function TechStackGraph({
                   key={project.slug}
                   type="button"
                   onClick={() => navigate("project-detail", project.slug)}
-                  className="group flex items-center justify-between rounded-xl border border-border/70 bg-background/50 p-4 text-left transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:bg-card"
+                  className="group flex items-center justify-between rounded-xl border border-border/70 bg-background/50 p-4 text-left transition-all hover:-translate-y-0.5 hover:border-foreground/25 hover:bg-card"
                 >
                   <div className="min-w-0">
                     <p className="font-medium text-foreground transition-colors group-hover:text-primary">
@@ -594,7 +593,7 @@ export default function TechStackGraph({
                 </button>
               ))}
             </div>
-          </GlowCard>
+          </div>
         </FadeIn>
       )}
     </div>

@@ -21,14 +21,12 @@ export function LogoMark({ className, label = "Dearly Febriano" }: LogoMarkProps
       role="img"
       aria-label={label}
       className={cn(
-        "grid size-9 shrink-0 place-items-center rounded-[11px] bg-gradient-accent p-[1.5px] shadow-sm",
+        "grid size-9 shrink-0 place-items-center rounded-md border border-border bg-card",
         className
       )}
     >
-      <span className="grid h-full w-full place-items-center rounded-[9.5px] bg-card">
-        <span className="font-mono text-[13px] font-bold leading-none tracking-tight text-gradient">
-          {profile.initials}
-        </span>
+      <span className="font-serif text-[13px] font-semibold leading-none tracking-tight text-foreground">
+        {profile.initials}
       </span>
     </span>
   );

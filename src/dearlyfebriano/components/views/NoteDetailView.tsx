@@ -38,7 +38,7 @@ import type { JSX, MouseEvent as ReactMouseEvent, RefObject } from "react";
  * ============================================================ */
 
 const CALLOUT_STYLES = {
-  tip: { icon: Lightbulb, classes: "border-emerald-500/40 bg-emerald-500/5", iconClasses: "text-emerald-500" },
+  tip: { icon: Lightbulb, classes: "border-border bg-transparent", iconClasses: "text-success" },
   warning: { icon: TriangleAlert, classes: "border-amber-500/40 bg-amber-500/5", iconClasses: "text-amber-500" },
   info: { icon: Info, classes: "border-primary/40 bg-primary/5", iconClasses: "text-primary" },
 } as const;
@@ -101,15 +101,15 @@ function ReadingProgress({
       aria-valuenow={progress}
       aria-valuemin={0}
       aria-valuemax={100}
-      className="sticky top-20 z-20 mt-8 flex items-center gap-3 rounded-full border border-border/60 bg-background/75 py-1.5 pl-4 pr-3 backdrop-blur-md"
+      className="sticky top-20 z-20 mt-8 flex items-center gap-3 rounded-full border border-border/60 bg-background/95 py-1.5 pl-4 pr-3"
     >
-      <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+      <span className="eyebrow">
         {t("Reading")}
       </span>
       <div aria-hidden className="h-1 flex-1 overflow-hidden rounded-full bg-border/80">
         <div
           className={cn(
-            "h-full rounded-full bg-gradient-accent",
+            "h-full rounded-full bg-primary",
             !reducedMotion && "transition-[width] duration-150 ease-out"
           )}
           style={{ width: `${progress}%` }}
@@ -160,7 +160,7 @@ function CodeBlock({ language, code }: { language: string; code: string }): JSX.
         >
           {copied ? (
             <>
-              <Check className="size-3.5 text-emerald-500" aria-hidden />
+              <Check className="size-3.5 text-success" aria-hidden />
               {t("Copied")}
             </>
           ) : (
@@ -214,7 +214,7 @@ function SectionBlock({
         <ul className="space-y-2.5">
           {section.items.map((item) => (
             <li key={item} className="flex gap-3 text-base leading-relaxed text-foreground/90">
-              <span aria-hidden className="mt-2.5 size-1.5 shrink-0 rounded-full bg-gradient-accent" />
+              <span aria-hidden className="mt-2.5 size-1.5 shrink-0 rounded-full bg-primary" />
               <span>{t(item)}</span>
             </li>
           ))}
@@ -350,7 +350,7 @@ export default function NoteDetailView(): JSX.Element {
           <Button
             type="button"
             onClick={() => navigate("notes")}
-            className="mt-8 bg-gradient-accent text-white shadow-lg shadow-primary/25 hover:opacity-90"
+            className="mt-8 bg-primary text-white shadow-lg shadow-primary/25 hover:opacity-90"
           >
             <ArrowLeft className="size-4" aria-hidden />
             {t("Back to notes")}
@@ -387,7 +387,7 @@ export default function NoteDetailView(): JSX.Element {
       {/* Article header */}
       <FadeIn y={20} delay={0.05} className="mt-6">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="glass rounded-full px-3 py-0.5 font-mono text-[11px] capitalize text-foreground">
+          <span className="card-surface rounded-full px-3 py-0.5 font-mono text-[11px] capitalize text-foreground">
             {t(article.category)}
           </span>
           {article.tags.map((tag) => (
@@ -469,7 +469,7 @@ export default function NoteDetailView(): JSX.Element {
             <div className="flex flex-wrap items-center gap-2">
               <span
                 aria-hidden
-                className="mr-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground"
+                className="mr-1 eyebrow"
               >
                 {t("Share")}
               </span>
@@ -512,7 +512,7 @@ export default function NoteDetailView(): JSX.Element {
             aria-label={t("Table of contents")}
             className="sticky top-28 border-l border-border/60 pl-4"
           >
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            <p className="eyebrow">
               {t("On this page")}
             </p>
             <ul className="mt-3 space-y-1">
@@ -586,7 +586,7 @@ export default function NoteDetailView(): JSX.Element {
                   type="button"
                   onClick={() => navigate("note-detail", relatedArticle.slug)}
                   aria-label={`${t("Read related note:")} ${relatedArticle.title}`}
-                  className="card-shine group relative flex h-full flex-col gap-3 overflow-hidden rounded-2xl border border-border/70 bg-card/60 p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className=" group relative flex h-full flex-col gap-3 overflow-hidden rounded-2xl border border-border/70 bg-card/60 p-5 text-left transition-all duration-300 hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   <span
                     aria-hidden
@@ -615,7 +615,7 @@ export default function NoteDetailView(): JSX.Element {
                       aria-hidden
                       className={cn(
                         "size-3.5",
-                        !reducedMotion && "transition-transform group-hover:translate-x-1"
+                        !reducedMotion && "transition-transform"
                       )}
                     />
                   </span>
@@ -634,14 +634,14 @@ export default function NoteDetailView(): JSX.Element {
             disabled={!prev}
             onClick={() => prev && navigate("note-detail", prev.slug)}
             aria-label={prev ? `${t("Previous article:")} ${prev.title}` : t("No previous article")}
-            className="group rounded-2xl border border-border/70 bg-card/60 p-5 text-left transition-all hover:border-primary/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="group rounded-2xl border border-border/70 bg-card/60 p-5 text-left transition-all hover:border-foreground/25 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <span className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
               <ArrowLeft
                 aria-hidden
                 className={cn(
                   "size-4",
-                  !reducedMotion && "transition-transform group-hover:-translate-x-1"
+                  !reducedMotion && "transition-transform"
                 )}
               />
               {t("Previous article")}
@@ -655,7 +655,7 @@ export default function NoteDetailView(): JSX.Element {
             disabled={!next}
             onClick={() => next && navigate("note-detail", next.slug)}
             aria-label={next ? `${t("Next article:")} ${next.title}` : t("No next article")}
-            className="group rounded-2xl border border-border/70 bg-card/60 p-5 text-right transition-all hover:border-primary/40 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="group rounded-2xl border border-border/70 bg-card/60 p-5 text-right transition-all hover:border-foreground/25 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <span className="flex items-center justify-end gap-2 font-mono text-xs text-muted-foreground">
               {t("Next article")}
@@ -663,7 +663,7 @@ export default function NoteDetailView(): JSX.Element {
                 aria-hidden
                 className={cn(
                   "size-4",
-                  !reducedMotion && "transition-transform group-hover:translate-x-1"
+                  !reducedMotion && "transition-transform"
                 )}
               />
             </span>

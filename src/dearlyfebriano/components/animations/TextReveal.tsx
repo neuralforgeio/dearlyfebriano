@@ -11,7 +11,7 @@ import { Fragment, type JSX } from "react";
  * ============================================================ */
 
 interface TextRevealProps {
-  text: string;
+ text: string;
   className?: string;
   delay?: number;
   stagger?: number;
@@ -55,7 +55,7 @@ function buildGroups(text: string, mode: "word" | "char"): RevealGroup[] {
 }
 
 export default function TextReveal({
-  text,
+ text,
   className,
   delay = 0,
   stagger = 0.04,

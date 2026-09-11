@@ -5,7 +5,6 @@ import { ArrowRight, GraduationCap } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
-import MagneticButton from "@/dearlyfebriano/components/animations/MagneticButton";
 import {
   StaggerContainer,
   StaggerItem,
@@ -34,7 +33,7 @@ interface PageHeaderProps {
 function PageHeader({ eyebrow, title, description, children }: PageHeaderProps): JSX.Element {
   return (
     <FadeIn y={20} className="flex flex-col gap-4">
-      <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{eyebrow}</span>
+      <span className="eyebrow text-primary">{eyebrow}</span>
       <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
         {title}
       </h1>
@@ -55,7 +54,7 @@ function levelLabel(level: number): string {
 }
 
 function levelClass(level: number): string {
-  if (level >= 80) return "text-gradient";
+  if (level >= 80) return "text-foreground";
   if (level >= 60) return "text-primary";
   if (level >= 40) return "text-violet-400";
   return "text-muted-foreground";
@@ -75,12 +74,8 @@ export default function AboutView(): JSX.Element {
         <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Avatar card */}
           <FadeIn x={-24} className="relative mx-auto w-full max-w-sm lg:mx-0">
-            <div
-              aria-hidden
-              className="bg-gradient-accent absolute -inset-5 rounded-[2.5rem] opacity-25 blur-3xl"
-            />
-            <div className="relative rounded-3xl border border-border/70 bg-card/60 p-3">
-              <div className="relative aspect-square w-full overflow-hidden rounded-2xl">
+            <div className="relative rounded-2xl border border-border bg-card p-3">
+              <div className="relative aspect-square w-full overflow-hidden rounded-xl">
                 <Image
                   src={profile.avatar}
                   alt={`${profile.fullName} — ${t("portrait illustration")}`}
@@ -91,13 +86,11 @@ export default function AboutView(): JSX.Element {
                 />
               </div>
             </div>
-            <div className="glass absolute -bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full px-4 py-1.5 text-xs font-medium text-foreground">
-              <span className="relative flex size-2" aria-hidden>
-                {!reducedMotion && (
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-                )}
-                <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
-              </span>
+            <div className="card-surface absolute -bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-md px-4 py-1.5 text-xs font-medium text-foreground">
+              <span
+                aria-hidden
+                className="size-2 rounded-full bg-success"
+              />
               {t(profile.availability)}
             </div>
           </FadeIn>
@@ -158,7 +151,7 @@ export default function AboutView(): JSX.Element {
             const Icon = fact.icon;
             return (
               <StaggerItem key={fact.label} className="h-full">
-                <div className="group h-full rounded-2xl border border-border/70 bg-card/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40">
+                <div className="group h-full rounded-2xl border border-border/70 bg-card/60 p-5 transition-all duration-300 hover:border-foreground/25">
                   <div className="grid size-10 place-items-center rounded-lg bg-primary/10 text-primary">
                     <Icon className="size-5" aria-hidden />
                   </div>
@@ -179,7 +172,7 @@ export default function AboutView(): JSX.Element {
         <StaggerContainer className="grid gap-4 md:grid-cols-2">
           {education.map((item) => (
             <StaggerItem key={item.degree} className="h-full">
-              <article className="h-full rounded-2xl border border-border/70 bg-card/60 p-6 transition-colors hover:border-primary/40">
+              <article className="h-full rounded-2xl border border-border/70 bg-card/60 p-6 transition-colors hover:border-foreground/25">
                 <div className="flex items-center gap-4">
                   <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
                     <GraduationCap className="size-5" aria-hidden />
@@ -216,7 +209,7 @@ export default function AboutView(): JSX.Element {
                 {group.skills.map((skill) => (
                   <li
                     key={skill.name}
-                    className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 px-3 py-1 transition-colors hover:border-primary/40"
+                    className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 px-3 py-1 transition-colors hover:border-foreground/25"
                   >
                     <span className="text-sm text-foreground">{skill.name}</span>
                     <span
@@ -237,7 +230,7 @@ export default function AboutView(): JSX.Element {
       <section aria-label={t("Contact call to action")} className="mt-20 sm:mt-24">
         <FadeIn>
           <motion.div
-            className="glass flex flex-col items-start justify-between gap-5 rounded-2xl p-6 sm:flex-row sm:items-center sm:p-8"
+            className="card-surface flex flex-col items-start justify-between gap-5 rounded-2xl p-6 sm:flex-row sm:items-center sm:p-8"
             whileHover={reducedMotion ? undefined : { y: -2 }}
             transition={{ type: "spring", stiffness: 300, damping: 24 }}
           >
@@ -249,17 +242,15 @@ export default function AboutView(): JSX.Element {
                 {t("The fastest way to get to know me is a direct conversation.")}
               </p>
             </div>
-            <MagneticButton className="shrink-0">
-              <Button
-                type="button"
-                size="lg"
-                onClick={() => navigate("contact")}
-                className="bg-gradient-accent text-white shadow-lg shadow-primary/25 hover:opacity-90"
-              >
-                {t("Let's talk")}
-                <ArrowRight className="size-4" aria-hidden />
-              </Button>
-            </MagneticButton>
+            <Button
+              type="button"
+              size="lg"
+              onClick={() => navigate("contact")}
+              className="shrink-0 bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              {t("Let's talk")}
+              <ArrowRight className="size-4" aria-hidden />
+            </Button>
           </motion.div>
         </FadeIn>
       </section>

@@ -16,7 +16,6 @@ import { useState, type JSX } from "react";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
 
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
 
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 
@@ -168,7 +167,7 @@ export default function ProjectGithub({
     return (
       <section aria-label={t("GitHub verification")} className="mt-14">
         <FadeIn>
-          <GlowCard className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
+          <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
             <div className="p-5 sm:p-6">
               <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-start gap-4">
@@ -177,7 +176,7 @@ export default function ProjectGithub({
                   </div>
 
                   <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-primary">
                       {t("Verification")}
                     </p>
 
@@ -196,7 +195,7 @@ export default function ProjectGithub({
                 <button
                   type="button"
                   onClick={loadRepository}
-                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-accent px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-primary/20 transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-primary/20 transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
                 >
                   <Github className="size-4" aria-hidden />
 
@@ -204,7 +203,7 @@ export default function ProjectGithub({
                 </button>
               </div>
             </div>
-          </GlowCard>
+          </div>
         </FadeIn>
       </section>
     );
@@ -218,10 +217,10 @@ export default function ProjectGithub({
     return (
       <section aria-label={t("GitHub verification")} className="mt-14">
         <FadeIn>
-          <GlowCard className="rounded-3xl border border-border/70 bg-card/50">
+          <div className="rounded-3xl border border-border/70 bg-card/50">
             <div className="flex min-h-[180px] flex-col items-center justify-center p-6 text-center">
               <div className="relative grid size-14 place-items-center">
-                <span className="absolute size-14 animate-ping rounded-full bg-primary/10" />
+                <span className="absolute size-14  rounded-full bg-primary/10" />
 
                 <LoaderCircle
                   className="relative size-8 animate-spin text-primary"
@@ -238,7 +237,7 @@ export default function ProjectGithub({
                 github.com
               </p>
             </div>
-          </GlowCard>
+          </div>
         </FadeIn>
       </section>
     );
@@ -252,7 +251,7 @@ export default function ProjectGithub({
     return (
       <section aria-label={t("GitHub verification")} className="mt-14">
         <FadeIn>
-          <GlowCard className="rounded-3xl border border-amber-500/20 bg-amber-500/5">
+          <div className="rounded-3xl border border-amber-500/20 bg-amber-500/5">
             <div className="flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
               <div className="flex items-start gap-4">
                 <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-amber-500/10 text-amber-500">
@@ -260,7 +259,7 @@ export default function ProjectGithub({
                 </div>
 
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-500">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-amber-500">
                     {t("Verification")}
                   </p>
 
@@ -278,7 +277,7 @@ export default function ProjectGithub({
                 <button
                   type="button"
                   onClick={loadRepository}
-                  className="inline-flex items-center gap-2 rounded-xl border border-border/70 bg-background/50 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary/40"
+                  className="inline-flex items-center gap-2 rounded-xl border border-border/70 bg-background/50 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-foreground/25"
                 >
                   {t("Retry")}
                 </button>
@@ -287,14 +286,14 @@ export default function ProjectGithub({
                   href={githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl bg-gradient-accent px-4 py-2 text-sm font-medium text-white hover:opacity-90"
+                  className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white hover:opacity-90"
                 >
                   <ExternalLink className="size-4" aria-hidden />
                   GitHub
                 </a>
               </div>
             </div>
-          </GlowCard>
+          </div>
         </FadeIn>
       </section>
     );
@@ -313,7 +312,7 @@ export default function ProjectGithub({
   return (
     <section aria-label={t("GitHub verification")} className="mt-14">
       <FadeIn>
-        <GlowCard className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
+        <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
           {/* ==================================================
            * Header
            * ================================================== */}
@@ -327,12 +326,12 @@ export default function ProjectGithub({
 
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-primary">
                       {t("Verified repository")}
                     </p>
 
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-2 py-0.5 text-[10px] font-medium text-emerald-500">
-                      <span className="size-1.5 rounded-full bg-emerald-500" />
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-transparent px-2 py-0.5 text-[10px] font-medium text-success">
+                      <span className="size-1.5 rounded-full bg-success" />
 
                       {t("Public")}
                     </span>
@@ -354,7 +353,7 @@ export default function ProjectGithub({
                 <button
                   type="button"
                   onClick={loadRepository}
-                  className="inline-flex items-center gap-2 rounded-xl border border-border/70 bg-background/50 px-3.5 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                  className="inline-flex items-center gap-2 rounded-xl border border-border/70 bg-background/50 px-3.5 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground"
                 >
                   {t("Refresh")}
                 </button>
@@ -363,7 +362,7 @@ export default function ProjectGithub({
                   href={repository.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl bg-gradient-accent px-3.5 py-2 text-xs font-medium text-white hover:opacity-90"
+                  className="inline-flex items-center gap-2 rounded-xl bg-primary px-3.5 py-2 text-xs font-medium text-white hover:opacity-90"
                 >
                   <ExternalLink className="size-3.5" aria-hidden />
 
@@ -414,7 +413,7 @@ export default function ProjectGithub({
               </div>
 
               <div className="min-w-0 flex-1">
-                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                <p className="eyebrow">
                   {t("Latest commit")}
                 </p>
 
@@ -459,7 +458,7 @@ export default function ProjectGithub({
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[10px] text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
                 <CheckCircle2
-                  className="size-3.5 text-emerald-500"
+                  className="size-3.5 text-success"
                   aria-hidden
                 />
 
@@ -478,7 +477,7 @@ export default function ProjectGithub({
               </span>
             </div>
           </div>
-        </GlowCard>
+        </div>
       </FadeIn>
     </section>
   );

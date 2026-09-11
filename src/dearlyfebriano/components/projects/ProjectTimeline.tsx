@@ -6,7 +6,6 @@ import type { JSX } from "react";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
 
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
 
 import { SectionHeading } from "@/dearlyfebriano/components/ui/SectionHeading";
 
@@ -67,7 +66,7 @@ export default function ProjectTimeline({
        * ====================================================== */}
 
       <FadeIn delay={0.08} className="mt-8">
-        <GlowCard className="rounded-3xl border border-border/70 bg-card/50 p-5 sm:p-7">
+        <div className="rounded-3xl border border-border/70 bg-card/50 p-5 sm:p-7">
           <div className="relative">
             {/* Vertical line */}
 
@@ -176,7 +175,7 @@ export default function ProjectTimeline({
               })}
             </ol>
           </div>
-        </GlowCard>
+        </div>
       </FadeIn>
     </section>
   );

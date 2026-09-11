@@ -15,7 +15,6 @@ import { useCallback, useEffect, useState, type JSX } from "react";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
 
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
 
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 
@@ -88,10 +87,10 @@ export default function ProjectIntelligence({
   if (loading) {
     return (
       <section className="mt-14">
-        <GlowCard className="rounded-3xl border border-border/70 bg-card/50">
+        <div className="rounded-3xl border border-border/70 bg-card/50">
           <div className="flex min-h-[220px] flex-col items-center justify-center p-6 text-center">
             <div className="relative">
-              <span className="absolute -inset-3 animate-ping rounded-full bg-primary/10" />
+              <span className="absolute -inset-3  rounded-full bg-primary/10" />
 
               <LoaderCircle
                 className="relative size-8 animate-spin text-primary"
@@ -110,7 +109,7 @@ export default function ProjectIntelligence({
               )}
             </p>
           </div>
-        </GlowCard>
+        </div>
       </section>
     );
   }
@@ -118,7 +117,7 @@ export default function ProjectIntelligence({
   if (error) {
     return (
       <section className="mt-14">
-        <GlowCard className="rounded-3xl border border-border/70 bg-card/50">
+        <div className="rounded-3xl border border-border/70 bg-card/50">
           <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-widest text-amber-500">
@@ -135,14 +134,14 @@ export default function ProjectIntelligence({
             <button
               type="button"
               onClick={() => void load()}
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border/70 px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-primary/40"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border/70 px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-foreground/25"
             >
               <RefreshCw className="size-4" aria-hidden />
 
               {t("Retry")}
             </button>
           </div>
-        </GlowCard>
+        </div>
       </section>
     );
   }
@@ -160,7 +159,7 @@ export default function ProjectIntelligence({
       <FadeIn>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
+            <p className="eyebrow text-primary">
               {t("Automatic analysis")}
             </p>
 
@@ -204,7 +203,7 @@ export default function ProjectIntelligence({
 
       {intelligence.techStack.length > 0 && (
         <FadeIn delay={0.1} className="mt-6">
-          <GlowCard className="rounded-2xl border border-border/70 bg-card/50 p-5">
+          <div className="rounded-2xl border border-border/70 bg-card/50 p-5">
             <div className="flex items-center gap-3">
               <div className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
                 <Layers3 className="size-4" aria-hidden />
@@ -220,7 +219,7 @@ export default function ProjectIntelligence({
                 </p>
               </div>
             </div>
-          </GlowCard>
+          </div>
         </FadeIn>
       )}
 
@@ -229,7 +228,7 @@ export default function ProjectIntelligence({
        * ====================================================== */}
 
       <FadeIn delay={0.15} className="mt-6">
-        <GlowCard className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
+        <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
           <div className="border-b border-border/70 p-5">
             <div className="flex items-center gap-3">
               <div className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
@@ -315,7 +314,7 @@ export default function ProjectIntelligence({
                 {intelligence.architecture.nodes.map((node) => (
                   <div
                     key={node.id}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-border/80 bg-card/90 px-4 py-3 shadow-lg backdrop-blur-xl"
+                    className="absolute -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-border/80 bg-card px-4 py-3 shadow-card"
                     style={{
                       left: `${node.x}%`,
                       top: `${node.y}%`,
@@ -338,7 +337,7 @@ export default function ProjectIntelligence({
               </div>
             </div>
           </div>
-        </GlowCard>
+        </div>
       </FadeIn>
 
       {/* ======================================================
@@ -347,7 +346,7 @@ export default function ProjectIntelligence({
 
       {intelligence.timeline.length > 0 && (
         <FadeIn delay={0.2} className="mt-6">
-          <GlowCard className="rounded-3xl border border-border/70 bg-card/50 p-5 sm:p-7">
+          <div className="rounded-3xl border border-border/70 bg-card/50 p-5 sm:p-7">
             <div className="flex items-center gap-3">
               <div className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
                 <Clock3 className="size-4" aria-hidden />
@@ -381,7 +380,7 @@ export default function ProjectIntelligence({
                 ))}
               </ol>
             </div>
-          </GlowCard>
+          </div>
         </FadeIn>
       )}
 
@@ -400,7 +399,7 @@ function IntelligenceMetricCard({
   metric: IntelligenceMetric;
 }): JSX.Element {
   return (
-    <GlowCard className="rounded-2xl border border-border/70 bg-card/50 p-5">
+    <div className="rounded-2xl border border-border/70 bg-card/50 p-5">
       <div className="flex items-center gap-2 text-muted-foreground">
         <BarChart3 className="size-4 text-primary" aria-hidden />
 
@@ -418,7 +417,7 @@ function IntelligenceMetricCard({
           {metric.description}
         </p>
       )}
-    </GlowCard>
+    </div>
   );
 }
 

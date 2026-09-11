@@ -2,7 +2,6 @@
 
 import { ArrowRight, Calendar, Clock, Hash } from "lucide-react";
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
-import TiltCard from "@/dearlyfebriano/components/animations/TiltCard";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/dearlyfebriano/components/ui/SectionHeading";
 import { articles } from "@/dearlyfebriano/data/articles";
@@ -18,10 +17,10 @@ import type { JSX } from "react";
  * ============================================================ */
 
 const CATEGORY_STYLES: Record<string, string> = {
-  engineering: "border-emerald-500/40 bg-emerald-500/10 text-emerald-500",
-  tutorial: "border-primary/40 bg-primary/10 text-primary",
-  opinion: "border-amber-500/40 bg-amber-500/10 text-amber-500",
-  career: "border-violet-500/40 bg-violet-500/10 text-violet-400",
+  engineering: "border-border bg-secondary text-success",
+  tutorial: "border-border bg-secondary text-primary",
+  opinion: "border-border bg-secondary text-muted-foreground",
+  career: "border-border bg-secondary text-muted-foreground",
 };
 
 export default function NotesPreview(): JSX.Element {
@@ -42,7 +41,7 @@ export default function NotesPreview(): JSX.Element {
       <div className="mt-10 grid gap-6 md:grid-cols-3">
         {latest.map((article, index) => (
           <FadeIn key={article.slug} delay={index * 0.07} className="h-full">
-            <TiltCard className="h-full" maxTilt={6}>
+            <div className="h-full">
               <article
                 role="link"
                 tabIndex={0}
@@ -54,7 +53,7 @@ export default function NotesPreview(): JSX.Element {
                     navigate("note-detail", article.slug);
                   }
                 }}
-                className="card-shine group relative flex h-full cursor-pointer flex-col rounded-2xl border border-border/70 bg-card/60 p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className=" group relative flex h-full cursor-pointer flex-col rounded-2xl border border-border/70 bg-card/60 p-6 transition-all duration-300.5 hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <div className="flex items-center gap-2">
                   <span
@@ -102,11 +101,11 @@ export default function NotesPreview(): JSX.Element {
                   </p>
                   <ArrowRight
                     aria-hidden
-                    className="size-4 shrink-0 text-primary transition-transform duration-300 group-hover:translate-x-1"
+                    className="size-4 shrink-0 text-primary transition-transform duration-300"
                   />
                 </div>
               </article>
-            </TiltCard>
+            </div>
           </FadeIn>
         ))}
       </div>
@@ -122,7 +121,7 @@ export default function NotesPreview(): JSX.Element {
           {t("Browse all notes")}
           <ArrowRight
             aria-hidden
-            className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+            className="size-4 transition-transform duration-300"
           />
         </Button>
       </FadeIn>

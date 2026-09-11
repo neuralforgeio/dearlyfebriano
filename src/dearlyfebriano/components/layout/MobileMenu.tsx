@@ -151,12 +151,12 @@ export function MobileMenu() {
                 aria-label={t("Go to home")}
                 className="flex shrink-0 items-center rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4"
               >
-                <LogoMark className="transition-transform duration-200 hover:scale-105 active:scale-95" />
+                <LogoMark className="transition-transform duration-200 active:scale-95" />
               </button>
               <div className="min-w-0 flex-1">
                 <p className="truncate font-mono text-sm font-bold leading-tight tracking-tight">
                   <span className="text-foreground">dearly</span>
-                  <span className="text-gradient">febriano</span>
+                  <span className="text-foreground">febriano</span>
                 </p>
                 <p className="truncate text-[11px] leading-tight text-muted-foreground">
                   {profile.roles[0]}
@@ -180,7 +180,7 @@ export function MobileMenu() {
             >
               <p
                 aria-hidden="true"
-                className="px-3 pb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground/60"
+                className="px-3 pb-2 eyebrow/60"
               >
                 {t("Menu")}
               </p>
@@ -215,7 +215,7 @@ export function MobileMenu() {
                         {isActive && (
                           <span
                             aria-hidden="true"
-                            className="absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-full bg-gradient-accent"
+                            className="absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-full bg-primary"
                           />
                         )}
                         <span
@@ -270,7 +270,7 @@ export function MobileMenu() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${link.label} (${t("opens in new tab")})`}
-                      className="grid size-9 place-items-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+                      className="grid size-9 place-items-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
                     >
                       <SocialIcon icon={link.icon} className="size-[16px]" />
                     </a>
@@ -279,7 +279,7 @@ export function MobileMenu() {
               </ul>
               <p className="flex items-center justify-center gap-2.5 rounded-full border border-border/80 bg-card/60 px-4 py-2 text-xs text-muted-foreground">
                 <span className="relative flex size-2 shrink-0" aria-hidden="true">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
+                  <span className="absolute inline-flex h-full w-full  rounded-full bg-success opacity-60" />
                   <span className="relative inline-flex h-full w-full rounded-full bg-success" />
                 </span>
                 <span className="truncate">{t(profile.availability)}</span>

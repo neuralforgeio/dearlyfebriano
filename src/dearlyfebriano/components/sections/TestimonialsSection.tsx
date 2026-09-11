@@ -67,7 +67,7 @@ export default function TestimonialsSection(): JSX.Element {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: reducedMotion ? 0 : -48 }}
                   transition={{ duration: reducedMotion ? 0 : 0.35, ease: "easeOut" }}
-                  className="glass rounded-2xl p-8 text-center sm:p-10"
+                  className="card-surface rounded-2xl p-8 text-center sm:p-10"
                 >
                   <Quote aria-hidden className="mx-auto mb-5 size-8 text-primary/40" />
                   <blockquote className="text-base italic leading-relaxed text-foreground/90 sm:text-lg">
@@ -100,7 +100,7 @@ export default function TestimonialsSection(): JSX.Element {
               type="button"
               onClick={goPrev}
               aria-label={t("Previous testimonial")}
-              className="glass grid size-9 place-items-center rounded-full text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
+              className="card-surface grid size-9 place-items-center rounded-full text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary"
             >
               <ChevronLeft aria-hidden className="size-4" />
             </button>
@@ -118,7 +118,7 @@ export default function TestimonialsSection(): JSX.Element {
                     className={cn(
                       "h-2 rounded-full transition-all",
                       isActive
-                        ? "w-6 bg-gradient-accent"
+                        ? "w-6 bg-primary"
                         : "w-2 bg-border hover:bg-muted-foreground/40"
                     )}
                   />
@@ -130,7 +130,7 @@ export default function TestimonialsSection(): JSX.Element {
               type="button"
               onClick={goNext}
               aria-label={t("Next testimonial")}
-              className="glass grid size-9 place-items-center rounded-full text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary"
+              className="card-surface grid size-9 place-items-center rounded-full text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary"
             >
               <ChevronRight aria-hidden className="size-4" />
             </button>

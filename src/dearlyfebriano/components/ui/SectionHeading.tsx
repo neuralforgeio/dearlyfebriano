@@ -40,18 +40,18 @@ export function SectionHeading({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.4 }}
-          className="font-mono text-xs uppercase tracking-[0.25em] text-primary"
+          className="eyebrow"
         >
           {eyebrow}
         </motion.span>
       )}
       <div className="relative">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, delay: 0.05 }}
-          className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl"
+          className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl lg:text-4xl"
         >
           {title}
         </motion.h2>
@@ -59,8 +59,8 @@ export function SectionHeading({
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
-          className="absolute -bottom-2 left-0 h-[3px] w-16 origin-left rounded-full bg-gradient-accent"
+          transition={{ duration: 0.5, delay: 0.25, ease: "easeOut" }}
+          className="absolute -bottom-2 left-0 h-px w-16 origin-left bg-border"
           aria-hidden
         />
       </div>

@@ -20,7 +20,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
-import MagneticButton from "@/dearlyfebriano/components/animations/MagneticButton";
 import ContactMessagesSection from "@/dearlyfebriano/components/views/ContactMessagesSection";
 import { SocialIcon } from "@/dearlyfebriano/components/ui/SocialIcon";
 import { profile } from "@/dearlyfebriano/data/profile";
@@ -69,7 +68,7 @@ interface PageHeaderProps {
 function PageHeader({ eyebrow, title, description }: PageHeaderProps): JSX.Element {
   return (
     <FadeIn y={20} className="flex flex-col gap-4">
-      <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{eyebrow}</span>
+      <span className="eyebrow text-primary">{eyebrow}</span>
       <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
         {title}
       </h1>
@@ -117,7 +116,7 @@ function InfoCard({
     </>
   );
   const className = cn(
-    "glass flex w-full items-center gap-4 rounded-2xl p-4 transition-colors hover:border-primary/40",
+    "card-surface flex w-full items-center gap-4 rounded-2xl p-4 transition-colors hover:border-foreground/25",
     href && "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
     copyValue && "pr-14"
   );
@@ -165,10 +164,10 @@ function CopyButton({ text }: { text: string }): JSX.Element {
       onClick={handleCopy}
       aria-label={`${t("Copy")} ${text} ${t("to clipboard")}`}
       title={`${t("Copy")} ${text}`}
-      className="glass absolute right-3 top-1/2 grid size-8 -translate-y-1/2 place-items-center rounded-md text-muted-foreground transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+      className="card-surface absolute right-3 top-1/2 grid size-8 -translate-y-1/2 place-items-center rounded-md text-muted-foreground transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
     >
       {copied ? (
-        <Check className="size-3.5 text-emerald-500" aria-hidden />
+        <Check className="size-3.5 text-success" aria-hidden />
       ) : (
         <Copy className="size-3.5" aria-hidden />
       )}
@@ -244,7 +243,7 @@ export default function ContactView(): JSX.Element {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: reducedMotion ? 0 : -12 }}
                 transition={{ duration: reducedMotion ? 0.15 : 0.35, ease: "easeOut" }}
-                className="glass flex h-full min-h-[400px] flex-col items-center justify-center rounded-2xl p-8 text-center sm:p-12"
+                className="card-surface flex h-full min-h-[400px] flex-col items-center justify-center rounded-2xl p-8 text-center sm:p-12"
                 aria-live="polite"
               >
                 <motion.div
@@ -255,7 +254,7 @@ export default function ContactView(): JSX.Element {
                       ? { duration: 0.15 }
                       : { type: "spring", stiffness: 260, damping: 18 }
                   }
-                  className="grid size-16 place-items-center rounded-full bg-emerald-500/10 text-emerald-500"
+                  className="grid size-16 place-items-center rounded-full bg-secondary text-success"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -403,28 +402,26 @@ export default function ContactView(): JSX.Element {
                   </div>
                 </div>
 
-                <MagneticButton className="w-full">
-                  <Button
-                    type="submit"
-                    size="lg"
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-accent text-white shadow-lg shadow-primary/25 hover:opacity-90"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="size-4 animate-spin" aria-hidden />
-                        {t("Sending…")}
-                      </>
-                    ) : (
-                      <>
-                        <Send className="size-4" aria-hidden />
-                        {t("Send message")}
-                      </>
-                    )}
-                  </Button>
-                </MagneticButton>
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={isSubmitting}
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="size-4 animate-spin" aria-hidden />
+                      {t("Sending…")}
+                    </>
+                  ) : (
+                    <>
+                      <Send className="size-4" aria-hidden />
+                      {t("Send message")}
+                    </>
+                  )}
+                </Button>
 
-                <p className="font-mono text-[11px] text-muted-foreground">
+                <p className="mt-2 font-sans text-[11px] text-muted-foreground">
                   {t("Powered by Resend — your message is also stored securely.")}
                 </p>
               </motion.form>
@@ -461,9 +458,9 @@ export default function ContactView(): JSX.Element {
               downloadVCard();
               toast.success(t("Contact card downloaded — check your files"));
             }}
-            className="glass group flex w-full items-center gap-4 rounded-2xl p-4 text-left transition-all hover:-translate-y-0.5 hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="card-surface group flex w-full items-center gap-4 rounded-2xl p-4 text-left transition-all hover:-translate-y-0.5 hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
-            <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-gradient-accent group-hover:text-white">
+            <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
               <Contact className="size-5" aria-hidden />
             </div>
             <div className="min-w-0">
@@ -474,17 +471,17 @@ export default function ContactView(): JSX.Element {
                 {t("Download vCard (.vcf)")}
               </p>
             </div>
-            <Download className="ml-auto size-4 shrink-0 text-muted-foreground transition-all group-hover:translate-y-0.5 group-hover:text-primary" aria-hidden />
+            <Download className="ml-auto size-4 shrink-0 text-muted-foreground transition-all group-hover:translate-y-px group-hover:text-primary" aria-hidden />
           </button>
 
           {/* Availability */}
-          <div className="glass rounded-2xl p-4">
+          <div className="card-surface rounded-2xl p-4">
             <p className="flex items-center gap-2.5 text-sm font-medium text-foreground">
               <span className="relative flex size-2.5" aria-hidden>
                 {!reducedMotion && (
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+                  <span className="absolute inline-flex size-full  rounded-full bg-success opacity-60" />
                 )}
-                <span className="relative inline-flex size-2.5 rounded-full bg-emerald-500" />
+                <span className="relative inline-flex size-2.5 rounded-full bg-success" />
               </span>
               {t(profile.availability)}
             </p>
@@ -527,7 +524,7 @@ export default function ContactView(): JSX.Element {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${link.label} ${t("profile (opens in a new tab)")}`}
-                className="grid size-10 place-items-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="grid size-10 place-items-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <SocialIcon icon={link.icon} />
               </a>

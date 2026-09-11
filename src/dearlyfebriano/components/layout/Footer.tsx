@@ -63,7 +63,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="mt-auto border-t border-border bg-card/40 print:hidden">
+    <footer className="mt-auto border-t border-border bg-transparent print:hidden">
       <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
         {/* Top row: brand / quick links / socials */}
         <div className="grid gap-10 md:grid-cols-3 md:gap-8">
@@ -76,7 +76,7 @@ export function Footer() {
               className="flex h-11 w-fit items-center font-mono text-lg font-bold tracking-tight focus-visible:outline-2 focus-visible:outline-offset-4"
             >
               <span className="text-foreground">dearly</span>
-              <span className="text-gradient">febriano</span>
+              <span className="text-foreground">febriano</span>
               <span className="text-primary" aria-hidden="true">
                 .
               </span>
@@ -88,7 +88,7 @@ export function Footer() {
 
           {/* Quick links */}
           <nav aria-label={t("Footer quick links")}>
-            <h2 className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            <h2 className="eyebrow mb-4">
               {t("Quick Links")}
             </h2>
             <ul className="flex flex-col">
@@ -97,7 +97,7 @@ export function Footer() {
                   <button
                     type="button"
                     onClick={() => navigate(item.view)}
-                    className="py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+                    className="py-2.5 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2"
                   >
                     {t(item.label)}
                   </button>
@@ -108,7 +108,7 @@ export function Footer() {
 
           {/* Socials */}
           <div>
-            <h2 className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            <h2 className="eyebrow mb-4">
               {t("Connect")}
             </h2>
             <ul className="flex flex-wrap items-center gap-3">
@@ -119,7 +119,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${link.label} (${t("opens in new tab")})`}
-                    className="grid size-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/60 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+                    className="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2"
                   >
                     <SocialIcon icon={link.icon} className="size-4" />
                   </a>
@@ -152,7 +152,7 @@ export function Footer() {
               onClick={() => setCommandOpen(true)}
               aria-label={t("Open command palette")}
               title={t("Open command palette (Ctrl+K)")}
-              className="hidden h-8 items-center gap-1.5 rounded-md border border-border bg-secondary px-2.5 font-mono text-[10px] transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 lg:flex"
+              className="hidden h-8 items-center gap-1.5 rounded-md border border-border bg-secondary px-2.5 font-mono text-[10px] transition-colors hover:border-foreground/25 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 lg:flex"
             >
               <Command className="size-3" aria-hidden />
               <kbd>Ctrl</kbd>
@@ -166,7 +166,7 @@ export function Footer() {
               onClick={() => setShortcutsOpen(true)}
               aria-label={t("Keyboard shortcuts")}
               title={t("Keyboard shortcuts")}
-              className="grid size-11 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+              className="grid size-11 place-items-center rounded-full text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <Keyboard className="size-4" aria-hidden />
             </button>
@@ -174,7 +174,7 @@ export function Footer() {
               type="button"
               onClick={handleBackToTop}
               aria-label={t("Back to top")}
-              className="flex h-11 items-center gap-1.5 px-1 transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+              className="flex h-11 items-center gap-1.5 px-1 transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <ArrowUp className="size-3.5" aria-hidden="true" />
               {t("Back to top")}

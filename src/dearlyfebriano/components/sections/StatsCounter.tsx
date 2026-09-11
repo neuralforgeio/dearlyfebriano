@@ -202,11 +202,11 @@ export default function StatsCounter(): JSX.Element {
   return (
     <section
       id="stats"
-      className="border-y border-border/60 bg-card/30"
+      className="border-y border-border"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <StaggerContainer
-          className="grid grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-border/40"
+          className="grid grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-border"
           stagger={0.1}
           delay={0.05}
         >
@@ -226,7 +226,7 @@ export default function StatsCounter(): JSX.Element {
                    * Icon
                    * ========================================== */}
 
-                  <span className="grid size-10 place-items-center rounded-lg bg-primary/10 text-primary">
+                  <span className="grid size-10 place-items-center rounded-lg border border-border text-muted-foreground">
                     <Icon
                       aria-hidden
                       className="size-5"
@@ -234,10 +234,10 @@ export default function StatsCounter(): JSX.Element {
                   </span>
 
                   {/* ==========================================
-                   * Number
+                   * Number — serif, tabular count-up
                    * ========================================== */}
 
-                  <span className="font-mono text-3xl font-bold text-foreground sm:text-4xl">
+                  <span className="font-serif text-3xl font-semibold tabular-nums text-foreground sm:text-4xl">
                     <CountUp
                       value={
                         stat.value
@@ -249,7 +249,7 @@ export default function StatsCounter(): JSX.Element {
                    * Label
                    * ========================================== */}
 
-                  <span className="text-xs uppercase tracking-widest text-muted-foreground">
+                  <span className="eyebrow">
                     {t(
                       stat.label
                     )}

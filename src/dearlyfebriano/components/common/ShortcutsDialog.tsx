@@ -140,7 +140,7 @@ export default function ShortcutsDialog(): JSX.Element {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
-          className="fixed inset-0 z-[80] flex items-center justify-center bg-background/70 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-background/95 p-4"
           onClick={() => setOpen(false)}
           role="dialog"
           aria-modal="true"
@@ -152,7 +152,7 @@ export default function ShortcutsDialog(): JSX.Element {
             exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 12, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
             onClick={(event) => event.stopPropagation()}
-            className="glass relative w-full max-w-md overflow-hidden rounded-2xl border border-border/80 shadow-2xl shadow-primary/10"
+            className="card-surface relative w-full max-w-md overflow-hidden rounded-2xl border border-border/80 shadow-2xl shadow-primary/10"
           >
             {/* Aksen gradient tipis di tepi atas — konsisten tema site. */}
             <div
@@ -170,7 +170,7 @@ export default function ShortcutsDialog(): JSX.Element {
                   <h2 className="text-sm font-semibold text-foreground">
                     {t("Keyboard shortcuts")}
                   </h2>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                  <p className="eyebrow">
                     {t("Move faster, look cooler")}
                   </p>
                 </div>
@@ -180,7 +180,7 @@ export default function ShortcutsDialog(): JSX.Element {
                 type="button"
                 aria-label={t("Close preview")}
                 onClick={() => setOpen(false)}
-                className="grid size-8 place-items-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="grid size-8 place-items-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <X className="size-4" aria-hidden />
               </button>
@@ -196,7 +196,7 @@ export default function ShortcutsDialog(): JSX.Element {
                     className={cn(groupIndex > 0 && "mt-5")}
                     aria-label={group.title}
                   >
-                    <h3 className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                    <h3 className="flex items-center gap-2 eyebrow">
                       <GroupIcon className="size-3 text-primary" aria-hidden />
                       {group.title}
                     </h3>
@@ -211,7 +211,7 @@ export default function ShortcutsDialog(): JSX.Element {
                             delay: 0.06 + groupIndex * 0.08 + rowIndex * 0.04,
                             ease: "easeOut",
                           }}
-                          className="flex items-center justify-between gap-4 rounded-lg px-2.5 py-2 transition-colors hover:bg-primary/5"
+                          className="flex items-center justify-between gap-4 rounded-lg px-2.5 py-2 transition-colors hover:bg-secondary"
                         >
                           <span className="text-sm text-foreground/90">{row.label}</span>
                           <span className="flex shrink-0 flex-wrap items-center justify-end gap-1">

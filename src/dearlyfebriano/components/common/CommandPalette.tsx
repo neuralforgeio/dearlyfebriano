@@ -125,7 +125,7 @@ export default function CommandPalette(): JSX.Element {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
-          className="fixed inset-0 z-[70] flex items-start justify-center bg-background/70 p-4 pt-[12vh] backdrop-blur-sm"
+          className="fixed inset-0 z-[70] flex items-start justify-center bg-background/95 p-4 pt-[12vh]"
           onClick={() => setOpen(false)}
           role="dialog"
           aria-modal="true"
@@ -136,7 +136,7 @@ export default function CommandPalette(): JSX.Element {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="glass w-full max-w-lg overflow-hidden rounded-2xl border border-border/80 shadow-2xl shadow-primary/10"
+            className="card-surface w-full max-w-lg overflow-hidden rounded-2xl border border-border/80 shadow-2xl shadow-primary/10"
             onClick={(event) => event.stopPropagation()}
           >
             <Command loop>
@@ -150,7 +150,7 @@ export default function CommandPalette(): JSX.Element {
                   {t("No results found.")}
                 </CommandEmpty>
 
-                <CommandGroup heading={t("Navigation")} className="[&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.2em]">
+                <CommandGroup heading={t("Navigation")} className="[&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.08em]">
                   {NAV_ITEMS.map((item) => {
                     const Icon = VIEW_ICONS[item.view] ?? Home;
                     return (
@@ -169,7 +169,7 @@ export default function CommandPalette(): JSX.Element {
 
                 <CommandSeparator />
 
-                <CommandGroup heading={t("Projects")} className="[&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.2em]">
+                <CommandGroup heading={t("Projects")} className="[&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.08em]">
                   {projects.map((project) => (
                     <CommandItem
                       key={project.slug}
@@ -190,7 +190,7 @@ export default function CommandPalette(): JSX.Element {
 
                 <CommandSeparator />
 
-                <CommandGroup heading={t("Tech Notes")} className="[&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.2em]">
+                <CommandGroup heading={t("Tech Notes")} className="[&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.08em]">
                   {articles.map((article) => (
                     <CommandItem
                       key={article.slug}
@@ -209,7 +209,7 @@ export default function CommandPalette(): JSX.Element {
 
                 <CommandSeparator />
 
-                <CommandGroup heading={t("Actions")} className="[&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.2em]">
+                <CommandGroup heading={t("Actions")} className="[&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.08em]">
                   <CommandItem value="action copy email" onSelect={copyEmail} className="gap-3 text-sm">
                     <Copy className="size-4 text-primary" aria-hidden />
                     {t("Copy email address")}
@@ -259,7 +259,7 @@ export default function CommandPalette(): JSX.Element {
 
                 <CommandSeparator />
 
-                <CommandGroup heading={t("External")} className="[&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.2em]">
+                <CommandGroup heading={t("External")} className="[&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[10px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.08em]">
                   <CommandItem
                     value="external github"
                     onSelect={() => {

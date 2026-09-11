@@ -6,7 +6,7 @@ import { useEffect, useState, type JSX } from "react";
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 
 /* ============================================================
- * ScrollToTop — floating glass button that appears once the
+ * ScrollToTop — floating card-surface button that appears once the
  * page is scrolled past 600px. Positioned at bottom-24 so it
  * never collides with the WhatsApp button (bottom-6 right-6).
  * Ring progress di sekeliling tombol menunjukkan seberapa
@@ -60,7 +60,7 @@ export default function ScrollToTop(): JSX.Element {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.6 }}
           transition={{ duration: 0.2 }}
-          className="glass group fixed bottom-24 right-6 z-40 flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background print:hidden"
+          className="card-surface group fixed bottom-24 right-6 z-40 flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background print:hidden"
         >
           {/* Progress ring */}
           <svg

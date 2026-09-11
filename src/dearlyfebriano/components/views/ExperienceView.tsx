@@ -26,7 +26,7 @@ interface PageHeaderProps {
 function PageHeader({ eyebrow, title, description }: PageHeaderProps): JSX.Element {
   return (
     <FadeIn y={20} className="flex flex-col gap-4">
-      <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{eyebrow}</span>
+      <span className="eyebrow text-primary">{eyebrow}</span>
       <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
         {title}
       </h1>
@@ -56,7 +56,7 @@ function TimelineEntry({
       {/* Node dot on the rail — glow anchors it visually to the line */}
       <span
         aria-hidden
-        className="absolute left-3 top-7 z-10 size-4 rounded-full bg-gradient-accent shadow-[0_0_12px_rgba(139,92,246,0.45)] ring-4 ring-background md:left-1/2 md:-translate-x-1/2"
+        className="absolute left-3 top-7 z-10 size-4 rounded-full bg-primary shadow-[0_0_12px_rgba(139,92,246,0.45)] ring-4 ring-background md:left-1/2 md:-translate-x-1/2"
       />
       {/* Desktop connector: horizontal line bridging the grid gap between
           the rail dot and the card edge, so the dot feels anchored to the
@@ -81,7 +81,7 @@ function TimelineEntry({
       >
         <article
           className={cn(
-            "rounded-2xl border border-border/70 bg-card/60 p-6 transition-colors hover:border-primary/40",
+            "rounded-2xl border border-border/70 bg-card/60 p-6 transition-colors hover:border-foreground/25",
             isLeft && "md:text-right"
           )}
         >
@@ -93,7 +93,7 @@ function TimelineEntry({
             )}
           >
             <div
-              className="grid size-11 shrink-0 place-items-center rounded-xl bg-gradient-accent text-sm font-bold text-white"
+              className="grid size-11 shrink-0 place-items-center rounded-xl bg-primary text-sm font-bold text-white"
               aria-hidden
             >
               {experience.companyInitials}
@@ -107,7 +107,7 @@ function TimelineEntry({
                   <MapPin aria-hidden className="size-3" />
                   {experience.location}
                 </span>
-                <span className="glass rounded-full px-2 py-0.5 text-[10px] tracking-wide text-foreground/80">
+                <span className="card-surface rounded-full px-2 py-0.5 text-[10px] tracking-wide text-foreground/80">
                   {experience.locationType}
                 </span>
               </p>
@@ -121,12 +121,12 @@ function TimelineEntry({
               {experience.period.start} — {experience.period.end ?? t("Present")}
             </span>
             {experience.period.current && (
-              <span className="inline-flex items-center gap-2 text-emerald-500">
+              <span className="inline-flex items-center gap-2 text-success">
                 <span className="relative flex size-2" aria-hidden>
                   {!reducedMotion && (
-                    <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+                    <span className="absolute inline-flex size-full  rounded-full bg-success opacity-60" />
                   )}
-                  <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+                  <span className="relative inline-flex size-2 rounded-full bg-success" />
                 </span>
                 <span className="text-[10px] font-semibold uppercase tracking-widest">
                   {t("Current")}
@@ -207,7 +207,7 @@ export default function ExperienceView(): JSX.Element {
           <motion.span
             aria-hidden
             style={{ scaleY: progressScale }}
-            className="absolute bottom-0 left-5 top-0 w-px origin-top bg-gradient-accent md:left-1/2 md:-translate-x-1/2"
+            className="absolute bottom-0 left-5 top-0 w-px origin-top bg-primary md:left-1/2 md:-translate-x-1/2"
           />
         )}
 

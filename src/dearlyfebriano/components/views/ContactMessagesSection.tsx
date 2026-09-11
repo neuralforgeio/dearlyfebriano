@@ -71,13 +71,13 @@ function MessageCard({ message, onDelete }: MessageCardProps): JSX.Element {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.18 } }}
       transition={{ type: "spring", stiffness: 320, damping: 30 }}
-      className="group glass rounded-2xl border border-border/70 p-5 transition-colors hover:border-primary/30"
+      className="group card-surface rounded-2xl border border-border/70 p-5 transition-colors hover:border-primary/30"
     >
       <div className="flex items-start gap-4">
         {/* Avatar initials */}
         <div
           aria-hidden
-          className="grid size-10 shrink-0 place-items-center rounded-full bg-gradient-accent/15 font-mono text-xs font-semibold text-primary ring-1 ring-primary/25"
+          className="grid size-10 shrink-0 place-items-center rounded-full bg-primary/15 font-mono text-xs font-semibold text-primary ring-1 ring-primary/25"
         >
           {initialsOf(message.name) || "?"}
         </div>
@@ -105,7 +105,7 @@ function MessageCard({ message, onDelete }: MessageCardProps): JSX.Element {
             {message.emailed ? (
               <span
                 title={t("Email notification was sent")}
-                className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 font-mono text-[10px] text-emerald-500"
+                className="inline-flex items-center gap-1 rounded-full border border-border bg-secondary px-2.5 py-0.5 font-mono text-[10px] text-success"
               >
                 <MailCheck aria-hidden className="size-3" />
                 {t("emailed")}
@@ -350,12 +350,12 @@ export default function ContactMessagesSection({
     <FadeIn y={20} delay={0.15} className="mt-14 sm:mt-16">
       <section
         aria-label={t("Owner tools — recent contact messages")}
-        className="glass rounded-3xl border border-border/60 p-6 sm:p-8"
+        className="card-surface rounded-3xl border border-border/60 p-6 sm:p-8"
       >
         {/* Header */}
         <div className="flex flex-wrap items-center gap-3">
           <div className="min-w-0 flex-1">
-            <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-primary">
+            <p className="flex items-center gap-2 eyebrow text-primary">
               <ShieldCheck aria-hidden className="size-3.5" />
               {t("Owner tools")}
             </p>
@@ -496,7 +496,7 @@ export default function ContactMessagesSection({
                 role="group"
                 aria-label={t("Filter messages by subject")}
               >
-                <span className="mr-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
+                <span className="mr-1 eyebrow/70">
                   {t("Subject")}
                 </span>
                 <button
@@ -507,7 +507,7 @@ export default function ContactMessagesSection({
                     "rounded-full border px-3 py-1 font-mono text-[11px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                     activeSubject === "all"
                       ? "border-primary/60 bg-primary/10 text-primary"
-                      : "border-border/60 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                      : "border-border/60 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
                   )}
                 >
                   {t("all")} ({messages.length})
@@ -524,7 +524,7 @@ export default function ContactMessagesSection({
                         "rounded-full border px-3 py-1 font-mono text-[11px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                         isActive
                           ? "border-primary/60 bg-primary/10 text-primary"
-                          : "border-border/60 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                          : "border-border/60 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
                       )}
                     >
                       {t(subject)} ({count})

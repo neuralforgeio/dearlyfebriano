@@ -126,7 +126,7 @@ export function Navbar() {
           className={cn(
             "transition-[background-color,border-color,padding,backdrop-filter] duration-300",
             scrolled
-              ? "border-b border-border/60 bg-background/70 py-3 backdrop-blur-md"
+              ? "border-b border-border bg-background/90 py-3 backdrop-blur-md"
               : "border-b border-transparent bg-transparent py-5"
           )}
         >
@@ -142,7 +142,7 @@ export function Navbar() {
               aria-label={t("Go to home")}
               className="group flex h-11 shrink-0 items-center rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4"
             >
-              <LogoMark className="transition-transform duration-200 group-hover:scale-105 group-active:scale-95" />
+              <LogoMark className="transition-transform duration-200 group-active:scale-95" />
             </button>
 
             {/* CENTER — nav links IN-FLOW (bukan absolute!) — link
@@ -172,21 +172,13 @@ export function Navbar() {
                       >
                         {isActive && (
                           <motion.span
-                            aria-hidden
-                            layoutId="nav-active-pill"
-                            transition={underlineTransition}
-                            className="absolute inset-x-0 inset-y-1.5 rounded-full border border-border/60 bg-secondary/50"
-                          />
-                        )}
-                        <span className="relative z-10">{t(item.label)}</span>
-                        {isActive && (
-                          <motion.span
                             layoutId="nav-active-underline"
                             transition={underlineTransition}
-                            className="absolute inset-x-3 bottom-0.5 h-0.5 rounded-full bg-gradient-accent"
+                            className="absolute inset-x-3 bottom-0.5 h-px bg-foreground"
                             aria-hidden="true"
                           />
                         )}
+                        <span className="relative z-10">{t(item.label)}</span>
                       </button>
                     </li>
                   );
@@ -205,7 +197,7 @@ export function Navbar() {
                 onClick={() => setCommandOpen(true)}
                 aria-label={t("Open command palette (Ctrl+K)")}
                 title={t("Open command palette (Ctrl+K)")}
-                className="hidden h-10 items-center gap-1.5 rounded-full border border-border/70 bg-card/40 px-2.5 text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 lg:flex"
+                className="hidden h-10 items-center gap-1.5 rounded-md border border-border bg-transparent px-2.5 text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 lg:flex"
               >
                 <Search className="size-3.5" aria-hidden />
                 {/* Keycap utility (.kbd) — konsisten dengan ShortcutsDialog */}

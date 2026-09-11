@@ -6,7 +6,6 @@ import { GitBranch, Info, Layers3 } from "lucide-react";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
 
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
 
 import { SectionHeading } from "@/dearlyfebriano/components/ui/SectionHeading";
 
@@ -93,7 +92,7 @@ export default function ProjectArchitecture({
        * ====================================================== */}
 
       <FadeIn delay={0.08} className="mt-6">
-        <GlowCard className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
+        <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
           <div className="border-b border-border/60 bg-background/30 px-5 py-4">
             <div className="flex items-center gap-3">
               <div className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
@@ -202,7 +201,7 @@ export default function ProjectArchitecture({
                           <text
                             x={midX}
                             y={(y1 + y2) / 2 - 6}
-                            textAnchor="middle"
+                           textAnchor="middle"
                             className="fill-muted-foreground text-[10px]"
                           >
                             {edge.label}
@@ -233,7 +232,7 @@ export default function ProjectArchitecture({
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70",
                         isSelected
                           ? "z-20 border-primary/70 bg-primary/10 shadow-xl shadow-primary/10"
-                          : "z-10 border-border/80 bg-card/90 shadow-lg shadow-black/5 backdrop-blur-xl hover:border-primary/40",
+                          : "z-10 border-border/80 bg-card shadow-card hover:border-foreground/25",
                       ].join(" ")}
                       style={{
                         left: `${node.x}%`,
@@ -279,7 +278,7 @@ export default function ProjectArchitecture({
 
                 {!selectedNode && (
                   <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/80 px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-muted-foreground backdrop-blur-md">
+                    <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-muted-foreground">
                       <Info className="size-3" aria-hidden />
 
                       {t("Click a node to inspect it")}
@@ -316,14 +315,14 @@ export default function ProjectArchitecture({
                 <button
                   type="button"
                   onClick={() => setSelectedNodeId(null)}
-                  className="self-start rounded-full border border-border/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                  className="self-start rounded-full border border-border/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground"
                 >
                   {t("Close")}
                 </button>
               </div>
             </div>
           )}
-        </GlowCard>
+        </div>
       </FadeIn>
     </section>
   );

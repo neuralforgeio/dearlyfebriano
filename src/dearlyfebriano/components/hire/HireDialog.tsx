@@ -400,7 +400,7 @@ export default function HireDialog({
 
       <div
         aria-hidden
-        className="absolute inset-0 bg-black/75 backdrop-blur-md"
+        className="absolute inset-0 bg-black/80"
       />
 
       {/* Modal */}
@@ -418,7 +418,7 @@ export default function HireDialog({
               </div>
 
               <div className="min-w-0">
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-primary">
                   {t("Project inquiry")}
                 </p>
 
@@ -441,7 +441,7 @@ export default function HireDialog({
               type="button"
               onClick={handleClose}
               aria-label={t("Close")}
-              className="grid size-9 shrink-0 place-items-center rounded-xl border border-border/70 text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+              className="grid size-9 shrink-0 place-items-center rounded-xl border border-border/70 text-muted-foreground transition-colors hover:border-foreground/25 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
             >
               <X className="size-4" aria-hidden />
             </button>
@@ -884,7 +884,7 @@ export default function HireDialog({
                   type="button"
                   disabled={!inquiryType}
                   onClick={() => setStep(2)}
-                  className="bg-gradient-accent text-white hover:opacity-90"
+                  className="bg-primary text-white hover:opacity-90"
                 >
                   {t("Continue")}
 
@@ -904,7 +904,7 @@ export default function HireDialog({
 
                     setStep(3);
                   }}
-                  className="bg-gradient-accent text-white hover:opacity-90"
+                  className="bg-primary text-white hover:opacity-90"
                 >
                   {t("Review inquiry")}
 

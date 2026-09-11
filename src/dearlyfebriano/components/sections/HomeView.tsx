@@ -37,10 +37,6 @@ export default function HomeView(): JSX.Element {
       <TechTicker />
 
       <div className="relative">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10 bg-grid opacity-30 [mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_88%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_88%,transparent_100%)]"
-        />
         {/* PERF: setiap section bawah-fold dibungkus cv-auto —
             browser skip layout/paint saat section di luar viewport
             (halaman home panjang; render & scroll jauh lebih ringan). */}

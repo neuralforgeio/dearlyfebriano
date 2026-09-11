@@ -92,7 +92,7 @@ interface PageHeaderProps {
 function PageHeader({ eyebrow, title, description }: PageHeaderProps): JSX.Element {
   return (
     <FadeIn y={20} className="flex flex-col gap-4">
-      <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{eyebrow}</span>
+      <span className="eyebrow text-primary">{eyebrow}</span>
       <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
         {title}
       </h1>
@@ -341,7 +341,7 @@ export default function GuestbookView(): JSX.Element {
             onSubmit={handleSubmit}
             noValidate
             aria-label={t("Sign the guestbook")}
-            className="glass flex h-fit flex-col gap-5 rounded-2xl p-6"
+            className="card-surface flex h-fit flex-col gap-5 rounded-2xl p-6"
           >
             <div>
               <h2 className="text-lg font-semibold text-foreground">{t("Sign the guestbook")}</h2>
@@ -403,7 +403,7 @@ export default function GuestbookView(): JSX.Element {
             <Button
               type="submit"
               disabled={isPosting}
-              className="bg-gradient-accent text-white shadow-lg shadow-primary/25 hover:opacity-90"
+              className="bg-primary text-white shadow-lg shadow-primary/25 hover:opacity-90"
             >
               {isPosting ? (
                 <>
@@ -436,7 +436,7 @@ export default function GuestbookView(): JSX.Element {
                   aria-expanded={showKeyInput}
                   aria-label={t("Turn on manage mode to remove messages")}
                   title={t("Owner: manage messages")}
-                  className="inline-flex size-7 items-center justify-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className="inline-flex size-7 items-center justify-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   <ShieldCheck aria-hidden className="size-3.5" />
                 </button>
@@ -551,7 +551,7 @@ export default function GuestbookView(): JSX.Element {
                         className={cn(
                           "group/entry rounded-2xl border bg-card/60 p-5 transition-colors duration-300",
                           isAdmin
-                            ? "border-primary/30 hover:border-primary/50"
+                            ? "border-primary/30 hover:border-foreground/25"
                             : "border-border/70 hover:border-primary/30"
                         )}
                       >
@@ -636,7 +636,7 @@ export default function GuestbookView(): JSX.Element {
                               "grid size-8 place-items-center rounded-md border font-mono text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                               item === page
                                 ? "border-primary bg-primary/10 text-primary"
-                                : "border-border/70 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                                : "border-border/70 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
                             )}
                           >
                             {item}

@@ -22,7 +22,6 @@ import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
 
@@ -175,10 +174,10 @@ export default function PortfolioHealthDashboard(): JSX.Element {
   if (loading) {
     return (
       <section aria-label={t("Portfolio health")} className="mt-10">
-        <GlowCard className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
+        <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
           <div className="flex min-h-[220px] flex-col items-center justify-center p-6 text-center">
             <div className="relative">
-              <div className="absolute -inset-3 animate-ping rounded-full bg-primary/10" />
+              <div className="absolute -inset-3  rounded-full bg-primary/10" />
 
               <LoaderCircle
                 className="relative size-9 animate-spin text-primary"
@@ -197,7 +196,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
               )}
             </p>
           </div>
-        </GlowCard>
+        </div>
       </section>
     );
   }
@@ -209,7 +208,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
   if (error || !data) {
     return (
       <section aria-label={t("Portfolio health")} className="mt-10">
-        <GlowCard className="rounded-3xl border border-border/70 bg-card/50 p-6">
+        <div className="rounded-3xl border border-border/70 bg-card/50 p-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-3">
               <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-amber-500/10 text-amber-500">
@@ -234,14 +233,14 @@ export default function PortfolioHealthDashboard(): JSX.Element {
             <button
               type="button"
               onClick={() => void loadHealth(true)}
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border/70 px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-primary/40"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border/70 px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-foreground/25"
             >
               <RefreshCw className="size-4" aria-hidden />
 
               {t("Retry")}
             </button>
           </div>
-        </GlowCard>
+        </div>
       </section>
     );
   }
@@ -257,7 +256,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
        * ====================================================== */}
 
       <FadeIn>
-        <GlowCard className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
+        <div className="overflow-hidden rounded-3xl border border-border/70 bg-card/50">
           <div className="border-b border-border/70 bg-background/20 p-5 sm:p-6">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
               <div className="flex items-start gap-3">
@@ -265,7 +264,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
                   className={cn(
                     "grid size-11 shrink-0 place-items-center rounded-xl",
                     allHealthy
-                      ? "bg-emerald-500/10 text-emerald-500"
+                      ? "bg-secondary text-success"
                       : "bg-amber-500/10 text-amber-500",
                   )}
                 >
@@ -278,7 +277,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
 
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-primary">
                       {t("Automated monitoring")}
                     </p>
 
@@ -286,7 +285,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
                       className={cn(
                         "rounded-full px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider",
                         allHealthy
-                          ? "bg-emerald-500/10 text-emerald-500"
+                          ? "bg-secondary text-success"
                           : "bg-amber-500/10 text-amber-500",
                       )}
                     >
@@ -312,7 +311,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
                 type="button"
                 disabled={scanning}
                 onClick={() => void loadHealth(true)}
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border/70 bg-background/40 px-4 py-2.5 text-xs font-medium text-foreground transition-all hover:border-primary/40 hover:bg-card disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border/70 bg-background/40 px-4 py-2.5 text-xs font-medium text-foreground transition-all hover:border-foreground/25 hover:bg-card disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {scanning ? (
                   <LoaderCircle className="size-3.5 animate-spin" aria-hidden />
@@ -503,7 +502,7 @@ export default function PortfolioHealthDashboard(): JSX.Element {
               </span>
             </div>
           </div>
-        </GlowCard>
+        </div>
       </FadeIn>
     </section>
   );
@@ -562,7 +561,7 @@ function HealthDot({ project }: { project: HealthProject }): JSX.Element {
       className={cn(
         "mt-1.5 size-2.5 shrink-0 rounded-full",
         healthy
-          ? "bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.45)]"
+          ? "bg-success shadow-[0_0_12px_rgba(16,185,129,0.45)]"
           : "bg-amber-500 shadow-[0_0_12px_rgba(245,158,11,0.45)]",
       )}
       aria-hidden
@@ -588,7 +587,7 @@ function HealthSignal({
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider",
         good
-          ? "border-emerald-500/15 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400"
+          ? "border-border bg-transparent text-success"
           : "border-red-500/15 bg-red-500/5 text-red-600 dark:text-red-400",
       )}
     >

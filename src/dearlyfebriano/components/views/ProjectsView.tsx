@@ -28,8 +28,6 @@ import {
 } from "@/components/ui/select";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
-import TiltCard from "@/dearlyfebriano/components/animations/TiltCard";
 
 import { TechBadge } from "@/dearlyfebriano/components/ui/TechIcon";
 import { StatusBadge } from "@/dearlyfebriano/components/ui/StatusBadge";
@@ -121,7 +119,7 @@ function PageHeader({
 }: PageHeaderProps): JSX.Element {
   return (
     <FadeIn y={20} className="flex flex-col gap-4">
-      <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+      <span className="eyebrow text-primary">
         {eyebrow}
       </span>
 
@@ -194,7 +192,7 @@ function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
           alt={`${project.title} preview`}
           fill
           sizes="(min-width: 768px) 45vw, 90vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-500"
           onError={() => {
             setScreenshotFailed(true);
           }}
@@ -209,8 +207,8 @@ function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
 
         {/* Small live indicator */}
         <div className="absolute bottom-3 left-3 flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 text-[10px] font-medium text-white backdrop-blur-md">
-            <span className="size-1.5 animate-pulse rounded-full bg-emerald-400" />
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/70 px-2.5 py-1 text-[10px] font-medium text-white">
+            <span className="size-1.5 animate-pulse rounded-full bg-success" />
             {t("Live Preview")}
           </span>
 
@@ -228,7 +226,7 @@ function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
           className="absolute left-3 top-3"
         />
 
-        <span className="glass absolute right-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wider text-foreground">
+        <span className="card-surface absolute right-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wider text-foreground">
           {project.category}
         </span>
       </div>
@@ -250,7 +248,7 @@ function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
           alt={`${project.title} preview`}
           fill
           sizes="(min-width: 768px) 45vw, 90vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-500"
         />
 
         <div
@@ -263,7 +261,7 @@ function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
           className="absolute left-3 top-3"
         />
 
-        <span className="glass absolute right-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wider text-foreground">
+        <span className="card-surface absolute right-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wider text-foreground">
           {project.category}
         </span>
       </div>
@@ -284,7 +282,7 @@ function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
 
       <StatusBadge status={project.status} className="absolute left-3 top-3" />
 
-      <span className="glass absolute right-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wider text-foreground">
+      <span className="card-surface absolute right-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wider text-foreground">
         {project.category}
       </span>
     </div>
@@ -323,15 +321,15 @@ function ProjectCard({ project, index }: ProjectCardProps): JSX.Element {
   };
 
   return (
-    <TiltCard className="h-full">
-      <GlowCard className="h-full">
+    <div className="h-full">
+      <div className="h-full">
         <article
           role="link"
           tabIndex={0}
           aria-label={`${project.title} — ${t("open project details")}`}
           onClick={openDetail}
           onKeyDown={handleKeyDown}
-          className="card-shine group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/60 transition-all duration-300 hover:-translate-y-2 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className=" group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/60 transition-all duration-300 hover:border-foreground/25 hover:shadow-xl hover:shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           {/* ==========================================
            * Ghost index number
@@ -339,7 +337,7 @@ function ProjectCard({ project, index }: ProjectCardProps): JSX.Element {
 
           <span
             aria-hidden
-            className="text-gradient pointer-events-none absolute -top-2 right-3 z-20 font-mono text-6xl font-black opacity-[0.07] transition-opacity duration-300 group-hover:opacity-20"
+            className="text-foreground pointer-events-none absolute -top-2 right-3 z-20 font-mono text-6xl font-black opacity-[0.07] transition-opacity duration-300 group-hover:opacity-20"
           >
             {String(index + 1).padStart(2, "0")}
           </span>
@@ -437,15 +435,15 @@ function ProjectCard({ project, index }: ProjectCardProps): JSX.Element {
                   className={cn(
                     "size-4",
                     !reducedMotion &&
-                      "-translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100",
+                      "opacity-0 transition-opacity duration-200 group-hover:opacity-100",
                   )}
                 />
               </span>
             </div>
           </div>
         </article>
-      </GlowCard>
-    </TiltCard>
+      </div>
+    </div>
   );
 }
 
@@ -553,7 +551,7 @@ export default function ProjectsView(): JSX.Element {
                   "relative rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
                     ? "border-primary text-primary-foreground"
-                    : "border-border/70 text-muted-foreground hover:border-primary/40 hover:text-foreground",
+                    : "border-border/70 text-muted-foreground hover:border-foreground/25 hover:text-foreground",
                 )}
               >
                 {isActive && (
@@ -732,9 +730,9 @@ export default function ProjectsView(): JSX.Element {
           type="button"
           onClick={() => setShowDiagnostics((value) => !value)}
           aria-expanded={showDiagnostics}
-          className="group mx-auto flex items-center gap-2 rounded-full border border-border/60 bg-card/30 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground transition-all hover:border-primary/30 hover:bg-card/60 hover:text-foreground"
+          className="group mx-auto flex items-center gap-2 rounded-full border border-border/60 bg-card/30 px-4 py-2 eyebrow transition-all hover:border-primary/30 hover:bg-card/60 hover:text-foreground"
         >
-          <span className="size-1.5 rounded-full bg-primary/60 transition-all group-hover:scale-125 group-hover:bg-primary" />
+          <span className="size-1.5 rounded-full bg-primary/60 transition-all group-hover:bg-primary" />
 
           {showDiagnostics ? t("Hide diagnostics") : t("Developer diagnostics")}
 

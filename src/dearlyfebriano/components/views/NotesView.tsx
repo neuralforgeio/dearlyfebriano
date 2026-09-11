@@ -6,8 +6,6 @@ import { ArrowUpRight, Calendar, Clock, FileText, Hash, NotebookPen, Search } fr
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
-import TiltCard from "@/dearlyfebriano/components/animations/TiltCard";
 import {
   allArticleTags,
   articles,
@@ -26,7 +24,7 @@ import type { JSX } from "react";
  * ============================================================ */
 
 const CATEGORY_STYLES: Record<Article["category"], string> = {
-  engineering: "border-emerald-500/40 bg-emerald-500/10 text-emerald-500",
+  engineering: "border-border bg-secondary text-success",
   tutorial: "border-primary/40 bg-primary/10 text-primary",
   opinion: "border-amber-500/40 bg-amber-500/10 text-amber-500",
   career: "border-violet-500/40 bg-violet-500/10 text-violet-400",
@@ -58,7 +56,7 @@ function FeaturedCard({ article }: { article: Article }): JSX.Element {
 
   return (
     <FadeIn y={20} delay={0.1}>
-      <TiltCard maxTilt={4}>
+      <div>
         <article
           role="link"
           tabIndex={0}
@@ -70,16 +68,14 @@ function FeaturedCard({ article }: { article: Article }): JSX.Element {
               navigate("note-detail", article.slug);
             }
           }}
-          className="gradient-border group relative block w-full cursor-pointer overflow-hidden rounded-2xl p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:p-8"
+          className="card-surface group relative block w-full cursor-pointer overflow-hidden rounded-2xl p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:p-8"
         >
           {/* Ambient orbs */}
-          <div aria-hidden className="pointer-events-none absolute -right-16 -top-16 size-56 rounded-full bg-primary/20 blur-3xl" />
-          <div aria-hidden className="pointer-events-none absolute -bottom-20 -left-10 size-48 rounded-full bg-[#8b5cf6]/15 blur-3xl" />
 
           <div className="relative flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-8">
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="glass rounded-full px-3 py-0.5 font-mono text-[11px] uppercase tracking-wider text-foreground">
+                <span className="card-surface rounded-full px-3 py-0.5 font-mono text-[11px] uppercase tracking-wider text-foreground">
                   {t("Featured")}
                 </span>
                 <span
@@ -101,7 +97,7 @@ function FeaturedCard({ article }: { article: Article }): JSX.Element {
               <Button
                 type="button"
                 tabIndex={-1}
-                className="mt-6 bg-gradient-accent text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.28),0_10px_28px_-10px_rgba(99,102,241,0.65)] transition-shadow hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.34),0_14px_32px_-10px_rgba(139,92,246,0.7)] hover:opacity-95"
+                className="mt-6 bg-primary text-primary-foreground hover:bg-primary/90"
                 aria-hidden
               >
                 {t("Read article")}
@@ -115,7 +111,7 @@ function FeaturedCard({ article }: { article: Article }): JSX.Element {
             </div>
           </div>
         </article>
-      </TiltCard>
+      </div>
     </FadeIn>
   );
 }
@@ -128,8 +124,8 @@ function ArticleCard({ article, index }: { article: Article; index: number }): J
 
   return (
     <FadeIn delay={0.05 * index} className="h-full">
-      <TiltCard className="h-full">
-        <GlowCard className="h-full">
+      <div className="h-full">
+        <div className="h-full">
           <article
             role="link"
             tabIndex={0}
@@ -141,12 +137,12 @@ function ArticleCard({ article, index }: { article: Article; index: number }): J
                 navigate("note-detail", article.slug);
               }
             }}
-            className="card-shine group relative flex h-full cursor-pointer flex-col rounded-2xl border border-border/70 bg-card/60 p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className=" group relative flex h-full cursor-pointer flex-col rounded-2xl border border-border/70 bg-card/60 p-6 transition-all duration-300.5 hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             {/* Ghost index number */}
             <span
               aria-hidden
-              className="text-gradient pointer-events-none absolute -top-1 right-4 font-mono text-5xl font-black opacity-[0.08] transition-opacity duration-300 group-hover:opacity-20"
+              className="text-foreground pointer-events-none absolute -top-1 right-4 font-mono text-5xl font-black opacity-[0.08] transition-opacity duration-300 group-hover:opacity-20"
             >
               {String(index + 1).padStart(2, "0")}
             </span>
@@ -197,8 +193,8 @@ function ArticleCard({ article, index }: { article: Article; index: number }): J
               </span>
             </div>
           </article>
-        </GlowCard>
-      </TiltCard>
+        </div>
+      </div>
     </FadeIn>
   );
 }
@@ -251,7 +247,7 @@ export default function NotesView(): JSX.Element {
     <div className="relative mx-auto w-full max-w-6xl px-4 pb-20 pt-28 sm:px-6 sm:pb-28 sm:pt-32">
       {/* Header */}
       <FadeIn y={20} className="flex flex-col gap-4">
-        <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+        <span className="eyebrow text-primary">
           {t("Tech Notes")}
         </span>
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
@@ -287,7 +283,7 @@ export default function NotesView(): JSX.Element {
               "relative rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
               activeTag === null
                 ? "border-primary text-primary"
-                : "border-border/70 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                : "border-border/70 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
             )}
           >
             {t("All")}
@@ -306,7 +302,7 @@ export default function NotesView(): JSX.Element {
                   "relative rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
                     ? "border-primary text-primary"
-                    : "border-border/70 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                    : "border-border/70 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
                 )}
               >
                 {tag}

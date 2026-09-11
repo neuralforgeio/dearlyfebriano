@@ -15,7 +15,6 @@ import {
   ZoomIn,
 } from "lucide-react";
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
 import Lightbox, { type LightboxImage } from "@/dearlyfebriano/components/common/Lightbox";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -73,7 +72,7 @@ interface PageHeaderProps {
 function PageHeader({ eyebrow, title, description }: PageHeaderProps): JSX.Element {
   return (
     <FadeIn y={20} className="flex flex-col gap-4">
-      <span className="font-mono text-xs uppercase tracking-[0.25em] text-primary">{eyebrow}</span>
+      <span className="eyebrow text-primary">{eyebrow}</span>
       <h1 className="text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
         {title}
       </h1>
@@ -121,7 +120,7 @@ function SyncIndicator({
     <div className="flex items-center gap-2">
       <span
         className={cn(
-          "glass inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] text-muted-foreground",
+          "card-surface inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] text-muted-foreground",
         )}
         aria-live="off"
       >
@@ -129,13 +128,13 @@ function SyncIndicator({
           <span
             className={cn(
               "absolute inline-flex size-full rounded-full",
-              isLive ? "animate-ping bg-emerald-500 opacity-75" : "bg-amber-500",
+              isLive ? " bg-success opacity-75" : "bg-amber-500",
             )}
           />
           <span
             className={cn(
               "relative inline-flex size-1.5 rounded-full",
-              isLive ? "bg-emerald-500" : "bg-amber-500",
+              isLive ? "bg-success" : "bg-amber-500",
             )}
           />
         </span>
@@ -146,7 +145,7 @@ function SyncIndicator({
         onClick={onRefresh}
         disabled={isRefreshing}
         aria-label={t("Re-sync certificates from Google Drive")}
-        className="inline-flex size-7 items-center justify-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        className="inline-flex size-7 items-center justify-center rounded-full border border-border/70 text-muted-foreground transition-colors hover:border-foreground/25 hover:text-primary disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         <RefreshCw
           aria-hidden
@@ -181,7 +180,7 @@ function CertificateCard({
   };
 
   return (
-    <GlowCard className="h-full">
+    <div className="h-full">
       <article
         role="button"
         tabIndex={0}
@@ -192,7 +191,7 @@ function CertificateCard({
         }`}
         onClick={openPreview}
         onKeyDown={handleKeyDown}
-        className="card-shine group flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/60 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        className=" group flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-border/70 bg-card/60 transition-all duration-300.5 hover:border-foreground/25 hover:shadow-xl hover:shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         {/* Certificate image */}
         <div className="relative aspect-[1200/850] overflow-hidden border-b border-border/60">
@@ -204,12 +203,12 @@ function CertificateCard({
             sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
             className={cn(
               "object-cover",
-              !reducedMotion && "transition-transform duration-500 group-hover:scale-105"
+              !reducedMotion && "transition-transform duration-500"
             )}
           />
           <span
             aria-hidden
-            className="glass absolute left-1/2 top-1/2 grid size-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            className="card-surface absolute left-1/2 top-1/2 grid size-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           >
             {certificate.fileType === "pdf" ? (
               <FileText className="size-5" />
@@ -218,14 +217,14 @@ function CertificateCard({
             )}
           </span>
           {certificate.source !== "drive" && (
-            <span className="glass absolute left-3 top-3 inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-foreground">
+            <span className="card-surface absolute left-3 top-3 inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-foreground">
               <CloudOff aria-hidden className="size-3" />
               {t("saved")}
             </span>
           )}
           {/* Badge PDF — menandakan preview multi-halaman */}
           {certificate.fileType === "pdf" && (
-            <span className="glass absolute right-3 top-3 inline-flex items-center gap-1 rounded-full border border-primary/40 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-primary">
+            <span className="card-surface absolute right-3 top-3 inline-flex items-center gap-1 rounded-full border border-primary/40 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-primary">
               <FileText aria-hidden className="size-3" />
               PDF
             </span>
@@ -291,7 +290,7 @@ function CertificateCard({
           )}
         </div>
       </article>
-    </GlowCard>
+    </div>
   );
 }
 
@@ -447,7 +446,7 @@ export default function CertificatesView(): JSX.Element {
                   "relative rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
                     ? "border-primary text-primary-foreground"
-                    : "border-border/70 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                    : "border-border/70 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
                 )}
               >
                 {isActive && (
@@ -474,7 +473,7 @@ export default function CertificatesView(): JSX.Element {
           role="group"
           aria-label={t("Filter certificates by issuer")}
         >
-          <span className="mr-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
+          <span className="mr-1 eyebrow/70">
             {t("Issuer")}
           </span>
           <button
@@ -485,7 +484,7 @@ export default function CertificatesView(): JSX.Element {
               "rounded-full border px-3 py-1 font-mono text-[11px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
               activeIssuer === "all"
                 ? "border-primary/60 bg-primary/10 text-primary"
-                : "border-border/60 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                : "border-border/60 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
             )}
           >
             {t("all")} ({certificates.length})
@@ -502,7 +501,7 @@ export default function CertificatesView(): JSX.Element {
                   "rounded-full border px-3 py-1 font-mono text-[11px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
                     ? "border-primary/60 bg-primary/10 text-primary"
-                    : "border-border/60 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                    : "border-border/60 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
                 )}
               >
                 {issuer} ({count})
@@ -565,7 +564,7 @@ export default function CertificatesView(): JSX.Element {
               setActiveCategory("all");
               setActiveIssuer("all");
             }}
-            className="mt-6 inline-flex h-9 items-center justify-center rounded-md border border-border/70 bg-card/60 px-4 text-sm font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="mt-6 inline-flex h-9 items-center justify-center rounded-md border border-border/70 bg-card/60 px-4 text-sm font-medium text-foreground transition-colors hover:border-foreground/25 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             {t("Show all certificates")}
           </button>

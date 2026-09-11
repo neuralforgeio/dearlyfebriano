@@ -45,14 +45,14 @@ export default function SkillsSection(): JSX.Element {
                   "relative rounded-full px-4 py-2 text-sm font-medium transition-colors",
                   isActive
                     ? "text-primary-foreground"
-                    : "border border-border/70 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                    : "border border-border/70 text-muted-foreground hover:border-foreground/25 hover:text-foreground"
                 )}
               >
                 {isActive && (
                   <motion.span
                     aria-hidden
                     layoutId="skills-active-tab"
-                    className="absolute inset-0 rounded-full bg-gradient-accent shadow-lg shadow-primary/25"
+                    className="absolute inset-0 rounded-full bg-primary shadow-lg shadow-primary/25"
                     transition={
                       reducedMotion
                         ? { duration: 0 }
@@ -95,7 +95,7 @@ export default function SkillsSection(): JSX.Element {
                     className="mt-2 h-1.5 overflow-hidden rounded-full bg-secondary"
                   >
                     <motion.div
-                      className="h-full rounded-full bg-gradient-accent"
+                      className="h-full rounded-full bg-primary"
                       initial={{ width: "0%" }}
                       whileInView={{ width: `${skill.level}%` }}
                       viewport={{ once: true, margin: "-40px" }}

@@ -21,9 +21,7 @@ import { Button } from "@/components/ui/button";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
 
-import GlowCard from "@/dearlyfebriano/components/animations/GlowCard";
 
-import MagneticButton from "@/dearlyfebriano/components/animations/MagneticButton";
 
 import {
   StaggerContainer,
@@ -135,9 +133,9 @@ function ProjectPreview({
         {/* Loading */}
 
         {isLoading && (
-          <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/70 backdrop-blur-[2px]">
+          <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/90">
             <div className="relative flex items-center justify-center">
-              <div className="absolute size-16 animate-ping rounded-full bg-primary/10" />
+              <div className="absolute size-16  rounded-full bg-primary/10" />
 
               <LoaderCircle
                 aria-hidden
@@ -163,7 +161,7 @@ function ProjectPreview({
               ? "opacity-0"
               : "opacity-100",
             "transition-transform duration-500",
-            "group-hover:scale-105",
+            "",
           ].join(" ")}
           onLoad={() => {
             setIsLoading(false);
@@ -184,8 +182,8 @@ function ProjectPreview({
             />
 
             <div className="absolute bottom-3 left-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 font-mono text-[10px] font-medium text-white backdrop-blur-md">
-                <span className="size-1.5 animate-pulse rounded-full bg-emerald-400" />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 font-mono text-[10px] font-medium text-white">
+                <span className="size-1.5 animate-pulse rounded-full bg-success" />
                 {t("Live Preview")}
               </span>
             </div>
@@ -201,7 +199,7 @@ function ProjectPreview({
 
         {/* Category */}
 
-        <span className="glass absolute right-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-[11px] capitalize text-muted-foreground">
+        <span className="card-surface absolute right-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-[11px] capitalize text-muted-foreground">
           {project.category}
         </span>
       </div>
@@ -218,9 +216,9 @@ function ProjectPreview({
         {/* Loading */}
 
         {isLoading && (
-          <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/70 backdrop-blur-[2px]">
+          <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/90">
             <div className="relative flex items-center justify-center">
-              <div className="absolute size-16 animate-ping rounded-full bg-primary/10" />
+              <div className="absolute size-16  rounded-full bg-primary/10" />
 
               <LoaderCircle
                 aria-hidden
@@ -246,7 +244,7 @@ function ProjectPreview({
               ? "opacity-0"
               : "opacity-100",
             "transition-transform duration-500",
-            "group-hover:scale-105",
+            "",
           ].join(" ")}
           onLoad={() => {
             setIsLoading(false);
@@ -269,7 +267,7 @@ function ProjectPreview({
           className="absolute left-3 top-3"
         />
 
-        <span className="glass absolute right-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-[11px] capitalize text-muted-foreground">
+        <span className="card-surface absolute right-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-[11px] capitalize text-muted-foreground">
           {project.category}
         </span>
       </div>
@@ -299,7 +297,7 @@ function ProjectPreview({
           className="absolute left-3 top-3"
         />
 
-        <span className="glass absolute right-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-[11px] capitalize text-muted-foreground">
+        <span className="card-surface absolute right-3 top-3 rounded-full px-2.5 py-0.5 font-mono text-[11px] capitalize text-muted-foreground">
           {project.category}
         </span>
       </div>
@@ -368,7 +366,7 @@ function ProjectCard({
       className="h-full"
       y={30}
     >
-      <GlowCard className="h-full cursor-pointer overflow-hidden rounded-2xl border border-border/70 bg-card/60 transition-all duration-300 hover:-translate-y-2 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10">
+      <div className="h-full cursor-pointer overflow-hidden rounded-2xl border border-border/70 bg-card/60 transition-all duration-300 hover:border-foreground/25 hover:shadow-xl hover:shadow-primary/10">
         <div
           role="link"
           tabIndex={0}
@@ -473,12 +471,12 @@ function ProjectCard({
 
               <ArrowUpRight
                 aria-hidden
-                className="-translate-x-1 size-5 text-primary opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                className="size-5 text-primary opacity-0 transition-opacity duration-200 group-hover:opacity-100"
               />
             </div>
           </div>
         </div>
-      </GlowCard>
+      </div>
     </StaggerItem>
   );
 }
@@ -538,7 +536,6 @@ export default function ProjectsPreview(): JSX.Element {
           delay={0.1}
           className="mt-12 flex justify-center"
         >
-          <MagneticButton>
             <Button
               variant="outline"
               size="lg"
@@ -555,10 +552,9 @@ export default function ProjectsPreview(): JSX.Element {
 
               <ArrowRight
                 aria-hidden
-                className="size-4 transition-transform duration-300 group-hover:translate-x-1"
+                className="size-4 transition-transform duration-300"
               />
             </Button>
-          </MagneticButton>
         </FadeIn>
       </div>
     </section>
