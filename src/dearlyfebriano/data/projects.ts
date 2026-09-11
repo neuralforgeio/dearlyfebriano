@@ -8,7 +8,7 @@ import type { Project } from "@/dearlyfebriano/types";
  * - Akuma Joki (Roblox storefront) — freelance, 2026
  * - Tromino Digital (React design system) — freelance, 2026
  * Ditambah website portfolio ini sebagai project live.
- * Gambar thumbnail otomatis via api.screenshotone.com, diambil dari liveUrl. Dan bisa manua dari /public/images/projects/ jika project tersebut non-website dan perlu screenshot manual.
+ * Gambar thumbnail otomatis via keyless screenshot service (thum.io + mShots fallback) yang diproxy lewat /api/project-preview, diambil dari liveUrl. Dan bisa manual dari /public/images/projects/ jika project tersebut non-website dan perlu screenshot manual.
  * ============================================================ */
 
 export const projects: Project[] = [
