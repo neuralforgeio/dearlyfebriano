@@ -236,6 +236,49 @@ export const projectTimelines: Record<string, ProjectTimeline[]> = {
   ],
 
   /* ==========================================================
+   * LINKPULSE
+   * ========================================================== */
+
+  linkpulse: [
+    {
+      date: "2026-09",
+      title: "Architecture & Foundation",
+      description:
+        "Designed the modular monolith: Go backend with internal package boundaries (auth, link, analytics, apikey, audit), PostgreSQL schema, and Goose migration pipeline.",
+    },
+    {
+      date: "Development",
+      title: "Core Shortener",
+      description:
+        "Built the redirect path (GET /{code} → 302), custom aliases, base62 codes, expiry, click limits, password protection, and the UTM builder.",
+    },
+    {
+      date: "Development",
+      title: "Async Click Analytics",
+      description:
+        "Implemented the in-memory click buffer, batch worker (1s / 500 events), graceful-shutdown flush, salted IP hashing for unique-visitor estimates, and the analytics queries.",
+    },
+    {
+      date: "Development",
+      title: "Auth & Multi-Tenancy",
+      description:
+        "Added Argon2id password hashing, JWT access tokens with rotating refresh tokens and reuse detection, workspaces, invite codes, and the four-role permission model enforced on every route.",
+    },
+    {
+      date: "Development",
+      title: "Public API & Dashboard",
+      description:
+        "Shipped the scoped REST API with hashed-at-rest keys, then the Next.js dashboard: themes, analytics charts, QR codes, and CSV-ready data.",
+    },
+    {
+      date: "Production",
+      title: "Deployment",
+      description:
+        "Finalized security hardening (rate limiting, audit log, parameterized SQL), documentation set (API, ARCHITECTURE, SECURITY), and production deployment.",
+    },
+  ],
+
+  /* ==========================================================
    * FLOWCANVAS
    * ========================================================== */
 

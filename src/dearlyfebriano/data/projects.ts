@@ -416,6 +416,70 @@ export const projects: Project[] = [
   },
 
   {
+    slug: "linkpulse",
+    title: "LinkPulse",
+    shortDesc:
+      "Self-hosted, multi-tenant URL shortener with real-time click analytics — Go backend, Next.js dashboard, and PostgreSQL, with async click tracking, workspace roles, scoped API keys, and Argon2id security.",
+    longDesc:
+      "LinkPulse is a production-grade URL shortener built as a modular monolith: a Go backend, a Next.js dashboard, and PostgreSQL. Every redirect is recorded asynchronously — referrers, devices, browsers, campaigns, and unique-visitor estimates — without ever storing a raw IP address. Redirects bypass the dashboard entirely: visitors hit the Go server directly and get a 302 in milliseconds, while clicks flow into an in-memory buffer that a batch worker flushes to the click_events table every second or every 500 events — meaning analytics never slow a redirect down, and a graceful-shutdown flush ensures zero clicks are lost on deploys. The platform is multi-tenant by design: workspaces with invite codes and four roles (owner, admin, member, viewer) enforced server-side on every route, plus a public REST API with scoped keys (links:read, links:write, analytics:read) that are hashed at rest and shown exactly once. Security is treated as a feature: Argon2id password hashing, JWT access tokens with rotating refresh tokens and reuse detection, rate limiting, an append-only audit log, and parameterized SQL everywhere. The dashboard ships with dark/light/system themes, full responsiveness, QR codes, and CSV-ready data — and the whole thing is MIT-licensed and self-hostable, built to be owned with zero vendor lock-in.",
+    images: [],
+    techStack: [
+      "Go 1.27",
+      "Next.js 16",
+      "TypeScript",
+      "PostgreSQL",
+      "chi",
+      "pgx/v5",
+      "TanStack Query",
+      "Recharts",
+      "Tailwind CSS",
+      "JWT",
+      "Argon2id",
+      "Goose Migrations",
+    ],
+    category: "api",
+    status: "live",
+    liveUrl: "https://linkpulseshort.vercel.app",
+    githubUrl: "https://github.com/neuralforgeio/LinkPulse",
+    features: [
+      "Short links with custom aliases, random base62 codes, expiry, click limits, password protection, and a UTM builder",
+      "Async click tracking — redirects never wait for analytics: in-memory buffer, batch inserts (1s / 500 events), graceful-shutdown flush with zero lost clicks",
+      "Real-time analytics — clicks over time, unique visitor estimates from salted IP hashes, top referrers, devices, browsers, OS, and campaigns",
+      "Multi-tenant workspaces with invite codes and four roles (owner / admin / member / viewer) enforced server-side on every route",
+      "Public REST API with scoped keys (links:read, links:write, analytics:read), keys hashed at rest and shown exactly once",
+      "Security by default — Argon2id password hashing, JWT access tokens plus rotating refresh tokens with reuse detection, rate limiting, append-only audit log, and parameterized SQL everywhere",
+      "Dashboard with dark / light / system themes, fully responsive, QR codes per link, and CSV-ready data exports",
+      "Modular monolith architecture — one deployable Go backend with clear package boundaries (auth, link, analytics, apikey, audit) and Goose versioned migrations",
+    ],
+    challenges: [
+      {
+        title: "Tracking clicks without ever slowing a redirect",
+        description:
+          "The core tension in any shortener is that a redirect must be instant, but analytics must be complete. Writing a click event to PostgreSQL on every request would couple visitor latency to database health. I solved it with an in-memory click buffer: GET /{code} returns the 302 immediately after a lookup, while the click event (referrer, device, browser, campaign) is handed to the buffer and flushed by a batch worker every second or every 500 events. A graceful-shutdown hook drains the buffer so even a deploy mid-traffic loses zero clicks.",
+      },
+      {
+        title: "Counting unique visitors without storing IP addresses",
+        description:
+          "Unique-visitor estimates normally require persisting IPs, which conflicts with the privacy stance of the project. Instead, each IP is hashed with a server-side salt before it ever touches storage, so the analytics layer can distinguish 'same visitor today' from 'new visitor' without the database ever holding a raw address. The salt never leaves the server, making the hashes non-reversible and non-joinable across deployments.",
+      },
+      {
+        title: "API keys that are safe to store but possible to scope",
+        description:
+          "A public REST API needs keys that can be revoked and scoped, but storing them plaintext turns the database into a liability. Keys are generated once, shown exactly once, and stored only as hashes — with scopes (links:read, links:write, analytics:read) enforced server-side on every route. The same pattern as passwords, applied to machine access: the system can verify a key without being able to misuse it.",
+      },
+      {
+        title: "Refresh token rotation with reuse detection",
+        description:
+          "Long-lived sessions are the classic weak point of JWT setups. Refresh tokens rotate on every use, and if a previously-rotated token is ever presented again the system treats it as a replay and invalidates the whole family — so a stolen token becomes worthless the moment the legitimate client refreshes. Combined with short-lived access tokens, sessions stay convenient for users and expensive for attackers.",
+      },
+    ],
+    startDate: "2026-09",
+    endDate: undefined,
+    duration: "Ongoing",
+    featured: true,
+  },
+
+  {
     slug: "flowcanvas",
     title: "FlowCanvas",
     shortDesc:

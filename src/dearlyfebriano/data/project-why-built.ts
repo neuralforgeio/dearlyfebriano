@@ -169,6 +169,33 @@ export const projectWhyBuilt: Record<string, ProjectWhyBuilt> = {
   },
 
   /* ==========================================================
+   * LINKPULSE
+   * ========================================================== */
+
+  linkpulse: {
+    problem:
+      "URL shorteners are a solved problem on the surface, but most hosted services treat your click data as their asset — opaque analytics, no data export, pricing walls, and the constant risk that your links die when the service pivots or shuts down.",
+
+    motivation:
+      "I wanted a shortener that could be owned end to end: self-hosted, MIT licensed, zero vendor lock-in, with analytics that are honest about what is tracked (clicks, referrers, devices, campaigns) and disciplined about what is not (raw IP addresses are never stored).",
+
+    approach:
+      "LinkPulse was built as a modular monolith — a Go backend with clear package boundaries (auth, link, analytics, apikey, audit), a Next.js dashboard, and PostgreSQL with Goose migrations. Redirects bypass the dashboard and hit the Go server directly, while an in-memory click buffer with a batch worker keeps analytics completely off the redirect path.",
+
+    outcome:
+      "A production-grade shortener where every redirect is a 302 in milliseconds, every click is recorded without slowing it down, and every layer — from Argon2id password hashing to scoped, hashed-at-rest API keys — is designed so the operator never has to trust the platform, only own it.",
+
+    decisions: [
+      "Modular monolith: one deployable Go backend with clear internal package boundaries.",
+      "Async click tracking: in-memory buffer with batch inserts (1s / 500 events) and graceful-shutdown flush.",
+      "Unique visitors via salted IP hashes — analytics without ever storing a raw address.",
+      "Scoped API keys hashed at rest, shown exactly once, enforced server-side on every route.",
+      "JWT access tokens with rotating refresh tokens and reuse detection.",
+      "MIT license and self-hostable by design — zero vendor lock-in.",
+    ],
+  },
+
+  /* ==========================================================
    * FLOWCANVAS
    * ========================================================== */
 

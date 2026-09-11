@@ -24,6 +24,118 @@ interface GeneratedProjectIntelligence {
 
 export const projectArchitectures: Record<string, ProjectArchitecture> = {
   /* ==========================================================
+   * LINKPULSE
+   * ========================================================== */
+
+  linkpulse: {
+    nodes: [
+      {
+        id: "dashboard",
+        label: "Next.js Dashboard",
+        description: "Links, analytics, workspaces, themes — :3000",
+        category: "Presentation",
+        x: 22,
+        y: 10,
+      },
+      {
+        id: "visitor",
+        label: "Visitors",
+        description: "Redirect requests — GET /{code} → 302",
+        category: "Runtime",
+        x: 50,
+        y: 10,
+      },
+      {
+        id: "api",
+        label: "Public REST API",
+        description: "Scoped keys — links:read / links:write / analytics:read",
+        category: "Interface",
+        x: 78,
+        y: 10,
+      },
+      {
+        id: "router",
+        label: "Go Router (chi)",
+        description: "Routing, middleware, rate limiting, JWT auth",
+        category: "Core",
+        x: 50,
+        y: 38,
+      },
+      {
+        id: "link",
+        label: "Link Service",
+        description: "Aliases, base62 codes, expiry, click limits, passwords",
+        category: "Domain",
+        x: 22,
+        y: 62,
+      },
+      {
+        id: "buffer",
+        label: "Click Buffer",
+        description: "In-memory, batch worker 1s / 500 events, shutdown flush",
+        category: "Engine",
+        x: 50,
+        y: 62,
+      },
+      {
+        id: "analytics",
+        label: "Analytics Service",
+        description: "Referrers, devices, campaigns, salted-IP unique visitors",
+        category: "Domain",
+        x: 78,
+        y: 62,
+      },
+      {
+        id: "postgres",
+        label: "PostgreSQL",
+        description: "Links, workspaces, click_events, audit log — Goose migrations",
+        category: "Storage",
+        x: 50,
+        y: 88,
+      },
+    ],
+
+    edges: [
+      {
+        from: "dashboard",
+        to: "router",
+      },
+      {
+        from: "visitor",
+        to: "router",
+      },
+      {
+        from: "api",
+        to: "router",
+      },
+      {
+        from: "router",
+        to: "link",
+      },
+      {
+        from: "router",
+        to: "buffer",
+      },
+      {
+        from: "router",
+        to: "analytics",
+      },
+      {
+        from: "link",
+        to: "postgres",
+      },
+      {
+        from: "buffer",
+        to: "postgres",
+      },
+      {
+        from: "analytics",
+        to: "postgres",
+      },
+    ],
+  },
+
+  /* ==========================================================
    * FLOWCANVAS
    * ========================================================== */
 

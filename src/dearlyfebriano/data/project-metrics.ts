@@ -24,6 +24,33 @@ interface GeneratedProjectIntelligence {
 
 export const projectMetrics: Record<string, ProjectMetric[]> = {
   /* ==========================================================
+   * LINKPULSE
+   * ========================================================== */
+
+  linkpulse: [
+    {
+      label: "Backend Language",
+      value: "Go 1.27",
+      description: "chi router, pgx/v5, slog logging",
+    },
+    {
+      label: "Batch Worker",
+      value: "1s / 500",
+      description: "Click events per flush cycle",
+    },
+    {
+      label: "Workspace Roles",
+      value: "4",
+      description: "Owner, admin, member, viewer",
+    },
+    {
+      label: "API Key Scopes",
+      value: "3",
+      description: "links:read, links:write, analytics:read",
+    },
+  ],
+
+  /* ==========================================================
    * FLOWCANVAS
    * ========================================================== */
 
