@@ -55,8 +55,8 @@ server.log
 /skills/
 
 # ============================================================
-# PANEL / SANDBOX ARTIFACTS — JANGAN ikut terpush ke GitHub.
-# Hanya file portfolio yang boleh masuk repo.
+# PANEL / SANDBOX ARTIFACTS — DO NOT PUSH TO GITHUB.
+# Only portfolio files can be pushed to the repo.
 # ============================================================
 /worklog.md
 /agent-ctx/

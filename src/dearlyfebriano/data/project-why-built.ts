@@ -44,22 +44,6 @@ export const projectWhyBuilt: Record<string, ProjectWhyBuilt> = {
   },
 
   /* ==========================================================
-   * OPENFORGE
-   * ========================================================== */
-
-  openforge: {
-    problem:
-      "Most AI assistants depend heavily on remote infrastructure, which creates trade-offs around privacy, data ownership, availability, and control.",
-
-    motivation:
-      "I wanted to explore an AI agent model where the user remains in control of the environment and core workflows can continue without silently sending personal data to external services.",
-
-    approach:
-      "OpenForge is designed around a local-first execution model. The architecture emphasizes local models, offline information retrieval, task planning, automation, and explicit execution checkpoints so the agent can remain useful without requiring every operation to leave the machine.",
-
-    outcome:
-      "The project became a foundation for experimenting with privacy-first autonomous workflows, local AI tooling, software-building assistance, and offline task execution.",
-
     decisions: [
       "Local-first execution as the default architectural principle.",
       "Explicit task planning instead of blind autonomous actions.",

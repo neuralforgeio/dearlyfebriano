@@ -3,7 +3,6 @@ import type { Project } from "@/dearlyfebriano/types";
 /* ============================================================
  * PROJECTS DATA — diambil dari CV asli
  * "CV DEARLY FEBRIANO IRWANSYAH.pdf":
- * - OpenForge (AI Agent) — AI Development, 2026
  * - CV Builder (Instant Resume) — freelance, 2023
  * - Akuma Joki (Roblox storefront) — freelance, 2026
  * - Tromino Digital (React design system) — freelance, 2026
@@ -57,52 +56,6 @@ export const projects: Project[] = [
       },
     ],
     startDate: "2026-09",
-    endDate: undefined,
-    duration: "Ongoing",
-    featured: true,
-  },
-
-  {
-    slug: "openforge",
-    title: "OpenForge",
-    shortDesc:
-      "A local AI agent system that helps users complete tasks, search information offline, build software, and automate workflows — privacy-first.",
-    longDesc:
-      "OpenForge is a local AI agent system designed to help users complete various tasks, search for information offline, build software, automate workflows, manage systems, and enhance device security. With an offline-first approach, OpenForge prioritizes privacy, performance, and full control over user data — everything runs locally, nothing silently leaves the machine.",
-    images: [],
-    techStack: [
-      "TypeScript",
-      "Node.js",
-      "LLM Tooling",
-      "AI Agents",
-      "Automation",
-      "Local-First",
-    ],
-    category: "opensource",
-    status: "in-progress",
-    liveUrl: "https://openforge-website.vercel.app/",
-    githubUrl: "https://github.com/neuralforgeio/openforge",
-    features: [
-      "Task completion agent — understands a goal and executes it step by step",
-      "Offline information search across local files and knowledge bases",
-      "Software building assistance — scaffolds, writes, and refactors code",
-      "Workflow automation for repetitive system tasks",
-      "System management and device security enhancements",
-      "Offline-first architecture: privacy, performance, and full control over user data",
-    ],
-    challenges: [
-      {
-        title: "Running capable AI fully offline",
-        description:
-          "Cloud LLMs contradict the privacy goal. I structured the agent around local models and offline knowledge retrieval, so core workflows — search, task execution, automation — keep working with zero network calls.",
-      },
-      {
-        title: "Reliable autonomous task execution",
-        description:
-          "An agent that does the wrong thing quickly is worse than no agent. I built the execution loop with explicit step planning and verifiable checkpoints, so every automated action can be traced and trusted.",
-      },
-    ],
-    startDate: "2026-01",
     endDate: undefined,
     duration: "Ongoing",
     featured: true,

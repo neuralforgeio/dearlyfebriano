@@ -59,22 +59,17 @@ export default function ProjectIntelligence({
           };
 
       if (!response.ok || !("metrics" in result)) {
-        throw new Error(
+        setError(
           "error" in result && result.error
             ? result.error
             : "Unable to analyze project.",
         );
+        return;
       }
 
       setIntelligence(result);
-    } catch (loadError) {
-      console.error("[ProjectIntelligence]", loadError);
-
-      setError(
-        loadError instanceof Error
-          ? loadError.message
-          : "Unable to analyze project.",
-      );
+    } catch {
+      setError("Unable to analyze project.");
     } finally {
       setLoading(false);
     }

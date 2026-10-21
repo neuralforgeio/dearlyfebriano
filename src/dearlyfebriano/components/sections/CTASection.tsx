@@ -36,7 +36,7 @@ export default function CTASection(): JSX.Element {
               {t("Have a Project in Mind?")}
             </h2>
             <p className="max-w-xl text-background/75">
-              {t("Tell me about your idea — I usually reply within 24 hours with honest feedback and a clear plan to ship it.")}
+              {t("Tell me about your idea I usually reply within 24 hours with honest feedback and a clear plan to ship it.")}
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">

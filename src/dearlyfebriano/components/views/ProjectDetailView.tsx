@@ -286,7 +286,7 @@ function PreviewMedia({
         )}
 
         <Image
-          src={automaticPreviewUrl}
+          src={automaticPreviewUrl as string}
           alt={alt}
           fill
           sizes={sizes}
@@ -597,7 +597,7 @@ export default function ProjectDetailView(): JSX.Element {
 
   const whyBuilt = projectWhyBuilt[project.slug] ?? null;
 
-  const period = `${formatTimeline(project.startDate)} — ${
+  const period = `${formatTimeline(project.startDate)}  ${
     project.endDate ? formatTimeline(project.endDate) : t("Present")
   }`;
 
@@ -987,7 +987,7 @@ export default function ProjectDetailView(): JSX.Element {
           eyebrow={t("Deep dive")}
           title={t("Challenges & solutions")}
           description={t(
-            "The interesting problems — and how they were solved.",
+            "The interesting problems and how they were solved.",
           )}
         />
 

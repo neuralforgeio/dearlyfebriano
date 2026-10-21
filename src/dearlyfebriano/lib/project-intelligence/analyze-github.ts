@@ -124,6 +124,8 @@ function githubHeaders(
   return {
     Accept:
       "application/vnd.github+json",
+    "User-Agent":
+      "dearlyfebriano-portfolio",
     "X-GitHub-Api-Version":
       API_VERSION,
     ...(token
@@ -144,19 +146,47 @@ async function githubFetch<T>(
     {
       headers:
         githubHeaders(token),
-      next: {
-        revalidate: 3600,
-      },
+      cache: "no-store",
     },
   );
 
   if (!response.ok) {
     throw new Error(
-      `GitHub API ${response.status}: ${url}`,
+      githubErrorMessage(response),
     );
   }
 
   return (await response.json()) as T;
+}
+
+function githubErrorMessage(
+  response: Response,
+): string {
+  const remaining =
+    response.headers.get(
+      "x-ratelimit-remaining",
+    );
+
+  if (
+    response.status === 403 &&
+    remaining === "0"
+  ) {
+    return "GitHub API rate limit exceeded. Add GITHUB_TOKEN to .env.local for authenticated access.";
+  }
+
+  if (response.status === 401) {
+    return "GitHub authentication failed. Check GITHUB_TOKEN.";
+  }
+
+  if (response.status === 404) {
+    return "GitHub repository was not found or is private.";
+  }
+
+  if (response.status === 403) {
+    return "GitHub API access was forbidden or rate limited.";
+  }
+
+  return `GitHub API ${response.status}.`;
 }
 
 export function parseGitHubUrl(

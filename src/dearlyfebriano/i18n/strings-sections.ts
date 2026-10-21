@@ -32,7 +32,7 @@ export const SECTION_STRINGS: string[] = [
   // ProjectsPreview
   "Portfolio",
   "Featured Projects",
-  "A selection of work I'm proud of — from e-commerce platforms to developer tooling.",
+  "A selection of work I'm proud of from e-commerce platforms to developer tooling.",
   "View All Projects",
   "View",
   "details",
@@ -62,14 +62,14 @@ export const SECTION_STRINGS: string[] = [
   // CTASection
   "Let’s build together",
   "Have a Project in Mind?",
-  "Tell me about your idea — I usually reply within 24 hours with honest feedback and a clear plan to ship it.",
+  "Tell me about your idea I usually reply within 24 hours with honest feedback and a clear plan to ship it.",
   "Send a Message",
   "Chat on WhatsApp",
 
   // NotesPreview
   "Tech Notes",
   "Latest writing",
-  "Engineering deep dives and career notes — written the way I wish I'd found them.",
+  "Engineering deep dives and career notes written the way I wish I'd found them.",
   "open article",
   "Article tags",
   "Browse all notes",

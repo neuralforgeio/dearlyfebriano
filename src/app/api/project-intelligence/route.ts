@@ -5,6 +5,10 @@ import {
 } from "@/dearlyfebriano/lib/project-intelligence/analyze-github";
 
 import {
+  getGeneratedProjectIntelligence,
+} from "@/dearlyfebriano/lib/project-intelligence/from-generated";
+
+import {
   getProjectBySlug,
 } from "@/dearlyfebriano/data/projects";
 
@@ -63,6 +67,13 @@ export async function GET(
   const token =
     process.env.GITHUB_TOKEN;
 
+  const cached =
+    getGeneratedProjectIntelligence(
+      project.slug,
+      project.title,
+      project.githubUrl,
+    );
+
   try {
     const intelligence =
       await analyzeGitHubRepository(
@@ -90,10 +101,19 @@ export async function GET(
       },
     );
   } catch (error) {
-    console.error(
-      "[Project Intelligence]",
-      error,
-    );
+    if (cached) {
+      return Response.json(
+        cached,
+        {
+          status: 200,
+
+          headers: {
+            "Cache-Control":
+              "public, s-maxage=300, stale-while-revalidate=86400",
+          },
+        },
+      );
+    }
 
     return Response.json(
       {

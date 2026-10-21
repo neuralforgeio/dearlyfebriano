@@ -8,27 +8,9 @@ import type { ExperienceItem } from "@/dearlyfebriano/types";
 
 export const experiences: ExperienceItem[] = [
   {
-    id: "independent-dev",
-    role: "Independent Full-Stack & AI Agent Developer",
-    company: "Self-employed",
-    companyInitials: "SE",
-    location: "Surabaya, Indonesia",
-    locationType: "Remote",
-    period: { start: "2024", end: null, current: true },
-    summary:
-      "Building trending products end-to-end — web platforms, scalable backends, and OpenForge, an offline-first local AI agent system.",
-    responsibilities: [
-      "Conduct in-depth research into global technological advancements and turn the findings into real, shipped projects",
-      "Design and build web and backend systems with a focus on scalability, performance, and reliability",
-      "Develop OpenForge — a local AI agent that helps users complete tasks, search information offline, build software, automate workflows, and manage device security",
-      "Continuously expand the stack: new frameworks, AI tooling, and engineering practices",
-    ],
-    tech: ["TypeScript", "Next.js", "Node.js", "React", "AI Agents", "LLM Tooling"],
-  },
-  {
     id: "cv-builder-freelance",
     role: "Software Engineer (Freelance)",
-    company: "CV Builder — Instant Resume",
+    company: "CV Builder Instant Resume",
     companyInitials: "IR",
     location: "Surabaya, Indonesia",
     locationType: "Remote",

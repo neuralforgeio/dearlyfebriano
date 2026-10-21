@@ -2,9 +2,8 @@ import type { Article } from "@/dearlyfebriano/types";
 
 /* ============================================================
  * TECH NOTES DATA — selaras kisah nyata: lulusan SMA Dr. Soetomo
- * Surabaya, self-taught, freelance di CV Builder — Instant Resume
+ * Surabaya, self-taught, freelance di CV Builder Instant Resume
  * (2023), self-employed full-stack & AI agent developer (2024–),
- * membangun OpenForge (offline-first AI agent, 2026).
  * Setiap artikel disusun dari "sections" (paragraph, heading,
  * list, quote, code, callout) agar mudah diedit tanpa markdown.
  * ============================================================ */
@@ -69,72 +68,6 @@ export const articles: Article[] = [
     ],
   },
   {
-    slug: "offline-first-ai-agents-openforge",
-    title: "Offline-First AI Agents: Lessons from Building OpenForge",
-    excerpt:
-      "What building an AI agent that must keep working without the internet taught me about state, retries, and trusting your own machine.",
-    publishedAt: "2025-11-04",
-    readingMinutes: 9,
-    tags: ["AI Agents", "Offline-First", "Architecture", "Local LLMs"],
-    category: "engineering",
-    featured: false,
-    sections: [
-      {
-        type: "paragraph",
-        text: "OpenForge is the project I keep coming back to: an offline-first AI agent that runs on your own machine — task automation, offline search, software building — with privacy as a constraint, not a feature. Most agent tutorials assume you have an API key and a stable connection. Designing for the opposite changes everything about the architecture. These are the lessons I'd pass to anyone starting a similar build.",
-      },
-      { type: "heading", text: "The network will betray you, so design for it" },
-      {
-        type: "paragraph",
-        text: "The first hard lesson: an agent that runs long tasks will hit timeouts, sleep laptops, and dead Wi-Fi mid-step. If each step is 'fire and hope', one flaky moment corrupts the whole run. The fix is the same discipline payment systems use — idempotency. Every task in the queue carries a unique key. If the agent retries after an interruption, the key tells it 'this step already ran' instead of running it twice.",
-      },
-      {
-        type: "code",
-        language: "json",
-        code: "{\n  \"taskId\": \"run-7f3a-research\",\n  \"key\": \"research:offline-search:gpu-benchmarks\",\n  \"status\": \"completed\",\n  \"resultHash\": \"b1e2...\",\n  \"attempts\": 2\n}",
-      },
-      {
-        type: "paragraph",
-        text: "The key pattern matters more than the storage. A retry carrying a completed key gets the stored result replayed, not recomputed. A key with a different payload is a bug and gets rejected loudly. Small rule, huge difference in trustworthiness.",
-      },
-      { type: "heading", text: "Local state is the source of truth" },
-      {
-        type: "list",
-        items: [
-          "The local task queue is authoritative; anything remote is a cache, never the ledger.",
-          "Sync jobs are idempotent too — re-uploading the same state twice must be a no-op.",
-          "Every task transition is journaled before the work starts, so a crash leaves a tombstone, not a mystery.",
-          "The UI renders from local state only — when the connection drops, the agent doesn't notice, and neither does the user.",
-        ],
-      },
-      {
-        type: "callout",
-        variant: "warning",
-        text: "The trap I fell into early: treating the sync layer as critical path. The moment anything blocked on the network, 'offline-first' became a slogan. Local-first means every interaction completes locally first, and sync happens strictly in the background.",
-      },
-      { type: "heading", text: "Local models change how you prompt" },
-      {
-        type: "paragraph",
-        text: "Running smaller local models taught me prompt discipline I never learned with frontier APIs. Long context windows are a luxury; a local model forces you to feed it exactly the relevant slice of state. That constraint improved the architecture — a leaner context means cheaper retries, faster feedback, and honest token budgets. It also made the agent more predictable: the same task, the same trimmed context, the same result.",
-      },
-      { type: "heading", text: "The honest checklist" },
-      {
-        type: "list",
-        items: [
-          "Idempotency keys on every state-changing agent step — no exceptions.",
-          "Journal transitions before effects; recover from the journal on restart.",
-          "Background sync that can be replayed safely any number of times.",
-          "Test with the network actually off — airplane mode is the only honest test bench.",
-        ],
-      },
-      {
-        type: "quote",
-        text: "An agent that only works when everything is online isn't an agent — it's a liability with a progress bar.",
-        author: "OpenForge design journal",
-      },
-    ],
-  },
-  {
     slug: "local-first-storage-choices",
     title: "Why My Offline-First Agent Runs on SQLite",
     excerpt:
@@ -145,10 +78,6 @@ export const articles: Article[] = [
     category: "opinion",
     featured: false,
     sections: [
-      {
-        type: "paragraph",
-        text: "Every architecture discussion I see starts with a hosted database. It's the safe answer — until you're building software whose whole point is running on the user's machine without accounts, clouds, or telemetry. For OpenForge's local state, I chose SQLite, and after months of daily use it's the decision I'd repeat. But the reasoning matters more than the conclusion, because SQLite is also the wrong answer for a whole class of apps.",
-      },
       { type: "heading", text: "The case for the boring file" },
       {
         type: "list",
@@ -218,7 +147,6 @@ export const articles: Article[] = [
           "Building in public — my portfolio and my projects are documented because employers and clients read those more than certificates.",
           "Structured courses as checkpoints, not crutches — the Kaggle ML series and Dicoding's JavaScript path gave me proof of fundamentals I'd already practiced.",
           "Writing down what broke — my debugging notes became this site's Tech Notes and my best interview stories.",
-          "Choosing projects slightly beyond my level — OpenForge forced me to learn agents, local models, and offline architecture because the project required them, not because a syllabus did.",
         ],
       },
       { type: "heading", text: "The uncomfortable truths" },

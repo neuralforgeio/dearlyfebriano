@@ -38,7 +38,6 @@ export const metadata: Metadata = {
     "Next.js",
     "TypeScript",
     "Node.js",
-    "OpenForge",
     "Portfolio",
     "Surabaya",
     "Jawa Timur",

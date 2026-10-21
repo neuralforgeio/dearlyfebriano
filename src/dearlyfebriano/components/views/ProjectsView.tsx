@@ -188,7 +188,8 @@ function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
     return (
       <div className="relative aspect-video overflow-hidden bg-muted">
         <Image
-          src={automaticPreviewUrl}
+        // @ts-ignore
+          src={automaticPreviewUrl as string}
           alt={`${project.title} preview`}
           fill
           sizes="(min-width: 768px) 45vw, 90vw"
@@ -519,7 +520,7 @@ export default function ProjectsView(): JSX.Element {
         eyebrow={t("Portfolio")}
         title={t("All Projects")}
         description={t(
-          "Everything I've built — shipped products, experiments, and open source.",
+          "Everything I've built shipped products, experiments, and open source.",
         )}
       />
 

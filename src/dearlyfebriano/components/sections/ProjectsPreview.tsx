@@ -141,7 +141,7 @@ function ProjectPreview({
         {/* Screenshot */}
 
         <Image
-          src={automaticPreviewUrl}
+          src={automaticPreviewUrl as string}
           alt={`${project.title} preview`}
           fill
           sizes="(min-width: 1024px) 368px, (min-width: 640px) 50vw, 100vw"
@@ -214,7 +214,7 @@ function ProjectPreview({
         {/* Thumbnail */}
 
         <Image
-          src={project.thumbnail}
+          src={project.thumbnail as string}
           alt={`${project.title} preview`}
           fill
           sizes="(min-width: 1024px) 368px, (min-width: 640px) 50vw, 100vw"
@@ -488,7 +488,7 @@ export default function ProjectsPreview(): JSX.Element {
             "Featured Projects"
           )}
           description={t(
-            "A selection of work I'm proud of — from e-commerce platforms to developer tooling."
+            "A selection of work I'm proud of from e-commerce platforms to developer tooling."
           )}
         />
 

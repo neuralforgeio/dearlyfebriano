@@ -111,7 +111,7 @@ export default function AboutView(): JSX.Element {
         <SectionHeading
           eyebrow={t("Timeline")}
           title={t("My journey")}
-          description={t("The roles that shaped how I build software — the detailed version lives on the experience page.")}
+          description={t("The roles that shaped how I build software the detailed version lives on the experience page.")}
         />
         <ol className="relative space-y-8 pl-8">
           <span

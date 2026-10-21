@@ -16,12 +16,12 @@ export const profile = {
   initials: "DF",
   roles: ["Full Stack Developer", "Problem Solver", "AI Agent Developer"],
   tagline:
-    "Programmer and problem solver — I build fast web apps, scalable backends, and offline-first AI agents that turn complex problems into clean, working software.",
+    "Programmer and problem solver. I build fast web apps, scalable backends, and offline-first AI agents that turn complex problems into clean, working software.",
   bioShort:
     "Fullstack developer and AI agent builder from Surabaya. I research global tech advancements in-depth, ship trending projects, and love taking ideas from database schema to the final pixel.",
   bio: [
-    "I'm Dearly Febriano Irwansyah, a programmer with a keen interest in technology. I frequently conduct in-depth research into global technological advancements — and as the times evolve, I work on trending projects and keep learning new things, constantly broadening and sharpening my skill set.",
-    "As a full-stack developer and problem solver, I build products end-to-end: from Instant Resume — a platform that speeds up CV creation without manual styling — to OpenForge, a local AI agent system that helps users complete tasks, search for information offline, build software, automate workflows, and manage device security with an offline-first approach.",
+    "I'm Dearly Febriano Irwansyah, a programmer with a keen interest in technology. I frequently conduct in-depth research into global technological advancements and as the times evolve, I work on trending projects and keep learning new things, constantly broadening and sharpening my skill set.",
+    "As a full-stack developer and problem solver, I build products end-to-end: from Instant Resume a platform that speeds up CV creation without manual styling to Tromino Digital, a platform that helps users create digital products with ease.",
     "These days I focus on web engineering, backend & scalable systems, and AI agent development: designing agents that prioritize privacy, performance, and full control over user data. Always learning, always shipping.",
   ],
   email: "dearlyfebrianoi@gmail.com",
@@ -31,7 +31,7 @@ export const profile = {
   locationShort: "Surabaya, Indonesia",
   availability: "Available for Freelance",
   avatar: "/images/profile/avatar.jpg",
-  resumeUrl: "/resume.pdf", // CV asli: "CV DEARLY FEBRIANO IRWANSYAH.pdf"
+  resumeUrl: "/resume.pdf", // Original Resume: "CV DEARLY FEBRIANO IRWANSYAH.pdf"
   siteUrl: "https://dearlyfebriano.vercel.app",
 };
 

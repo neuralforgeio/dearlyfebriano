@@ -35,7 +35,7 @@ export default function NotesPreview(): JSX.Element {
       <SectionHeading
         eyebrow={t("Tech Notes")}
         title={t("Latest writing")}
-        description={t("Engineering deep dives and career notes — written the way I wish I'd found them.")}
+        description={t("Engineering deep dives and career notes written the way I wish I'd found them.")}
       />
 
       <div className="mt-10 grid gap-6 md:grid-cols-3">

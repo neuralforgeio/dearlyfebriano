@@ -26,37 +26,6 @@ interface GeneratedProjectIntelligence {
 
 export const projectTimelines: Record<string, ProjectTimeline[]> = {
   /* ==========================================================
-   * OPENFORGE
-   * ========================================================== */
-
-  openforge: [
-    {
-      date: "2026-01",
-      title: "Project Foundation",
-      description:
-        "Started the local-first AI agent foundation with privacy, offline execution, and full local control as core principles.",
-    },
-    {
-      date: "Phase 2",
-      title: "Agent Core",
-      description:
-        "Designed the agent execution loop around task understanding, planning, and verifiable step-by-step execution.",
-    },
-    {
-      date: "Phase 3",
-      title: "Local Tooling",
-      description:
-        "Expanded the agent around local tools, offline information retrieval, software building assistance, and workflow automation.",
-    },
-    {
-      date: "Ongoing",
-      title: "Continuous Development",
-      description:
-        "Continuing development of the local AI agent system while maintaining the offline-first and privacy-first architecture.",
-    },
-  ],
-
-  /* ==========================================================
    * INSTANT RESUME
    * ========================================================== */
 
