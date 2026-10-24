@@ -152,7 +152,9 @@ function PageHeader({
  * ============================================================ */
 
 function getAutomaticPreviewUrl(project: Project): string | undefined {
-  if (!project.liveUrl) {
+  // Image mode intentionally skips screenshot services. This is useful for
+  // projects that are still local and do not have a public deployment.
+  if (!project.liveUrl || project.previewMode === "image") {
     return undefined;
   }
 
@@ -178,7 +180,9 @@ function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
     automaticPreviewUrl && !screenshotFailed,
   );
 
-  const fallbackThumbnail = project.thumbnail;
+  // The first gallery image is also a safe fallback when a project has
+  // images but no dedicated thumbnail field.
+  const fallbackThumbnail = project.thumbnail ?? project.images[0];
 
   /* ---------------------------------------------
    * Automatic website screenshot
