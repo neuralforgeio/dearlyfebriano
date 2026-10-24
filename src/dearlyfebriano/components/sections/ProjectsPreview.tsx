@@ -96,11 +96,13 @@ function ProjectPreview({
    * Automatic screenshot URL
    * ---------------------------------------------------------- */
 
-  const automaticPreviewUrl = project.liveUrl
-    ? `/api/project-preview?url=${encodeURIComponent(
-        project.liveUrl
-      )}`
-    : undefined;
+  const automaticPreviewUrl =
+    project.liveUrl && project.previewMode !== "image"
+      ? `/api/project-preview?url=${encodeURIComponent(project.liveUrl)}`
+      : undefined;
+
+  // Projects can use a hand-picked image without deploying a public URL.
+  const fallbackThumbnail = project.thumbnail ?? project.images[0];
 
   /* ----------------------------------------------------------
    * Determine preview source
@@ -115,7 +117,7 @@ function ProjectPreview({
   const shouldUseThumbnail =
     Boolean(
       !shouldUseScreenshot &&
-        project.thumbnail &&
+        fallbackThumbnail &&
         !thumbnailFailed
     );
 
@@ -214,7 +216,7 @@ function ProjectPreview({
         {/* Thumbnail */}
 
         <Image
-          src={project.thumbnail as string}
+          src={fallbackThumbnail as string}
           alt={`${project.title} preview`}
           fill
           sizes="(min-width: 1024px) 368px, (min-width: 640px) 50vw, 100vw"
@@ -337,8 +339,9 @@ function ProjectCard({
    */
   const previewKey = [
     project.slug,
+    project.previewMode ?? "auto",
     project.liveUrl ?? "",
-    project.thumbnail ?? "",
+    project.thumbnail ?? project.images[0] ?? "",
   ].join("|");
 
   return (
