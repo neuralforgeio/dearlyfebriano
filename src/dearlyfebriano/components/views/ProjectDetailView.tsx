@@ -122,15 +122,13 @@ function isTypingTarget(target: EventTarget | null): boolean {
 function getProjectPreviewUrl(
   project: NonNullable<ReturnType<typeof getProjectBySlug>>,
 ): string | undefined {
-  if (project.liveUrl) {
+  // "image" mode is useful while a project is only available locally.
+  // Other modes try a public site's screenshot first, then fall back to an image.
+  if (project.liveUrl && project.previewMode !== "image") {
     return `/api/project-preview?url=${encodeURIComponent(project.liveUrl)}`;
   }
 
-  if (project.thumbnail) {
-    return project.thumbnail;
-  }
-
-  return undefined;
+  return project.thumbnail ?? project.images[0] ?? undefined;
 }
 
 /**
@@ -161,15 +159,16 @@ function buildGalleryImages(
     });
   }
 
-  project.images.forEach((image, index) => {
-    if (!image) {
+  project.images.forEach((image) => {
+    if (!image || gallery.some((item) => item.src === image)) {
       return;
     }
 
+    const screenshotNumber = gallery.length + 1;
     gallery.push({
       src: image,
-      alt: `${project.title} — screenshot ${index + 2}`,
-      caption: `${project.title} — screenshot ${index + 2}`,
+      alt: `${project.title} — screenshot ${screenshotNumber}`,
+      caption: `${project.title} — screenshot ${screenshotNumber}`,
     });
   });
 
@@ -229,13 +228,14 @@ function PreviewMedia({
    * none -> unavailable
    * ============================================================ */
 
-  const automaticPreviewUrl = project.liveUrl
-    ? `/api/project-preview?url=${encodeURIComponent(project.liveUrl)}`
-    : undefined;
+  const automaticPreviewUrl =
+    project.liveUrl && project.previewMode !== "image"
+      ? `/api/project-preview?url=${encodeURIComponent(project.liveUrl)}`
+      : undefined;
 
   const useAutomaticPreview = Boolean(automaticPreviewUrl && !screenshotFailed);
 
-  const fallbackThumbnail = project.thumbnail;
+  const fallbackThumbnail = project.thumbnail ?? project.images[0];
 
   /* ============================================================
    * Reset loading state when project changes
@@ -244,7 +244,7 @@ function PreviewMedia({
   useEffect(() => {
     setImageLoading(true);
     setScreenshotFailed(false);
-  }, [project.slug, project.liveUrl, project.thumbnail]);
+  }, [project.slug, project.liveUrl, project.thumbnail, project.previewMode, project.images[0]]);
 
   /* ============================================================
    * Automatic screenshot
