@@ -17,6 +17,7 @@ import { useUIStore } from "@/dearlyfebriano/store/ui-store";
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 import { cn } from "@/lib/utils";
 import type { JSX, ReactNode } from "react";
+import { DeveloperActivity } from "../developer-activity";
 
 /* ============================================================
  * AboutView — "The story so far": bio, journey timeline,
@@ -139,32 +140,8 @@ export default function AboutView(): JSX.Element {
         </ol>
       </section>
 
-      {/* ---------- Fun facts ---------- */}
-      <section aria-label={t("Fun facts")} className="mt-20 sm:mt-24">
-        <SectionHeading
-          eyebrow={t("Off the clock")}
-          title={t("Beyond the code")}
-          description={t("A few things that keep me inspired when the editor is closed.")}
-        />
-        <StaggerContainer className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-          {funFacts.map((fact) => {
-            const Icon = fact.icon;
-            return (
-              <StaggerItem key={fact.label} className="h-full">
-                <div className="group h-full rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:border-foreground/25">
-                  <div className="grid size-10 place-items-center rounded-lg bg-primary/10 text-primary">
-                    <Icon className="size-5" aria-hidden />
-                  </div>
-                  <p className="mt-4 font-medium text-foreground">{t(fact.label)}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    {t(fact.description)}
-                  </p>
-                </div>
-              </StaggerItem>
-            );
-          })}
-        </StaggerContainer>
-      </section>
+      {/* ---------- Waka TIme ---------- */}
+      <DeveloperActivity />
 
       {/* ---------- Education ---------- */}
       <section aria-label={t("Education")} className="mt-20 sm:mt-24">
