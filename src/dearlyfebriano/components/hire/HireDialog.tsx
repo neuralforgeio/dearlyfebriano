@@ -14,15 +14,10 @@ import {
   Users,
   X,
 } from "lucide-react";
-
 import { useMemo, useState, type JSX } from "react";
-
 import { toast } from "sonner";
-
 import { Button } from "@/components/ui/button";
-
 import { profile } from "@/dearlyfebriano/data/profile";
-
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 
 /* ============================================================
@@ -107,9 +102,13 @@ export default function HireDialog({
 
   const [email, setEmail] = useState("");
 
-  const [projectType, setProjectType] = useState(PROJECT_TYPES[0]);
+  const [projectType, setProjectType] = useState<
+    (typeof PROJECT_TYPES)[number]
+  >(PROJECT_TYPES[0]);
 
-  const [timeline, setTimeline] = useState(TIMELINES[0]);
+  const [timeline, setTimeline] = useState<(typeof TIMELINES)[number]>(
+    TIMELINES[0],
+  );
 
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
 
@@ -398,10 +397,7 @@ export default function HireDialog({
     >
       {/* Backdrop */}
 
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-black/80"
-      />
+      <div aria-hidden className="absolute inset-0 bg-black/80" />
 
       {/* Modal */}
 

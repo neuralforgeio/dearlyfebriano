@@ -12,7 +12,6 @@ import { useMemo, useState, type JSX } from "react";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
 
-
 import { projects } from "@/dearlyfebriano/data/projects";
 
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
@@ -103,8 +102,7 @@ function buildGraphData(): {
 
     const column = index % columns;
 
-    // fix this bug
-    const x = columns === 1 ? 50 : 13 + column * (74 / Math.max(1, columns - 1));
+    const x = 13 + column * (74 / (columns - 1));
 
     const y = ranked.length <= 6 ? 25 + row * 48 : 16 + row * 31;
 
@@ -388,7 +386,7 @@ export default function TechStackGraph({
                       <text
                         x={project.x * 10}
                         y={project.y * 6.2 - 2}
-                       textAnchor="middle"
+                        textAnchor="middle"
                         className="fill-foreground text-[17px] font-semibold"
                         opacity={muted ? 0.2 : 1}
                       >
@@ -398,7 +396,7 @@ export default function TechStackGraph({
                       <text
                         x={project.x * 10}
                         y={project.y * 6.2 + 15}
-                       textAnchor="middle"
+                        textAnchor="middle"
                         className="fill-muted-foreground text-[10px]"
                         opacity={muted ? 0.15 : 0.9}
                       >
@@ -471,7 +469,7 @@ export default function TechStackGraph({
                       <text
                         x={tech.x * 10}
                         y={tech.y * 6.2 - 2}
-                       textAnchor="middle"
+                        textAnchor="middle"
                         className="fill-foreground text-[12px] font-medium"
                         opacity={active ? 1 : 0.2}
                       >
@@ -481,7 +479,7 @@ export default function TechStackGraph({
                       <text
                         x={tech.x * 10}
                         y={tech.y * 6.2 + 14}
-                       textAnchor="middle"
+                        textAnchor="middle"
                         className="fill-primary text-[9px] font-mono"
                         opacity={active ? 1 : 0.15}
                       >
