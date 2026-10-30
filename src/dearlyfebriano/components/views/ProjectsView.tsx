@@ -14,6 +14,7 @@ import {
   FolderSearch,
   Github,
   ImageOff,
+  Package,
   Search,
 } from "lucide-react";
 
@@ -43,6 +44,7 @@ import type { Project, ProjectCategory } from "@/dearlyfebriano/types";
 import { cn } from "@/lib/utils";
 import type { JSX } from "react";
 import PortfolioHealthDashboard from "../projects/PortfolioHealthDashboard";
+import GitHubRepositoryExplorer from "../projects/GitHubRepositoryExplorer";
 
 /* ============================================================
  * ProjectsView
@@ -119,9 +121,7 @@ function PageHeader({
 }: PageHeaderProps): JSX.Element {
   return (
     <FadeIn y={20} className="flex flex-col gap-4">
-      <span className="eyebrow text-primary">
-        {eyebrow}
-      </span>
+      <span className="eyebrow text-primary">{eyebrow}</span>
 
       <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
         {title}
@@ -192,7 +192,7 @@ function ProjectPreview({ project }: ProjectPreviewProps): JSX.Element {
     return (
       <div className="relative aspect-video overflow-hidden bg-muted">
         <Image
-        // @ts-ignore
+          // @ts-ignore
           src={automaticPreviewUrl as string}
           alt={`${project.title} preview`}
           fill
@@ -458,6 +458,9 @@ function ProjectCard({ project, index }: ProjectCardProps): JSX.Element {
 
 export default function ProjectsView(): JSX.Element {
   const [showDiagnostics, setShowDiagnostics] = useState(false);
+  const [activeSource, setActiveSource] = useState<"featured" | "repositories">(
+    "featured",
+  );
   const [activeFilter, setActiveFilter] = useState<ProjectCategory | "all">(
     "all",
   );
@@ -528,232 +531,276 @@ export default function ProjectsView(): JSX.Element {
         )}
       />
 
+      {/* Project source selector */}
+      <div
+        className="mt-8 inline-flex flex-wrap gap-2 rounded-xl border border-border bg-card p-1"
+        role="group"
+        aria-label="Select project source"
+      >
+        <button
+          type="button"
+          onClick={() => setActiveSource("featured")}
+          aria-pressed={activeSource === "featured"}
+          className={cn(
+            "inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors",
+            activeSource === "featured"
+              ? "bg-primary text-primary-foreground"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+        >
+          <Package className="size-4" />
+          Featured Projects
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveSource("repositories")}
+          aria-pressed={activeSource === "repositories"}
+          className={cn(
+            "inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors",
+            activeSource === "repositories"
+              ? "bg-primary text-primary-foreground"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+        >
+          <Github className="size-4" />
+          Github Repositories
+        </button>
+      </div>
+
       {/* ========================================
        * Controls
        * ======================================== */}
 
-      <FadeIn
-        delay={0.1}
-        className="mt-10 flex flex-col gap-4 sm:mt-12 sm:flex-row sm:items-center sm:justify-between"
-      >
-        {/* Category filters */}
-
-        <div
-          className="flex flex-wrap gap-2"
-          role="group"
-          aria-label={t("Filter projects by category")}
-        >
-          {PROJECT_FILTERS.map((filter) => {
-            const isActive = activeFilter === filter.value;
-
-            return (
-              <button
-                key={filter.value}
-                type="button"
-                onClick={() => setActiveFilter(filter.value)}
-                aria-pressed={isActive}
-                className={cn(
-                  "relative rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                  isActive
-                    ? "border-primary text-primary-foreground"
-                    : "border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground",
-                )}
-              >
-                {isActive && (
-                  <motion.span
-                    aria-hidden
-                    layoutId="projects-filter"
-                    className="absolute inset-0 rounded-full bg-primary"
-                    transition={
-                      reducedMotion
-                        ? {
-                            duration: 0,
-                          }
-                        : {
-                            type: "spring",
-                            stiffness: 400,
-                            damping: 32,
-                          }
-                    }
-                  />
-                )}
-
-                <span className="relative z-10">{t(filter.label)}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Search */}
-
-        <div className="relative w-full sm:w-auto">
-          <Search
-            aria-hidden
-            className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
-          />
-
-          <Input
-            type="search"
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-            placeholder={t("Search projects…")}
-            aria-label={t(
-              "Search projects by name, description, or technology",
-            )}
-            className="max-w-xs pl-9"
-          />
-        </div>
-
-        {/* Sort */}
-
-        <div className="w-full sm:w-auto">
-          <Select
-            value={sortOrder}
-            onValueChange={(value) => setSortOrder(value as SortOrder)}
+      {activeSource === "featured" && (
+        <>
+          <FadeIn
+            delay={0.1}
+            className="mt-10 flex flex-col gap-4 sm:mt-12 sm:flex-row sm:items-center sm:justify-between"
           >
-            <SelectTrigger
-              className="w-full max-w-[180px] font-mono text-xs"
-              aria-label={t("Sort projects")}
+            {/* Category filters */}
+
+            <div
+              className="flex flex-wrap gap-2"
+              role="group"
+              aria-label={t("Filter projects by category")}
             >
-              <SelectValue />
-            </SelectTrigger>
+              {PROJECT_FILTERS.map((filter) => {
+                const isActive = activeFilter === filter.value;
 
-            <SelectContent>
-              {SORT_OPTIONS.map((option) => (
-                <SelectItem key={option.value} value={option.value}>
-                  {t(option.label)}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      </FadeIn>
+                return (
+                  <button
+                    key={filter.value}
+                    type="button"
+                    onClick={() => setActiveFilter(filter.value)}
+                    aria-pressed={isActive}
+                    className={cn(
+                      "relative rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                      isActive
+                        ? "border-primary text-primary-foreground"
+                        : "border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground",
+                    )}
+                  >
+                    {isActive && (
+                      <motion.span
+                        aria-hidden
+                        layoutId="projects-filter"
+                        className="absolute inset-0 rounded-full bg-primary"
+                        transition={
+                          reducedMotion
+                            ? {
+                                duration: 0,
+                              }
+                            : {
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 32,
+                              }
+                        }
+                      />
+                    )}
 
-      {/* ========================================
-       * Count
-       * ======================================== */}
+                    <span className="relative z-10">{t(filter.label)}</span>
+                  </button>
+                );
+              })}
+            </div>
 
-      <p
-        aria-live="polite"
-        className="mt-6 font-mono text-xs text-muted-foreground"
-      >
-        {t("Showing")} {filteredProjects.length} {t("of")} {projects.length}{" "}
-        {t("projects")}
-      </p>
+            {/* Search */}
 
-      {/* ========================================
-       * Grid
-       * ======================================== */}
+            <div className="relative w-full sm:w-auto">
+              <Search
+                aria-hidden
+                className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+              />
 
-      {filteredProjects.length > 0 ? (
-        <motion.div layout className="mt-6 grid gap-6 md:grid-cols-2">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
-              <motion.div
-                key={project.slug}
-                layout
-                initial={
-                  reducedMotion
-                    ? {
-                        opacity: 0,
-                      }
-                    : {
-                        opacity: 0,
-                        scale: 0.96,
-                      }
-                }
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                exit={
-                  reducedMotion
-                    ? {
-                        opacity: 0,
-                      }
-                    : {
-                        opacity: 0,
-                        scale: 0.96,
-                      }
-                }
-                transition={{
-                  duration: reducedMotion ? 0.15 : 0.25,
-                  ease: "easeOut",
-                }}
-                className="h-full"
+              <Input
+                type="search"
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                placeholder={t("Search projects…")}
+                aria-label={t(
+                  "Search projects by name, description, or technology",
+                )}
+                className="max-w-xs pl-9"
+              />
+            </div>
+
+            {/* Sort */}
+
+            <div className="w-full sm:w-auto">
+              <Select
+                value={sortOrder}
+                onValueChange={(value) => setSortOrder(value as SortOrder)}
               >
-                <ProjectCard
-                  project={project}
-                  index={projects.indexOf(project)}
-                />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-      ) : (
-        /* ======================================
-         * Empty state
-         * ====================================== */
+                <SelectTrigger
+                  className="w-full max-w-[180px] font-mono text-xs"
+                  aria-label={t("Sort projects")}
+                >
+                  <SelectValue />
+                </SelectTrigger>
 
-        <FadeIn className="py-20 text-center">
-          <FolderSearch
-            aria-hidden
-            className="mx-auto size-12 text-muted-foreground/50"
-          />
+                <SelectContent>
+                  {SORT_OPTIONS.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {t(option.label)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </FadeIn>
 
-          <h2 className="mt-4 text-lg font-semibold text-foreground">
-            {t("No projects match your filters")}
-          </h2>
+          {/* ========================================
+           * Count
+           * ======================================== */}
 
-          <p className="mt-2 text-sm text-muted-foreground">
-            {t("Try a different keyword or category.")}
+          <p
+            aria-live="polite"
+            className="mt-6 font-mono text-xs text-muted-foreground"
+          >
+            {t("Showing")} {filteredProjects.length} {t("of")} {projects.length}{" "}
+            {t("projects")}
           </p>
 
-          {hasFilters && (
-            <Button
-              type="button"
-              variant="outline"
-              onClick={resetFilters}
-              className="mt-6"
-            >
-              {t("Reset filters")}
-            </Button>
+          {/* ========================================
+           * Grid
+           * ======================================== */}
+
+          {filteredProjects.length > 0 ? (
+            <motion.div layout className="mt-6 grid gap-6 md:grid-cols-2">
+              <AnimatePresence mode="popLayout">
+                {filteredProjects.map((project) => (
+                  <motion.div
+                    key={project.slug}
+                    layout
+                    initial={
+                      reducedMotion
+                        ? {
+                            opacity: 0,
+                          }
+                        : {
+                            opacity: 0,
+                            scale: 0.96,
+                          }
+                    }
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                    }}
+                    exit={
+                      reducedMotion
+                        ? {
+                            opacity: 0,
+                          }
+                        : {
+                            opacity: 0,
+                            scale: 0.96,
+                          }
+                    }
+                    transition={{
+                      duration: reducedMotion ? 0.15 : 0.25,
+                      ease: "easeOut",
+                    }}
+                    className="h-full"
+                  >
+                    <ProjectCard
+                      project={project}
+                      index={projects.indexOf(project)}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          ) : (
+            /* ======================================
+             * Empty state
+             * ====================================== */
+
+            <FadeIn className="py-20 text-center">
+              <FolderSearch
+                aria-hidden
+                className="mx-auto size-12 text-muted-foreground/50"
+              />
+
+              <h2 className="mt-4 text-lg font-semibold text-foreground">
+                {t("No projects match your filters")}
+              </h2>
+
+              <p className="mt-2 text-sm text-muted-foreground">
+                {t("Try a different keyword or category.")}
+              </p>
+
+              {hasFilters && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={resetFilters}
+                  className="mt-6"
+                >
+                  {t("Reset filters")}
+                </Button>
+              )}
+            </FadeIn>
           )}
-        </FadeIn>
+
+          {/* ======================================================
+           * Developer Diagnostics
+           *
+           * Hidden by default so the Projects page remains focused
+           * on projects. The health scanner is only mounted after
+           * the visitor explicitly opens this section.
+           * ====================================================== */}
+
+          <div className="mt-14 border-t border-border/50 pt-6">
+            <button
+              type="button"
+              onClick={() => setShowDiagnostics((value) => !value)}
+              aria-expanded={showDiagnostics}
+              className="group mx-auto flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 eyebrow transition-all hover:border-foreground/25 hover:bg-card hover:text-foreground"
+            >
+              <span className="size-1.5 rounded-full bg-primary/60 transition-all group-hover:bg-primary" />
+
+              {showDiagnostics
+                ? t("Hide diagnostics")
+                : t("Developer diagnostics")}
+
+              <span
+                aria-hidden
+                className={cn(
+                  "transition-transform duration-300",
+                  showDiagnostics && "rotate-180",
+                )}
+              >
+                ↓
+              </span>
+            </button>
+
+            {showDiagnostics && <PortfolioHealthDashboard />}
+          </div>
+        </>
       )}
-
-      {/* ======================================================
-       * Developer Diagnostics
-       *
-       * Hidden by default so the Projects page remains focused
-       * on projects. The health scanner is only mounted after
-       * the visitor explicitly opens this section.
-       * ====================================================== */}
-
-      <div className="mt-14 border-t border-border/50 pt-6">
-        <button
-          type="button"
-          onClick={() => setShowDiagnostics((value) => !value)}
-          aria-expanded={showDiagnostics}
-          className="group mx-auto flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 eyebrow transition-all hover:border-foreground/25 hover:bg-card hover:text-foreground"
-        >
-          <span className="size-1.5 rounded-full bg-primary/60 transition-all group-hover:bg-primary" />
-
-          {showDiagnostics ? t("Hide diagnostics") : t("Developer diagnostics")}
-
-          <span
-            aria-hidden
-            className={cn(
-              "transition-transform duration-300",
-              showDiagnostics && "rotate-180",
-            )}
-          >
-            ↓
-          </span>
-        </button>
-
-        {showDiagnostics && <PortfolioHealthDashboard />}
-      </div>
+      {activeSource === "repositories" && <GitHubRepositoryExplorer />}
     </div>
   );
 }
