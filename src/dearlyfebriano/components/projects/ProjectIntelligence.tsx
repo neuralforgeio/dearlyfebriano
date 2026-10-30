@@ -2,7 +2,6 @@
 
 import {
   BarChart3,
-  GitBranch,
   GitCommitHorizontal,
   Layers3,
   LoaderCircle,
@@ -14,9 +13,9 @@ import {
 import { useCallback, useEffect, useState, type JSX } from "react";
 
 import FadeIn from "@/dearlyfebriano/components/animations/FadeIn";
-
-
+import ProjectArchitecture from "@/dearlyfebriano/components/sections/ProjectArchitecture";
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
+import { getProjectArchitecture } from "@/dearlyfebriano/data/project-architecture";
 
 import type {
   IntelligenceMetric,
@@ -37,7 +36,6 @@ export default function ProjectIntelligence({
     useState<ProjectIntelligenceData | null>(null);
 
   const [loading, setLoading] = useState(true);
-
   const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(async () => {
@@ -85,8 +83,7 @@ export default function ProjectIntelligence({
         <div className="rounded-xl border border-border bg-card">
           <div className="flex min-h-[220px] flex-col items-center justify-center p-6 text-center">
             <div className="relative">
-              <span className="absolute -inset-3  rounded-full bg-primary/10" />
-
+              <span className="absolute -inset-3 rounded-full bg-primary/10" />
               <LoaderCircle
                 className="relative size-8 animate-spin text-primary"
                 strokeWidth={1.5}
@@ -111,33 +108,38 @@ export default function ProjectIntelligence({
 
   if (error) {
     return (
-      <section className="mt-14">
-        <div className="rounded-xl border border-border bg-card">
-          <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-amber-500">
-                {t("Project intelligence")}
-              </p>
+      <>
+        <section className="mt-14">
+          <div className="rounded-xl border border-border bg-card">
+            <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-widest text-amber-500">
+                  {t("Project intelligence")}
+                </p>
 
-              <h2 className="mt-1 text-lg font-semibold text-foreground">
-                {t("Automatic analysis unavailable")}
-              </h2>
+                <h2 className="mt-1 text-lg font-semibold text-foreground">
+                  {t("Automatic analysis unavailable")}
+                </h2>
 
-              <p className="mt-1 text-sm text-muted-foreground">{error}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{error}</p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => void load()}
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-foreground/25"
+              >
+                <RefreshCw className="size-4" aria-hidden />
+                {t("Retry")}
+              </button>
             </div>
-
-            <button
-              type="button"
-              onClick={() => void load()}
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-foreground/25"
-            >
-              <RefreshCw className="size-4" aria-hidden />
-
-              {t("Retry")}
-            </button>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* A committed architecture definition can still be explored if the
+            live GitHub analysis endpoint is temporarily unavailable. */}
+        <ProjectArchitecture architecture={getProjectArchitecture(slug)} />
+      </>
     );
   }
 
@@ -145,18 +147,21 @@ export default function ProjectIntelligence({
     return null;
   }
 
+  const architecture =
+    intelligence.architecture.nodes.length > 0
+      ? {
+          nodes: intelligence.architecture.nodes,
+          edges: intelligence.architecture.edges,
+        }
+      : getProjectArchitecture(slug);
+
   return (
     <section aria-label={t("Project intelligence")} className="mt-14">
-      {/* ======================================================
-       * Header
-       * ====================================================== */}
-
+      {/* Header */}
       <FadeIn>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="eyebrow text-primary">
-              {t("Automatic analysis")}
-            </p>
+            <p className="eyebrow text-primary">{t("Automatic analysis")}</p>
 
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
               {t("Project intelligence")}
@@ -169,7 +174,6 @@ export default function ProjectIntelligence({
 
           <div className="flex items-center gap-2 rounded-md border border-border bg-secondary px-3 py-1.5">
             <Sparkles className="size-3.5 text-primary" aria-hidden />
-
             <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
               GitHub
             </span>
@@ -177,10 +181,7 @@ export default function ProjectIntelligence({
         </div>
       </FadeIn>
 
-      {/* ======================================================
-       * Metrics
-       * ====================================================== */}
-
+      {/* Metrics */}
       <FadeIn delay={0.05} className="mt-6">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {intelligence.metrics.map((metric, index) => (
@@ -192,10 +193,7 @@ export default function ProjectIntelligence({
         </div>
       </FadeIn>
 
-      {/* ======================================================
-       * Tech stack
-       * ====================================================== */}
-
+      {/* Detected technology stack */}
       {intelligence.techStack.length > 0 && (
         <FadeIn delay={0.1} className="mt-6">
           <div className="rounded-xl border border-border bg-card p-5">
@@ -218,127 +216,10 @@ export default function ProjectIntelligence({
         </FadeIn>
       )}
 
-      {/* ======================================================
-       * Architecture
-       * ====================================================== */}
+      {/* Interactive architecture — shared with manually defined diagrams */}
+      <ProjectArchitecture architecture={architecture} />
 
-      <FadeIn delay={0.15} className="mt-6">
-        <div className="overflow-hidden rounded-xl border border-border bg-card">
-          <div className="border-b border-border p-5">
-            <div className="flex items-center gap-3">
-              <div className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
-                <GitBranch className="size-4" aria-hidden />
-              </div>
-
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-widest text-primary">
-                  {t("Generated architecture")}
-                </p>
-
-                <p className="mt-1 text-sm font-semibold text-foreground">
-                  {intelligence.architecture.nodes.length} {t("modules")} ·{" "}
-                  {intelligence.architecture.edges.length} {t("connections")}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="overflow-x-auto">
-            <div className="min-w-[760px] p-6">
-              <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-border bg-background/60">
-                <svg
-                  aria-hidden="true"
-                  className="absolute inset-0 size-full"
-                  viewBox="0 0 1000 560"
-                  preserveAspectRatio="none"
-                >
-                  <defs>
-                    <marker
-                      id={`auto-arrow-${slug}`}
-                      markerWidth="8"
-                      markerHeight="8"
-                      refX="6"
-                      refY="4"
-                      orient="auto"
-                    >
-                      <path
-                        d="M0,0 L8,4 L0,8 z"
-                        fill="hsl(var(--primary) / 0.55)"
-                      />
-                    </marker>
-                  </defs>
-
-                  {intelligence.architecture.edges.map((edge, index) => {
-                    const from = intelligence.architecture.nodes.find(
-                      (node) => node.id === edge.from,
-                    );
-
-                    const to = intelligence.architecture.nodes.find(
-                      (node) => node.id === edge.to,
-                    );
-
-                    if (!from || !to) {
-                      return null;
-                    }
-
-                    const x1 = (from.x / 100) * 1000;
-
-                    const y1 = (from.y / 100) * 560;
-
-                    const x2 = (to.x / 100) * 1000;
-
-                    const y2 = (to.y / 100) * 560;
-
-                    const midX = (x1 + x2) / 2;
-
-                    return (
-                      <path
-                        key={`${edge.from}-${edge.to}-${index}`}
-                        d={`M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`}
-                        fill="none"
-                        stroke="hsl(var(--primary) / 0.35)"
-                        strokeWidth="2"
-                        strokeDasharray="7 6"
-                        markerEnd={`url(#auto-arrow-${slug})`}
-                        vectorEffect="non-scaling-stroke"
-                      />
-                    );
-                  })}
-                </svg>
-
-                {intelligence.architecture.nodes.map((node) => (
-                  <div
-                    key={node.id}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 rounded-xl border border-border bg-card px-4 py-3 shadow-sm"
-                    style={{
-                      left: `${node.x}%`,
-                      top: `${node.y}%`,
-                      width: "180px",
-                    }}
-                  >
-                    <p className="font-mono text-[9px] uppercase tracking-widest text-primary">
-                      {node.category ?? t("Module")}
-                    </p>
-
-                    <p className="mt-1 text-sm font-semibold text-foreground">
-                      {node.label}
-                    </p>
-
-                    <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-muted-foreground">
-                      {node.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </FadeIn>
-
-      {/* ======================================================
-       * Timeline
-       * ====================================================== */}
-
+      {/* Engineering timeline */}
       {intelligence.timeline.length > 0 && (
         <FadeIn delay={0.2} className="mt-6">
           <div className="rounded-xl border border-border bg-card p-5 sm:p-7">
@@ -397,7 +278,6 @@ function IntelligenceMetricCard({
     <div className="rounded-xl border border-border bg-card p-5">
       <div className="flex items-center gap-2 text-muted-foreground">
         <BarChart3 className="size-4 text-primary" aria-hidden />
-
         <span className="font-mono text-[10px] uppercase tracking-widest">
           {metric.label}
         </span>
@@ -441,7 +321,6 @@ function TimelineItem({
       <article className="rounded-xl border border-border bg-background/30 p-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h3 className="font-semibold text-foreground">{item.title}</h3>
-
           {item.date && (
             <span className="font-mono text-[10px] text-primary">
               {item.date}
