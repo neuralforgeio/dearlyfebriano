@@ -17,7 +17,7 @@ import { useUIStore } from "@/dearlyfebriano/store/ui-store";
 import { useLanguage } from "@/dearlyfebriano/i18n/language-context";
 import { cn } from "@/lib/utils";
 import type { JSX, ReactNode } from "react";
-import { DeveloperActivity } from "../developer-activity";
+import { GitHubActivity } from "../GithubActivity";
 
 /* ============================================================
  * AboutView — "The story so far": bio, journey timeline,
@@ -107,6 +107,9 @@ export default function AboutView(): JSX.Element {
         </div>
       </section>
 
+      {/* ---------- GitHub Activity ---------- */}
+      <GitHubActivity />
+
       {/* ---------- Journey timeline (compact) ---------- */}
       <section aria-label={t("Career journey")} className="mt-20 sm:mt-24">
         <SectionHeading
@@ -139,9 +142,6 @@ export default function AboutView(): JSX.Element {
           ))}
         </ol>
       </section>
-
-      {/* ---------- Waka TIme ---------- */}
-      <DeveloperActivity />
 
       {/* ---------- Education ---------- */}
       <section aria-label={t("Education")} className="mt-20 sm:mt-24">
